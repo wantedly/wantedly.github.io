@@ -36,3 +36,7 @@ $ ->
 ```sql
 SELECT COUNT(*) FROM users
 ```
+
+## Images
+
+![Image Sample](/images/header_bg.png)

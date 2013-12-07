@@ -8,7 +8,7 @@ Wantedly Engineer Blog
 ```
 brew install node.js
 node -v
-npm install bower -g
+npm install -g bower
 bower -v
 ```
 

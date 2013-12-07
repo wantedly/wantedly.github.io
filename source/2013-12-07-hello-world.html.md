@@ -1,7 +1,8 @@
 ---
 title: ココロオドル・開発ブログはじめました
 date: 2013-12-07
-author: yoshinori.kawasaki
+wantedly_id: 10599
+facebook_id: yoshinori.kawasaki
 ---
 
 こんにちはこんにちは！

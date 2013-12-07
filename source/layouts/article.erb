@@ -1,15 +1,11 @@
 <% wrap_layout :layout do %>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h2>
-          <%= current_page.title %> <small><%= current_page.date.strftime('%b %e') %></small>
-          <a href="<%= "https://www.wantedly.com/users/#{current_page.data.wantedly_id}" %>">
-            <img class="pull-right" src="https://graph.facebook.com/<%= current_page.data.facebook_id %>/picture" />
-          </a>
-        </h2>
-      </div>
-      <div class="panel-body">
-        <%= yield %>
-      </div>
-    </div>
+  <div class="page-header">
+    <h2>
+      <%= current_page.title %> <small><%= current_page.date.strftime('%b %e') %></small>
+      <a href="<%= "https://www.wantedly.com/users/#{current_page.data.wantedly_id}" %>">
+        <img class="pull-right" src="https://graph.facebook.com/<%= current_page.data.facebook_id %>/picture" />
+      </a>
+    </h2>
+  </div>
+  <%= yield %>
 <% end %>

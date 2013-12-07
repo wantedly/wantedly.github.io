@@ -7,3 +7,5 @@ gem "middleman-deploy"
 
 # For feed.xml.builder
 gem "builder", "~> 3.0"
+
+gem "bootstrap-sass", require: false

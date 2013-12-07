@@ -7,8 +7,32 @@ author: yoshinori.kawasaki
 こんにちはこんにちは！
 ( ｰ`дｰ´)
 
-# マークダウンのテスト
+## Markdown
 
 - あ
 - い
 - う
+
+
+## Syntax Highlighting
+
+### Ruby
+
+```ruby
+def my_cool_method(message)
+  puts message
+end
+```
+
+### CoffeeScript
+
+```coffeescript
+$ ->
+  console.log 'hi'
+```
+
+### SQL
+
+```sql
+SELECT COUNT(*) FROM users
+```

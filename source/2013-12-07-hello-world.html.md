@@ -1,7 +1,7 @@
 ---
 title: ココロオドル・開発ブログはじめました
 date: 2013-12-07
-tags: kawasy
+author: yoshinori.kawasaki
 ---
 
 こんにちはこんにちは！

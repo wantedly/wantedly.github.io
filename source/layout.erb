@@ -3,23 +3,23 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Title<%= ' - ' + current_article.title unless current_article.nil? %></title>
     <%= feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed" %>
 
     <%= stylesheet_link_tag "application" %>
   </head>
   <body>
-
+    <div class="jumbotron">
+      <h1>Wantedly Engineer Blog</h1>
+      <p>Wantedly 開発ブログ</p>
+    </div>
     <div class="container">
-      <div class="jumbotron">
-        <h1>Wantedly Engineer Blog</h1>
-        <p>Wantedly 開発ブログ</p>
-      </div>
       <div class="row">
-        <div class="span6">
+        <div class=".col-xs-12 .col-md-8">
           <%= yield %>
         </div>
-        <div class="span3">
+        <div class=".col-xs-6 .col-md-4">
           <h2>Recent Articles</h2>
           <ol>
             <% blog.articles[0...10].each do |article| %>

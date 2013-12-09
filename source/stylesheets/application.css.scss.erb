@@ -21,14 +21,45 @@ $text-color: $gray3;
 
 @import "bootstrap";
 @import "highlight";
+@import url(http://fonts.googleapis.com/css?family=Dosis:600);
 
+* {
+  color: $text-color;
+}
+
+ul {
+  list-style: none;
+  padding-left: 10px;
+}
+
+img {
+  max-width: 100%;
+}
+
+footer p {
+  color: $gray1;
+}
+
+.dosis {
+  font-family: 'Dosis', sans-serif;
+}
+
+.gray {
+  color: $gray1;
+}
+
+.center {
+  text-align: center;
+}
 
 .cover-image {
   background-image: url('/images/header_bg.png');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  text-align: center;
+}
+
+.cover-image * {
   color: white;
 }
 
@@ -37,6 +68,6 @@ $text-color: $gray3;
   color: #fff;
 }
 
-img {
-  max-width: 100%;
+.side-article {
+  margin-top: 30px;
 }

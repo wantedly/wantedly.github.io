@@ -4,61 +4,53 @@
     <meta charset="utf-8" />
     <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Title<%= ' - ' + current_article.title unless current_article.nil? %></title>
+    <title><%= current_article.title + ' - ' unless current_article.nil? %>Wantedly Engineer Blog</title>
     <%= feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed" %>
 
     <%= stylesheet_link_tag "application" %>
   </head>
   <body>
-    <div class="jumbotron cover-image">
-      <h1><a href="/">Wantedly Engineer Blog</a></h1>
+    <header class="jumbotron cover-image center">
+      <h1 class="dosis"><a href="/">Wantedly Engineer Blog</a></h1>
       <p>Wantedly 開発ブログ</p>
-    </div>
+    </header>
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-8">
           <%= yield %>
         </div>
-        <div class="col-xs-6 col-md-4">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3>Recent Articles</h3>
-            </div>
-            <div class="panel-body">
-              <ol>
-                <% blog.articles[0...10].each do |article| %>
-                  <li><%= link_to article.title, article %> <span><%= article.date.strftime('%b %e') %></span></li>
-                <% end %>
-              </ol>
-            </div>
+        <div class="col-xs-12 col-md-3 col-md-offset-1">
+          <div class="side-article">
+            <h4>Recent Articles</h4>
+            <ul>
+              <% blog.articles[0...10].each do |article| %>
+                <li>- <%= link_to article.title, article %></li>
+              <% end %>
+            </ul>
           </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3>Tags</h3>
-            </div>
-            <div class="panel-body">
-              <ol>
-                <% blog.tags.each do |tag, articles| %>
-                  <li><%= link_to tag, tag_path(tag) %> (<%= articles.size %>)</li>
-                <% end %>
-              </ol>
-            </div>
+          <div class="side-article">
+            <h4>Tags</h4>
+            <ul>
+              <% blog.tags.each do |tag, articles| %>
+                <li>- <%= link_to tag, tag_path(tag) %> <small class="gray">(<%= articles.size %>)</small></li>
+              <% end %>
+            </ul>
           </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3>By Year</h3>
-            </div>
-            <div class="panel-body">
-              <ol>
-                <% blog.articles.group_by {|a| a.date.year }.each do |year, articles| %>
-                  <li><%= link_to year, blog_year_path(year) %> (<%= articles.size %>)</li>
-                <% end %>
-              </ol>
-            </div>
+          <div class="side-article">
+            <h4>By Year</h4>
+            <ul>
+              <% blog.articles.group_by {|a| a.date.year }.each do |year, articles| %>
+                <li>- <%= link_to year, blog_year_path(year) %> <small class="gray">(<%= articles.size %>)</small></li>
+              <% end %>
+            </ul>
           </div>
         </div>
       </div>
     </div>
+    <footer class="container center">
+      <hr/>
+      <p>2013 © Wantedly, Inc., All Rights Reserved.</p>
+    </footer>
 
     <%= javascript_include_tag  "application" %>
 

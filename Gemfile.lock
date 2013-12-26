@@ -76,10 +76,13 @@ GEM
     middleman-syntax (1.2.1)
       middleman-core (~> 3.0)
       rouge (~> 0.3.0)
+    mini_portile (0.5.1)
     multi_json (1.8.2)
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     ptools (1.2.2)
     rack (1.5.2)
     rack-livereload (0.3.15)
@@ -126,4 +129,5 @@ DEPENDENCIES
   middleman-deploy
   middleman-livereload (~> 3.1.0)
   middleman-syntax
+  nokogiri
   redcarpet

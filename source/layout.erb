@@ -28,14 +28,16 @@
               <% end %>
             </ul>
           </div>
-          <div class="side-article">
-            <h4>Tags</h4>
-            <ul>
-              <% blog.tags.each do |tag, articles| %>
-                <li>- <%= link_to tag, tag_path(tag) %> <small class="gray">(<%= articles.size %>)</small></li>
-              <% end %>
-            </ul>
-          </div>
+          <!--
+            <div class="side-article">
+              <h4>Tags</h4>
+              <ul>
+                <% blog.tags.each do |tag, articles| %>
+                  <li>- <%= link_to tag, tag_path(tag) %> <small class="gray">(<%= articles.size %>)</small></li>
+                <% end %>
+              </ul>
+            </div>
+          -->
           <div class="side-article">
             <h4>By Year</h4>
             <ul>

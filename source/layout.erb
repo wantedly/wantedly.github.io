@@ -21,7 +21,7 @@
         </div>
         <div class="col-xs-12 col-md-3 col-md-offset-1">
           <div class="side-article">
-            <h4>Recent Articles</h4>
+            <h4>最近の記事</h4>
             <ul>
               <% blog.articles[0...10].each do |article| %>
                 <li>- <%= link_to article.title, article %></li>
@@ -38,13 +38,18 @@
               </ul>
             </div>
           -->
+          <!--
+            <div class="side-article">
+              <h4>By Year</h4>
+              <ul>
+                <% blog.articles.group_by {|a| a.date.year }.each do |year, articles| %>
+                  <li>- <%= link_to year, blog_year_path(year) %> <small class="gray">(<%= articles.size %>)</small></li>
+                <% end %>
+              </ul>
+            </div>
+          -->
           <div class="side-article">
-            <h4>By Year</h4>
-            <ul>
-              <% blog.articles.group_by {|a| a.date.year }.each do |year, articles| %>
-                <li>- <%= link_to year, blog_year_path(year) %> <small class="gray">(<%= articles.size %>)</small></li>
-              <% end %>
-            </ul>
+            <h4></h4>
           </div>
         </div>
       </div>

@@ -5,6 +5,8 @@ wantedly_id: 10599
 facebook_id: yoshinori.kawasaki
 ---
 
+(※この記事はWantedlyのエンジニアメンバー向けのサンプル記事です)
+
 こんにちは！
 
 このブログは[Middleman](http://middlemanapp.com/)を使って生成され、GitHub Pages上にホストされています。

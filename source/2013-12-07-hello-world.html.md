@@ -58,7 +58,6 @@ SELECT COUNT(*) FROM users
 以下のようにすると、HTMLファイルが生成されGitHubの`master`ブランチに`git push`されて、自動的に公開されます。
 
 ```bash
-$ bundle exec middleman build
 $ bundle exec middleman deploy
 ```
 

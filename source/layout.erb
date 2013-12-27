@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= current_article.title + ' - ' unless current_article.nil? %>Wantedly Engineer Blog</title>
     <%= feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed" %>
-    <link href="favicon.png" rel="icon" type="image/png">
+    <link href="<%= asset_url('favicon.png') %>" rel="icon" type="image/png">
     <meta property="fb:app_id" content="234170156611754">
-    <meta property="og:image" content="http://engineer.wantedly.com/wantedly-sticker2.png">
+    <meta property="og:image" content="<%= asset_url('wantedly-sticker2.png') %>">
     <%= stylesheet_link_tag "application" %>
   </head>
   <body>

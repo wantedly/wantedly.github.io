@@ -9,7 +9,7 @@ facebook_id: yoshinori.kawasaki
 
 嬉しいことに、Wantedly開発チームの仲間は2013年の1年間で2倍に増えました。2013の最初には自分、 [awakia](https://www.wantedly.com/users/15382) と [reikubonaga](https://www.wantedly.com/users/9306) の3人でしたが、
 デザイナなのにXCodeも使いこなす [ferasyahin](https://www.wantedly.com/users/42889)、
-Chef使いのプロダクティビティ・エンジニア [spesnova](https://www.wantedly.com/users/323185)、それからこのブログのデザインもやってくれたエンジニア [imaimiami](https://www.wantedly.com/users/14000) の加入で合計6人になりました。最近ではさらに [kento](https://www.wantedly.com/users/2217896)や[shin-en](https://www.wantedly.com/users/300507)がインターンとして活躍してくれています。
+Chef使いのプロダクティビティ・エンジニア [spesnova](https://www.wantedly.com/users/323185)、それからこのブログのデザインもやってくれたエンジニア [imaimiami](https://www.wantedly.com/users/14000) の加入で合計6人になりました。最近ではさらに [kento](https://www.wantedly.com/users/2217896) や [shin-en](https://www.wantedly.com/users/300507) がインターンとして活躍してくれています。
 
 Wantedlyに入社してくるエンジニアは、なぜかRubyもRailsもやったことのない人ばかりなので(自分もそうでした)、
 今日はそんな彼ら新人のために、Ruby/Railsで開発をするときに役立つページをまとめてみました。

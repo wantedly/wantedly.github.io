@@ -7,6 +7,8 @@
     <title><%= current_article.title + ' - ' unless current_article.nil? %>Wantedly Engineer Blog</title>
     <%= feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed" %>
     <link href="favicon.png" rel="icon" type="image/png">
+    <meta content="234170156611754" property="fb:app_id">
+    <meta content="/images/wantedly-sticker2.png" property="og:image">
     <%= stylesheet_link_tag "application" %>
   </head>
   <body>

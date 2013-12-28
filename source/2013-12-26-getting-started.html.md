@@ -1,5 +1,5 @@
 ---
-title: Ruby/Rails編・新人エンジニアに読んで欲しい英語ドキュメントまとめ
+title: 新人エンジニアに読んで欲しい英語ドキュメントまとめ (Ruby/Rails編)
 date: 2013-12-26
 wantedly_id: 10599
 facebook_id: yoshinori.kawasaki

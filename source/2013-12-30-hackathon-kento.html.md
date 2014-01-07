@@ -1,8 +1,8 @@
 ---
 title: Twilioを使ってみた
 date: 2013-12-30
-wantedly_id:
-facebook_id:
+wantedly_id: 2217896
+facebook_id: kento.sasamoto.7
 twitter_id: sasa_sfc
 ---
 ##はじめに
@@ -10,36 +10,36 @@ twitter_id: sasa_sfc
 今回はWantedlyの社内ハッカソンに参加させていただいたときに使ったTwilioというAPIについて自分のまとめも兼ねて記事を書かせていただきたいと思います。
 
 
-##twilioとは
-twilioは電話や音声メッセージ、SMSなどを使うことの出来るAPIです。日本語のドキュメントも用意されていて簡単に使えて便利なのですが無料版では使い勝手が凄く悪いので個人で利用する場合は有料アカウントをとらざる終えないので個人ではちょっと敷居の高いアプリとなっています。
+##Twilioとは
+Twilioは電話や音声メッセージ、SMSなどを使うことの出来るAPIです。日本語のドキュメントも用意されていて簡単に使えて便利なのですが無料版では使い勝手が凄く悪いので個人で利用する場合は有料アカウントをとらざる終えないので個人ではちょっと敷居の高いアプリとなっています。
 
 
 ##調べたドキュメント
-[公式](http://twilio.kddi-web.com/)
-[公式チュートリアル](https://jp.twilio.com/docs/quickstart)
-[git ruby](https://github.com/twilio/twilio-ruby)
+- [公式](http://twilio.kddi-web.com/)
+- [公式チュートリアル](https://jp.twilio.com/docs/quickstart)
+- [git ruby](https://github.com/twilio/twilio-ruby)
 
-[電話基本](http://blog.twilio.kddi-web.com/2013/05/21/ruby%E3%81%8B%E3%82%89%E9%9B%BB%E8%A9%B1%E3%82%92%E3%81%8B%E3%81%91%E3%82%8B/)
-[便利ツール](http://dev.classmethod.jp/etc/twim11/)
+- [電話基本](http://blog.twilio.kddi-web.com/2013/05/21/ruby%E3%81%8B%E3%82%89%E9%9B%BB%E8%A9%B1%E3%82%92%E3%81%8B%E3%81%91%E3%82%8B/)
+- [便利ツール](http://dev.classmethod.jp/etc/twim11/)
 
 ##電話機能の使い方
-まずは公式ページでアカウント登録をしてtwilow電話番号を取得する
+まずは公式ページでアカウント登録をしてTwilow電話番号を取得する
 
-sid, token、twilioの電話番号を取得する(取得するのは米の電話番号が良いですよ!)
+sid, token、Twilioの電話番号を取得する(取得するのは米の電話番号が良いですよ!)
 
 その後、Gemのインストールをします
 
-```bash:gem
+```ruby
 gem "twilio-ruby"
 ```
 
-```bash:ターミナル
-bundle
+```bash
+bundle install
 ```
 
 modelの中に作成したcall.rbに記述するだけ
 
-```ruby:model
+```ruby
 class Call
   def self.voice_message
     account_sid = ENV['TWILIO_SID']#中身は自分のものに変える
@@ -49,7 +49,7 @@ class Call
       from: '+8100000000', # twilio電話番号
       to:   '+8100000000', # 宛先の電話番号
       url: 'http://huntr-static.s3.amazonaws.com/mother/call.xml', #再生される音声の内容が書かれたxmlのURL
-      method: 'GET',　#defaltではこれがpostになっているためCall内容が反映されずエラーになるから気をつける
+      method: 'GET', #defaltではこれがpostになっているためCall内容が反映されずエラーになるから気をつける
     )
   end
 end
@@ -58,14 +58,14 @@ end
 
 あとはコンソールで
 
-```bash:コンソール
+```ruby
 Call.voice_message
 ```
 とするだけでxmlがパースされたコンテンツの電話がかかってくる
 
 ちなみURLの内容は
 
-```xml:xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Say language="ja-jp">おかんから、メッセージがあります</Say>//読み上げられる内容
@@ -82,7 +82,7 @@ Call.voice_message
 gemをインストールするまでは同じ
 あとはコントローラーの中身を変えるだけ
 
-```ruby:コントローラー
+```ruby
 class SmsSender
   def self.send_sms
     account_sid = ENV['TWILIO_SID']

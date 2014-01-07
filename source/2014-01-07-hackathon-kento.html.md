@@ -1,6 +1,6 @@
 ---
 title: Twilioを使ってみた
-date: 2013-12-30
+date: 2014-01-07
 wantedly_id: 2217896
 facebook_id: kento.sasamoto.7
 twitter_id: sasa_sfc

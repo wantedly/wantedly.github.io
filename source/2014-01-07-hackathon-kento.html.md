@@ -1,5 +1,5 @@
 ---
-title: Twilioを使ってみた
+title: Wantedlyハッカソンに参加してきた(*｀･ω･´)ノ
 date: 2014-01-07
 wantedly_id: 2217896
 facebook_id: kento.sasamoto.7
@@ -7,101 +7,45 @@ twitter_id: sasa_sfc
 ---
 ##はじめに
 こんにちは！現在Wantedlyでインターンをさせてもらっている現役高校生の[kento](https://www.wantedly.com/users/2217896)です。
-今回はWantedlyの社内ハッカソンに参加させていただいたときに使ったTwilioというAPIについて自分のまとめも兼ねて記事を書かせていただきたいと思います。
+今回はWantedlyの社内ハッカソンに参加させてもらいましたのでそのレポをさせてもらいます。普通のハッカソンとはひと味違う体験をさせてもらいましたw
+<br>
+今回は社員全員が参加ということでエンジニアとかマーケティングとか関係なく、ごちゃまぜのチームでした。僕の参加したチームはビジネスサイドの人 × 2 , エンジニアサイドの人 × 2 という４人チームでした。僕以外のエンジニアはCTOの川崎さんなので技術面では余裕(｀･ω･´)
+<br><br>
+・・・・・・って思っていたら川崎さんが手を負傷したため結局一人で作ることになりました(´；ω；`)
+<br><br>
+#####<チーム作戦会議!>
+![チーム作戦会議](https://huntr-static.s3.amazonaws.com/engineer_blog/2014-01-07-hackathon-kento-2.png)
+<br>
+#####<開発中!>
+![開発中](https://huntr-static.s3.amazonaws.com/engineer_blog/2014-01-07-hackathon-kento-1.png)
+<br>
+#####<プレゼン資料!>
+![プレゼン資料](https://huntr-static.s3.amazonaws.com/engineer_blog/okan2.png)
+![プレゼン資料](https://huntr-static.s3.amazonaws.com/engineer_blog/okan1.png)
+![プレゼン資料](https://huntr-static.s3.amazonaws.com/engineer_blog/okan3.png)
+<br><br>
+川崎さんに助言を頂きながら、なんとかプレゼン前に完成しました。(´∀｀ゞ
+<br><br>
 
+##最後に
+今回のハッカソンでは指定した人に録音した励ましの電話をかける『オカンあぷり』を作りました。
+<br>
+書いたコードはむっちゃ少ないし、そんなに複雑なロジックでもないのに何度つまずいたことだか・・
+<br><br>
+周りのレベルが本当に高くってハッカソンの結果は惨敗でした。
+<br>
+けれどビジネスサイドの人たちとの作戦会議や、躓きながら行なった未知のAPIでの開発は貴重な経験でちょー楽しかったですw。
+<br>
+次のハッカソンのときはもっと活躍できるように頑張るぞーヾ(`･ω･´)ﾉ
+<br><br><br>
+<追記>
+<br>
+今回使ったTwilioという電話やSNSを簡単に利用できるAPIを自分なりにまとめてみたので興味があればご覧下さい。=> [Qiita RailsでTwilioを使ってみた](http://qiita.com/sasa0721/items/2382f510b80491a78959)
 
-##Twilioとは
-Twilioは電話や音声メッセージ、SMSなどを使うことの出来るAPIです。日本語のドキュメントも用意されていて簡単に使えて便利なのですが無料版では使い勝手が凄く悪いので個人で利用する場合は有料アカウントをとらざる終えないので個人ではちょっと敷居の高いアプリとなっています。
-
-
-##調べたドキュメント
+###参考
 - [公式](http://twilio.kddi-web.com/)
 - [公式チュートリアル](https://jp.twilio.com/docs/quickstart)
 - [git ruby](https://github.com/twilio/twilio-ruby)
-
 - [電話基本](http://blog.twilio.kddi-web.com/2013/05/21/ruby%E3%81%8B%E3%82%89%E9%9B%BB%E8%A9%B1%E3%82%92%E3%81%8B%E3%81%91%E3%82%8B/)
 - [便利ツール](http://dev.classmethod.jp/etc/twim11/)
 
-##電話機能の使い方
-まずは公式ページでアカウント登録をしてTwilow電話番号を取得する
-
-sid, token、Twilioの電話番号を取得する(取得するのは米の電話番号が良いですよ!)
-
-その後、Gemのインストールをします
-
-```ruby
-gem "twilio-ruby"
-```
-
-```bash
-bundle install
-```
-
-modelの中に作成したcall.rbに記述するだけ
-
-```ruby
-class Call
-  def self.voice_message
-    account_sid = ENV['TWILIO_SID']#中身は自分のものに変える
-    auth_token = ENV['TWILIO_TOKEN']#中身は自分のものに変える
-    client = Twilio::REST::Client.new(account_sid, auth_token)
-    client.account.calls.create(
-      from: '+8100000000', # twilio電話番号
-      to:   '+8100000000', # 宛先の電話番号
-      url: 'http://huntr-static.s3.amazonaws.com/mother/call.xml', #再生される音声の内容が書かれたxmlのURL
-      method: 'GET', #defaltではこれがpostになっているためCall内容が反映されずエラーになるから気をつける
-    )
-  end
-end
-```
-
-
-あとはコンソールで
-
-```ruby
-Call.voice_message
-```
-とするだけでxmlがパースされたコンテンツの電話がかかってくる
-
-ちなみURLの内容は
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-    <Say language="ja-jp">おかんから、メッセージがあります</Say>//読み上げられる内容
-    <Play>http://huntr-static.s3.amazonaws.com/mother/test.mp3</Play>//再生されるmp3
-</Response>
-```
-
-のような感じで実装できる
-
-今回私は[サーバーダッグ](http://cyberduck.softonic.jp/mac)を使ってファイルをアップしたが勿論なんでもいい
-*ただしサイバーダックを使う場合はすべてのファイルをeveryone readのアクセス設定にしてないとエラーとなるので気をつけてください
-
-##SMS機能の使い方
-gemをインストールするまでは同じ
-あとはコントローラーの中身を変えるだけ
-
-```ruby
-class SmsSender
-  def self.send_sms
-    account_sid = ENV['TWILIO_SID']
-    auth_token = ENV['TWILIO_TOKEN']
-    client = Twilio::REST::Client.new(account_sid, auth_token)
-    client2 = Twilio::REST::Client.new(account_sid, auth_token)
-
-    client.account.messages.create(
-      from: '+0000000',
-      to:   '+00000000',
-      body: "ヽ(･∀･)人(･∀･)ﾉ文章の中身ヽ(･∀･)人(･∀･)ﾉ",
-    )
-```
-
-
-*注意　取得したtwilioの電話番号が日本のものである場合はSMSは使えないので注意しましょう。アメリカの電話番号でないとこの機能は使えません。私はこのことに気づかず長い時間を無駄にしました( *´Д⊂ ｸﾞｽﾝ…
-
-##最後に
-今回のハッカソンで私は「お母さんアプリ」の名の下に最初に指定した人に録音した励ましの電話をかけるという使い方をしたが
-企業の電話対応を自動化したり、
-会員登録の際にSMSを使うことでアカウントの複数取得をなくしたり、
-そんな真面目な使い方もできるAPIです。楽しかったので機会があればまた使ってみたいです。

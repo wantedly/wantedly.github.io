@@ -5,6 +5,8 @@ wantedly_id: 300507
 facebook_id: shingtgt
 ---
 
+![match_vis2](images/2014-01-02/match_vis2.png)
+
 こんにちは！Wantedlyで12月中にインターンシップをしていた後藤です．
 今回，業務の一環としてグラフDBであるNeo4jを1日触ってみたので，それに関してつらつら書いてみたいと思います．
 
@@ -84,7 +86,7 @@ Cypherではノードを丸括弧`()`で表し，プロパティを波括弧`{}`
 
 リレーションは角括弧`[]`で表します．これで，nameというキーの値としてJiro, Goroというプロパティを持つ2つのノードを生成し，JiroがGoroに対し`KNOWS`（知っている）というリレーションを持つ，という構造ができます．図にするとこんな感じですね．
 
-<img src="images/2014-01-02/relation_ex.png" alt="relation-ex" style="width: 300px;"/>
+![relation-ex](images/2014-01-02/relation_ex.png)
 
 注意点として，`CREATE`では有向の関係性しか作れません．例えばfriends（友達）のような両方向の関係性の場合，両方を指定する必要があるようです．
 

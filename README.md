@@ -1,27 +1,27 @@
-wantedly.github.io
-==================
+# wantedly.github.io
 
 Wantedly Engineer Blog
 
-# Getting Started
+## GETTING STARTED
 
 ```
-git clone git@github.com:wantedly/wantedly.github.io.git
-cd wantedly.github.io
-git checkout develop
-bundle exec middleman server
-open http://localhost:4567/
+$ git clone git@github.com:wantedly/wantedly.github.io.git && cd wantedly.github.io
+$ bundle install
 ```
 
-# Creating a New Article
+## CREATING A NEW ARTICLE
 
 ```
-cp source/2013-12-07-hello-world.html.md source/YYYY-MM-DD-TITLE.html.md
+$ bundle exec middleman server
+$ open http://localhost:4567/
+$ middleman article <TITLE>
 ```
 
-# Deployment
+Write your article to`source/posts/YYYY-MM-DD-TITLE.html.md`.
+
+## DEPLOYMENT
 
 ```
-bundle exec middleman build
-bundle exec middleman deploy
+$ bundle exec middleman build
+$ bundle exec middleman deploy
 ```

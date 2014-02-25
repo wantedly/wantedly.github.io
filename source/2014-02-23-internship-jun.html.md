@@ -3,12 +3,12 @@ title: Wantedlyで1週間インターンしました！
 date: 2014-02-23
 wantedly_id: 2521054
 facebook_id: jun.hirata.75
-twitter_id: 
+twitter_id:
 ---
 
 こんにちは！
 今回、Wantedlyのインターンに参加させてもらった大学4年生のじゅんです。</br>
-普段、life is tech!でメンターしていて、未踏クリエータもやっています。
+普段、life is tech!でメンターしていて、[未踏クリエータ](http://tech-tokyo.com/?p=7470)もやっています。
 
 前々からWantedlyがどんな会社なのか気になっていて、</br>
 今回、2/17から2/21までの5日間のインターンが実現しました^^

@@ -647,7 +647,7 @@ GET /wantedly-demo/_search
 [フィルタもクエリと同様にたくさん用意されています。](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-filters.html)
 
 ## 親子関係
-最後に、「Ruby エンジニアの募集をしている東京の会社」といった検索をしてみましょう。
+最後に、「ruby で検索してヒットする募集を出している東京の会社」といった検索をしてみましょう。
 
 親子関係などのドキュメント同士に関連性を持たせるには、
 

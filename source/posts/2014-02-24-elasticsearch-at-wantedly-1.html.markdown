@@ -1,5 +1,5 @@
 ---
-title: Elasticsearch で一般的な検索を作る
+title: 実践！Elasticsearch
 date: 2014-02-24 15:58 JST
 wantedly_id: 323185
 facebook_id: seigo.uchida

@@ -4,6 +4,7 @@ date: 2013-12-07
 wantedly_id: 10599
 facebook_id: yoshinori.kawasaki
 twitter_id: kawasy
+github_id: luvtechno
 ---
 
 (※この記事はWantedlyのエンジニアメンバー向けのサンプル記事です)

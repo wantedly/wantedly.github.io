@@ -4,6 +4,7 @@ date: 2014-02-25 15:58 JST
 wantedly_id: 323185
 facebook_id: seigo.uchida
 twitter_id: spesnova
+github_id: spesnova
 tags: elasticsearch
 ---
 

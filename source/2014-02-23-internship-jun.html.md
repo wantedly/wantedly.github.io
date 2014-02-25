@@ -3,7 +3,7 @@ title: Wantedlyで1週間インターンしました！
 date: 2014-02-23
 wantedly_id: 2521054
 facebook_id: jun.hirata.75
-twitter_id:
+github_id: jun0342
 ---
 
 こんにちは！

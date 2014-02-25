@@ -4,6 +4,7 @@ date: 2014-01-07
 wantedly_id: 2217896
 facebook_id: kento.sasamoto.7
 twitter_id: sasa_sfc
+github_id: sasa0721
 ---
 ##はじめに
 こんにちは！現在Wantedlyでインターンをさせてもらっている現役高校生の[kento](https://www.wantedly.com/users/2217896)です。

@@ -9,6 +9,8 @@ tags: elasticsearch
 
 ![](http://chrissimpson.co.uk/img/elasticsearch-new-header.png)
 
+こんにちは、エンジニアの内田（@spesnova）です。
+
 [Wantedly では最近 Elasticsearch を使った検索機能をリリースしました。](https://www.wantedly.com/search)
 それに伴い Elasticsearch で日本語検索を作っていく際の基本的な部分や使ってみて非常に便利だったプラグイン、本番環境の構築や運用でのノウハウを紹介をしていきたいと思います。
 

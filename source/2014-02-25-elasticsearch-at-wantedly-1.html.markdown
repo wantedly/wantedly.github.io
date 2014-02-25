@@ -1,6 +1,6 @@
 ---
 title: 実践！Elasticsearch
-date: 2014-02-24 15:58 JST
+date: 2014-02-25 15:58 JST
 wantedly_id: 323185
 facebook_id: seigo.uchida
 twitter_id: spesnova

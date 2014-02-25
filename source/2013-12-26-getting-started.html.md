@@ -4,6 +4,7 @@ date: 2013-12-26
 wantedly_id: 10599
 facebook_id: yoshinori.kawasaki
 twitter_id: kawasy
+github_id: luvtechno
 ---
 
 こんにちは！エンジニアの[川崎](https://www.wantedly.com/users/10599)です。

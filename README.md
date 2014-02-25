@@ -22,6 +22,5 @@ cp source/2013-12-07-hello-world.html.md source/YYYY-MM-DD-TITLE.html.md
 # Deployment
 
 ```
-bundle exec middleman build
 bundle exec middleman deploy
 ```

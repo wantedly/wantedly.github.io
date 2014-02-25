@@ -17,11 +17,10 @@ $ open http://localhost:4567/
 $ middleman article <TITLE>
 ```
 
-Write your article to`source/posts/YYYY-MM-DD-TITLE.html.md`.
+Write your article to `source/posts/YYYY-MM-DD-TITLE.html.md`.
 
 ## DEPLOYMENT
 
 ```
-$ bundle exec middleman build
 $ bundle exec middleman deploy
 ```

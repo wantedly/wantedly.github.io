@@ -41,7 +41,7 @@
             <h4>最近の記事</h4>
             <ul>
               <% blog.articles[0...10].each do |article| %>
-                <li>- <%= link_to article.title, article %></li>
+                <li><%= link_to article.title, article %></li>
               <% end %>
             </ul>
           </div>

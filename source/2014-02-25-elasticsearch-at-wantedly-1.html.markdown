@@ -279,7 +279,7 @@ standard や simple など analysis を行う analyzer がビルトインで入�
 
 ![](images/inquisitor_4.png)
 
-inquisitor 少し下の方に、wantedly-demo にて利用可能な analyzer の適用結果が出ています。こちらだと、"東京" や "白金台" でヒットしますね。
+inquisitor の少し下の方に、wantedly-demo index にて利用可能な analyzer の適用結果が出ています。こちらだと、"東京" や "白金台" でヒットしますね。
 
 kuromoji の詳細や analyzer の適用結果を試したい場合は [kuromoji 公式サイト](http://www.atilika.org/) から試すことができます。
 
@@ -575,13 +575,9 @@ GET /wantedly-demo/_search
 ```json
 GET /wantedly-demo/company/_search
 {
-  "query": {
-    "filtered": {
-      "filter": {
-        "term": {
-          "location": "東京"
-        }
-      }
+  "filter": {
+    "term": {
+      "location": "東京"
     }
   }
 }
@@ -664,8 +660,8 @@ GET /wantedly-demo/_search
  * デメリット - 更新が多いときのオーバーヘッドが大きい
  * 用途 - 名前の通り入れ子なデータを扱いたいとき、(rails でいう has_many では使わないと思う）
 * parent/child
- * メリット - クエリのパフォーマンスが低い
- * デメリット - メモリが多く要する
+ * メリット - nested と違って更新時に問題を抱えてない
+ * デメリット - クエリのパフォーマンスが落ちる、メモリを多く要する
  * 用途 - 名前の通り親子関係のもの、RDB 的な relation はこちらに近い
 
 となり、今回はある会社がいくつかの募集を持っているという関係性なので parent/child を使います。

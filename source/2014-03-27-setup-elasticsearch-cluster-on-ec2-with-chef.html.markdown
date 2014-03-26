@@ -1,6 +1,6 @@
 ---
 title: Chef で Elasticsearch クラスタを EC2 上に作る
-date: 2014-03-25 13:25 JST
+date: 2014-03-27 13:25 JST
 tags: elasticsearch chef ec2 nginx
 wantedly_id: 323185
 facebook_id: seigo.uchida
@@ -615,6 +615,8 @@ $ bundle exec kitchen verify blog-elasticsearch-ubuntu-1204
 ## まとめ
 今回は、test-kitchen だけで進めて行きましたが、実際には suites に書いた run list や attributes などは role にまとめるなりして使うと良いと思います。また serverspec では `jq` コマンドを対象サーバーにインストールしておいて API レスポンスをパースしてテストした方がより正確ですね (今回はかなりざっくりやってるので)
 
+Chef を使って elasticsearch を構築すると、構築が自動化出来るだけでなく、各種設定も管理できるようになります。様々なサーバーの設定を Chef のリポジトリに集約していくことで、インフラに関する変更が見通しやすくなるのでとても良いと思います。
+
 はまりポイント？
 
 * `apt-get update` されてない
@@ -625,6 +627,8 @@ $ bundle exec kitchen verify blog-elasticsearch-ubuntu-1204
 
 さらに、この続きでやると良いこと
 
+* `Environment` という EC2 tag を追加して、production / staging などの環境毎にクラスタを作る
+ * [`aws_resource_tag` resource](https://github.com/opscode-cookbooks/aws#aws_resource_tag) を使ってプロビジョニング時 に Chef の environment を tag の値として自動付加
 * Elasticsearch クラスタの前に ELB などのロードバランサーを置いてエンドポイントを統一
  * [`aws_elastic_lb` resource](https://github.com/opscode-cookbooks/aws) を使ってプロビジョニング時に ELB へ自動登録
 * `elasticsearch::monit` recipe を利用して elasticsearch サーバーのプロセス監視を行う

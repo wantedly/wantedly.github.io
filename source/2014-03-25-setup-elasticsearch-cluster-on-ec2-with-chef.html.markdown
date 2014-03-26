@@ -185,7 +185,7 @@ index 5f526ae..fd47c9c 100644
 * 最後に elasticsearch 公式サポートの elasticsearch cookbook の `default` recipe によって elasticsearch をインストール。
  * `override_attributes` でバージョンを指定しています。
 
-`elasticsearch::default` recipe ではざっくりと以下のことを行っているようです。
+`elasticsearch::default` recipe ではざっくりと以下のことを行っています。
 
 * elasticsearch 用 user/group の作成
 * elasticsearch 用ディレクトリ(`/usr/local/elasticsearch` と `/usr/local/elasticsearch-<バージョン>`）の作成
@@ -228,11 +228,11 @@ $ bundle exec kitchen verify blog-elasticsearch-ubuntu-1204
 
 これで単体の elasticsearch サーバーが立ちました！
 
-(init スクリプトの中で ruby を使って json のパースなどをしているが、ruby を入れてないので command not found と出ますが今回は無視)
+(init スクリプトの中で ruby を使って json のパースなどをしており、ruby を入れてないので command not found と出ますが今回は無視)
 
 もう少しちゃんと確認したい場合はテストを追加するなり `kitchen login` して確認するようにします。
 
-設定の中で重要となるメモリサイズですが、[elasticsearch cookbook の方でデフォルトで搭載メモリの 60% を割り当てるようになっています。](https://github.com/elasticsearch/cookbook-elasticsearch/blob/master/attributes/default.rb#L44) この設定を含め [elasticsearch cookbook の attributes/default.rb ](https://github.com/elasticsearch/cookbook-elasticsearch/blob/master/attributes/default.rb) に書かれているので細かい設定はここから変えます。（`elasticsearch.yml` などの設定ファイルは attributes の値によって動的に作成されるので、直接それらのファイルを編集することはありません）
+設定の中で重要となるメモリサイズですが、[elasticsearch cookbook の方でデフォルトで搭載メモリの 60% を割り当てるようになっています。](https://github.com/elasticsearch/cookbook-elasticsearch/blob/master/attributes/default.rb#L44) この設定を含め [elasticsearch cookbook の attributes/default.rb ](https://github.com/elasticsearch/cookbook-elasticsearch/blob/master/attributes/default.rb) に書かれているので細かい設定はここから変えます。（`elasticsearch.yml` などの設定ファイルは attributes の値を用いて動的に作成されるので、直接それらのファイルを編集することはありません）
 
 ## Elasticsearch プラグイン込みで構築する
 次は Elasticsearch のプラグイン込みで構築するできるようにしましょう。
@@ -323,7 +323,7 @@ $ bundle exec kitchen verify blog-elasticsearch-ubuntu-1204
 * username/password 付きだとアクセスできること
 * site plugin にも nginx 経由でアクセスできること
 
-を確認
+を確認するようにします
 
 ```diff
 diff --git a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb b/test/integration/blog-elasti
@@ -399,7 +399,7 @@ EC2 インスタンス上の Elasticsearch サーバーでクラスタを作る�
 * EC2 の tag
 * AWS の AZ
 
-でフィルタリングしてクラスタを構成する仲間を見つけるプロセスになります。(正確にはマスターノードをまず探しに行き、見つからなければ自身がマスターに、いる場合はそのマスターの仲間になる）Elasticsearch の [AWS Cloud Plugin](https://github.com/elasticsearch/elasticsearch-cloud-aws) を入れ、いくつか設定を追加することで利用できるようになります。
+でフィルタリングしてクラスタを構成する仲間を見つけるプロセスになります。(正確にはマスターノードをまず探しに行き、見つからなければ自身がマスターに、見つかった場合はそのマスターの仲間になる）Elasticsearch の [AWS Cloud Plugin](https://github.com/elasticsearch/elasticsearch-cloud-aws) を入れ、いくつか設定を追加することで利用できるようになります。
 
 このプラグインについても Chef から追加し、設定も attribute で管理します。
 
@@ -485,7 +485,7 @@ blog-elasticsearch-ec2-ubuntu-1204  Ec2      ChefSolo     <Not Created>
 ```
 
 ### AWS Cloud Plugin を利用してクラスタを作る
-テストは、cluster API で number_of_nodes が 2 であることでクラスタができたか確認してみます。
+テストは、cluster API で number\_of\_nodes が 2 であることを見てクラスタができたか確認してみます。
 
 ```diff
 diff --git a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb b/test/integration/blog-elasti
@@ -557,6 +557,8 @@ index f02b37b..5c3f2db 100644
 * フィルタリングに使う securitygroup 名を指定
 * `nginx.allow_status: true`  ELB などのヘルスチェック用に /status はベーシック認証をかけないように
 
+1 台目を作る
+
 
 ```bash
 $ bundle exec kitchen converge blog-elasticsearch-ubuntu-1204
@@ -610,8 +612,8 @@ $ bundle exec kitchen verify blog-elasticsearch-ubuntu-1204
 
 ![](images/elasticsearch-head.png)
 
-## 最後に
-今回は、test-kitchen だけで進めて行きましたが、実際には suites に書いた run list や attributes などは role にまとめるなりして使うと良いと思います。また serverspec では `jq` コマンドを対象サーバーにインストールしておいて API レスポンスをパースしてテストした方がより正確ですね。
+## まとめ
+今回は、test-kitchen だけで進めて行きましたが、実際には suites に書いた run list や attributes などは role にまとめるなりして使うと良いと思います。また serverspec では `jq` コマンドを対象サーバーにインストールしておいて API レスポンスをパースしてテストした方がより正確ですね (今回はかなりざっくりやってるので)
 
 はまりポイント？
 
@@ -623,14 +625,15 @@ $ bundle exec kitchen verify blog-elasticsearch-ubuntu-1204
 
 さらに、この続きでやると良いこと
 
-* Elasticsearch クラスタの前に ELB などのロードバランサーを置く
+* Elasticsearch クラスタの前に ELB などのロードバランサーを置いてエンドポイントを統一
  * [`aws_elastic_lb` resource](https://github.com/opscode-cookbooks/aws) を使ってプロビジョニング時に ELB へ自動登録
 * `elasticsearch::monit` recipe を利用して elasticsearch サーバーのプロセス監視を行う
  * run list で `elasticsearch::default` recipe の前に `monit::default` recipe を追加して、最後に `elasticsearch::monit` recipe を追加するだけでよい
 
 
 ## 参照資料
-![](http://ecx.images-amazon.com/images/I/51p07HyJCzL._SL500_AA300_.jpg)
+[![](http://ecx.images-amazon.com/images/I/51p07HyJCzL._SL500_AA300_.jpg)](http://www.amazon.co.jp/%E9%AB%98%E9%80%9F%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%A9%E3%83%96%E3%83%AB%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3-ElasticSearch-Server-Rafal-Kuc/dp/4048662023)
+
 
 * [高速スケーラブル検索エンジン ElasticSearch Server](http://www.amazon.co.jp/%E9%AB%98%E9%80%9F%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%A9%E3%83%96%E3%83%AB%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3-ElasticSearch-Server-Rafal-Kuc/dp/4048662023)
 * [elaticsearch/cookbook-elasticsearch README.markdown](https://github.com/elasticsearch/cookbook-elasticsearch/blob/master/README.markdown)

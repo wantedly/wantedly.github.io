@@ -92,7 +92,7 @@ platforms:
 suites:
 ```
 
-serverspec の準備
+test-kitchen で serverspec を使うための準備
 
 ```bash
 $ cd test/integration
@@ -294,7 +294,7 @@ index fd47c9c..71ae019 100644
        jdk_version: 7
 ```
 
-プラグインを既に立てているサーバーに対して追加します
+既に立てているサーバーに対して `chef-solo` 実行
 
 ```bash
 $ bundle exec kitchen converge blog-elasticsearch-ubuntu-1204
@@ -379,7 +379,7 @@ index 71ae019..ab6c719 100644
 
 `allow_cluster_api` という attribute は、[head](http://mobz.github.io/elasticsearch-head/) なり [BigDesk](https://github.com/lukas-vlcek/bigdesk) などが利用する cluster API へのアクセスを許可する場合は `true` にする
 
-また、ベーシック認証の username/password は encrypted data bag に入れた上で  node attributes からロードして override するとよりセキュアになります。
+（今回はデモなので直接書いてますが、ベーシック認証の username/password は encrypted data bag に入れた上で  node attributes からロードして override するなりして使った方が良いです。)
 
 ```bash
 $ bundle exec kitchen converge blog-elasticsearch-ubuntu-1204
@@ -413,7 +413,7 @@ test-kitchen を使って EC2 インスタンス上に Elasticsearch サーバ�
 
 ![](http://www.elasticsearch.org/tutorials/images/chef-solo/create-security-group.png)
 
-次に、Elasticsearch サーバーが EC2 Discovery 時に EC2 API を叩けるように EC2 アカウントを用意します。（IAM ROLE を使っていないのは [test-kitchen で IAM ROLE がサポートされたのが最近](https://github.com/test-kitchen/kitchen-ec2/pull/18)でまだ試してないのです...)
+次に、Elasticsearch サーバーが EC2 Discovery 時に EC2 API を叩けるように新しく EC2 アカウントを用意します。（IAM ROLE を使っていないのは [test-kitchen で IAM ROLE がサポートされたのが最近](https://github.com/test-kitchen/kitchen-ec2/pull/18)でまだ試してないのです...)
 
 以下の権限を与えてください
 
@@ -485,7 +485,7 @@ blog-elasticsearch-ec2-ubuntu-1204  Ec2      ChefSolo     <Not Created>
 ```
 
 ### AWS Cloud Plugin を利用してクラスタを作る
-テストは、cluster API で number\_of\_nodes が 2 であることを見てクラスタができたか確認してみます。
+テストは、cluster API で number\_of\_nodes が 2 であることを見てクラスタができたか確認することにします。
 
 ```diff
 diff --git a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb b/test/integration/blog-elasti
@@ -502,7 +502,7 @@ index 43780fe..1ac5f0b 100644
 +end
 ```
 
-AWS でクラスタを作るよう `.kitchen.yml` に変更を加えます
+`.kitchen.yml` に `aws` recipe を追加します
 
 ```diff
 diff --git a/.kitchen.yml b/.kitchen.yml
@@ -557,7 +557,7 @@ index f02b37b..5c3f2db 100644
 * フィルタリングに使う securitygroup 名を指定
 * `nginx.allow_status: true`  ELB などのヘルスチェック用に /status はベーシック認証をかけないように
 
-1 台目を作る
+1 台目を作る（途中でこける場合は「まとめ」部分のはまりポイント見てみてください）
 
 
 ```bash
@@ -602,6 +602,12 @@ index 2e16e78..48968ec 100644
    run_list:
 ```
 
+2 台目のノードを立ち上げます
+
+```bash
+$ bundle exec kitchen setup blog-elasticsearch-ubuntu-1204-second
+```
+
 再度テスト
 
 ```bash
@@ -613,15 +619,16 @@ $ bundle exec kitchen verify blog-elasticsearch-ubuntu-1204
 ![](images/elasticsearch-head.png)
 
 ## まとめ
-今回は、test-kitchen だけで進めて行きましたが、実際には suites に書いた run list や attributes などは role にまとめるなりして使うと良いと思います。また serverspec では `jq` コマンドを対象サーバーにインストールしておいて API レスポンスをパースしてテストした方がより正確ですね (今回はかなりざっくりやってるので)
+今回は、test-kitchen だけで進めて行きましたが、実際には suites に書いた run list や attributes などは role にまとめるなりして使うと良いと思います。また serverspec では `jq` コマンドを対象サーバーにインストールしておいて API レスポンスをパースしてテストした方が良いです... (今回はかなりざっくりやってるので)
 
-Chef を使って elasticsearch を構築すると、構築が自動化出来るだけでなく、各種設定も管理できるようになります。様々なサーバーの設定を Chef のリポジトリに集約していくことで、インフラに関する変更が見通しやすくなるのでとても良いと思います。
+Chef を使って構築すると、構築が自動化出来るだけでなく、各種設定も attributes として管理できるようになります。インフラに関する変更を Chef のリポジトリに集約できるので管理がしやすくなります。
 
 はまりポイント？
 
 * `apt-get update` されてない
  * そもそも apt recipe 入れてないとか
  * AMI によっては `/var/lib/apt/periodic/update-success-stamp` が作成されていて、apt cookbook の default recipe が `not_if` 条件により update してくれない
+ * recipe を 1 つ用意して強制的に呼ぶのが良い
 * elasticsearch が起動しない場合は plugin のバージョンを確認
  * elasticsearch 本体のバージョンに対応してないプラグインバージョンを使うと es が起動しない
 
@@ -635,7 +642,7 @@ Chef を使って elasticsearch を構築すると、構築が自動化出来る
  * run list で `elasticsearch::default` recipe の前に `monit::default` recipe を追加して、最後に `elasticsearch::monit` recipe を追加するだけでよい
 
 
-## 参照資料
+## 参考資料
 [![](http://ecx.images-amazon.com/images/I/51p07HyJCzL._SL500_AA300_.jpg)](http://www.amazon.co.jp/%E9%AB%98%E9%80%9F%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%A9%E3%83%96%E3%83%AB%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3-ElasticSearch-Server-Rafal-Kuc/dp/4048662023)
 
 

@@ -1,82 +1,118 @@
 ---
-title: Wantedly開発チームブログの書き方
-date: 2013-12-07
-wantedly_id: 10599
-facebook_id: yoshinori.kawasaki
-twitter_id: kawasy
-github_id: luvtechno
+title: AngularJSを導入することと、恋のときめきと一歩踏み出す苦しみと。
+date: 2014-03-24
+wantedly_id: 14000
+facebook_id: imai.takayuki
+twitter_id: imaimiami
+github_id: imaimiami
 ---
 
-(※この記事はWantedlyのエンジニアメンバー向けのサンプル記事です)
+#### 春です。
 
-こんにちは！
+こんにちは、春ですね。
 
-このブログは[Middleman](http://middlemanapp.com/)を使って生成され、GitHub Pages上にホストされています。
-MiddlemanはRubyで書かれた静的サイト生成のフレームワークで、gemとして提供されています。
+いつから春なんだっけと思って、近くの人に聞いてみたら「花粉が飛んだら春」だそうです。
+来てますね、春。
 
-## 記事を書くには
+春には花粉以外にも、「ときめき」が飛び交います。
+朝のあの子の挨拶だったり、最近通い始めたスタバの店員さんの笑顔、そして、
+Angular.jsのUIバインディングのスマートさにときめきます。
 
-手元の環境で動かすには以下のようにします。
+![ios_image](images/2014-03-24/angular.gif)
 
-初回はまずレポジトリをcloneしてとってきましょう。
-ちなみに、`develop`ブランチに元原稿が存在し、`master`ブランチに公開するHTMLが自動的に生成されます。
+「あの子と話せたらハッピーだろうな」、「うちのサイトのDOMもバリバリ動かしたらカッコいいだろうな」
+とか春の陽気はポジティブな妄想を誘います。
+ただ、その妄想を現実に落としこむは簡単なことではなく、冬までに降り積もったシガラミが邪魔をします。
+中学時代に奇跡的にもらったラブレター、押入れに密かにしまわれているトレーディングカード、
+そして、jQueryで書かれたコードだったりが邪魔します。でも、変わらなくちゃ手に入れられないものもあります。
 
-```bash
-$ git clone git@github.com:wantedly/wantedly.github.io.git
-$ cd wantedly.github.io
-$ git checkout develop
-$ bundle install
-$ bundle exec middleman server
-$ open http://localhost:4567/
+#### AngularJSを導入する
+
+AngularJSを導入するにあたって、
+まっさらな状態からの構築なら良いのですが、既存のサービスに導入となると戸惑います。
+自分も最初はjQueryとぶつかって難しいよねとか思ってました。
+
+でも、意外とそうでもないです。
+
+
+例えば、あなたのサイトで使われまくっている`cool-select`という超coolなパーツがあったとして、
+
+JS
+
+``` js
+$(function(){
+  $(".cool-select").on("change", function(){
+    alert("Cool!");
+  });
+});
 ```
 
-2回目以降は、手元の`develop`ブランチを最新にするだけです。
+HTML
 
-```bash
-$ git pull origin develop
-$ bundle exec middleman server
-$ open http://localhost:4567/
+```html
+<li ng-repeat="tool in tools" class="animate">
+  <span>{{tool.name}}</span>
+  <select class="cool-select">
+    <option value="">どのくらい好き？</option>
+    <option value="normal">いや、普通に</option>
+    <option value="straw">ストローで飲むくらい好き</option>
+  </select>
+</li>
+```
+実装のされ方にもよると思いますが、この`ng-repeat`の中で使用しているonChangeイベントはbindされません。
+ブラウザすら`Cool!`と言ってくれません。悲しい。
+
+こういう場合はDirectiveとして取り込んであげればいいと思います。
+
+JS
+
+```js
+ToolApp.directive('coolSelect', function() {
+  return {
+    restrict: 'A',
+    link: function postLink(scope, element, attrs) {
+      element.on("change", function(){
+        alert(attrs.bigSelect);
+      });
+    }
+  };
+});
 ```
 
-新しい記事を書くには、以下のように過去の記事ファイルをコピーするのが簡単です。
-live reload機能が有効になっているので、原稿の`.md`ファイルを更新するだけで、自動的にブラウザ側も再読込されます。`middleman-livereload`というgemの機能です。
+`restrict: 'A'`は属性指定です。`big-select`という属性のある要素を指すことになります。
+`link`は`ng-repeat`のイテレーションのたびに呼び出されます。  
 
-```bash
-$ cp source/2013-12-07-hello-world.html.md source/YYYY-MM-DD-TITLE.html.md
+AngularJSはjQueryが読み込まれいる場合、`angular.element`からjQueryのfunctionを呼び出せます。
+なのでjQueryの時のコードと同じように`.on`でbindしてます。
+
+[AngularJS: API: angular.element](http://docs.angularjs.org/api/ng/function/angular.element)
+
+HTML
+
+```html
+<li ng-repeat="tool in tools" class="animate">
+  <span>{{tool.name}}</span>
+  <select big-select="Nice" ng-model="tool.like">
+    <option value="">どのくらい好き？</option>
+    <option value="normal">いや、普通に</option>
+    <option value="straw">ストローで飲むくらい好き</option>
+  </select>
+</li>
 ```
 
-適当にbranchを作ってpull requestを送ってください。
+これで`onChange`イベントをbindすることが出来ました。
+おまけで`cool-select`に値を渡せるようにしています。
 
-原稿はMarkdown形式で書きます。画像を使ったり、Wantedlyで使われている各種プログラミング言語のsyntax highlightも出来ます。Markdownのレンダリングには`redcarpet`、syntax highlightには`middleman-syntax` gemを使っています。
+#### 補足  
+今回使用したコードはすべて以下にあります。動くと思います。
 
-- Ruby
+[https://gist.github.com/imaimiami/9722407](https://gist.github.com/imaimiami/9722407)
 
-```ruby
-def my_cool_method(message)
-  puts message
-end
-```
+AngularJS入門は結局公式が良かったです。良い記事があれば教えてください。
 
-- CoffeeScript
+[AngularJS: Tutorial: Tutorial](http://docs.angularjs.org/tutorial)
 
-```coffeescript
-$ ->
-  console.log 'hi'
-```
+また、冒頭のGIF画像は、チームの生産性のためならばどんなチャレンジもいとわない
+[同僚](/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html)に敬意を表したものです。
 
-- SQL
-
-```sql
-SELECT COUNT(*) FROM users
-```
-
-
-## 記事を公開するには
-
-以下のようにすると、HTMLファイルが生成されGitHubの`master`ブランチに`git push`されて、自動的に公開されます。`middleman-deploy` gemの機能です。
-
-```bash
-$ bundle exec middleman deploy
-```
-
-簡単！
+以上、また会いましょう！

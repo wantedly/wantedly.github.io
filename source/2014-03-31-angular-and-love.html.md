@@ -1,6 +1,6 @@
 ---
 title: AngularJSを導入することと、恋のときめきと一歩踏み出す苦しみと。
-date: 2014-03-24
+date: 2014-03-31
 wantedly_id: 14000
 facebook_id: imai.takayuki
 twitter_id: imaimiami
@@ -18,7 +18,7 @@ github_id: imaimiami
 朝のあの子の挨拶だったり、最近通い始めたスタバの店員さんの笑顔、そして、
 Angular.jsのUIバインディングのスマートさにときめきます。
 
-![ios_image](images/2014-03-24/angular.gif)
+![ios_image](images/2014-03-31/angular.gif)
 
 「あの子と話せたらハッピーだろうな」、「うちのサイトのDOMもバリバリ動かしたらカッコいいだろうな」
 とか春の陽気はポジティブな妄想を誘います。

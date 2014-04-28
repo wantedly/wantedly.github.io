@@ -46,11 +46,13 @@ cover_image: https://huntr-static.s3.amazonaws.com/engineer_blog/2014-04-28-cove
     - Rails側のCIは[wercker](http://wercker.com/)で
     - アプリのユーザテスト用に[TestFlight](https://www.testflightapp.com/)で開発版を配信
 
+<br/>
+
 
 <script async class="speakerdeck-embed" data-id="0ad89a10b0f50131486d72af66ead636" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
 
-
+<br/>
 
 ちなみに、今回のイベントの発表者は自社サービスを開発・運営している会社に限定ということで、
 Wantedlyの他にはヴァズ株式会社 (SnapDish)、エニグモ (BUYMA)、はてな、nanapi (アンサー)、

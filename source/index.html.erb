@@ -11,15 +11,27 @@ per_page: 10
 <% end %>
 
 <% page_articles.each_with_index do |article, i| %>
-    <div class="page-header">
+    <div class="page-header clearfix">
       <h2>
-        <a href="<%= "https://www.wantedly.com/users/#{article.data.wantedly_id}" %>">
-          <img src="https://graph.facebook.com/<%= article.data.facebook_id %>/picture" />
-        </a>
-        <%= link_to article.title, article %>
-        <br/>
-        <small><%= article.date.strftime('%b %e') %></small>
+        <div class="article-title">
+          <%= link_to article.title, article %>
+        </div>
       </h2>
+      <div class="article-avatar">
+        <a href="<%= "https://www.wantedly.com/users/#{article.data.wantedly_id}" %>">
+          <img src="<%= "https://www.wantedly.com/users/#{article.data.wantedly_id}/avatar" %>" class="avatar" />
+        </a>
+        <span class='date'><%= article.date.strftime('%e-%b-%Y') %></span>
+      </div>
+      <div class="pull-right social-links">
+        <iframe src="//www.facebook.com/plugins/like.php?href=<%= 'http://engineer.wantedly.com/' + article.url %>width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="<%= article.data.twitter_id || 'wantedly' %>">Tweet</a>
+        <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+        <% if article.data.github_id.present? %>
+          <iframe src="http://ghbtns.com/github-btn.html?user=<%= article.data.github_id %>&amp;type=follow&amp;count=true"
+      allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+        <% end %>
+      </div>
     </div>
     <!-- use article.summary(250) if you have Nokogiri available to show just the first 250 characters -->
     <div class="article">

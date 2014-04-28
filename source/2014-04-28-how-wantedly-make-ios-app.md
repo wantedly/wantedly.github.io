@@ -5,6 +5,7 @@ wantedly_id: 10599
 facebook_id: yoshinori.kawasaki
 twitter_id: kawasy
 github_id: luvtechno
+cover_image: https://huntr-static.s3.amazonaws.com/engineer_blog/2014-04-28-cover.jpeg
 ---
 
 ![Yuri](https://huntr-static.s3.amazonaws.com/engineer_blog/2014-04-28-cover.jpeg)
@@ -47,7 +48,7 @@ github_id: luvtechno
 
 
 <script async class="speakerdeck-embed" data-id="0ad89a10b0f50131486d72af66ead636" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
- 
+
 
 
 

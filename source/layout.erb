@@ -8,7 +8,7 @@
     <%= feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed" %>
     <link href="<%= asset_url('favicon.png') %>" rel="icon" type="image/png">
     <meta property="fb:app_id" content="234170156611754">
-    <meta property="og:image" content="http://engineer.wantedly.com<%= asset_url('wantedly-sticker2.png') %>">
+    <meta property="og:image" content="<%= current_article.data.cover_image.presence || ("http://engineer.wantedly.com" + asset_url('wantedly-sticker2.png')) %>">
     <%= stylesheet_link_tag "application" %>
     <script>
     var _gaq = _gaq || [];

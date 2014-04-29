@@ -40,7 +40,7 @@ cover_image: https://huntr-static.s3.amazonaws.com/engineer_blog/2014-04-28-cove
         - TTTAttributedLabel - A drop-in replacement for UILabel that supports attributes, data detectors, links, and more.
         - NUI - Style iOS apps with a stylesheet, similar to CSS
         - JLRoutes - Advanced URL parsing designed to handle complex URL schemes with a block-based callback API
-    - [COCOAPODS SEARCH](https://cocoapods.wantedly.com/)でpodの人気度をチェック
+    - [COCOAPODS SEARCH](http://cocoapods.wantedly.com/)でCocoaPodの人気度・定番度をチェック
     - 使ってる[Objective-Cのスタイルガイド](https://github.com/wantedly/objective-c-style-guide)
 3. テスト
     - Rails側のCIは[wercker](http://wercker.com/)で

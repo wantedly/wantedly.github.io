@@ -62,11 +62,8 @@ end
 $ bundle install
 ```
 
-test-kitchen でのテスト時に serverspec を使うための [busser](https://github.com/test-kitchen/busser) プラグイン([busser-serverspec](https://github.com/test-kitchen/busser-serverspec))をインストール
-
-```bash
-$ busser plugin install serverspec
-```
+~~次に test-kitchen でのテスト時に serverspec を使うための [busser](https://github.com/test-kitchen/busser) プラグイン([busser-serverspec](https://github.com/test-kitchen/busser-serverspec))をインストール~~
+（[公式ドキュメントにあるように](http://kitchen.ci/docs/getting-started/writing-test) test-kitchen がテスト用ディレクトリの名前からどの busser を対象サーバに入れるか判定して入れてくれるので、自分で入れる必要はなかったです）
 
 `.kitchen.yml`
 

@@ -21,7 +21,7 @@ github_id: morizotter
 
 _[http://www.itmedia.co.jp/im/articles/0905/19/news143.html](http://www.itmedia.co.jp/im/articles/0905/19/news143.html)_
 
-KはKeep、PはProblem、TはTryをそれぞれ表します。イテレーションの単位でチームで振り返りを行い、良い点（Keep）、問題点（Problem）、具体的な改善項目（Try）を軸にミーティングをすることです。基本的な流れは、Problemが具体的なTryになり、Tryが解消したら、消える。またはKeepに昇華するというものがあります。KeepはProblemやTryに関係なく、上げていくことが良いと思います。
+KはKeep、PはProblem、TはTryをそれぞれ表します。イテレーションの単位でチームで振り返りを行い、良い点（Keep）、問題点（Problem）、具体的な改善項目（Try）を軸にミーティングをします。基本的な流れは、Problemが具体的なTryになり、Tryが解消したら、消える。またはKeepに昇華します。KeepはProblemやTryに関係なく、上げていくこのが良いと思います。
 
 ## はじめた理由
 

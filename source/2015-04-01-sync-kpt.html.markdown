@@ -1,11 +1,13 @@
 ---
-title: チームでKPTをやってみました
+title: SyncチームでKPTをやってみました
 date: 2015-04-01 19:02 JST
 wantedly_id: 1208490
 facebook_id: morizotter
 twitter_id: morizotter
 github_id: morizotter
 ---
+
+![KPT-Meeting](images/kpt-meeting.jpg)
 
 エンジニアの[森田](http://twitter.com/morizotter/)です。
 

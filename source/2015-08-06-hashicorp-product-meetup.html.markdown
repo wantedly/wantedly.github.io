@@ -65,7 +65,7 @@ ref: [consul & consul-alerts を使った監視システム (hbstyle-2015-01-08)
 ![](images/2015-08-06/deeeet_slide.png)
 [スライド](http://go-talks.appspot.com/github.com/tcnksm/talks/2015/08/hashicorp-meetup.slide#1)
 
-[@deeeet](https://twitter.com/deeeet)) さんの話は Hashicorp プロダクトの利用例というよりその内側の話。Hashicorp がプロダクトを作る中で生まれてきた副産物というかライブラリについて紹介されていた。
+[@deeeet](https://twitter.com/deeeet) さんの話は Hashicorp プロダクトの利用例というよりその内側の話。Hashicorp がプロダクトを作る中で生まれてきた副産物というかライブラリについて紹介されていた。
 Golang 使う人には有用な内容だったし、合わせて Hashicorp が利用者のことやバグ報告ちゃんとしてもらうためにわかりやすいエラーを出すといった Hashicorp tao にも言及していて勉強になった。
 
 ## Terraform Tips by [@tkak](https://twitter.com/tkak)
@@ -80,13 +80,13 @@ ref: [TerraformのProviderを作った - tkak's tech blog](http://tkak.hatenablo
 
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/fTgmJGwbnqWelu" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/hsbt/20150805-hashicorptalks" title="Usecase examples of Packer " target="_blank">Usecase examples of Packer </a> </strong> from <strong><a href="//www.slideshare.net/hsbt" target="_blank">Hiroshi SHIBATA</a></strong> </div>
 
-@hsbt さんによる GMO ペパボでも Packer での AMI イメージ作成事例の話。Packer の中で cloud-init 使ったり、serverspec 流したり、何をイメージ化するか等々 Packer の知見が詰まった発表でした。さらに詳細な話は YAPC でされるとのこと。
+[@hsbt](https://twitter.com/hsbt) さんによる GMO ペパボでも Packer での AMI イメージ作成事例の話。Packer の中で cloud-init 使ったり、serverspec 流したり、何をイメージ化するか等々 Packer の知見が詰まった発表でした。さらに詳細な話は YAPC でされるとのこと。
 
 ## Stretcher in 5min by [@fujiwara](https://twitter.com/fujiwara)
 
 <script async class="speakerdeck-embed" data-id="8d83ac3687ae40c9a68cf7406c1b50e6" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
 
-[@fujiwara](https://twitter.com/fujiwara) さんによる自作のデプロイツール stretcher の話。[@sora_h](https://twitter.com/sora_h) の [mamiya](https://github.com/sorah/mamiya) にインスパイアされたとのことで、 S3 に置いたアプリコードを rsync で取得してくる指示を SSH ではなくて consul event でトリガーすることで、スケーラブルかつ速い。10 秒でデプロイが完了するらしい、速い...。こちらも自作の [Consul を使ったダッシュボード](https://github.com/fujiwara/consul-kv-dashboard)と組み合わせたデプロイデモも見せてもらった。
+[@fujiwara](https://twitter.com/fujiwara) さんによる自作のデプロイツール stretcher の話。[@sora_h](https://twitter.com/sora_h) さんの [mamiya](https://github.com/sorah/mamiya) にインスパイアされたとのことで、 S3 に置いたアプリコードを rsync で取得してくる指示を SSH ではなくて consul event でトリガーすることで、スケーラブルかつ速い。10 秒でデプロイが完了するらしい、速い...。こちらも自作の [Consul を使ったダッシュボード](https://github.com/fujiwara/consul-kv-dashboard)と組み合わせたデプロイデモも見せてもらった。
 
 ref: [fujiwara/stretcher](https://github.com/fujiwara/stretcher)
 

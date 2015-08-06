@@ -44,7 +44,7 @@ Quipper でも [@glidenote](https://twitter.com/glidenote) さんのブログで
 ## 運用自動化に関する話 by [@zembutsu](https://twitter.com/zembutsu)
 こちらは非公開になります
 
-## Terraform at Wantedly [@dtan4](https://twitter.com/dtan4)
+## Terraform at Wantedly by [@dtan4](https://twitter.com/dtan4)
 
 <script async class="speakerdeck-embed" data-id="1246047604f0473dbbdd8f47b0912706" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 

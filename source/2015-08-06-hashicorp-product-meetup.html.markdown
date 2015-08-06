@@ -41,7 +41,7 @@ ref: [Terraform + GitHub + CircleCI + Atlasを利用してAWSの操作を自動�
 Quipper でも @glidenote さんのブログで紹介されている CircleCI を使った Terraform 利用を紹介されていた。特徴的なのは Codenize Tool との併用をしていて適材適所で使い分けているところ。また `.tf` ファイルをどのように分けてます？という投げかけがあって、座談会の方では、AWS リソースごとにわける、つまり `ec2.tf` とか `rds.tf` のようにするよりも、プロジェクトごとに分ける方が依存関係とか見やすいよねという話になった。
 
 ## 運用自動化に関する話 by [@zenbutsu](https://twitter.com/zembutsu)
-TBD（スライドが手に入ってないのです。。）
+こちらは非公開になります
 
 ## Terraform at Wantedly [@dtan4](https://twitter.com/dtan4)
 

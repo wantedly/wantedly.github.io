@@ -1,5 +1,5 @@
 ---
-title: Hashicorp Product Meetup やりました
+title: Hashicorp Product Meetup というイベントを開きました
 date: 2015-08-06 10:17 JST
 tags: vagrant, packer, serf, consul, terraform, vault, atlas, hashicorp
 wantedly_id: 323185
@@ -13,7 +13,7 @@ github_id: spesnova
 Hashicorp プロダクトに関する知見、悩み、展望 etc をフランクに共有する会を開きました。
 
 参加者全員がゆるくざっくばらんに話せる場を作りたいと思って招待制のイベントにしました。
-参加者の方は [@deeeet](https://twitter.com/deeeet) さんと自分の知り合いの中からでなんとなく 「Hashicorp プロダクトを使ってる、使いたい」雰囲気を感じる方々にお声を掛けさせてもらって、その方々がまた数名招待するという形にしました。「行きたかった...」というツイートもチラホラあって、、ごめんなさいです。。
+参加者の方は [@deeeet](https://twitter.com/deeeet) さんと自分の知り合いの中からでなんとなく 「Hashicorp プロダクトを使ってる、使いたい」雰囲気を感じる方々にお声を掛けさせてもらって、その方々がまた数名招待するという形にしました。「行きたかった...」というツイートもチラホラありました、、参加できなかった方ごめんなさい。。
 
 どんな内容だったのかを簡単にまとめておきます。
 

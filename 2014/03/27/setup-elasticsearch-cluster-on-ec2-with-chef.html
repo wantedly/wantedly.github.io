@@ -1,0 +1,763 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chef で Elasticsearch クラスタを EC2 上に作る - Wantedly Engineer Blog</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/favicon-8030cb16.png" rel="icon" type="image/png">
+    <meta property="fb:app_id" content="234170156611754">
+    <meta property="og:image" content="http://engineer.wantedly.com/wantedly-sticker2-9bf5acdc.png">
+    <link href="/stylesheets/application-5562e3f2.css" media="screen" rel="stylesheet" type="text/css" />
+    <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12847756-21']);
+    _gaq.push(['_setDomainName', 'wantedly.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </head>
+  <body>
+    <header class="jumbotron cover-image center">
+      <h1 class="graduate"><a href="/">Wantedly Engineer Blog</a></h1>
+      <p>Wantedly 開発チームブログ</p>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8">
+            <div class="page-header clearfix">
+    <h2>
+      <div class="article-title">
+        Chef で Elasticsearch クラスタを EC2 上に作る
+      </div>
+    </h2>
+    <div class="article-avatar">
+      <a href="https://www.wantedly.com/users/323185">
+        <img src="https://www.wantedly.com/users/323185/avatar" class="avatar" />
+      </a>
+      <span class='date'>27-Mar-2014</span>
+    </div>
+    <div class="pull-right social-links">
+      <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="spesnova" data-url="http://engineer.wantedly.com/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html">Tweet</a>
+      <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+      
+        <iframe src="http://ghbtns.com/github-btn.html?user=spesnova&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+      
+    </div>
+  </div>
+  <div class="article">
+    <p><img src="/images/es-with-chef-3d3ad231.jpg" /></p>
+
+<p>エンジニアの内田（@spesnova）です。</p>
+
+<p><a href="http://engineer.wantedly.com/2014/02/25/elasticsearch-at-wantedly-1.html">「実践！Elasticsearch」</a> の第二回として、今回は Chef を使って Elasticsearch クラスタを AWS の EC2 上に構築する方法を紹介します。</p>
+
+<p>Chef の基本的な部分については説明を省きます。</p>
+
+<p>目次</p>
+
+<ol>
+<li>test-kitchen 環境準備</li>
+<li>単体の Elasticsearch サーバーを立てる</li>
+<li>Elasticsearch プラグイン込みで構築する</li>
+<li>Nginx を追加してアクセスを制限する</li>
+<li>EC2 上に Elasticsearch クラスタを立てる</li>
+</ol>
+
+<h2>test-kitchen 環境準備</h2>
+
+<p>Elasticsearch クラスタ構築は <a href="https://github.com/test-kitchen/test-kitchen">test-kitchen</a> を使って進めて行きます。</p>
+
+<p>demo 用の test-kitchen 環境を準備します。</p>
+
+<ul>
+<li>Ruby, Chef, Berskfile</li>
+<li><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>  (<code>$ brew cask install virtualbox</code>)</li>
+<li><a href="http://www.vagrantup.com/download-archive/v1.4.3.html">Vagrant 1.4.3</a></li>
+</ul>
+
+<p>をインストールした状態で、</p>
+
+<p>Cookbook 作成</p>
+<pre class="highlight shell"><span class="gp">$ </span>berks cookbook demo <span class="o">&amp;&amp;</span> <span class="nb">cd </span>demo
+</pre>
+<p><code>Gemfile</code></p>
+<pre class="highlight ruby"><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;berkshelf&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;foodcritic&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;rubocop&#39;</span>
+
+<span class="n">group</span> <span class="ss">:integration</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;test-kitchen&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;kitchen-vagrant&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;busser&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;serverspec&#39;</span>
+<span class="k">end</span>
+</pre><pre class="highlight shell"><span class="gp">$ </span>bundle install
+</pre>
+<p><del>次に test-kitchen でのテスト時に serverspec を使うための <a href="https://github.com/test-kitchen/busser">busser</a> プラグイン(<a href="https://github.com/test-kitchen/busser-serverspec">busser-serverspec</a>)をインストール</del>
+（<a href="http://kitchen.ci/docs/getting-started/writing-test">公式ドキュメントにあるように</a> test-kitchen がテスト用ディレクトリの名前からどの busser を対象サーバに入れるか判定して入れてくれるので、自分で入れる必要はなかったです）</p>
+
+<p><code>.kitchen.yml</code></p>
+<pre class="highlight yaml"><span class="s">provisioner</span><span class="p">:</span>
+  <span class="s">name</span><span class="p">:</span> <span class="s">chef_solo</span>
+
+<span class="s">driver_config</span><span class="p">:</span>
+  <span class="s">require_chef_omnibus</span><span class="p">:</span> <span class="s">true</span>
+
+<span class="s">platforms</span><span class="p">:</span>
+<span class="p">-</span> <span class="s">name</span><span class="p">:</span> <span class="s">ubuntu-12.04</span>
+  <span class="s">driver</span><span class="p">:</span>
+    <span class="s">name</span><span class="p">:</span> <span class="s">vagrant</span>
+  <span class="s">provider</span><span class="p">:</span> <span class="s">virtualbox</span>
+  <span class="s">driver_config</span><span class="p">:</span>
+    <span class="s">box</span><span class="p">:</span> <span class="s">opscode-ubuntu-12.04</span>
+    <span class="s">box_url</span><span class="p">:</span> <span class="s">https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box</span>
+    <span class="s">customize</span><span class="p">:</span>
+      <span class="s">memory</span><span class="p">:</span> <span class="s">2048</span>
+      <span class="s">cpuexecutioncap</span><span class="p">:</span> <span class="s">100</span>
+
+<span class="s">suites</span><span class="p">:</span>
+</pre>
+<p>test-kitchen で serverspec を使うための準備</p>
+<pre class="highlight shell"><span class="gp">$ </span><span class="nb">cd test</span>/integration
+<span class="gp">$ </span>mv default blog-elasticsearch
+<span class="gp">$ </span><span class="nb">cd </span>blog-elasticsearch
+<span class="gp">$ </span>serverspec-init
+Select OS <span class="nb">type</span>:
+
+  1<span class="o">)</span> UN<span class="k">*</span>X
+  2<span class="o">)</span> Windows
+
+Select number: 1
+
+Select a backend <span class="nb">type</span>:
+
+  1<span class="o">)</span> SSH
+  2<span class="o">)</span> Exec <span class="o">(</span><span class="nb">local</span><span class="o">)</span>
+
+Select number: 2
+
+ + spec/
+ + spec/localhost/
+ + spec/localhost/httpd_spec.rb
+ + spec/spec_helper.rb
+ + Rakefile
+<span class="gp">$ </span>rm Rakefile <span class="o">&amp;&amp;</span> mv spec serverspec
+<span class="gp">$ </span><span class="nb">cd </span>serverspec/localhost/
+<span class="gp">$ </span>mv httpd_spec.rb blog_elasticsearch_spec.rb
+</pre>
+<p><code>blog_elasticsearch_spec.rb</code></p>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+</pre>
+<h2>単体の Elastcsearch サーバーを立てる</h2>
+
+<p>最初に、単体の Elasticsearch サーバーを立てましょう。</p>
+
+<p>Elasticsearch は、<a href="https://github.com/elasticsearch/cookbook-elasticsearch">Chef Cookbook が公式にサポートされている</a>のでそちらを中心に作って行きます。</p>
+
+<p>まずは、単体の elasticsearch サーバーが立っているか確認する serverspec を簡単に用意しておきます。</p>
+
+<p><code>blog_elasticsearch_spec.rb</code></p>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="n">command</span><span class="p">(</span><span class="s2">&quot;curl localhost:9200&quot;</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">return_exit_status</span> <span class="mi">0</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="n">describe</span> <span class="n">service</span><span class="p">(</span><span class="s2">&quot;elasticsearch&quot;</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_running</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre>
+<p>elasticsearch 用の test-suite を用意します。</p>
+
+<p><code>.kitchen.yml</code></p>
+<pre class="highlight diff"><span class="gh">diff --git a/.kitchen.yml b/.kitchen.yml
+index 5f526ae..fd47c9c 100644
+</span><span class="gd">--- a/.kitchen.yml
+</span><span class="gi">+++ b/.kitchen.yml
+</span><span class="gh">@@ -17,3 +17,16 @@ platforms:
+</span>       cpuexecutioncap: 100
+<span class="err">
+</span> suites:
+<span class="gi">+- name: blog-elasticsearch
++  run_list:
++   - recipe[apt]
++   - recipe[build-essential]
++   - recipe[git]
++   - recipe[java]
++   - recipe[elasticsearch]
++  attributes:
++    elasticsearch:
++      version: 1.0.0
++    java:
++      install_flavor: openjdk
++      jdk_version: 7
+</span></pre>
+<ul>
+<li>ベースとして、<code>apt</code>、<code>build-essential</code>, <code>git</code> recipe を適用します。
+
+<ul>
+<li><code>apt-get update</code> の実行や build-essential 関連パッケージのインストール</li>
+</ul></li>
+<li>次に elasticsearch に必要な JAVA 環境を <code>java</code> recipe でインストール。
+
+<ul>
+<li><code>override_attributes</code> で JAVA のバージョンと OpenJDK を利用することを指定。</li>
+</ul></li>
+<li>最後に elasticsearch 公式サポートの elasticsearch cookbook の <code>default</code> recipe によって elasticsearch をインストール。
+
+<ul>
+<li><code>override_attributes</code> でバージョンを指定しています。</li>
+</ul></li>
+</ul>
+
+<p><code>elasticsearch::default</code> recipe ではざっくりと以下のことを行っています。</p>
+
+<ul>
+<li>elasticsearch 用 user/group の作成</li>
+<li>elasticsearch 用ディレクトリ(<code>/usr/local/elasticsearch</code> と <code>/usr/local/elasticsearch-&lt;バージョン&gt;</code>）の作成</li>
+<li>elasticsearch の設定ファイル配置</li>
+<li>elasticsearch のインストール</li>
+<li>init スクリプトの配置とサービス起動</li>
+</ul>
+
+<p>community cookbook として apt, build-essential, git, elasticsearch cookbook を利用するので、<code>Berksfile</code> に追加。</p>
+<pre class="highlight ruby"><span class="n">site</span> <span class="ss">:opscode</span>
+
+<span class="n">metadata</span>
+
+<span class="n">cookbook</span> <span class="s2">&quot;apt&quot;</span><span class="p">,</span>
+  <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&quot;https://github.com/opscode-cookbooks/apt.git&quot;</span>
+<span class="n">cookbook</span> <span class="s2">&quot;build-essential&quot;</span><span class="p">,</span>
+  <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&quot;https://github.com/opscode-cookbooks/build-essential.git&quot;</span>
+<span class="n">cookbook</span> <span class="s2">&quot;git&quot;</span><span class="p">,</span>
+  <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&quot;https://github.com/opscode-cookbooks/git.git&quot;</span>
+<span class="n">cookbook</span> <span class="s2">&quot;elasticsearch&quot;</span><span class="p">,</span>
+  <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&quot;https://github.com/elasticsearch/cookbook-elasticsearch.git&quot;</span>
+</pre><pre class="highlight shell"><span class="gp">$ </span>berks install
+</pre>
+<p>準備ができたので elasticsearch サーバーを立ててみます</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen setup blog-elasticsearch-ubuntu-1204
+</pre>
+<p>立てたサーバーに対して serverspec でテスト</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen verify blog-elasticsearch-ubuntu-1204
+</pre>
+<p>これで単体の elasticsearch サーバーが立ちました！</p>
+
+<p>(init スクリプトの中で ruby を使って json のパースなどをしており、ruby を入れてないので command not found と出ますが今回は無視)</p>
+
+<p>もう少しちゃんと確認したい場合はテストを追加するなり <code>kitchen login</code> して確認するようにします。</p>
+
+<p>設定の中で重要となるメモリサイズですが、<a href="https://github.com/elasticsearch/cookbook-elasticsearch/blob/master/attributes/default.rb#L44">elasticsearch cookbook の方でデフォルトで搭載メモリの 60% を割り当てるようになっています。</a> この設定を含め <a href="https://github.com/elasticsearch/cookbook-elasticsearch/blob/master/attributes/default.rb">elasticsearch cookbook の attributes/default.rb </a> に書かれているので細かい設定はここから変えます。（<code>elasticsearch.yml</code> などの設定ファイルは attributes の値を用いて動的に作成されるので、直接それらのファイルを編集することはありません）</p>
+
+<h2>Elasticsearch プラグイン込みで構築する</h2>
+
+<p>次は Elasticsearch のプラグイン込みで構築するできるようにしましょう。</p>
+
+<p><code>elasticsearch::plugins</code> を使います。この recipe では</p>
+
+<ul>
+<li>plugin を置くディレクトリを作成</li>
+<li>attributes に指定したプラグインを順々にインストール</li>
+</ul>
+
+<p>を行ってくれます。プラグインが入ってるかどうかを elasticsearch の node 情報 API を叩いて簡単ですが確認するようにします。</p>
+<pre class="highlight diff"><span class="gh">diff --git a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb b/test/integration/blog-elasti
+index e83f903..0a4551a 100644
+</span><span class="gd">--- a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb
+</span><span class="gi">+++ b/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb
+</span><span class="gh">@@ -7,3 +7,15 @@ end
+</span> describe service(&quot;elasticsearch&quot;) do
+   it { should be_running }
+ end
+<span class="gi">+
++describe command(&quot;curl localhost:9200/_nodes | grep head&quot;) do
++  it { should return_exit_status 0 }
++end
++
++describe command(&quot;curl localhost:9200/_nodes | grep HQ&quot;) do
++  it { should return_exit_status 0 }
++end
++
++describe command(&quot;curl localhost:9200/_nodes | grep kuromoji&quot;) do
++  it { should return_exit_status 0 }
++end
+</span></pre>
+<p>この recipe を run_list に追加し、プラグインを指定します。</p>
+<pre class="highlight diff"><span class="gh">diff --git a/.kitchen.yml b/.kitchen.yml
+index fd47c9c..71ae019 100644
+</span><span class="gd">--- a/.kitchen.yml
+</span><span class="gi">+++ b/.kitchen.yml
+</span><span class="gh">@@ -24,9 +24,17 @@ suites:
+</span>    - recipe[git]
+    - recipe[java]
+    - recipe[elasticsearch]
+<span class="gi">+   - recipe[elasticsearch::plugins]
+</span>   attributes:
+     elasticsearch:
+       version: 1.0.0
+<span class="gi">+      plugins:
++        mobz/elasticsearch-head:
++          version: latest
++        royrusso/elasticsearch-HQ:
++          version: latest
++        elasticsearch/elasticsearch-analysis-kuromoji:
++          version: 2.0.0
+</span>     java:
+       install_flavor: openjdk
+       jdk_version: 7
+</pre>
+<p>既に立てているサーバーに対して <code>chef-solo</code> 実行</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen converge blog-elasticsearch-ubuntu-1204
+</pre>
+<p>テスト</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen verify blog-elasticsearch-ubuntu-1204
+</pre>
+<h2>Nginx を追加してアクセスを制限する</h2>
+
+<p>本番環境など開発環境以外で使って行くとなると、アクセス制限が必要になるケースも出てくると思います。
+これに関しても公式 Cookbook でサポートされています。<code>elasticsearch::proxy</code> recipe を使います。</p>
+
+<p>この recipe では</p>
+
+<ul>
+<li>elasticsearch 用の reverse proxy として nginx のインストール</li>
+<li>elasticsearch 用に nginx の設定ファイルを作成</li>
+<li>8080 port を 9200 port にルーティング</li>
+<li>username/password が指定してある場合はベーシック認証をかける</li>
+</ul>
+
+<p>を行ってくれます。テストは</p>
+
+<ul>
+<li>8080 番にアクセスして 401 となること</li>
+<li>username/password 付きだとアクセスできること</li>
+<li>site plugin にも nginx 経由でアクセスできること</li>
+</ul>
+
+<p>を確認するようにします</p>
+<pre class="highlight diff"><span class="gh">diff --git a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb b/test/integration/blog-elasti
+index 0a4551a..43780fe 100644
+</span><span class="gd">--- a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb
+</span><span class="gi">+++ b/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb
+</span><span class="gh">@@ -19,3 +19,15 @@ end
+</span> describe command(&quot;curl localhost:9200/_nodes/blog-elasticsearch-ubuntu-1204 | grep kuromoji&quot;) do
+   it { should return_exit_status 0 }
+ end
+<span class="gi">+
++describe command(&quot;curl http://localhost:8080&quot;) do
++  it { should return_stdout /401/ }
++end
++
++describe command(&quot;curl http://naka:akiko@localhost:8080 | grep blog-elasticsearch&quot;) do
++  it { should return_exit_status 0 }
++end
++
++describe command(&quot;curl http://naka:akiko@localhost:8080/_plugin/head&quot;) do
++  it { should_not return_stdout /401/ }
++end
+</span></pre>
+<p><code>proxy</code> recipe を追加して、nginx に関する attribute を設定</p>
+<pre class="highlight diff"><span class="gh">diff --git a/.kitchen.yml b/.kitchen.yml
+index 71ae019..ab6c719 100644
+</span><span class="gd">--- a/.kitchen.yml
+</span><span class="gi">+++ b/.kitchen.yml
+</span><span class="gh">@@ -25,6 +25,7 @@ suites:
+</span>    - recipe[java]
+    - recipe[elasticsearch]
+    - recipe[elasticsearch::plugins]
+<span class="gi">+   - recipe[elasticsearch::proxy]
+</span>   attributes:
+     elasticsearch:
+       version: 1.0.0
+<span class="gh">@@ -35,6 +36,11 @@ suites:
+</span>           version: latest
+         elasticsearch/elasticsearch-analysis-kuromoji:
+           version: 2.0.0
+<span class="gi">+      nginx:
++        allow_cluster_api: true
++        users:
++          - username: naka
++            password: akiko
+</span>     java:
+       install_flavor: openjdk
+       jdk_version: 7
+</pre>
+<p><code>allow_cluster_api</code> という attribute は、<a href="http://mobz.github.io/elasticsearch-head/">head</a> なり <a href="https://github.com/lukas-vlcek/bigdesk">BigDesk</a> などが利用する cluster API へのアクセスを許可する場合は <code>true</code> にする</p>
+
+<p>（今回はデモなので直接書いてますが、ベーシック認証の username/password は encrypted data bag に入れた上で  node attributes からロードして override するなりして使った方が良いです。)</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen converge blog-elasticsearch-ubuntu-1204
+</pre>
+<p>テスト</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen verify blog-elasticsearch-ubuntu-1204
+</pre>
+<h2>EC2 上に Elasticsearch クラスタを立てる</h2>
+
+<p>EC2 インスタンス上の Elasticsearch サーバーでクラスタを作るには、<a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/modules-discovery-ec2.html">EC2 Discovery</a> を利用します。EC2 Discovery を簡単に説明すると、EC2 API から EC2 インスタンス一覧を取得し、</p>
+
+<ul>
+<li>EC2 の security group</li>
+<li>elasticsearch のクラスタ名</li>
+<li>EC2 の tag</li>
+<li>AWS の AZ</li>
+</ul>
+
+<p>でフィルタリングしてクラスタを構成する仲間を見つけるプロセスになります。(正確にはマスターノードをまず探しに行き、見つからなければ自身がマスターに、見つかった場合はそのマスターの仲間になる）Elasticsearch の <a href="https://github.com/elasticsearch/elasticsearch-cloud-aws">AWS Cloud Plugin</a> を入れ、いくつか設定を追加することで利用できるようになります。</p>
+
+<p>このプラグインについても Chef から追加し、設定も attribute で管理します。</p>
+
+<p>（Discovery 自体については、<a href="http://www.amazon.co.jp/%E9%AB%98%E9%80%9F%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%A9%E3%83%96%E3%83%AB%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3-ElasticSearch-Server-Rafal-Kuc/dp/4048662023">Elasticsearch 本</a> 276 ページ当たりに丁寧に載っています。)
+（Chef Server を使っている場合は、Chef の search を使った search discovery という選択肢もあります）</p>
+
+<h3>kitchen-ec2 の準備</h3>
+
+<p>test-kitchen を使って EC2 インスタンス上に Elasticsearch サーバーを立てるために、kitchen-ec2 の準備をします。</p>
+
+<p>まずは、AWS にて elasticsearch 用の security group を作ってください。</p>
+
+<p><img src="http://www.elasticsearch.org/tutorials/images/chef-solo/create-security-group.png" /></p>
+
+<p>次に、Elasticsearch サーバーが EC2 Discovery 時に EC2 API を叩けるように新しく EC2 アカウントを用意します。（IAM ROLE を使っていないのは <a href="https://github.com/test-kitchen/kitchen-ec2/pull/18">test-kitchen で IAM ROLE がサポートされたのが最近</a>でまだ試してないのです&hellip;)</p>
+
+<p>以下の権限を与えてください</p>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="s2">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ec2:Describe*&quot;</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>test-kitchen で EC2 インスタンスを扱うために Gemfile を更新します</p>
+<pre class="highlight diff"><span class="gh">diff --git a/Gemfile b/Gemfile
+index 97886d9..62ede2e 100644
+</span><span class="gd">--- a/Gemfile
+</span><span class="gi">+++ b/Gemfile
+</span><span class="gh">@@ -7,6 +7,7 @@ gem &#39;rubocop&#39;
+</span> group :integration do
+   gem &#39;test-kitchen&#39;
+   gem &#39;kitchen-vagrant&#39;
+<span class="gi">+  gem &#39;kitchen-ec2&#39;
+</span>   gem &#39;busser&#39;
+   gem &#39;serverspec&#39;
+ end
+</pre><pre class="highlight shell"><span class="gp">$ </span>bundle install
+</pre>
+<p>次に、kitchen.yml に EC2 driver の platform を追加します。(下記 <code>aws_ssh_key_id</code> と <code>ssh_key</code> に関しては普段 EC2 インスタンスを作成する際に使ってるものを指定してください）</p>
+<pre class="highlight diff"><span class="gh">@@ -16,6 +16,20 @@ platforms:
+</span>       memory: 2048
+       cpuexecutioncap: 100
+<span class="err">
+</span><span class="gi">+- name: ec2-ubuntu-12.04
++  driver:
++    name: ec2
++    region:  ap-northeast-1
++    availability_zone: ap-northeast-1
++    flavor_id: m3.medium
++    image_id: ami-3f32ac3e
++    aws_ssh_key_id: ssh-key # 適宜変更
++    ssh_key: ~/.ssh/ssh-key.pem # 適宜変更
++    username: ubuntu
++    security_group_ids: [&quot;sg-74e4ac0b&quot;] # 適宜変更
++    port: 22
++    ebs_optimized: false
++
+</span></pre>
+<p>ここで先ほどまで使っていた VM を消してしまいます</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen destroy
+<span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen list
+Instance                            Driver   Provisioner  Last Action
+blog-elasticsearch-ubuntu-1204      Vagrant  ChefSolo     &lt;Not Created&gt;
+blog-elasticsearch-ec2-ubuntu-1204  Ec2      ChefSolo     &lt;Not Created&gt;
+</pre>
+<h3>AWS Cloud Plugin を利用してクラスタを作る</h3>
+
+<p>テストは、cluster API で number_of_nodes が 2 であることを見てクラスタができたか確認することにします。</p>
+<pre class="highlight diff"><span class="gh">diff --git a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb b/test/integration/blog-elasti
+index 43780fe..1ac5f0b 100644
+</span><span class="gd">--- a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb
+</span><span class="gi">+++ b/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb
+</span><span class="gh">@@ -31,3 +31,7 @@ end
+</span> describe command(&quot;curl http://naka:akiko@localhost:8080/_plugin/head&quot;) do
+   it { should_not return_stdout /401/ }
+ end
+<span class="gi">+
++describe command(&quot;curl http://naka:akiko@localhost:8080/_cluster/health&quot;) do
++  it { should return_stdout /&quot;number_of_nodes&quot;\:2/ }
++end
+</span></pre>
+<p><code>.kitchen.yml</code> に <code>aws</code> recipe を追加します</p>
+<pre class="highlight diff"><span class="gh">diff --git a/.kitchen.yml b/.kitchen.yml
+index f02b37b..5c3f2db 100644
+</span><span class="gd">--- a/.kitchen.yml
+</span><span class="gi">+++ b/.kitchen.yml
+</span><span class="gh">@@ -40,9 +40,12 @@ suites:
+</span>    - recipe[elasticsearch]
+    - recipe[elasticsearch::plugins]
+    - recipe[elasticsearch::proxy]
+<span class="gi">+   - recipe[elasticsearch::aws]
+</span>   attributes:
+     elasticsearch:
+       version: 1.0.0
+<span class="gi">+      cluster:
++        name: demo
+</span>      plugins:
+         mobz/elasticsearch-head:
+           version: latest
+<span class="gh">@@ -50,11 +53,25 @@ suites:
+</span>           version: latest
+         elasticsearch/elasticsearch-analysis-kuromoji:
+           version: 2.0.0
+<span class="gi">+        elasticsearch/elasticsearch-cloud-aws:
++          version: 2.0.0.RC1
+</span>       nginx:
+         allow_cluster_api: true
+<span class="gi">+        allow_status: true
+</span>         users:
+           - username: naka
+             password: akiko
+<span class="gi">+      cloud:
++        aws:
++          region: ap-notheast-1
++          access_key: es 用に作成したアカウントの access key id
++          secret_key: es 用に作成したアカウントの secret access key
++      discovery:
++        type: ec2
++        ec2:
++          groups: elasticsearch
+</span>     java:
+       install_flavor: openjdk
+       jdk_version: 7
+</pre>
+<ul>
+<li><code>elasticsearch::aws</code> recipe を追加
+
+<ul>
+<li>AWS Cloud Plugin をインストールしてくれる</li>
+</ul></li>
+<li>クラスタ名を指定</li>
+<li>region を指定</li>
+<li>EC2 API を叩ける AWS アカウント情報を追加</li>
+<li>discovery タイプを EC2 に指定</li>
+<li>フィルタリングに使う securitygroup 名を指定</li>
+<li><code>nginx.allow_status: true</code>  ELB などのヘルスチェック用に /status はベーシック認証をかけないように</li>
+</ul>
+
+<p>1 台目を作る（途中でこける場合は「まとめ」部分のはまりポイント見てみてください）</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen converge blog-elasticsearch-ubuntu-1204
+</pre>
+<p>テスト</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen verify blog-elasticsearch-ubuntu-1204
+</pre>
+<p>最後のテストが落ちます。</p>
+
+<p>もう 1 台ノードを追加するために EC2 driver の platform を追加</p>
+<pre class="highlight diff"><span class="gh">diff --git a/.kitchen.yml b/.kitchen.yml
+index 2e16e78..48968ec 100644
+</span><span class="gd">--- a/.kitchen.yml
+</span><span class="gi">+++ b/.kitchen.yml
+</span><span class="gh">@@ -30,6 +30,20 @@ platforms:
+</span>     port: 22
+     ebs_optimized: false
+<span class="err">
+</span><span class="gi">+- name: ec2-ubuntu-12.04-second
++  driver:
++    name: ec2
++    region:  ap-northeast-1
++    availability_zone: ap-northeast-1
++    flavor_id: m3.medium
++    image_id: ami-3f32ac3e
++    aws_ssh_key_id: ssh-key # 適宜変更
++    ssh_key: ~/.ssh/ssh-key.pem # 適宜変更
++    username: ubuntu
++    security_group_ids: [&quot;sg-74e4ac0b&quot;] # 適宜変更
++    port: 22
++    ebs_optimized: false
++
+</span> suites:
+ - name: blog-elasticsearch
+   run_list:
+</pre>
+<p>2 台目のノードを立ち上げます</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen setup blog-elasticsearch-ubuntu-1204-second
+</pre>
+<p>再度テスト</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen verify blog-elasticsearch-ubuntu-1204
+</pre>
+<p>無事に EC2 上に Elasticsearch クラスタができました！</p>
+
+<p><img src="/images/elasticsearch-head-4c5cf901.png" /></p>
+
+<h2>まとめ</h2>
+
+<p>今回は、test-kitchen だけで進めて行きましたが、実際には suites に書いた run list や attributes などは role にまとめるなりして使うと良いと思います。また serverspec では <code>jq</code> コマンドを対象サーバーにインストールしておいて API レスポンスをパースしてテストした方が良いです&hellip; (今回はかなりざっくりやってるので)</p>
+
+<p>Chef を使って構築すると、構築が自動化出来るだけでなく、各種設定も attributes として管理できるようになります。インフラに関する変更を Chef のリポジトリに集約できるので管理がしやすくなります。</p>
+
+<p>はまりポイント？</p>
+
+<ul>
+<li><code>apt-get update</code> されてない
+
+<ul>
+<li>そもそも apt recipe 入れてないとか</li>
+<li>AMI によっては <code>/var/lib/apt/periodic/update-success-stamp</code> が作成されていて、apt cookbook の default recipe が <code>not_if</code> 条件により update してくれない</li>
+<li>recipe を 1 つ用意して強制的に呼ぶのが良い</li>
+</ul></li>
+<li>elasticsearch が起動しない場合は plugin のバージョンを確認
+
+<ul>
+<li>elasticsearch 本体のバージョンに対応してないプラグインバージョンを使うと es が起動しない</li>
+</ul></li>
+</ul>
+
+<p>さらに、この続きでやると良いこと</p>
+
+<ul>
+<li><code>Environment</code> という EC2 tag を追加して、production / staging などの環境毎にクラスタを作る
+
+<ul>
+<li><a href="https://github.com/opscode-cookbooks/aws#aws_resource_tag"><code>aws_resource_tag</code> resource</a> を使ってプロビジョニング時 に Chef の environment を tag の値として自動付加</li>
+</ul></li>
+<li>Elasticsearch クラスタの前に ELB などのロードバランサーを置いてエンドポイントを統一
+
+<ul>
+<li><a href="https://github.com/opscode-cookbooks/aws"><code>aws_elastic_lb</code> resource</a> を使ってプロビジョニング時に ELB へ自動登録</li>
+</ul></li>
+<li><code>elasticsearch::monit</code> recipe を利用して elasticsearch サーバーのプロセス監視を行う
+
+<ul>
+<li>run list で <code>elasticsearch::default</code> recipe の前に <code>monit::default</code> recipe を追加して、最後に <code>elasticsearch::monit</code> recipe を追加するだけでよい</li>
+</ul></li>
+</ul>
+
+<h2>参考資料</h2>
+
+<p><a href="http://www.amazon.co.jp/%E9%AB%98%E9%80%9F%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%A9%E3%83%96%E3%83%AB%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3-ElasticSearch-Server-Rafal-Kuc/dp/4048662023"><img src="http://ecx.images-amazon.com/images/I/51p07HyJCzL._SL500_AA300_.jpg" /></a></p>
+
+<ul>
+<li><a href="http://www.amazon.co.jp/%E9%AB%98%E9%80%9F%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%A9%E3%83%96%E3%83%AB%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3-ElasticSearch-Server-Rafal-Kuc/dp/4048662023">高速スケーラブル検索エンジン ElasticSearch Server</a></li>
+<li><a href="https://github.com/elasticsearch/cookbook-elasticsearch/blob/master/README.markdown">elaticsearch/cookbook-elasticsearch README.markdown</a></li>
+<li><a href="http://www.elasticsearch.org/tutorials/deploying-elasticsearch-with-chef-solo/">Deploying Elasticsearch With Chef Solo</a></li>
+</ul>
+
+  </div>
+
+  <hr>
+  <div>
+    エンジニア採用中！<a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+  </div>
+  <hr>
+
+  <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="spesnova" data-url="http://engineer.wantedly.com/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html">Tweet</a>
+  <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+    <iframe src="http://ghbtns.com/github-btn.html?user=spesnova&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+  
+
+        </div>
+        <div class="col-xs-12 col-md-3 col-md-offset-1">
+          <div class="side-article">
+            <h4>エンジニア採用中！</h4>
+            <a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+          </div>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_8134' scrolling='no' src='https://www.wantedly.com/projects/8134/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_25674' scrolling='no' src='https://www.wantedly.com/projects/25674/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <div class="side-article">
+            <h4>最近の記事</h4>
+            <ul>
+              
+                <li><a href="/2015/08/06/hashicorp-product-meetup.html">Hashicorp Product Meetup というイベントを開きました</a></li>
+              
+                <li><a href="/2015/04/01/sync-kpt.html">チームでKPTをやってみました</a></li>
+              
+                <li><a href="/2014/10/06/swift-style-guide.html">Swiftコーディング規約@Wantedly</a></li>
+              
+                <li><a href="/2014/04/28/how-wantedly-make-ios-app.html">WantedlyではどうやってiOSアプリ開発しているのか</a></li>
+              
+                <li><a href="/2014/04/23/elasticsearch-at-wantedly.html">第 4 回 Elasticsearch 勉強会で発表してきました</a></li>
+              
+                <li><a href="/2014/03/31/angular-and-love.html">AngularJSを導入することと、恋のときめきと一歩踏み出す苦しみと。</a></li>
+              
+                <li><a href="/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html">Chef で Elasticsearch クラスタを EC2 上に作る</a></li>
+              
+                <li><a href="/2014/02/25/elasticsearch-at-wantedly-1.html">実践！Elasticsearch</a></li>
+              
+                <li><a href="/2014/02/23/internship-jun.html">Wantedlyで1週間インターンしました！</a></li>
+              
+                <li><a href="/2014/01/07/hackathon-kento.html">Wantedlyハッカソンに参加してきた(*｀･ω･´)ノ</a></li>
+              
+            </ul>
+          </div>
+          <!--
+            <div class="side-article">
+              <h4>Tags</h4>
+              <ul>
+                
+                  <li>- <a href="/tags/elasticsearch.html">elasticsearch</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-ec2-nginx.html">elasticsearch chef ec2 nginx</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-aws.html">elasticsearch chef aws</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vagrant.html">vagrant</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/packer.html">packer</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/serf.html">serf</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/consul.html">consul</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/terraform.html">terraform</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vault.html">vault</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/atlas.html">atlas</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/hashicorp.html">hashicorp</a> <small class="gray">(1)</small></li>
+                
+              </ul>
+            </div>
+          -->
+          <!--
+            <div class="side-article">
+              <h4>By Year</h4>
+              <ul>
+                
+                  <li>- <a href="/2015.html">2015</a> <small class="gray">(2)</small></li>
+                
+                  <li>- <a href="/2014.html">2014</a> <small class="gray">(9)</small></li>
+                
+                  <li>- <a href="/2013.html">2013</a> <small class="gray">(2)</small></li>
+                
+              </ul>
+            </div>
+          -->
+        </div>
+      </div>
+    </div>
+    <footer class="container center">
+      <hr/>
+      <p>2013 © Wantedly, Inc., All Rights Reserved.</p>
+    </footer>
+
+    <script src="/javascripts/application-da39a3ee.js" type="text/javascript"></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  </body>
+</html>

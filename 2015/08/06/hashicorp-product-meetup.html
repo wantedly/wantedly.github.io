@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hashicorp Product Meetup というイベントを開きました - Wantedly Engineer Blog</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/favicon-8030cb16.png" rel="icon" type="image/png">
+    <meta property="fb:app_id" content="234170156611754">
+    <meta property="og:image" content="http://engineer.wantedly.com/wantedly-sticker2-9bf5acdc.png">
+    <link href="/stylesheets/application-5562e3f2.css" media="screen" rel="stylesheet" type="text/css" />
+    <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12847756-21']);
+    _gaq.push(['_setDomainName', 'wantedly.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </head>
+  <body>
+    <header class="jumbotron cover-image center">
+      <h1 class="graduate"><a href="/">Wantedly Engineer Blog</a></h1>
+      <p>Wantedly 開発チームブログ</p>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8">
+            <div class="page-header clearfix">
+    <h2>
+      <div class="article-title">
+        Hashicorp Product Meetup というイベントを開きました
+      </div>
+    </h2>
+    <div class="article-avatar">
+      <a href="https://www.wantedly.com/users/323185">
+        <img src="https://www.wantedly.com/users/323185/avatar" class="avatar" />
+      </a>
+      <span class='date'> 6-Aug-2015</span>
+    </div>
+    <div class="pull-right social-links">
+      <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="spesnova" data-url="http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html">Tweet</a>
+      <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+      
+        <iframe src="http://ghbtns.com/github-btn.html?user=spesnova&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+      
+    </div>
+  </div>
+  <div class="article">
+    <p>エンジニアの内田 <a href="https://twitter.com/spesnova">@spesnova</a> です。</p>
+
+<p>2015年8月5日に、<a href="https://twitter.com/deeeet">@deeeet</a> さんと一緒に Wantedly のオフィスにて Hashicorp Product Meetup と称して、
+Hashicorp プロダクトに関する知見、悩み、展望 etc をフランクに共有する会を開きました。</p>
+
+<p>参加者全員がゆるくざっくばらんに話せる場を作りたいと思って招待制のイベントにしました。
+参加者の方は <a href="https://twitter.com/deeeet">@deeeet</a> さんと自分の知り合いの方から、Hashicorpプロダクトを既に利用していたり、導入予定の方々にお声をかけせて頂き、その方々がまた数名招待するという形にしました。
+「行きたかった&hellip;」というツイートもチラホラありました、、参加できなかった方ごめんなさい。。</p>
+
+<p>どんな内容だったのかをtogetterと以下に簡単にまとめておきます: <a href="http://togetter.com/li/856947">http://togetter.com/li/856947</a></p>
+
+<p><img src="/images/2015-08-06/intro-db53a3bf.jpg" /></p>
+
+<p><img src="/images/2015-08-06/audience-1d0dffb6.jpg" /></p>
+
+<p><img src="/images/2015-08-06/lt_schedule-d85af476.jpg" /></p>
+
+<h2>Working With Terraform by <a href="https://twitter.com/glidenote">@glidenote</a></h2>
+
+<p>LT のトップバッターは <a href="https://twitter.com/glidenote">@glidenote</a> さん。</p>
+
+<script async class="speakerdeck-embed" data-id="478b6c4c7d75463388488e8ee465672d" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>Kaizen おなじみの hubot からプルリクを作ってマージしたら CircleCI でデプロイというフローを、 AMI を作るケースでデモされていました。
+Packer の実行も、 Packer のバージョンだったり、AWS API を扱えるキー渡したりと案外ちょっと環境依存するので、誰がやっても同じ結果を得るために CI でやるのいいなぁと思いました。Terraform 使おうと思ってる方はスライドに載ってる Terraform 知見は必見です。あと Hashicorp とは関係ないですが、 Kaizen の行動哲学好きです。</p>
+
+<p>ref: <a href="http://blog.glidenote.com/blog/2015/02/18/terraform-github-circleci-atlas-aws/">Terraform + GitHub + CircleCI + Atlasを利用してAWSの操作を自動化した - Glide Note - グライドノート</a></p>
+
+<h2>Quipper と Hashicorp by <a href="https://twitter.com/hakobera">@hakobera</a></h2>
+
+<p><a href="https://gist.github.com/hakobera/a5ced7653957a6491047"><img src="/images/2015-08-06/hakobera_slide-70dac2f3.png" /></a>
+<a href="https://gist.github.com/hakobera/a5ced7653957a6491047">スライド</a></p>
+
+<p>Quipper でも <a href="https://twitter.com/glidenote">@glidenote</a> さんのブログで紹介されている CircleCI を使った Terraform 利用を紹介されていた。特徴的なのは Codenize Tool との併用をしていて適材適所で使い分けているところ。また <code>.tf</code> ファイルをどのように分けてます？という投げかけがあって、座談会の方では、AWS リソースごとにわける、つまり <code>ec2.tf</code> とか <code>rds.tf</code> のようにするよりも、プロジェクトごとに分ける方が依存関係とか見やすいよねという話になった。</p>
+
+<h2>運用自動化に関する話 by <a href="https://twitter.com/zembutsu">@zembutsu</a></h2>
+
+<p>こちらは非公開になります</p>
+
+<h2>Terraform at Wantedly by <a href="https://twitter.com/dtan4">@dtan4</a></h2>
+
+<script async class="speakerdeck-embed" data-id="1246047604f0473dbbdd8f47b0912706" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>Wantedly での Terraform 利用例の話。Terraform は Codenize Tools のように既存のリソースの export 機能がないので、新規に追加するリソースにしか導入しづらいのだけど、<a href="https://twitter.com/dtan4">@dtan4</a> 作の terraforming という便利ツールを使って、既存リソースへ導入していったという話。</p>
+
+<p>ref: <a href="https://github.com/dtan4/terraforming">dtan4/terraforming</a></p>
+
+<h2>consul-atlas-alerts by <a href="https://twitter.com/rrreeeyyy">@rrreeeyyy</a></h2>
+
+<script async class="speakerdeck-embed" data-id="cc1fbf3754674edd9b2079ec29ba0dca" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>Atlas 及び Atlas の Consul 連携について。まず Atlas を実際に使ってる人は自分の観測範囲であまりいないのでとても貴重な話が聞けた。Atlas は CircleCI と被っている部分もあって即採用すべきものでもない。ただ、Consul クラスタを作る際に Atlas に join させるだけで良かったり、 consul-alert 相当のものが Atlas + Consul に搭載されていたりと Atlas 固有のおいしいポイントもあるとのこと。あと <a href="https://twitter.com/rrreeeyyy">@rrreeeyyy</a> は「れい」と読むことを知った。</p>
+
+<p>ref: <a href="http://www.slideshare.net/rrreeeyyy117/consul-andalertsmonitoring">consul &amp; consul-alerts を使った監視システム (hbstyle-2015-01-08)</a></p>
+
+<h2>Go packages from Hashicorp by <a href="https://twitter.com/deeeet">@deeeet</a></h2>
+
+<p><img src="/images/2015-08-06/deeeet_slide-f322a10c.png" />
+<a href="http://go-talks.appspot.com/github.com/tcnksm/talks/2015/08/hashicorp-meetup.slide#1">スライド</a></p>
+
+<p><a href="https://twitter.com/deeeet">@deeeet</a> さんの話は Hashicorp プロダクトの利用例というよりその内側の話。Hashicorp がプロダクトを作る中で生まれてきた副産物というかライブラリについて紹介されていた。
+Golang 使う人には有用な内容だったし、合わせて Hashicorp が利用者のことやバグ報告ちゃんとしてもらうためにわかりやすいエラーを出すといった Hashicorp tao にも言及していて勉強になった。</p>
+
+<h2>Terraform Tips by <a href="https://twitter.com/tkak">@tkak</a></h2>
+
+<script async class="speakerdeck-embed" data-id="91c928c7b1df430191f8e5955b41b6d7" data-ratio="1.37081659973226" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><a href="https://twitter.com/tkak">@tkak</a> さんの発表。社内独自環境向けに Custom Provider を作る方法だったり、Module について紹介されていた。Chef や Puppet でインフラをコード化したから誰でもインフラのコード触れるよね、と思ったら結局 Chef 職人しか触れないみたいなことと同じく、 Terraform 使って誰でも AWS リソース追加できるねと思ったら今度は RDS のパラメータ良くわかりませんみたいなことは現実に起きてくる。なので、 Module を使ってリソースを抽象化して必要なパラメータを絞ってあげると良いことをこの発表で学べた。</p>
+
+<p>ref: <a href="http://tkak.hatenablog.com/entry/2014/11/07/074044">TerraformのProviderを作った - tkak&#39;s tech blog</a></p>
+
+<h2>Usecase examples of Pakcer by <a href="https://twitter.com/hsbt">@hsbt</a></h2>
+
+<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/fTgmJGwbnqWelu" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/hsbt/20150805-hashicorptalks" title="Usecase examples of Packer " target="_blank">Usecase examples of Packer </a> </strong> from <strong><a href="//www.slideshare.net/hsbt" target="_blank">Hiroshi SHIBATA</a></strong> </div></p>
+
+<p><a href="https://twitter.com/hsbt">@hsbt</a> さんによる GMO ペパボでも Packer での AMI イメージ作成事例の話。Packer の中で cloud-init 使ったり、serverspec 流したり、何をイメージ化するか等々 Packer の知見が詰まった発表でした。さらに詳細な話は YAPC でされるとのこと。</p>
+
+<h2>Stretcher in 5min by <a href="https://twitter.com/fujiwara">@fujiwara</a></h2>
+
+<script async class="speakerdeck-embed" data-id="8d83ac3687ae40c9a68cf7406c1b50e6" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><a href="https://twitter.com/fujiwara">@fujiwara</a> さんによる自作のデプロイツール stretcher の話。<a href="https://twitter.com/sora_h">@sora_h</a> さんの <a href="https://github.com/sorah/mamiya">mamiya</a> にインスパイアされたとのことで、 S3 に置いたアプリコードを rsync で取得してくる指示を SSH ではなくて consul event でトリガーすることで、スケーラブルかつ速い。10 秒でデプロイが完了するらしい、速い&hellip;。こちらも自作の <a href="https://github.com/fujiwara/consul-kv-dashboard">Consul を使ったダッシュボード</a>と組み合わせたデプロイデモも見せてもらった。</p>
+
+<p>ref: <a href="https://github.com/fujiwara/stretcher">fujiwara/stretcher</a></p>
+
+<h2>座談会</h2>
+
+<p>LT のあとは 1 時間くらい皆で自由に話してました。この時間が勉強会の中で一番濃い時間かなと思います。（メモがなくてごめんなさい）</p>
+
+<h2>最後に</h2>
+
+<p>参加してくださった皆さん、イベント開くにあたって協力してくれた同僚の皆さんありがとうございました！</p>
+
+<p>Wantedly では今後もインフラに限らずエンジニア向け勉強会を行っていく予定です。
+本日来れなかった方もぜひ次回オフィスにいらしてください :)</p>
+
+  </div>
+
+  <hr>
+  <div>
+    エンジニア採用中！<a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+  </div>
+  <hr>
+
+  <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="spesnova" data-url="http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html">Tweet</a>
+  <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+    <iframe src="http://ghbtns.com/github-btn.html?user=spesnova&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+  
+
+        </div>
+        <div class="col-xs-12 col-md-3 col-md-offset-1">
+          <div class="side-article">
+            <h4>エンジニア採用中！</h4>
+            <a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+          </div>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_8134' scrolling='no' src='https://www.wantedly.com/projects/8134/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_25674' scrolling='no' src='https://www.wantedly.com/projects/25674/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <div class="side-article">
+            <h4>最近の記事</h4>
+            <ul>
+              
+                <li><a href="/2015/08/06/hashicorp-product-meetup.html">Hashicorp Product Meetup というイベントを開きました</a></li>
+              
+                <li><a href="/2015/04/01/sync-kpt.html">チームでKPTをやってみました</a></li>
+              
+                <li><a href="/2014/10/06/swift-style-guide.html">Swiftコーディング規約@Wantedly</a></li>
+              
+                <li><a href="/2014/04/28/how-wantedly-make-ios-app.html">WantedlyではどうやってiOSアプリ開発しているのか</a></li>
+              
+                <li><a href="/2014/04/23/elasticsearch-at-wantedly.html">第 4 回 Elasticsearch 勉強会で発表してきました</a></li>
+              
+                <li><a href="/2014/03/31/angular-and-love.html">AngularJSを導入することと、恋のときめきと一歩踏み出す苦しみと。</a></li>
+              
+                <li><a href="/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html">Chef で Elasticsearch クラスタを EC2 上に作る</a></li>
+              
+                <li><a href="/2014/02/25/elasticsearch-at-wantedly-1.html">実践！Elasticsearch</a></li>
+              
+                <li><a href="/2014/02/23/internship-jun.html">Wantedlyで1週間インターンしました！</a></li>
+              
+                <li><a href="/2014/01/07/hackathon-kento.html">Wantedlyハッカソンに参加してきた(*｀･ω･´)ノ</a></li>
+              
+            </ul>
+          </div>
+          <!--
+            <div class="side-article">
+              <h4>Tags</h4>
+              <ul>
+                
+                  <li>- <a href="/tags/elasticsearch.html">elasticsearch</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-ec2-nginx.html">elasticsearch chef ec2 nginx</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-aws.html">elasticsearch chef aws</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vagrant.html">vagrant</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/packer.html">packer</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/serf.html">serf</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/consul.html">consul</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/terraform.html">terraform</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vault.html">vault</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/atlas.html">atlas</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/hashicorp.html">hashicorp</a> <small class="gray">(1)</small></li>
+                
+              </ul>
+            </div>
+          -->
+          <!--
+            <div class="side-article">
+              <h4>By Year</h4>
+              <ul>
+                
+                  <li>- <a href="/2015.html">2015</a> <small class="gray">(2)</small></li>
+                
+                  <li>- <a href="/2014.html">2014</a> <small class="gray">(9)</small></li>
+                
+                  <li>- <a href="/2013.html">2013</a> <small class="gray">(2)</small></li>
+                
+              </ul>
+            </div>
+          -->
+        </div>
+      </div>
+    </div>
+    <footer class="container center">
+      <hr/>
+      <p>2013 © Wantedly, Inc., All Rights Reserved.</p>
+    </footer>
+
+    <script src="/javascripts/application-da39a3ee.js" type="text/javascript"></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  </body>
+</html>

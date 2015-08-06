@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wantedly開発チームブログの書き方 - Wantedly Engineer Blog</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/favicon-8030cb16.png" rel="icon" type="image/png">
+    <meta property="fb:app_id" content="234170156611754">
+    <meta property="og:image" content="http://engineer.wantedly.com/wantedly-sticker2-9bf5acdc.png">
+    <link href="/stylesheets/application-5562e3f2.css" media="screen" rel="stylesheet" type="text/css" />
+    <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12847756-21']);
+    _gaq.push(['_setDomainName', 'wantedly.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </head>
+  <body>
+    <header class="jumbotron cover-image center">
+      <h1 class="graduate"><a href="/">Wantedly Engineer Blog</a></h1>
+      <p>Wantedly 開発チームブログ</p>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8">
+            <div class="page-header clearfix">
+    <h2>
+      <div class="article-title">
+        Wantedly開発チームブログの書き方
+      </div>
+    </h2>
+    <div class="article-avatar">
+      <a href="https://www.wantedly.com/users/10599">
+        <img src="https://www.wantedly.com/users/10599/avatar" class="avatar" />
+      </a>
+      <span class='date'> 7-Dec-2013</span>
+    </div>
+    <div class="pull-right social-links">
+      <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2013/12/07/hello-world.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="kawasy" data-url="http://engineer.wantedly.com/2013/12/07/hello-world.html">Tweet</a>
+      <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2013/12/07/hello-world.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+      
+        <iframe src="http://ghbtns.com/github-btn.html?user=luvtechno&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+      
+    </div>
+  </div>
+  <div class="article">
+    <p>(※この記事はWantedlyのエンジニアメンバー向けのサンプル記事です)</p>
+
+<p>こんにちは！</p>
+
+<p>このブログは<a href="http://middlemanapp.com/">Middleman</a>を使って生成され、GitHub Pages上にホストされています。
+MiddlemanはRubyで書かれた静的サイト生成のフレームワークで、gemとして提供されています。</p>
+
+<h2>記事を書くには</h2>
+
+<p>手元の環境で動かすには以下のようにします。</p>
+
+<p>初回はまずレポジトリをcloneしてとってきましょう。
+ちなみに、<code>develop</code>ブランチに元原稿が存在し、<code>master</code>ブランチに公開するHTMLが自動的に生成されます。</p>
+<pre class="highlight shell"><span class="gp">$ </span>git clone git@github.com:wantedly/wantedly.github.io.git
+<span class="gp">$ </span><span class="nb">cd </span>wantedly.github.io
+<span class="gp">$ </span>git checkout develop
+<span class="gp">$ </span>bundle install
+<span class="gp">$ </span>bundle <span class="nb">exec </span>middleman server
+<span class="gp">$ </span>open http://localhost:4567/
+</pre>
+<p>2回目以降は、手元の<code>develop</code>ブランチを最新にするだけです。</p>
+<pre class="highlight shell"><span class="gp">$ </span>git pull origin develop
+<span class="gp">$ </span>bundle <span class="nb">exec </span>middleman server
+<span class="gp">$ </span>open http://localhost:4567/
+</pre>
+<p>新しい記事を書くには、以下のように過去の記事ファイルをコピーするのが簡単です。
+live reload機能が有効になっているので、原稿の<code>.md</code>ファイルを更新するだけで、自動的にブラウザ側も再読込されます。<code>middleman-livereload</code>というgemの機能です。</p>
+<pre class="highlight shell"><span class="gp">$ </span>cp <span class="nb">source</span>/2013-12-07-hello-world.html.md <span class="nb">source</span>/YYYY-MM-DD-TITLE.html.md
+</pre>
+<p>適当にbranchを作ってpull requestを送ってください。</p>
+
+<p>原稿はMarkdown形式で書きます。画像を使ったり、Wantedlyで使われている各種プログラミング言語のsyntax highlightも出来ます。Markdownのレンダリングには<code>redcarpet</code>、syntax highlightには<code>middleman-syntax</code> gemを使っています。</p>
+
+<ul>
+<li>Ruby</li>
+</ul>
+<pre class="highlight ruby"><span class="k">def </span><span class="nf">my_cool_method</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="n">message</span>
+<span class="k">end</span>
+</pre>
+<ul>
+<li>CoffeeScript</li>
+</ul>
+<pre class="highlight coffeescript"><span class="nx">$</span> <span class="o">-&gt;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="na">log</span> <span class="s">&#39;hi&#39;</span>
+</pre>
+<ul>
+<li>SQL</li>
+</ul>
+<pre class="highlight sql"><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">users</span>
+</pre>
+<h2>記事を公開するには</h2>
+
+<p>以下のようにすると、HTMLファイルが生成されGitHubの<code>master</code>ブランチに<code>git push</code>されて、自動的に公開されます。<code>middleman-deploy</code> gemの機能です。</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>middleman deploy
+</pre>
+<p>簡単！</p>
+
+  </div>
+
+  <hr>
+  <div>
+    エンジニア採用中！<a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+  </div>
+  <hr>
+
+  <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2013/12/07/hello-world.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="kawasy" data-url="http://engineer.wantedly.com/2013/12/07/hello-world.html">Tweet</a>
+  <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2013/12/07/hello-world.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+    <iframe src="http://ghbtns.com/github-btn.html?user=luvtechno&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+  
+
+        </div>
+        <div class="col-xs-12 col-md-3 col-md-offset-1">
+          <div class="side-article">
+            <h4>エンジニア採用中！</h4>
+            <a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+          </div>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_8134' scrolling='no' src='https://www.wantedly.com/projects/8134/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_25674' scrolling='no' src='https://www.wantedly.com/projects/25674/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <div class="side-article">
+            <h4>最近の記事</h4>
+            <ul>
+              
+                <li><a href="/2015/08/06/hashicorp-product-meetup.html">Hashicorp Product Meetup というイベントを開きました</a></li>
+              
+                <li><a href="/2015/04/01/sync-kpt.html">チームでKPTをやってみました</a></li>
+              
+                <li><a href="/2014/10/06/swift-style-guide.html">Swiftコーディング規約@Wantedly</a></li>
+              
+                <li><a href="/2014/04/28/how-wantedly-make-ios-app.html">WantedlyではどうやってiOSアプリ開発しているのか</a></li>
+              
+                <li><a href="/2014/04/23/elasticsearch-at-wantedly.html">第 4 回 Elasticsearch 勉強会で発表してきました</a></li>
+              
+                <li><a href="/2014/03/31/angular-and-love.html">AngularJSを導入することと、恋のときめきと一歩踏み出す苦しみと。</a></li>
+              
+                <li><a href="/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html">Chef で Elasticsearch クラスタを EC2 上に作る</a></li>
+              
+                <li><a href="/2014/02/25/elasticsearch-at-wantedly-1.html">実践！Elasticsearch</a></li>
+              
+                <li><a href="/2014/02/23/internship-jun.html">Wantedlyで1週間インターンしました！</a></li>
+              
+                <li><a href="/2014/01/07/hackathon-kento.html">Wantedlyハッカソンに参加してきた(*｀･ω･´)ノ</a></li>
+              
+            </ul>
+          </div>
+          <!--
+            <div class="side-article">
+              <h4>Tags</h4>
+              <ul>
+                
+                  <li>- <a href="/tags/elasticsearch.html">elasticsearch</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-ec2-nginx.html">elasticsearch chef ec2 nginx</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-aws.html">elasticsearch chef aws</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vagrant.html">vagrant</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/packer.html">packer</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/serf.html">serf</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/consul.html">consul</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/terraform.html">terraform</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vault.html">vault</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/atlas.html">atlas</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/hashicorp.html">hashicorp</a> <small class="gray">(1)</small></li>
+                
+              </ul>
+            </div>
+          -->
+          <!--
+            <div class="side-article">
+              <h4>By Year</h4>
+              <ul>
+                
+                  <li>- <a href="/2015.html">2015</a> <small class="gray">(2)</small></li>
+                
+                  <li>- <a href="/2014.html">2014</a> <small class="gray">(9)</small></li>
+                
+                  <li>- <a href="/2013.html">2013</a> <small class="gray">(2)</small></li>
+                
+              </ul>
+            </div>
+          -->
+        </div>
+      </div>
+    </div>
+    <footer class="container center">
+      <hr/>
+      <p>2013 © Wantedly, Inc., All Rights Reserved.</p>
+    </footer>
+
+    <script src="/javascripts/application-da39a3ee.js" type="text/javascript"></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  </body>
+</html>

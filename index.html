@@ -1,0 +1,2378 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wantedly Engineer Blog</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/favicon-8030cb16.png" rel="icon" type="image/png">
+    <meta property="fb:app_id" content="234170156611754">
+    <meta property="og:image" content="http://engineer.wantedly.com/wantedly-sticker2-9bf5acdc.png">
+    <link href="/stylesheets/application-5562e3f2.css" media="screen" rel="stylesheet" type="text/css" />
+    <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12847756-21']);
+    _gaq.push(['_setDomainName', 'wantedly.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </head>
+  <body>
+    <header class="jumbotron cover-image center">
+      <h1 class="graduate"><a href="/">Wantedly Engineer Blog</a></h1>
+      <p>Wantedly 開発チームブログ</p>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8">
+          
+    <div class="page-header clearfix">
+      <h2>
+        <div class="article-title">
+          <a href="/2015/08/06/hashicorp-product-meetup.html">Hashicorp Product Meetup というイベントを開きました</a>
+        </div>
+      </h2>
+      <div class="article-avatar">
+        <a href="https://www.wantedly.com/users/323185">
+          <img src="https://www.wantedly.com/users/323185/avatar" class="avatar" />
+        </a>
+        <span class='date'> 6-Aug-2015</span>
+      </div>
+      <div class="pull-right social-links">
+        <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="spesnova" data-url="http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html">Tweet</a>
+        <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+        
+          <iframe src="http://ghbtns.com/github-btn.html?user=spesnova&amp;type=follow&amp;count=true"
+      allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+        
+      </div>
+    </div>
+    <!-- use article.summary(250) if you have Nokogiri available to show just the first 250 characters -->
+    <div class="article">
+      <p>エンジニアの内田 <a href="https://twitter.com/spesnova">@spesnova</a> です。</p>
+
+<p>2015年8月5日に、<a href="https://twitter.com/deeeet">@deeeet</a> さんと一緒に Wantedly のオフィスにて Hashicorp Product Meetup と称して、
+Hashicorp プロダクトに関する知見、悩み、展望 etc をフランクに共有する会を開きました。</p>
+
+<p>参加者全員がゆるくざっくばらんに話せる場を作りたいと思って招待制のイベントにしました。
+参加者の方は <a href="https://twitter.com/deeeet">@deeeet</a> さんと自分の知り合いの方から、Hashicorpプロダクトを既に利用していたり、導入予定の方々にお声をかけせて頂き、その方々がまた数名招待するという形にしました。
+「行きたかった&hellip;」というツイートもチラホラありました、、参加できなかった方ごめんなさい。。</p>
+
+<p>どんな内容だったのかをtogetterと以下に簡単にまとめておきます: <a href="http://togetter.com/li/856947">http://togetter.com/li/856947</a></p>
+
+<p><img src="/images/2015-08-06/intro-db53a3bf.jpg" /></p>
+
+<p><img src="/images/2015-08-06/audience-1d0dffb6.jpg" /></p>
+
+<p><img src="/images/2015-08-06/lt_schedule-d85af476.jpg" /></p>
+
+<h2>Working With Terraform by <a href="https://twitter.com/glidenote">@glidenote</a></h2>
+
+<p>LT のトップバッターは <a href="https://twitter.com/glidenote">@glidenote</a> さん。</p>
+
+<script async class="speakerdeck-embed" data-id="478b6c4c7d75463388488e8ee465672d" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>Kaizen おなじみの hubot からプルリクを作ってマージしたら CircleCI でデプロイというフローを、 AMI を作るケースでデモされていました。
+Packer の実行も、 Packer のバージョンだったり、AWS API を扱えるキー渡したりと案外ちょっと環境依存するので、誰がやっても同じ結果を得るために CI でやるのいいなぁと思いました。Terraform 使おうと思ってる方はスライドに載ってる Terraform 知見は必見です。あと Hashicorp とは関係ないですが、 Kaizen の行動哲学好きです。</p>
+
+<p>ref: <a href="http://blog.glidenote.com/blog/2015/02/18/terraform-github-circleci-atlas-aws/">Terraform + GitHub + CircleCI + Atlasを利用してAWSの操作を自動化した - Glide Note - グライドノート</a></p>
+
+<h2>Quipper と Hashicorp by <a href="https://twitter.com/hakobera">@hakobera</a></h2>
+
+<p><a href="https://gist.github.com/hakobera/a5ced7653957a6491047"><img src="/images/2015-08-06/hakobera_slide-70dac2f3.png" /></a>
+<a href="https://gist.github.com/hakobera/a5ced7653957a6491047">スライド</a></p>
+
+<p>Quipper でも <a href="https://twitter.com/glidenote">@glidenote</a> さんのブログで紹介されている CircleCI を使った Terraform 利用を紹介されていた。特徴的なのは Codenize Tool との併用をしていて適材適所で使い分けているところ。また <code>.tf</code> ファイルをどのように分けてます？という投げかけがあって、座談会の方では、AWS リソースごとにわける、つまり <code>ec2.tf</code> とか <code>rds.tf</code> のようにするよりも、プロジェクトごとに分ける方が依存関係とか見やすいよねという話になった。</p>
+
+<h2>運用自動化に関する話 by <a href="https://twitter.com/zembutsu">@zembutsu</a></h2>
+
+<p>こちらは非公開になります</p>
+
+<h2>Terraform at Wantedly by <a href="https://twitter.com/dtan4">@dtan4</a></h2>
+
+<script async class="speakerdeck-embed" data-id="1246047604f0473dbbdd8f47b0912706" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>Wantedly での Terraform 利用例の話。Terraform は Codenize Tools のように既存のリソースの export 機能がないので、新規に追加するリソースにしか導入しづらいのだけど、<a href="https://twitter.com/dtan4">@dtan4</a> 作の terraforming という便利ツールを使って、既存リソースへ導入していったという話。</p>
+
+<p>ref: <a href="https://github.com/dtan4/terraforming">dtan4/terraforming</a></p>
+
+<h2>consul-atlas-alerts by <a href="https://twitter.com/rrreeeyyy">@rrreeeyyy</a></h2>
+
+<script async class="speakerdeck-embed" data-id="cc1fbf3754674edd9b2079ec29ba0dca" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>Atlas 及び Atlas の Consul 連携について。まず Atlas を実際に使ってる人は自分の観測範囲であまりいないのでとても貴重な話が聞けた。Atlas は CircleCI と被っている部分もあって即採用すべきものでもない。ただ、Consul クラスタを作る際に Atlas に join させるだけで良かったり、 consul-alert 相当のものが Atlas + Consul に搭載されていたりと Atlas 固有のおいしいポイントもあるとのこと。あと <a href="https://twitter.com/rrreeeyyy">@rrreeeyyy</a> は「れい」と読むことを知った。</p>
+
+<p>ref: <a href="http://www.slideshare.net/rrreeeyyy117/consul-andalertsmonitoring">consul &amp; consul-alerts を使った監視システム (hbstyle-2015-01-08)</a></p>
+
+<h2>Go packages from Hashicorp by <a href="https://twitter.com/deeeet">@deeeet</a></h2>
+
+<p><img src="/images/2015-08-06/deeeet_slide-f322a10c.png" />
+<a href="http://go-talks.appspot.com/github.com/tcnksm/talks/2015/08/hashicorp-meetup.slide#1">スライド</a></p>
+
+<p><a href="https://twitter.com/deeeet">@deeeet</a> さんの話は Hashicorp プロダクトの利用例というよりその内側の話。Hashicorp がプロダクトを作る中で生まれてきた副産物というかライブラリについて紹介されていた。
+Golang 使う人には有用な内容だったし、合わせて Hashicorp が利用者のことやバグ報告ちゃんとしてもらうためにわかりやすいエラーを出すといった Hashicorp tao にも言及していて勉強になった。</p>
+
+<h2>Terraform Tips by <a href="https://twitter.com/tkak">@tkak</a></h2>
+
+<script async class="speakerdeck-embed" data-id="91c928c7b1df430191f8e5955b41b6d7" data-ratio="1.37081659973226" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><a href="https://twitter.com/tkak">@tkak</a> さんの発表。社内独自環境向けに Custom Provider を作る方法だったり、Module について紹介されていた。Chef や Puppet でインフラをコード化したから誰でもインフラのコード触れるよね、と思ったら結局 Chef 職人しか触れないみたいなことと同じく、 Terraform 使って誰でも AWS リソース追加できるねと思ったら今度は RDS のパラメータ良くわかりませんみたいなことは現実に起きてくる。なので、 Module を使ってリソースを抽象化して必要なパラメータを絞ってあげると良いことをこの発表で学べた。</p>
+
+<p>ref: <a href="http://tkak.hatenablog.com/entry/2014/11/07/074044">TerraformのProviderを作った - tkak&#39;s tech blog</a></p>
+
+<h2>Usecase examples of Pakcer by <a href="https://twitter.com/hsbt">@hsbt</a></h2>
+
+<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/fTgmJGwbnqWelu" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/hsbt/20150805-hashicorptalks" title="Usecase examples of Packer " target="_blank">Usecase examples of Packer </a> </strong> from <strong><a href="//www.slideshare.net/hsbt" target="_blank">Hiroshi SHIBATA</a></strong> </div></p>
+
+<p><a href="https://twitter.com/hsbt">@hsbt</a> さんによる GMO ペパボでも Packer での AMI イメージ作成事例の話。Packer の中で cloud-init 使ったり、serverspec 流したり、何をイメージ化するか等々 Packer の知見が詰まった発表でした。さらに詳細な話は YAPC でされるとのこと。</p>
+
+<h2>Stretcher in 5min by <a href="https://twitter.com/fujiwara">@fujiwara</a></h2>
+
+<script async class="speakerdeck-embed" data-id="8d83ac3687ae40c9a68cf7406c1b50e6" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><a href="https://twitter.com/fujiwara">@fujiwara</a> さんによる自作のデプロイツール stretcher の話。<a href="https://twitter.com/sora_h">@sora_h</a> さんの <a href="https://github.com/sorah/mamiya">mamiya</a> にインスパイアされたとのことで、 S3 に置いたアプリコードを rsync で取得してくる指示を SSH ではなくて consul event でトリガーすることで、スケーラブルかつ速い。10 秒でデプロイが完了するらしい、速い&hellip;。こちらも自作の <a href="https://github.com/fujiwara/consul-kv-dashboard">Consul を使ったダッシュボード</a>と組み合わせたデプロイデモも見せてもらった。</p>
+
+<p>ref: <a href="https://github.com/fujiwara/stretcher">fujiwara/stretcher</a></p>
+
+<h2>座談会</h2>
+
+<p>LT のあとは 1 時間くらい皆で自由に話してました。この時間が勉強会の中で一番濃い時間かなと思います。（メモがなくてごめんなさい）</p>
+
+<h2>最後に</h2>
+
+<p>参加してくださった皆さん、イベント開くにあたって協力してくれた同僚の皆さんありがとうございました！</p>
+
+<p>Wantedly では今後もインフラに限らずエンジニア向け勉強会を行っていく予定です。
+本日来れなかった方もぜひ次回オフィスにいらしてください :)</p>
+
+    </div>
+    <div class="page-header clearfix">
+      <h2>
+        <div class="article-title">
+          <a href="/2015/04/01/sync-kpt.html">チームでKPTをやってみました</a>
+        </div>
+      </h2>
+      <div class="article-avatar">
+        <a href="https://www.wantedly.com/users/1208490">
+          <img src="https://www.wantedly.com/users/1208490/avatar" class="avatar" />
+        </a>
+        <span class='date'> 1-Apr-2015</span>
+      </div>
+      <div class="pull-right social-links">
+        <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2015/04/01/sync-kpt.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="morizotter" data-url="http://engineer.wantedly.com/2015/04/01/sync-kpt.html">Tweet</a>
+        <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2015/04/01/sync-kpt.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+        
+          <iframe src="http://ghbtns.com/github-btn.html?user=morizotter&amp;type=follow&amp;count=true"
+      allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+        
+      </div>
+    </div>
+    <!-- use article.summary(250) if you have Nokogiri available to show just the first 250 characters -->
+    <div class="article">
+      <p><img alt="KPT-Meeting" src="/images/kpt-meeting-7cfe5e43.jpg" /></p>
+
+<p>エンジニアの<a href="http://twitter.com/morizotter/">森田</a>です。</p>
+
+<p>チームでKPTをやってみました。その時に考えたことなどを書きたいと思います。</p>
+
+<script async class="speakerdeck-embed" data-id="eab824f9ec6840428bee0e56a50548cd" data-ratio="1.33159947984395" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>社内発表資料です。</p>
+
+<h2>KPTとは</h2>
+
+<blockquote>
+<p>アジャイル開発や反復型開発ではイテレーション（繰り返しの単位）ごとに作業の振り返りが推奨されるが、そのためのチーム反省会などでよく用いられるフォーマットである。</p>
+</blockquote>
+
+<p><em><a href="http://www.itmedia.co.jp/im/articles/0905/19/news143.html">http://www.itmedia.co.jp/im/articles/0905/19/news143.html</a></em></p>
+
+<p>KはKeep、PはProblem、TはTryをそれぞれ表します。イテレーションの単位でチームで振り返りを行い、良い点（Keep）、問題点（Problem）、具体的な改善項目（Try）を軸にミーティングをします。基本的な流れは、Problemが具体的なTryになり、Tryが解消したら、消える。またはKeepに昇華します。KeepはProblemやTryに関係なく、上げていくこのが良いと思います。</p>
+
+<h2>はじめた理由</h2>
+
+<p>社内で新規サービスを作ることになり、4名のチームが結成されました。サービス自体、アイディアのみがある状態から始まったので1週間ごとに見た目や機能が変更されていきます。既存のサービスのメンテナンスとはまた違う状況で、よりよいコミュニケーションとプロセスを作っていこうとやってみることにしました。</p>
+
+<h2>どうやってやったか</h2>
+
+<h3>期間、ツール、内容</h3>
+
+<p>イテレーションの単位は1週間。会議室に集まり、タスクの棚卸を行った後に実施しました。扱う内容は、現在開発中のプロダクトを中心にはするものの特に限定はしませんでした。プロダクトの改善や方向性などを話しましたが、扱う内容で一番多かったのは仕事の進め方に関するものでした。</p>
+
+<p>KPTというとホワイトボードに付箋というのが一般的ですが、私たちのチームでは、 <a href="https://coggle.it/">Coggle</a> というオンライン・マインドマップ・ツールを利用しました。</p>
+
+<p><img alt="Coggle" src="/images/coggle-whole-83215cc5.png" /></p>
+
+<p>ホワイトボードに書き出すことと比較すると利点は下記の通りです。</p>
+
+<ul>
+<li>思いついたタイミングで書き足しておくことができる。</li>
+<li>忘れそうな時に簡単に振り返れる。</li>
+<li>毎回ミーティングの時に前回の内容を思い出すことができる。</li>
+<li>書き出す負担が少ないので、継続しやすい。</li>
+</ul>
+
+<p>決めたルールは「批判しない」ということのみです。目指すところは、チームでよいプロダクトを作ることです。できているひとができていない人を批判して、批判された人が心を入れ替えるということではありません。そして、リラックスした状態で、ただ、仕事をする上で「問題に思っていること」「改善したいこと」「うまくいっていること」を共有しました。</p>
+
+<p>普通、ProblemがTryになり、それがKeepになるという流れがありますが、私たちのチームでは、Problemに対して、Tryにすることなく、そのままProblemでいつづけることがありました。TryになりやすいものはTryにして解決していくのですが、なかなかそうなりづらいものもあります。そういうものに関してはも書き出しておくことで、2,3週間すると改善案が出てきて自然と消えていったりしました。</p>
+
+<h3>1回目はどうしたのか</h3>
+
+<p>チームは僕以外KPTは初めてで、最初は、K、P、Tそれぞれどのような基準で出せば良いのかわかりませんでした。特に決まったルールもないので、各自、自身の判断で上げていきました。量もとても多くなったのですが、数を重ねていくうちにチーム内である程度共通の認識が生まれて、項目数も少なくなってきました。</p>
+
+<h2>どんなことを話したのか</h2>
+
+<p>多岐に渡るのですが、目立つものとして、</p>
+
+<ul>
+<li>他の人の作業が見えない：　Codetree -&gt; Zenhub を導入して解消</li>
+<li>Githubの通知に気付けない： GithubNotifier/GithubPop を導入して解消</li>
+<li>新しく開発するサービスの本質を理解する： T「WORK SHIFT」を一部を読む。</li>
+<li>朝回に行う事</li>
+<li>技術的なキャッチアップの方法。継続的な学習</li>
+</ul>
+
+<p>などなどです。</p>
+
+<h2>何が良かったか</h2>
+
+<p>目の前の問題を解決するといったわかりやすいよさもありましたが、それと同じかそれ以上に良いと思ったのは、もう少し形のない問題について話すことができたことです。継続的学習や、サービスの本質、日々ちょっとだけ困っている細かいことなど。 <strong>日々ちょっとだけ困っていること</strong> というのは、とても重要で、それを共有することで答えを持っている人が見つかり、改善していくことができました（ちなみに僕はGithubの@メンションを見落としがちということなどを書きました）。</p>
+
+<p>小さな問題を一つ一つ解消していくことで、最初は、殆ど変化がないように感じられますが、それを繰り返してゆくことで少しずつ業務の無駄がなくなり、知識も共有され、チーム感が出てきたように感じています。</p>
+
+<h2>継続的な改善は全てを変える</h2>
+
+<p>改善に関する格言を調べてみると、このようなものが見つかりました。</p>
+
+<blockquote>
+<p>Continuous improvements in any area eventually transform the operation.</p>
+</blockquote>
+
+<p>ピータードラッガーの言葉なのですが、自分なりに訳すと「継続的な改善は全てを変える」ということになります。継続的に改善を続けていくことで、最初は小さな変化かもしれないのですがそれが少しずつ積もって、足腰が鍛えられ、物事がうまく回るようになります。それを繰り返していくことで、始めた頃とは全く異なるような成長を遂げられるのではないかなと思いました。</p>
+
+<h2>参考資料</h2>
+
+<ul>
+<li><a href="http://techlife.cookpad.com/entry/2014/10/31/093305">KPTで粘り強く品質改善に取り組んだ話</a></li>
+<li><a href="http://enterprisezine.jp/iti/detail/788">今日からできる！全員参加型の建設的フィードバック「ふりかえり」～実践編（KPT・タイムライン）</a></li>
+<li><a href="http://www.slideshare.net/esmsec/kpt-27942223">KPTの基本と、その活用法</a></li>
+</ul>
+
+    </div>
+    <div class="page-header clearfix">
+      <h2>
+        <div class="article-title">
+          <a href="/2014/10/06/swift-style-guide.html">Swiftコーディング規約@Wantedly</a>
+        </div>
+      </h2>
+      <div class="article-avatar">
+        <a href="https://www.wantedly.com/users/631708">
+          <img src="https://www.wantedly.com/users/631708/avatar" class="avatar" />
+        </a>
+        <span class='date'> 6-Oct-2014</span>
+      </div>
+      <div class="pull-right social-links">
+        <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2014/10/06/swift-style-guide.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="susieyy" data-url="http://engineer.wantedly.com/2014/10/06/swift-style-guide.html">Tweet</a>
+        <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2014/10/06/swift-style-guide.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+        
+          <iframe src="http://ghbtns.com/github-btn.html?user=susieyy&amp;type=follow&amp;count=true"
+      allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+        
+      </div>
+    </div>
+    <!-- use article.summary(250) if you have Nokogiri available to show just the first 250 characters -->
+    <div class="article">
+      <p><a href="http://qiita.com/susieyy/items/f71435cc962e70d81b37"><img alt="Siori" src="/images/2014-10-06/swift_style_guide-c0d180d5.jpg" /></a></p>
+
+<p>こんにちは！エンジニアの<a href="https://www.wantedly.com/users/631708">杉上</a>です。</p>
+
+<h2>Swiftのコーディング規約を作成しています！</h2>
+
+<p>WantedlyではSwift言語で開発したiPhoneアプリ<a href="https://itunes.apple.com/jp/app/wired-vicenadono-hao-qi-xinwo/id913849903?mt=8">Siori</a>をリリースしました。</p>
+
+<p>その開発経験を元に<a href="http://qiita.com/susieyy/items/f71435cc962e70d81b37">Swiftコーディング規約</a>を作成しています。</p>
+
+<p>Swiftのコードは多様な記述の仕方ができるので柔軟でかつ表現力もありますが、チームで開発を行うとどうしても記述の仕方が統一できず可読性も上がりません。このコーディング規約がベストプラクティスだというわけではありませんが、Swiftもまだまだ手探りなところもあるので参考情報としてご参照いただき、皆さんと一緒にブラッシュアップしていきたいと思っております。</p>
+
+<h2>コーディング規約の必要性について</h2>
+
+<p>Swiftはプログラマがリスクを取ることによってより簡素に端的に記述ができたり、型推論が強力なので型の明記を省略して記述ができます。チームでSwift開発を行う場合は、詳細に記述するのか、省略して記述するのか、またはその間のどれぐらいの塩梅にするのかコンセンサスがないと統一されない多様な表現のコードが溢れてしまいます。なので規約の必要性・需要は高いのではないかと思い、Swiftがリリースされたばかりという早い時期から規約の作成に取り組んでいます。</p>
+
+<h2>規約はどこに？</h2>
+
+<p>qiita上で公開しています。
+ご指摘点、追加要望などありましたらコメント頂けると幸いです。</p>
+
+<p>以下URL先のqiitaサイトをご参照ください。</p>
+
+<h3><a href="http://qiita.com/susieyy/items/f71435cc962e70d81b37">Swiftコーディング規約</a></h3>
+
+<p>では、Swiftの開発を楽しんでください！</p>
+
+    </div>
+    <div class="page-header clearfix">
+      <h2>
+        <div class="article-title">
+          <a href="/2014/04/28/how-wantedly-make-ios-app.html">WantedlyではどうやってiOSアプリ開発しているのか</a>
+        </div>
+      </h2>
+      <div class="article-avatar">
+        <a href="https://www.wantedly.com/users/10599">
+          <img src="https://www.wantedly.com/users/10599/avatar" class="avatar" />
+        </a>
+        <span class='date'>28-Apr-2014</span>
+      </div>
+      <div class="pull-right social-links">
+        <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2014/04/28/how-wantedly-make-ios-app.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="kawasy" data-url="http://engineer.wantedly.com/2014/04/28/how-wantedly-make-ios-app.html">Tweet</a>
+        <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2014/04/28/how-wantedly-make-ios-app.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+        
+          <iframe src="http://ghbtns.com/github-btn.html?user=luvtechno&amp;type=follow&amp;count=true"
+      allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+        
+      </div>
+    </div>
+    <!-- use article.summary(250) if you have Nokogiri available to show just the first 250 characters -->
+    <div class="article">
+      <p><img alt="Yuri" src="https://huntr-static.s3.amazonaws.com/engineer_blog/2014-04-28-cover.jpeg" /></p>
+
+<p>こんにちは！エンジニアの<a href="https://www.wantedly.com/users/10599">川崎</a>です。</p>
+
+<p>先週行われた
+<a href="http://eventdots.jp/event/47442">Consumer Service Engineer MeetUp Vol.1　~iOS編~</a>
+というイベントで「WantedlyではどうやってiOSアプリ開発しているのか」というテーマで発表してきました。</p>
+
+<p>僕自身の普段の担当は、全体の設計やサーバ側の開発、プロジェクト進行あたりなので、
+今回はWantedlyでiOSアプリを「プロトタイピング」し「開発」そして「テスト」するまでで使ってるツール・取り組みをざっくり紹介させていただきました。</p>
+
+<p>意外とこの手の話をする機会はいままでなかったので、
+現在開発中のアプリも含め、今現在うちでは何をどうやっているのかまとめられてよかったかなと思います。</p>
+
+<p>以下、発表で紹介したURLなどです。</p>
+
+<ol>
+<li>プロトタイピング
+
+<ul>
+<li>ホワイトボードでアイデアだし</li>
+<li><a href="https://moqups.com/">moqups</a>でモックアップ作成</li>
+<li><a href="https://popapp.in/">Pop</a>を使って実機でプロトタイプを触ってみる</li>
+</ul></li>
+<li>開発
+
+<ul>
+<li>Wantedlyでよく使ってるCocoaPods一覧
+
+<ul>
+<li>RestKit - consuming and modeling RESTful web resources</li>
+<li>AFNetworking - networking framework</li>
+<li>SDWebImage - Asynchronous image downloader with cache support with an UIImageView category</li>
+<li>RNCryptor - Encryptor/Decryptor</li>
+<li>UICKeyChainStore - a simple wrapper for Keychain</li>
+<li>SVProgressHUD - A clean and lightweight progress HUD</li>
+<li>TTTAttributedLabel - A drop-in replacement for UILabel that supports attributes, data detectors, links, and more.</li>
+<li>NUI - Style iOS apps with a stylesheet, similar to CSS</li>
+<li>JLRoutes - Advanced URL parsing designed to handle complex URL schemes with a block-based callback API</li>
+</ul></li>
+<li><a href="http://cocoapods.wantedly.com/">COCOAPODS SEARCH</a>でCocoaPodの人気度・定番度をチェック</li>
+<li>使ってる<a href="https://github.com/wantedly/objective-c-style-guide">Objective-Cのスタイルガイド</a></li>
+</ul></li>
+<li>テスト
+
+<ul>
+<li>Rails側のCIは<a href="http://wercker.com/">wercker</a>で</li>
+<li>アプリのユーザテスト用に<a href="https://www.testflightapp.com/">TestFlight</a>で開発版を配信</li>
+</ul></li>
+</ol>
+
+<p><br/></p>
+
+<script async class="speakerdeck-embed" data-id="0ad89a10b0f50131486d72af66ead636" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><br/></p>
+
+<p>ちなみに、今回のイベントの発表者は自社サービスを開発・運営している会社に限定ということで、
+Wantedlyの他にはヴァズ株式会社 (SnapDish)、エニグモ (BUYMA)、はてな、nanapi (アンサー)、
+マインドパレット (Snapeee)さんが発表していました。
+そのうち主催のほうで他の方の発表のまとめも公開されると思います！</p>
+
+    </div>
+    <div class="page-header clearfix">
+      <h2>
+        <div class="article-title">
+          <a href="/2014/04/23/elasticsearch-at-wantedly.html">第 4 回 Elasticsearch 勉強会で発表してきました</a>
+        </div>
+      </h2>
+      <div class="article-avatar">
+        <a href="https://www.wantedly.com/users/323185">
+          <img src="https://www.wantedly.com/users/323185/avatar" class="avatar" />
+        </a>
+        <span class='date'>23-Apr-2014</span>
+      </div>
+      <div class="pull-right social-links">
+        <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2014/04/23/elasticsearch-at-wantedly.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="spesnova" data-url="http://engineer.wantedly.com/2014/04/23/elasticsearch-at-wantedly.html">Tweet</a>
+        <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2014/04/23/elasticsearch-at-wantedly.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+        
+          <iframe src="http://ghbtns.com/github-btn.html?user=spesnova&amp;type=follow&amp;count=true"
+      allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+        
+      </div>
+    </div>
+    <!-- use article.summary(250) if you have Nokogiri available to show just the first 250 characters -->
+    <div class="article">
+      <p>エンジニアの内田です（@spesnova）です。</p>
+
+<p><a href="http://elasticsearch.doorkeeper.jp/events/8865">リクルートで行われた第 4 回 Elasticsearch 勉強会</a>にて「Elasticsearch at Wantedly」というタイトルで発表してきました。Wantedly で Elasticsearch をどのように使ってるかを紹介させてもらっています。</p>
+
+<script async class="speakerdeck-embed" data-id="c8393bf0ac180131772a5a7f1b753ce9" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><br></p>
+
+<p>Elasticsearch ステッカーもらった :)</p>
+
+<p><img src="/images/es-sticker-daed1e32.jpg" /></p>
+
+<p>勉強会の様子は、主催の <a href="https://twitter.com/johtani">@johtani</a> さんの<a href="http://blog.johtani.info/blog/2014/04/21/hold-on-4th-elasticsearch-jp/">ブログ</a>にまとまってます（他の方が書いてくれた参加レポートへのリンクも付いてます）</p>
+
+    </div>
+    <div class="page-header clearfix">
+      <h2>
+        <div class="article-title">
+          <a href="/2014/03/31/angular-and-love.html">AngularJSを導入することと、恋のときめきと一歩踏み出す苦しみと。</a>
+        </div>
+      </h2>
+      <div class="article-avatar">
+        <a href="https://www.wantedly.com/users/14000">
+          <img src="https://www.wantedly.com/users/14000/avatar" class="avatar" />
+        </a>
+        <span class='date'>31-Mar-2014</span>
+      </div>
+      <div class="pull-right social-links">
+        <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2014/03/31/angular-and-love.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="imaimiami" data-url="http://engineer.wantedly.com/2014/03/31/angular-and-love.html">Tweet</a>
+        <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2014/03/31/angular-and-love.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+        
+          <iframe src="http://ghbtns.com/github-btn.html?user=imaimiami&amp;type=follow&amp;count=true"
+      allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+        
+      </div>
+    </div>
+    <!-- use article.summary(250) if you have Nokogiri available to show just the first 250 characters -->
+    <div class="article">
+      <h4>春です。</h4>
+
+<p>こんにちは、春ですね。</p>
+
+<p>いつから春なんだっけと思って、近くの人に聞いてみたら「花粉が飛んだら春」だそうです。
+来てますね、春。</p>
+
+<p>春には花粉以外にも、「ときめき」が飛び交います。
+朝のあの子の挨拶だったり、最近通い始めたスタバの店員さんの笑顔、そして、
+Angular.jsのUIバインディングのスマートさにときめきます。</p>
+
+<p><img alt="ios_image" src="/images/2014-03-31/angular-88b549d2.gif" /></p>
+
+<p>「あの子と話せたらハッピーだろうな」、「うちのサイトのDOMもバリバリ動かしたらカッコいいだろうな」
+とか春の陽気はポジティブな妄想を誘います。
+ただ、その妄想を現実に落としこむは簡単なことではなく、冬までに降り積もったシガラミが邪魔をします。
+中学時代に奇跡的にもらったラブレター、押入れに密かにしまわれているトレーディングカード、
+そして、jQueryで書かれたコードだったりが邪魔します。でも、変わらなくちゃ手に入れられないものもあります。</p>
+
+<h4>AngularJSを導入する</h4>
+
+<p>AngularJSを導入するにあたって、
+まっさらな状態からの構築なら良いのですが、既存のサービスに導入となると戸惑います。
+自分も最初はjQueryとぶつかって難しいよねとか思ってました。</p>
+
+<p>でも、意外とそうでもないです。</p>
+
+<p>例えば、あなたのサイトで使われまくっている<code>cool-select</code>という超coolなパーツがあったとして、</p>
+
+<p>JS</p>
+<pre class="highlight javascript"><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.cool-select&quot;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Cool!&quot;</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre>
+<p>HTML</p>
+<pre class="highlight html"><span class="nt">&lt;li</span> <span class="na">ng-repeat=</span><span class="s">&quot;tool in tools&quot;</span> <span class="na">class=</span><span class="s">&quot;animate&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;span&gt;</span>{{tool.name}}<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;select</span> <span class="na">class=</span><span class="s">&quot;cool-select&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>どのくらい好き？<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">&quot;normal&quot;</span><span class="nt">&gt;</span>いや、普通に<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">&quot;straw&quot;</span><span class="nt">&gt;</span>ストローで飲むくらい好き<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;/select&gt;</span>
+<span class="nt">&lt;/li&gt;</span>
+</pre>
+<p>実装のされ方にもよると思いますが、この<code>ng-repeat</code>の中で使用しているonChangeイベントはbindされません。
+ブラウザすら<code>Cool!</code>と言ってくれません。悲しい。</p>
+
+<p>こういう場合はDirectiveとして取り込んであげればいいと思います。</p>
+
+<p>JS</p>
+<pre class="highlight javascript"><span class="nx">ToolApp</span><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="s1">&#39;coolSelect&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">restrict</span><span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span>
+    <span class="na">link</span><span class="p">:</span> <span class="kd">function</span> <span class="nx">postLink</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">element</span><span class="p">,</span> <span class="nx">attrs</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">element</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">bigSelect</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="p">});</span>
+</pre>
+<p><code>restrict: &#39;A&#39;</code>は属性指定です。<code>big-select</code>という属性のある要素を指すことになります。
+<code>link</code>は<code>ng-repeat</code>のイテレーションのたびに呼び出されます。  </p>
+
+<p>AngularJSはjQueryが読み込まれいる場合、<code>angular.element</code>からjQueryのfunctionを呼び出せます。
+なのでjQueryの時のコードと同じように<code>.on</code>でbindしてます。</p>
+
+<p><a href="http://docs.angularjs.org/api/ng/function/angular.element">AngularJS: API: angular.element</a></p>
+
+<p>HTML</p>
+<pre class="highlight html"><span class="nt">&lt;li</span> <span class="na">ng-repeat=</span><span class="s">&quot;tool in tools&quot;</span> <span class="na">class=</span><span class="s">&quot;animate&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;span&gt;</span>{{tool.name}}<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;select</span> <span class="na">big-select=</span><span class="s">&quot;Nice&quot;</span> <span class="na">ng-model=</span><span class="s">&quot;tool.like&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>どのくらい好き？<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">&quot;normal&quot;</span><span class="nt">&gt;</span>いや、普通に<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">&quot;straw&quot;</span><span class="nt">&gt;</span>ストローで飲むくらい好き<span class="nt">&lt;/option&gt;</span>
+  <span class="nt">&lt;/select&gt;</span>
+<span class="nt">&lt;/li&gt;</span>
+</pre>
+<p>これで<code>onChange</code>イベントをbindすることが出来ました。
+おまけで<code>cool-select</code>に値を渡せるようにしています。</p>
+
+<h4>補足</h4>
+
+<p>今回使用したコードはすべて以下にあります。動くと思います。</p>
+
+<p><a href="https://gist.github.com/imaimiami/9722407">https://gist.github.com/imaimiami/9722407</a></p>
+
+<p>AngularJS入門は結局公式が良かったです。良い記事があれば教えてください。</p>
+
+<p><a href="http://docs.angularjs.org/tutorial">AngularJS: Tutorial: Tutorial</a></p>
+
+<p>また、冒頭のGIF画像は、チームの生産性のためならばどんなチャレンジもいとわない
+<a href="/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html">同僚</a>に敬意を表したものです。</p>
+
+<p>以上、また会いましょう！</p>
+
+    </div>
+    <div class="page-header clearfix">
+      <h2>
+        <div class="article-title">
+          <a href="/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html">Chef で Elasticsearch クラスタを EC2 上に作る</a>
+        </div>
+      </h2>
+      <div class="article-avatar">
+        <a href="https://www.wantedly.com/users/323185">
+          <img src="https://www.wantedly.com/users/323185/avatar" class="avatar" />
+        </a>
+        <span class='date'>27-Mar-2014</span>
+      </div>
+      <div class="pull-right social-links">
+        <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="spesnova" data-url="http://engineer.wantedly.com/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html">Tweet</a>
+        <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+        
+          <iframe src="http://ghbtns.com/github-btn.html?user=spesnova&amp;type=follow&amp;count=true"
+      allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+        
+      </div>
+    </div>
+    <!-- use article.summary(250) if you have Nokogiri available to show just the first 250 characters -->
+    <div class="article">
+      <p><img src="/images/es-with-chef-3d3ad231.jpg" /></p>
+
+<p>エンジニアの内田（@spesnova）です。</p>
+
+<p><a href="http://engineer.wantedly.com/2014/02/25/elasticsearch-at-wantedly-1.html">「実践！Elasticsearch」</a> の第二回として、今回は Chef を使って Elasticsearch クラスタを AWS の EC2 上に構築する方法を紹介します。</p>
+
+<p>Chef の基本的な部分については説明を省きます。</p>
+
+<p>目次</p>
+
+<ol>
+<li>test-kitchen 環境準備</li>
+<li>単体の Elasticsearch サーバーを立てる</li>
+<li>Elasticsearch プラグイン込みで構築する</li>
+<li>Nginx を追加してアクセスを制限する</li>
+<li>EC2 上に Elasticsearch クラスタを立てる</li>
+</ol>
+
+<h2>test-kitchen 環境準備</h2>
+
+<p>Elasticsearch クラスタ構築は <a href="https://github.com/test-kitchen/test-kitchen">test-kitchen</a> を使って進めて行きます。</p>
+
+<p>demo 用の test-kitchen 環境を準備します。</p>
+
+<ul>
+<li>Ruby, Chef, Berskfile</li>
+<li><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>  (<code>$ brew cask install virtualbox</code>)</li>
+<li><a href="http://www.vagrantup.com/download-archive/v1.4.3.html">Vagrant 1.4.3</a></li>
+</ul>
+
+<p>をインストールした状態で、</p>
+
+<p>Cookbook 作成</p>
+<pre class="highlight shell"><span class="gp">$ </span>berks cookbook demo <span class="o">&amp;&amp;</span> <span class="nb">cd </span>demo
+</pre>
+<p><code>Gemfile</code></p>
+<pre class="highlight ruby"><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+
+<span class="n">gem</span> <span class="s1">&#39;berkshelf&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;foodcritic&#39;</span>
+<span class="n">gem</span> <span class="s1">&#39;rubocop&#39;</span>
+
+<span class="n">group</span> <span class="ss">:integration</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s1">&#39;test-kitchen&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;kitchen-vagrant&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;busser&#39;</span>
+  <span class="n">gem</span> <span class="s1">&#39;serverspec&#39;</span>
+<span class="k">end</span>
+</pre><pre class="highlight shell"><span class="gp">$ </span>bundle install
+</pre>
+<p><del>次に test-kitchen でのテスト時に serverspec を使うための <a href="https://github.com/test-kitchen/busser">busser</a> プラグイン(<a href="https://github.com/test-kitchen/busser-serverspec">busser-serverspec</a>)をインストール</del>
+（<a href="http://kitchen.ci/docs/getting-started/writing-test">公式ドキュメントにあるように</a> test-kitchen がテスト用ディレクトリの名前からどの busser を対象サーバに入れるか判定して入れてくれるので、自分で入れる必要はなかったです）</p>
+
+<p><code>.kitchen.yml</code></p>
+<pre class="highlight yaml"><span class="s">provisioner</span><span class="p">:</span>
+  <span class="s">name</span><span class="p">:</span> <span class="s">chef_solo</span>
+
+<span class="s">driver_config</span><span class="p">:</span>
+  <span class="s">require_chef_omnibus</span><span class="p">:</span> <span class="s">true</span>
+
+<span class="s">platforms</span><span class="p">:</span>
+<span class="p">-</span> <span class="s">name</span><span class="p">:</span> <span class="s">ubuntu-12.04</span>
+  <span class="s">driver</span><span class="p">:</span>
+    <span class="s">name</span><span class="p">:</span> <span class="s">vagrant</span>
+  <span class="s">provider</span><span class="p">:</span> <span class="s">virtualbox</span>
+  <span class="s">driver_config</span><span class="p">:</span>
+    <span class="s">box</span><span class="p">:</span> <span class="s">opscode-ubuntu-12.04</span>
+    <span class="s">box_url</span><span class="p">:</span> <span class="s">https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box</span>
+    <span class="s">customize</span><span class="p">:</span>
+      <span class="s">memory</span><span class="p">:</span> <span class="s">2048</span>
+      <span class="s">cpuexecutioncap</span><span class="p">:</span> <span class="s">100</span>
+
+<span class="s">suites</span><span class="p">:</span>
+</pre>
+<p>test-kitchen で serverspec を使うための準備</p>
+<pre class="highlight shell"><span class="gp">$ </span><span class="nb">cd test</span>/integration
+<span class="gp">$ </span>mv default blog-elasticsearch
+<span class="gp">$ </span><span class="nb">cd </span>blog-elasticsearch
+<span class="gp">$ </span>serverspec-init
+Select OS <span class="nb">type</span>:
+
+  1<span class="o">)</span> UN<span class="k">*</span>X
+  2<span class="o">)</span> Windows
+
+Select number: 1
+
+Select a backend <span class="nb">type</span>:
+
+  1<span class="o">)</span> SSH
+  2<span class="o">)</span> Exec <span class="o">(</span><span class="nb">local</span><span class="o">)</span>
+
+Select number: 2
+
+ + spec/
+ + spec/localhost/
+ + spec/localhost/httpd_spec.rb
+ + spec/spec_helper.rb
+ + Rakefile
+<span class="gp">$ </span>rm Rakefile <span class="o">&amp;&amp;</span> mv spec serverspec
+<span class="gp">$ </span><span class="nb">cd </span>serverspec/localhost/
+<span class="gp">$ </span>mv httpd_spec.rb blog_elasticsearch_spec.rb
+</pre>
+<p><code>blog_elasticsearch_spec.rb</code></p>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+</pre>
+<h2>単体の Elastcsearch サーバーを立てる</h2>
+
+<p>最初に、単体の Elasticsearch サーバーを立てましょう。</p>
+
+<p>Elasticsearch は、<a href="https://github.com/elasticsearch/cookbook-elasticsearch">Chef Cookbook が公式にサポートされている</a>のでそちらを中心に作って行きます。</p>
+
+<p>まずは、単体の elasticsearch サーバーが立っているか確認する serverspec を簡単に用意しておきます。</p>
+
+<p><code>blog_elasticsearch_spec.rb</code></p>
+<pre class="highlight ruby"><span class="nb">require</span> <span class="s1">&#39;spec_helper&#39;</span>
+
+<span class="n">describe</span> <span class="n">command</span><span class="p">(</span><span class="s2">&quot;curl localhost:9200&quot;</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">return_exit_status</span> <span class="mi">0</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="n">describe</span> <span class="n">service</span><span class="p">(</span><span class="s2">&quot;elasticsearch&quot;</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">it</span> <span class="p">{</span> <span class="n">should</span> <span class="n">be_running</span> <span class="p">}</span>
+<span class="k">end</span>
+</pre>
+<p>elasticsearch 用の test-suite を用意します。</p>
+
+<p><code>.kitchen.yml</code></p>
+<pre class="highlight diff"><span class="gh">diff --git a/.kitchen.yml b/.kitchen.yml
+index 5f526ae..fd47c9c 100644
+</span><span class="gd">--- a/.kitchen.yml
+</span><span class="gi">+++ b/.kitchen.yml
+</span><span class="gh">@@ -17,3 +17,16 @@ platforms:
+</span>       cpuexecutioncap: 100
+<span class="err">
+</span> suites:
+<span class="gi">+- name: blog-elasticsearch
++  run_list:
++   - recipe[apt]
++   - recipe[build-essential]
++   - recipe[git]
++   - recipe[java]
++   - recipe[elasticsearch]
++  attributes:
++    elasticsearch:
++      version: 1.0.0
++    java:
++      install_flavor: openjdk
++      jdk_version: 7
+</span></pre>
+<ul>
+<li>ベースとして、<code>apt</code>、<code>build-essential</code>, <code>git</code> recipe を適用します。
+
+<ul>
+<li><code>apt-get update</code> の実行や build-essential 関連パッケージのインストール</li>
+</ul></li>
+<li>次に elasticsearch に必要な JAVA 環境を <code>java</code> recipe でインストール。
+
+<ul>
+<li><code>override_attributes</code> で JAVA のバージョンと OpenJDK を利用することを指定。</li>
+</ul></li>
+<li>最後に elasticsearch 公式サポートの elasticsearch cookbook の <code>default</code> recipe によって elasticsearch をインストール。
+
+<ul>
+<li><code>override_attributes</code> でバージョンを指定しています。</li>
+</ul></li>
+</ul>
+
+<p><code>elasticsearch::default</code> recipe ではざっくりと以下のことを行っています。</p>
+
+<ul>
+<li>elasticsearch 用 user/group の作成</li>
+<li>elasticsearch 用ディレクトリ(<code>/usr/local/elasticsearch</code> と <code>/usr/local/elasticsearch-&lt;バージョン&gt;</code>）の作成</li>
+<li>elasticsearch の設定ファイル配置</li>
+<li>elasticsearch のインストール</li>
+<li>init スクリプトの配置とサービス起動</li>
+</ul>
+
+<p>community cookbook として apt, build-essential, git, elasticsearch cookbook を利用するので、<code>Berksfile</code> に追加。</p>
+<pre class="highlight ruby"><span class="n">site</span> <span class="ss">:opscode</span>
+
+<span class="n">metadata</span>
+
+<span class="n">cookbook</span> <span class="s2">&quot;apt&quot;</span><span class="p">,</span>
+  <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&quot;https://github.com/opscode-cookbooks/apt.git&quot;</span>
+<span class="n">cookbook</span> <span class="s2">&quot;build-essential&quot;</span><span class="p">,</span>
+  <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&quot;https://github.com/opscode-cookbooks/build-essential.git&quot;</span>
+<span class="n">cookbook</span> <span class="s2">&quot;git&quot;</span><span class="p">,</span>
+  <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&quot;https://github.com/opscode-cookbooks/git.git&quot;</span>
+<span class="n">cookbook</span> <span class="s2">&quot;elasticsearch&quot;</span><span class="p">,</span>
+  <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s2">&quot;https://github.com/elasticsearch/cookbook-elasticsearch.git&quot;</span>
+</pre><pre class="highlight shell"><span class="gp">$ </span>berks install
+</pre>
+<p>準備ができたので elasticsearch サーバーを立ててみます</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen setup blog-elasticsearch-ubuntu-1204
+</pre>
+<p>立てたサーバーに対して serverspec でテスト</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen verify blog-elasticsearch-ubuntu-1204
+</pre>
+<p>これで単体の elasticsearch サーバーが立ちました！</p>
+
+<p>(init スクリプトの中で ruby を使って json のパースなどをしており、ruby を入れてないので command not found と出ますが今回は無視)</p>
+
+<p>もう少しちゃんと確認したい場合はテストを追加するなり <code>kitchen login</code> して確認するようにします。</p>
+
+<p>設定の中で重要となるメモリサイズですが、<a href="https://github.com/elasticsearch/cookbook-elasticsearch/blob/master/attributes/default.rb#L44">elasticsearch cookbook の方でデフォルトで搭載メモリの 60% を割り当てるようになっています。</a> この設定を含め <a href="https://github.com/elasticsearch/cookbook-elasticsearch/blob/master/attributes/default.rb">elasticsearch cookbook の attributes/default.rb </a> に書かれているので細かい設定はここから変えます。（<code>elasticsearch.yml</code> などの設定ファイルは attributes の値を用いて動的に作成されるので、直接それらのファイルを編集することはありません）</p>
+
+<h2>Elasticsearch プラグイン込みで構築する</h2>
+
+<p>次は Elasticsearch のプラグイン込みで構築するできるようにしましょう。</p>
+
+<p><code>elasticsearch::plugins</code> を使います。この recipe では</p>
+
+<ul>
+<li>plugin を置くディレクトリを作成</li>
+<li>attributes に指定したプラグインを順々にインストール</li>
+</ul>
+
+<p>を行ってくれます。プラグインが入ってるかどうかを elasticsearch の node 情報 API を叩いて簡単ですが確認するようにします。</p>
+<pre class="highlight diff"><span class="gh">diff --git a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb b/test/integration/blog-elasti
+index e83f903..0a4551a 100644
+</span><span class="gd">--- a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb
+</span><span class="gi">+++ b/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb
+</span><span class="gh">@@ -7,3 +7,15 @@ end
+</span> describe service(&quot;elasticsearch&quot;) do
+   it { should be_running }
+ end
+<span class="gi">+
++describe command(&quot;curl localhost:9200/_nodes | grep head&quot;) do
++  it { should return_exit_status 0 }
++end
++
++describe command(&quot;curl localhost:9200/_nodes | grep HQ&quot;) do
++  it { should return_exit_status 0 }
++end
++
++describe command(&quot;curl localhost:9200/_nodes | grep kuromoji&quot;) do
++  it { should return_exit_status 0 }
++end
+</span></pre>
+<p>この recipe を run_list に追加し、プラグインを指定します。</p>
+<pre class="highlight diff"><span class="gh">diff --git a/.kitchen.yml b/.kitchen.yml
+index fd47c9c..71ae019 100644
+</span><span class="gd">--- a/.kitchen.yml
+</span><span class="gi">+++ b/.kitchen.yml
+</span><span class="gh">@@ -24,9 +24,17 @@ suites:
+</span>    - recipe[git]
+    - recipe[java]
+    - recipe[elasticsearch]
+<span class="gi">+   - recipe[elasticsearch::plugins]
+</span>   attributes:
+     elasticsearch:
+       version: 1.0.0
+<span class="gi">+      plugins:
++        mobz/elasticsearch-head:
++          version: latest
++        royrusso/elasticsearch-HQ:
++          version: latest
++        elasticsearch/elasticsearch-analysis-kuromoji:
++          version: 2.0.0
+</span>     java:
+       install_flavor: openjdk
+       jdk_version: 7
+</pre>
+<p>既に立てているサーバーに対して <code>chef-solo</code> 実行</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen converge blog-elasticsearch-ubuntu-1204
+</pre>
+<p>テスト</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen verify blog-elasticsearch-ubuntu-1204
+</pre>
+<h2>Nginx を追加してアクセスを制限する</h2>
+
+<p>本番環境など開発環境以外で使って行くとなると、アクセス制限が必要になるケースも出てくると思います。
+これに関しても公式 Cookbook でサポートされています。<code>elasticsearch::proxy</code> recipe を使います。</p>
+
+<p>この recipe では</p>
+
+<ul>
+<li>elasticsearch 用の reverse proxy として nginx のインストール</li>
+<li>elasticsearch 用に nginx の設定ファイルを作成</li>
+<li>8080 port を 9200 port にルーティング</li>
+<li>username/password が指定してある場合はベーシック認証をかける</li>
+</ul>
+
+<p>を行ってくれます。テストは</p>
+
+<ul>
+<li>8080 番にアクセスして 401 となること</li>
+<li>username/password 付きだとアクセスできること</li>
+<li>site plugin にも nginx 経由でアクセスできること</li>
+</ul>
+
+<p>を確認するようにします</p>
+<pre class="highlight diff"><span class="gh">diff --git a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb b/test/integration/blog-elasti
+index 0a4551a..43780fe 100644
+</span><span class="gd">--- a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb
+</span><span class="gi">+++ b/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb
+</span><span class="gh">@@ -19,3 +19,15 @@ end
+</span> describe command(&quot;curl localhost:9200/_nodes/blog-elasticsearch-ubuntu-1204 | grep kuromoji&quot;) do
+   it { should return_exit_status 0 }
+ end
+<span class="gi">+
++describe command(&quot;curl http://localhost:8080&quot;) do
++  it { should return_stdout /401/ }
++end
++
++describe command(&quot;curl http://naka:akiko@localhost:8080 | grep blog-elasticsearch&quot;) do
++  it { should return_exit_status 0 }
++end
++
++describe command(&quot;curl http://naka:akiko@localhost:8080/_plugin/head&quot;) do
++  it { should_not return_stdout /401/ }
++end
+</span></pre>
+<p><code>proxy</code> recipe を追加して、nginx に関する attribute を設定</p>
+<pre class="highlight diff"><span class="gh">diff --git a/.kitchen.yml b/.kitchen.yml
+index 71ae019..ab6c719 100644
+</span><span class="gd">--- a/.kitchen.yml
+</span><span class="gi">+++ b/.kitchen.yml
+</span><span class="gh">@@ -25,6 +25,7 @@ suites:
+</span>    - recipe[java]
+    - recipe[elasticsearch]
+    - recipe[elasticsearch::plugins]
+<span class="gi">+   - recipe[elasticsearch::proxy]
+</span>   attributes:
+     elasticsearch:
+       version: 1.0.0
+<span class="gh">@@ -35,6 +36,11 @@ suites:
+</span>           version: latest
+         elasticsearch/elasticsearch-analysis-kuromoji:
+           version: 2.0.0
+<span class="gi">+      nginx:
++        allow_cluster_api: true
++        users:
++          - username: naka
++            password: akiko
+</span>     java:
+       install_flavor: openjdk
+       jdk_version: 7
+</pre>
+<p><code>allow_cluster_api</code> という attribute は、<a href="http://mobz.github.io/elasticsearch-head/">head</a> なり <a href="https://github.com/lukas-vlcek/bigdesk">BigDesk</a> などが利用する cluster API へのアクセスを許可する場合は <code>true</code> にする</p>
+
+<p>（今回はデモなので直接書いてますが、ベーシック認証の username/password は encrypted data bag に入れた上で  node attributes からロードして override するなりして使った方が良いです。)</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen converge blog-elasticsearch-ubuntu-1204
+</pre>
+<p>テスト</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen verify blog-elasticsearch-ubuntu-1204
+</pre>
+<h2>EC2 上に Elasticsearch クラスタを立てる</h2>
+
+<p>EC2 インスタンス上の Elasticsearch サーバーでクラスタを作るには、<a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/modules-discovery-ec2.html">EC2 Discovery</a> を利用します。EC2 Discovery を簡単に説明すると、EC2 API から EC2 インスタンス一覧を取得し、</p>
+
+<ul>
+<li>EC2 の security group</li>
+<li>elasticsearch のクラスタ名</li>
+<li>EC2 の tag</li>
+<li>AWS の AZ</li>
+</ul>
+
+<p>でフィルタリングしてクラスタを構成する仲間を見つけるプロセスになります。(正確にはマスターノードをまず探しに行き、見つからなければ自身がマスターに、見つかった場合はそのマスターの仲間になる）Elasticsearch の <a href="https://github.com/elasticsearch/elasticsearch-cloud-aws">AWS Cloud Plugin</a> を入れ、いくつか設定を追加することで利用できるようになります。</p>
+
+<p>このプラグインについても Chef から追加し、設定も attribute で管理します。</p>
+
+<p>（Discovery 自体については、<a href="http://www.amazon.co.jp/%E9%AB%98%E9%80%9F%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%A9%E3%83%96%E3%83%AB%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3-ElasticSearch-Server-Rafal-Kuc/dp/4048662023">Elasticsearch 本</a> 276 ページ当たりに丁寧に載っています。)
+（Chef Server を使っている場合は、Chef の search を使った search discovery という選択肢もあります）</p>
+
+<h3>kitchen-ec2 の準備</h3>
+
+<p>test-kitchen を使って EC2 インスタンス上に Elasticsearch サーバーを立てるために、kitchen-ec2 の準備をします。</p>
+
+<p>まずは、AWS にて elasticsearch 用の security group を作ってください。</p>
+
+<p><img src="http://www.elasticsearch.org/tutorials/images/chef-solo/create-security-group.png" /></p>
+
+<p>次に、Elasticsearch サーバーが EC2 Discovery 時に EC2 API を叩けるように新しく EC2 アカウントを用意します。（IAM ROLE を使っていないのは <a href="https://github.com/test-kitchen/kitchen-ec2/pull/18">test-kitchen で IAM ROLE がサポートされたのが最近</a>でまだ試してないのです&hellip;)</p>
+
+<p>以下の権限を与えてください</p>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;Version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span><span class="w">
+  </span><span class="s2">&quot;Statement&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;Action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ec2:Describe*&quot;</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;Effect&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allow&quot;</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;Resource&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>test-kitchen で EC2 インスタンスを扱うために Gemfile を更新します</p>
+<pre class="highlight diff"><span class="gh">diff --git a/Gemfile b/Gemfile
+index 97886d9..62ede2e 100644
+</span><span class="gd">--- a/Gemfile
+</span><span class="gi">+++ b/Gemfile
+</span><span class="gh">@@ -7,6 +7,7 @@ gem &#39;rubocop&#39;
+</span> group :integration do
+   gem &#39;test-kitchen&#39;
+   gem &#39;kitchen-vagrant&#39;
+<span class="gi">+  gem &#39;kitchen-ec2&#39;
+</span>   gem &#39;busser&#39;
+   gem &#39;serverspec&#39;
+ end
+</pre><pre class="highlight shell"><span class="gp">$ </span>bundle install
+</pre>
+<p>次に、kitchen.yml に EC2 driver の platform を追加します。(下記 <code>aws_ssh_key_id</code> と <code>ssh_key</code> に関しては普段 EC2 インスタンスを作成する際に使ってるものを指定してください）</p>
+<pre class="highlight diff"><span class="gh">@@ -16,6 +16,20 @@ platforms:
+</span>       memory: 2048
+       cpuexecutioncap: 100
+<span class="err">
+</span><span class="gi">+- name: ec2-ubuntu-12.04
++  driver:
++    name: ec2
++    region:  ap-northeast-1
++    availability_zone: ap-northeast-1
++    flavor_id: m3.medium
++    image_id: ami-3f32ac3e
++    aws_ssh_key_id: ssh-key # 適宜変更
++    ssh_key: ~/.ssh/ssh-key.pem # 適宜変更
++    username: ubuntu
++    security_group_ids: [&quot;sg-74e4ac0b&quot;] # 適宜変更
++    port: 22
++    ebs_optimized: false
++
+</span></pre>
+<p>ここで先ほどまで使っていた VM を消してしまいます</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen destroy
+<span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen list
+Instance                            Driver   Provisioner  Last Action
+blog-elasticsearch-ubuntu-1204      Vagrant  ChefSolo     &lt;Not Created&gt;
+blog-elasticsearch-ec2-ubuntu-1204  Ec2      ChefSolo     &lt;Not Created&gt;
+</pre>
+<h3>AWS Cloud Plugin を利用してクラスタを作る</h3>
+
+<p>テストは、cluster API で number_of_nodes が 2 であることを見てクラスタができたか確認することにします。</p>
+<pre class="highlight diff"><span class="gh">diff --git a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb b/test/integration/blog-elasti
+index 43780fe..1ac5f0b 100644
+</span><span class="gd">--- a/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb
+</span><span class="gi">+++ b/test/integration/blog-elasticsearch/serverspec/localhost/blog_elasticsearch_spec.rb
+</span><span class="gh">@@ -31,3 +31,7 @@ end
+</span> describe command(&quot;curl http://naka:akiko@localhost:8080/_plugin/head&quot;) do
+   it { should_not return_stdout /401/ }
+ end
+<span class="gi">+
++describe command(&quot;curl http://naka:akiko@localhost:8080/_cluster/health&quot;) do
++  it { should return_stdout /&quot;number_of_nodes&quot;\:2/ }
++end
+</span></pre>
+<p><code>.kitchen.yml</code> に <code>aws</code> recipe を追加します</p>
+<pre class="highlight diff"><span class="gh">diff --git a/.kitchen.yml b/.kitchen.yml
+index f02b37b..5c3f2db 100644
+</span><span class="gd">--- a/.kitchen.yml
+</span><span class="gi">+++ b/.kitchen.yml
+</span><span class="gh">@@ -40,9 +40,12 @@ suites:
+</span>    - recipe[elasticsearch]
+    - recipe[elasticsearch::plugins]
+    - recipe[elasticsearch::proxy]
+<span class="gi">+   - recipe[elasticsearch::aws]
+</span>   attributes:
+     elasticsearch:
+       version: 1.0.0
+<span class="gi">+      cluster:
++        name: demo
+</span>      plugins:
+         mobz/elasticsearch-head:
+           version: latest
+<span class="gh">@@ -50,11 +53,25 @@ suites:
+</span>           version: latest
+         elasticsearch/elasticsearch-analysis-kuromoji:
+           version: 2.0.0
+<span class="gi">+        elasticsearch/elasticsearch-cloud-aws:
++          version: 2.0.0.RC1
+</span>       nginx:
+         allow_cluster_api: true
+<span class="gi">+        allow_status: true
+</span>         users:
+           - username: naka
+             password: akiko
+<span class="gi">+      cloud:
++        aws:
++          region: ap-notheast-1
++          access_key: es 用に作成したアカウントの access key id
++          secret_key: es 用に作成したアカウントの secret access key
++      discovery:
++        type: ec2
++        ec2:
++          groups: elasticsearch
+</span>     java:
+       install_flavor: openjdk
+       jdk_version: 7
+</pre>
+<ul>
+<li><code>elasticsearch::aws</code> recipe を追加
+
+<ul>
+<li>AWS Cloud Plugin をインストールしてくれる</li>
+</ul></li>
+<li>クラスタ名を指定</li>
+<li>region を指定</li>
+<li>EC2 API を叩ける AWS アカウント情報を追加</li>
+<li>discovery タイプを EC2 に指定</li>
+<li>フィルタリングに使う securitygroup 名を指定</li>
+<li><code>nginx.allow_status: true</code>  ELB などのヘルスチェック用に /status はベーシック認証をかけないように</li>
+</ul>
+
+<p>1 台目を作る（途中でこける場合は「まとめ」部分のはまりポイント見てみてください）</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen converge blog-elasticsearch-ubuntu-1204
+</pre>
+<p>テスト</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen verify blog-elasticsearch-ubuntu-1204
+</pre>
+<p>最後のテストが落ちます。</p>
+
+<p>もう 1 台ノードを追加するために EC2 driver の platform を追加</p>
+<pre class="highlight diff"><span class="gh">diff --git a/.kitchen.yml b/.kitchen.yml
+index 2e16e78..48968ec 100644
+</span><span class="gd">--- a/.kitchen.yml
+</span><span class="gi">+++ b/.kitchen.yml
+</span><span class="gh">@@ -30,6 +30,20 @@ platforms:
+</span>     port: 22
+     ebs_optimized: false
+<span class="err">
+</span><span class="gi">+- name: ec2-ubuntu-12.04-second
++  driver:
++    name: ec2
++    region:  ap-northeast-1
++    availability_zone: ap-northeast-1
++    flavor_id: m3.medium
++    image_id: ami-3f32ac3e
++    aws_ssh_key_id: ssh-key # 適宜変更
++    ssh_key: ~/.ssh/ssh-key.pem # 適宜変更
++    username: ubuntu
++    security_group_ids: [&quot;sg-74e4ac0b&quot;] # 適宜変更
++    port: 22
++    ebs_optimized: false
++
+</span> suites:
+ - name: blog-elasticsearch
+   run_list:
+</pre>
+<p>2 台目のノードを立ち上げます</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen setup blog-elasticsearch-ubuntu-1204-second
+</pre>
+<p>再度テスト</p>
+<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>kitchen verify blog-elasticsearch-ubuntu-1204
+</pre>
+<p>無事に EC2 上に Elasticsearch クラスタができました！</p>
+
+<p><img src="/images/elasticsearch-head-4c5cf901.png" /></p>
+
+<h2>まとめ</h2>
+
+<p>今回は、test-kitchen だけで進めて行きましたが、実際には suites に書いた run list や attributes などは role にまとめるなりして使うと良いと思います。また serverspec では <code>jq</code> コマンドを対象サーバーにインストールしておいて API レスポンスをパースしてテストした方が良いです&hellip; (今回はかなりざっくりやってるので)</p>
+
+<p>Chef を使って構築すると、構築が自動化出来るだけでなく、各種設定も attributes として管理できるようになります。インフラに関する変更を Chef のリポジトリに集約できるので管理がしやすくなります。</p>
+
+<p>はまりポイント？</p>
+
+<ul>
+<li><code>apt-get update</code> されてない
+
+<ul>
+<li>そもそも apt recipe 入れてないとか</li>
+<li>AMI によっては <code>/var/lib/apt/periodic/update-success-stamp</code> が作成されていて、apt cookbook の default recipe が <code>not_if</code> 条件により update してくれない</li>
+<li>recipe を 1 つ用意して強制的に呼ぶのが良い</li>
+</ul></li>
+<li>elasticsearch が起動しない場合は plugin のバージョンを確認
+
+<ul>
+<li>elasticsearch 本体のバージョンに対応してないプラグインバージョンを使うと es が起動しない</li>
+</ul></li>
+</ul>
+
+<p>さらに、この続きでやると良いこと</p>
+
+<ul>
+<li><code>Environment</code> という EC2 tag を追加して、production / staging などの環境毎にクラスタを作る
+
+<ul>
+<li><a href="https://github.com/opscode-cookbooks/aws#aws_resource_tag"><code>aws_resource_tag</code> resource</a> を使ってプロビジョニング時 に Chef の environment を tag の値として自動付加</li>
+</ul></li>
+<li>Elasticsearch クラスタの前に ELB などのロードバランサーを置いてエンドポイントを統一
+
+<ul>
+<li><a href="https://github.com/opscode-cookbooks/aws"><code>aws_elastic_lb</code> resource</a> を使ってプロビジョニング時に ELB へ自動登録</li>
+</ul></li>
+<li><code>elasticsearch::monit</code> recipe を利用して elasticsearch サーバーのプロセス監視を行う
+
+<ul>
+<li>run list で <code>elasticsearch::default</code> recipe の前に <code>monit::default</code> recipe を追加して、最後に <code>elasticsearch::monit</code> recipe を追加するだけでよい</li>
+</ul></li>
+</ul>
+
+<h2>参考資料</h2>
+
+<p><a href="http://www.amazon.co.jp/%E9%AB%98%E9%80%9F%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%A9%E3%83%96%E3%83%AB%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3-ElasticSearch-Server-Rafal-Kuc/dp/4048662023"><img src="http://ecx.images-amazon.com/images/I/51p07HyJCzL._SL500_AA300_.jpg" /></a></p>
+
+<ul>
+<li><a href="http://www.amazon.co.jp/%E9%AB%98%E9%80%9F%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%A9%E3%83%96%E3%83%AB%E6%A4%9C%E7%B4%A2%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3-ElasticSearch-Server-Rafal-Kuc/dp/4048662023">高速スケーラブル検索エンジン ElasticSearch Server</a></li>
+<li><a href="https://github.com/elasticsearch/cookbook-elasticsearch/blob/master/README.markdown">elaticsearch/cookbook-elasticsearch README.markdown</a></li>
+<li><a href="http://www.elasticsearch.org/tutorials/deploying-elasticsearch-with-chef-solo/">Deploying Elasticsearch With Chef Solo</a></li>
+</ul>
+
+    </div>
+    <div class="page-header clearfix">
+      <h2>
+        <div class="article-title">
+          <a href="/2014/02/25/elasticsearch-at-wantedly-1.html">実践！Elasticsearch</a>
+        </div>
+      </h2>
+      <div class="article-avatar">
+        <a href="https://www.wantedly.com/users/323185">
+          <img src="https://www.wantedly.com/users/323185/avatar" class="avatar" />
+        </a>
+        <span class='date'>25-Feb-2014</span>
+      </div>
+      <div class="pull-right social-links">
+        <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2014/02/25/elasticsearch-at-wantedly-1.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="spesnova" data-url="http://engineer.wantedly.com/2014/02/25/elasticsearch-at-wantedly-1.html">Tweet</a>
+        <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2014/02/25/elasticsearch-at-wantedly-1.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+        
+          <iframe src="http://ghbtns.com/github-btn.html?user=spesnova&amp;type=follow&amp;count=true"
+      allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+        
+      </div>
+    </div>
+    <!-- use article.summary(250) if you have Nokogiri available to show just the first 250 characters -->
+    <div class="article">
+      <p><img src="http://chrissimpson.co.uk/img/elasticsearch-new-header.png" /></p>
+
+<p>こんにちは、エンジニアの内田（@spesnova）です。</p>
+
+<p><a href="https://www.wantedly.com/search">Wantedly では最近 Elasticsearch を使った検索機能をリリースしました。</a>
+それに伴い Elasticsearch で日本語検索を作っていく際の基本的な部分や使ってみて非常に便利だったプラグイン、本番環境の構築や運用でのノウハウを紹介をしていきたいと思います。</p>
+
+<p>第一回（何回まであるかは知らない&hellip;）の今回は導入も兼ねて、「ruby で検索してヒットする募集を出している東京の会社」といった検索ができるようにしてみましょう。</p>
+
+<p>目次的なもの</p>
+
+<ol>
+<li>Elasticsearch について</li>
+<li>開発環境準備</li>
+<li>どうデータを Elasticsearch に入れるか</li>
+<li>Analysis</li>
+<li>Mapping</li>
+<li>簡単なクエリと Sense</li>
+<li>フィルタ</li>
+<li>親子関係</li>
+</ol>
+
+<h2>Elasticsearch について</h2>
+
+<p>Elasticsearch について一通り学ぶには、以下の資料がオススメです。</p>
+
+<ul>
+<li><a href="http://code46.hatenablog.com/entry/2014/01/21/115620">Elasticsearch チュートリアル</a></li>
+<li><a href="http://sssslide.com/speakerdeck.com/johtani/elasticsearchru-men">Elasticsearch 入門</a></li>
+<li><a href="https://speakerdeck.com/dadoonet/elasticsearch-workshop">Elasticsearch Workshop</a></li>
+</ul>
+
+<p>自分はこの資料を見て育ちました</p>
+
+<h2>開発環境準備</h2>
+
+<p>Mac に開発環境を用意しましょう。</p>
+
+<p>elasticsearch 本体は <a href="http://brew.sh/">homebrew</a> からインストール。</p>
+<pre class="highlight shell"><span class="gp">$ </span>brew install elasticsearch
+</pre>
+<p>次にプラグインを入れて行きます。</p>
+
+<p>クエリを実行するコンソールとして <a href="http://www.elasticsearch.org/guide/en/marvel/current/">elasticsearch marvel plugin</a> を入れます。</p>
+<pre class="highlight shell"><span class="gp">$ </span>/usr/local/bin/plugin -install elasticsearch/marvel/latest
+</pre>
+<p>analyzer を試すのに便利な <a href="https://github.com/polyfractal/elasticsearch-inquisitor">inquisitor</a> も入れておきます。</p>
+<pre class="highlight shell"><span class="gp">$ </span>/usr/local/bin/plugin -install polyfractal/elasticsearch-inquisitor
+</pre>
+<p>日本語形態素解析エンジンの <a href="https://github.com/elasticsearch/elasticsearch-analysis-kuromoji">kuromoji</a> も入れます。
+<a href="https://github.com/elasticsearch/elasticsearch-analysis-kuromoji">インストールした elasticsearch のバージョンに合わせて適切なプラグインのバージョンを使ってください。</a></p>
+<pre class="highlight shell"><span class="gp">$ </span>/usr/local/bin/plugin -install elasticsearch/elasticsearch-analysis-kuromoji/2.0.0.RC1
+</pre>
+<p>（その他 <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/modules-plugins.html#site">head や HQ 等便利なプラグインはまだまだあります</a> ので、好きな物を入れましょう）</p>
+
+<p>elasticsearch をフォアグラウンドで起動しておきます。</p>
+<pre class="highlight shell"><span class="c"># 1.0 からは</span>
+<span class="gp">$ </span>elasticsearch
+
+<span class="c"># 0.9x 以下は</span>
+<span class="gp">$ </span>elasticsearch -f
+</pre>
+<h2>どうデータを Elasticsearch に入れるか</h2>
+
+<p>今回は検索対象のデータとして、会社を 5 つ、募集をそれぞれ 1, 2 つずつ elasticsearch に入れることにしましょう。
+（参考: <a href="https://www.evernote.com/shard/s28/sh/6526b858-c05a-4418-b927-f461f7d8aea5/d263b174b9cd5355dee4f02dc0dfc23b/deep/0/Untitled.png">Elasticsearch のデータ構造</a>）</p>
+
+<p>wantedly index に company type と project type を作り、1 つ 1 つの会社や募集を elasticsearch の 1 つのドキュメントとして扱うことにしましょう。会社と募集を type で分けずに全く別の index にすることも可能ですが、</p>
+
+<ul>
+<li>type ごとに shard の設定を変えたい -&gt; 設定が index ごとなので分ける必要が出てくる</li>
+<li>データの更新頻度やサイズが type によって別々 -&gt; パフォーマンスの問題の切り分け時に複雑になる</li>
+</ul>
+
+<p>といった状況でなければ type で分けるのが良いでしょう。</p>
+
+<p>会社は</p>
+
+<ul>
+<li>id</li>
+<li>name - 会社名</li>
+<li>location - 所在地</li>
+</ul>
+
+<p>募集は</p>
+
+<ul>
+<li>id</li>
+<li>title - 募集タイトル</li>
+<li>company_id - 会社 ID</li>
+</ul>
+
+<p>というフィールドを持っているとし、以下のようなサンプルデータを使うことにします。</p>
+
+<p><strong>会社</strong></p>
+
+<table><thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>location</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>wantedly</td>
+<td>東京都港区白金台 3-19-6 白金台ビル3F</td>
+</tr>
+<tr>
+<td>2</td>
+<td>heroku</td>
+<td>東京都千代田区丸の内2-7-2 JPタワー 12階</td>
+</tr>
+<tr>
+<td>3</td>
+<td>higanworks</td>
+<td>大阪府大阪市中央区道修町2-2-5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>hatena</td>
+<td>京都府京都市中京区御池通間之町東入高宮町206</td>
+</tr>
+<tr>
+<td>5</td>
+<td>nulab</td>
+<td>福岡市博多区中洲5丁目5-13 KDC福岡ビル7F</td>
+</tr>
+</tbody></table>
+
+<p>（地域別に web 系の会社選んでみました、特に深い意味はないです）</p>
+
+<p><strong>募集</strong></p>
+
+<table><thead>
+<tr>
+<th>id</th>
+<th>title</th>
+<th>company_id</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>iOS エンジニア ウォンテッド！</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Ruby on Rails 得意なエンジニアウォンテッド！</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Ruby 好きウォンテッド！</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Chef と Ruby 書ける人ウォンテッド！</td>
+<td>3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Perl エンジニアウォンテッド！</td>
+<td>4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Java エンジニアウォンテッド！</td>
+<td>5</td>
+</tr>
+</tbody></table>
+
+<p>（募集はダミーデータです）</p>
+
+<p>（参考: ドキュメント登録の流れについては <a href="http://sssslide.com/speakerdeck.com/johtani/elasticsearchru-men">Elasticsearch 入門</a> を参照すると良いです。）</p>
+
+<h2>Analyzer</h2>
+
+<p>上記のデータを実際に入れる前に、index の作成と analyzer の設定をします。</p>
+
+<p>以下のコマンドを実行することで analyzer の設定ができます。
+下記で説明して行きます。</p>
+<pre class="highlight shell">curl -XPUT <span class="s1">&#39;http://localhost:9200/wantedly-demo&#39;</span> -d <span class="se">\</span>
+<span class="s1">&#39;{
+  &quot;settings&quot;: {
+    &quot;analysis&quot;: {
+      &quot;filter&quot;: {
+        &quot;pos_filter&quot;: {
+          &quot;type&quot;: &quot;kuromoji_part_of_speech&quot;,
+          &quot;stoptags&quot;: [
+            &quot;助詞-格助詞-一般&quot;,
+            &quot;助詞-終助詞&quot;
+          ]
+        },
+        &quot;greek_lowercase_filter&quot;: {
+          &quot;type&quot;: &quot;lowercase&quot;,
+          &quot;language&quot;: &quot;greek&quot;
+        }
+      },
+      &quot;tokenizer&quot;: {
+        &quot;kuromoji&quot;: {
+          &quot;type&quot;: &quot;kuromoji_tokenizer&quot;
+        },
+        &quot;ngram_tokenizer&quot;: {
+          &quot;type&quot;: &quot;nGram&quot;,
+          &quot;min_gram&quot;: &quot;2&quot;,
+          &quot;max_gram&quot;: &quot;3&quot;,
+          &quot;token_chars&quot;: [
+            &quot;letter&quot;,
+            &quot;digit&quot;
+          ]
+        }
+      },
+      &quot;analyzer&quot;: {
+        &quot;kuromoji_analyzer&quot;: {
+          &quot;type&quot;: &quot;custom&quot;,
+          &quot;tokenizer&quot;: &quot;kuromoji_tokenizer&quot;,
+          &quot;filter&quot;: [
+            &quot;kuromoji_baseform&quot;,
+            &quot;pos_filter&quot;,
+            &quot;greek_lowercase_filter&quot;,
+            &quot;cjk_width&quot;
+          ]
+        },
+        &quot;ngram_analyzer&quot;: {
+          &quot;tokenizer&quot;: &quot;ngram_tokenizer&quot;
+        }
+      }
+    }
+  },
+  &quot;mappings&quot;: {
+    &quot;company&quot;: {
+      &quot;_source&quot;: {
+        &quot;enabled&quot;: true
+      },
+      &quot;_all&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;analyzer&quot;: &quot;kuromoji_analyzer&quot;
+      },
+      &quot;properties&quot;: {
+        &quot;id&quot;: {
+          &quot;type&quot;: &quot;integer&quot;,
+          &quot;index&quot;: &quot;not_analyzed&quot;
+        },
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;index&quot;: &quot;analyzed&quot;,
+          &quot;analyzer&quot;: &quot;ngram_analyzer&quot;
+        },
+        &quot;location&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;index&quot;: &quot;analyzed&quot;,
+          &quot;analyzer&quot;: &quot;kuromoji_analyzer&quot;
+        }
+      }
+    },
+    &quot;project&quot;: {
+      &quot;_source&quot;: {
+        &quot;enabled&quot;: true
+      },
+      &quot;_all&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;analyzer&quot;: &quot;kuromoji_analyzer&quot;
+      },
+      &quot;_parent&quot;: {
+        &quot;type&quot;: &quot;company&quot;
+      },
+      &quot;properties&quot;: {
+        &quot;id&quot;: {
+          &quot;type&quot;: &quot;integer&quot;,
+          &quot;index&quot;: &quot;not_analyzed&quot;
+        },
+        &quot;title&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;index&quot;: &quot;analyzed&quot;,
+          &quot;analyzer&quot;: &quot;kuromoji_analyzer&quot;
+        }
+      }
+    }
+  }
+}&#39;</span>
+</pre>
+<p>analyzer を利用するのはただ単にデータを突っ込むだけでは検索に引っかからないためです。
+例えば、Wantedly の住所は、何もしないと「東」や「京」ではヒットしますが、「東京」ではヒットしません。</p>
+
+<p>では analyzer とは？</p>
+
+<blockquote>
+<p>analyzerとは文字列の分割方法を定義するtokenizerと、分割後の文字列の整形処理を定義するfilterによって構成されます。</p>
+
+<p>例えば、tokenizerがngramで文字列を分割し、filterで大文字小文字を小文字に統一してしまうなどといった定義をすることが出来ます。</p>
+
+<p>analyzerはいくつでも定義することが出来き、フィールドごとにどのanalyzerを利用するか決めることが出来ます。</p>
+</blockquote>
+
+<p>（「Elasticsearch チュートリアル」より。参考: <a href="https://www.evernote.com/shard/s28/sh/c9eb02e1-0a23-4226-97a4-e4f8d80116f5/22e3ee6d11d687ae49d4f90c3055cafc/deep/0/es_memo.png">Analyzer</a>）</p>
+
+<p>inquisitor プラグインを使って実際に analyzer を使ってみましょう</p>
+
+<p><a href="http://localhost:9200/_plugin/inquisitor/#/analyzersz">http://localhost:9200/_plugin/inquisitor/#/analyzers</a> にアクセスして、&quot;Wantedly&quot; と入力してみてください</p>
+
+<p><img src="/images/inquisitor-97362bf8.png" /></p>
+
+<p>standard や simple など analysis を行う analyzer がビルトインで入っています。
+&ldquo;Wantedly&rdquo; という文字列は analyzer によって &ldquo;wanteldy&rdquo; だったり、&quot;Wantedly&quot; だったり、&quot;want&quot; になります。</p>
+
+<p><img src="/images/inquisitor_2-2b84a431.png" /></p>
+
+<p>&ldquo;Wantedly, Inc&rdquo; と入力すると、カンマ区切りで分割されたりホワイトスペースで分割されたりします。
+画像の例では、</p>
+
+<ol>
+<li>whitespace tokenizer を使ってホワイトスペース区切りで分割し、</li>
+<li>lowercase token filter を使って分割した token を全部小文字にします</li>
+</ol>
+
+<p>この 2 つの処理から構成されるのが analyzer ということです。</p>
+
+<p>今回実際に検索で使う日本語が入った住所を入れてみます</p>
+
+<p><img src="/images/inquisitor_3-3192f30c.png" /></p>
+
+<p>スタンダードの analyzer では前述のとおり、&quot;東京&ldquo; ではヒットしない形に分割されます。そこで、kuromoji という日本語形態素解析ができる analyzer を使います。</p>
+
+<p><img src="/images/inquisitor_4-dc4abb57.png" /></p>
+
+<p>inquisitor の少し下の方に、wantedly-demo index にて利用可能な analyzer の適用結果が出ています。こちらだと、&quot;東京&rdquo; や &ldquo;白金台&rdquo; でヒットしますね。</p>
+
+<p>kuromoji の詳細や analyzer の適用結果を試したい場合は <a href="http://www.atilika.org/">kuromoji 公式サイト</a> から試すことができます。</p>
+
+<p>形態素解析について概要を理解するには <a href="http://sssslide.com/speakerdeck.com/johtani/elasticsearchru-men">Elasticsearch 入門</a> の「N-gram と形態素解析」の項目を参照すると良いでしょう。</p>
+
+<h2>Mapping</h2>
+
+<p>データを入れる前に、もう一つ、 mapping というものをする必要があります。</p>
+
+<p>Mapping とは？</p>
+
+<blockquote>
+<p>外部データをElasticsearch上でどのようなスキーマとして表現するか定義することをmappingと呼びます。</p>
+</blockquote>
+
+<p>（「Elasticsearch チュートリアル」より。参考: <a href="https://www.evernote.com/shard/s28/sh/582b7b72-31eb-4613-b78a-1b9a8e6b4008/61cab6791ab888e0ab3f08026eab1fd9/deep/0/Untitled.png">Mapping のイメージ</a>）</p>
+
+<p>先ほどの curl 実行時に mapping もやっていますので、内容を簡単に説明します。</p>
+<pre class="highlight json"><span class="w">  </span><span class="s2">&quot;mappings&quot;</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;company&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;_all&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;analyzer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kuromoji_analyzer&quot;</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;not_analyzed&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;analyzed&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;analyzer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ngram_analyzer&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;analyzed&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;analyzer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kuromoji_analyzer&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;_all&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;analyzer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kuromoji_analyzer&quot;</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;_parent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;not_analyzed&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;analyzed&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;analyzer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kuromoji_analyzer&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></pre>
+<ul>
+<li>company
+
+<ul>
+<li>ID  - Integer 型, 分割しない。12 という ID を 1 で検索することはない</li>
+<li>会社名 - String 型, 今回は wantedly や heroku など英文字だけ入れるとして wan とかでヒットしてほしい</li>
+<li>地域名 - String 型, 日本語が入り、東京などの単位でヒットさせたいので kuromoji</li>
+</ul></li>
+<li>募集
+
+<ul>
+<li>ID - Integer 型, 分割しない。</li>
+<li>タイトル - String 型, 日本語と英文字が入る。kuromoji の token filter で lowercase してるので kuromoji</li>
+</ul></li>
+</ul>
+
+<p>このように</p>
+
+<ul>
+<li>データのソースは elasticsearch に store するか</li>
+<li>このフィールドはどんな型か</li>
+<li>このフィールドにどんな analyzer をかけるか</li>
+</ul>
+
+<p>といったことを定義しています。</p>
+
+<p>データを入れてしまいましょう。（Bulk API という複数ドキュメントを一度に追加出来る API を使っています）</p>
+<pre class="highlight shell"><span class="gp">$ </span>curl -XPOST <span class="s1">&#39;http://localhost:9200/_bulk&#39;</span> -d <span class="se">\</span>
+<span class="s1">&#39;
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;: &quot;company&quot;, &quot;_id&quot;: &quot;1&quot; } }
+ { &quot;id&quot;: &quot;1&quot;, &quot;name&quot;: &quot;wantedly&quot;,   &quot;location&quot;: &quot;東京都港区白金台 3-19-6 白金台ビル3F&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;: &quot;company&quot;, &quot;_id&quot;: &quot;2&quot; } }
+ { &quot;id&quot;: &quot;2&quot;, &quot;name&quot;: &quot;heroku&quot;,     &quot;location&quot;: &quot;東京都千代田区丸の内2-7-2 JPタワー 12階&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;: &quot;company&quot;, &quot;_id&quot;: &quot;3&quot; } }
+ { &quot;id&quot;: &quot;3&quot;, &quot;name&quot;: &quot;higanworks&quot;, &quot;location&quot;: &quot;大阪府大阪市中央区道修町2-2-5 &quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;: &quot;company&quot;, &quot;_id&quot;: &quot;4&quot; } }
+ { &quot;id&quot;: &quot;4&quot;, &quot;name&quot;: &quot;hatena&quot;,     &quot;location&quot;: &quot;京都府京都市中京区御池通間之町東入高宮町206&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;: &quot;company&quot;, &quot;_id&quot;: &quot;5&quot; } }
+ { &quot;id&quot;: &quot;5&quot;, &quot;name&quot;: &quot;nulab&quot;,      &quot;location&quot;: &quot;福岡市博多区中洲5丁目5-13 KDC福岡ビル7F &quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;:  &quot;project&quot;, &quot;_parent&quot;: &quot;1&quot; } }
+ { &quot;id&quot;: &quot;1&quot;, &quot;title&quot;: &quot;iOS エンジニアウォンテッド！&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;:  &quot;project&quot;, &quot;_parent&quot;: &quot;1&quot; } }
+ { &quot;id&quot;: &quot;2&quot;, &quot;title&quot;: &quot;Ruby on Rails 得意なエンジニアウォンテッド！&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;:  &quot;project&quot;, &quot;_parent&quot;: &quot;2&quot; } }
+ { &quot;id&quot;: &quot;3&quot;, &quot;title&quot;: &quot;Ruby 好きウォンテッド！&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;:  &quot;project&quot;, &quot;_parent&quot;: &quot;3&quot; } }
+ { &quot;id&quot;: &quot;4&quot;, &quot;title&quot;: &quot;Chef と Ruby 書ける人ウォンテッド！&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;:  &quot;project&quot;, &quot;_parent&quot;: &quot;4&quot; } }
+ { &quot;id&quot;: &quot;5&quot;, &quot;title&quot;: &quot;Perl エンジニアウォンテッド！&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;:  &quot;project&quot;, &quot;_parent&quot;: &quot;5&quot; } }
+ { &quot;id&quot;: &quot;6&quot;, &quot;title&quot;: &quot;Java エンジニアウォンテッド！&quot; }
+&#39;</span>
+</pre>
+<h2>簡単なクエリと Sense</h2>
+
+<p>クエリを投げる段階に来ました。</p>
+
+<p><a href="http://localhost:9200/_plugin/marvel/sense/index.html">http://localhost:9200/_plugin/marvel/sense/index.html</a> にアクセスし、sense からクエリを実行していきます。</p>
+
+<p>ここでクエリの実行コンソール sense を簡単に紹介します。</p>
+
+<p><img src="/images/sense-c6578df4.png" /></p>
+
+<p>左側のエディタでクエリを書き、実行ボタンを押すと右側に結果が出力されます。</p>
+
+<p><img src="/images/sense_2-1aa1b20b.png" /></p>
+
+<p>エディタは、補完が聞いたり、Auto Indent されたりと非常に便利です。</p>
+
+<p><img src="/images/sense_3-46253ab3.png" /></p>
+
+<p>過去に実行したクエリも履歴から取得できるのも助かります。</p>
+
+<p>sense について学んだところで、クエリを投げて行きましょう。</p>
+
+<p>クエリ</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;simple_query_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w">
+      </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ruby&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>実行結果</p>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+   </span><span class="s2">&quot;took&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;timed_out&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;_shards&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;successful&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;failed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;max_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;project&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ZeFYdj3FT9CUoACzzXMnRw&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ruby 好きウォンテッド！&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;project&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hxLGgpBnQY2ho0CmlL_Utg&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.43920785</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ruby on Rails 得意なエンジニアウォンテッド！&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;project&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;40lOQV4iQ6-lF9ZuWLZ8Vw&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.375</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Chef と Ruby 書ける人ウォンテッド！&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></pre>
+<p>&ldquo;東京&rdquo; と検索</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;simple_query_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;_all&quot;</span><span class="p">],</span><span class="w">
+      </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>location フィールドに東京と検索</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;simple_query_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span><span class="w">
+      </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>company type を対象として location フィールドに東京と検索</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/company/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;simple_query_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span><span class="w">
+      </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>今回の場合、どれも検索結果を同じになりますが、</p>
+
+<ul>
+<li><code>_all</code> フィールドという全てのフィールドを含んだフィールドから検索</li>
+<li>あるフィールドに対して検索</li>
+<li>あるタイプに対して検索</li>
+</ul>
+
+<p>の方法がつかめたかと思います。フィールドやクエリキーワードを変えて色々試してみてください。</p>
+
+<p><a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-queries.html">他にも様々なクエリが用意されています。</a></p>
+
+<p>fuzzy クエリ（曖昧検索）</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/project/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;fuzzy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rubi&quot;</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;fuzziness&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>ids クエリ（ID のような完全一致かどうかみたいとき）</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;3&quot;</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<h2>フィルタ</h2>
+
+<p>次は、フィルタを使ってみましょう。フィルタは、</p>
+
+<ul>
+<li>クエリと違ってスコアリング（どれのドキュメントがどれくらいマッチしてるかの数値）に影響しない</li>
+<li>キャッシュされる</li>
+</ul>
+
+<p>という特徴があります。
+速度面やスコアリング面を考慮すると基本的には絞り込み条件などは filter 、検索キーワードとのマッチングには query を使うと良いでしょう。</p>
+
+<p>実際に、東京の会社をフィルタリングしてみます</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/company/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;term&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre><pre class="highlight json"><span class="p">{</span><span class="w">
+   </span><span class="s2">&quot;took&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;timed_out&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;_shards&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;successful&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;failed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;max_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MEvWty6iRre0iM2SQe4X1A&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京都港区白金台 3-19-6 白金台ビル3F&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;6AQTmjOCQXWuhfycvQ052A&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;heroku&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京都千代田区丸の内2-7-2 JPタワー 12階&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>2 つ出てきました。</p>
+
+<p>東京と福岡の 2 カ所でフィルタリングしてみます。（terms フィルタを利用）</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;terms&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">&quot;東京&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;福岡&quot;</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p><a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-filters.html">フィルタもクエリと同様にたくさん用意されています。</a></p>
+
+<h2>親子関係</h2>
+
+<p>最後に、「ruby で検索してヒットする募集を出している東京の会社」といった検索をしてみましょう。</p>
+
+<p>親子関係などのドキュメント同士に関連性を持たせるには、</p>
+
+<ul>
+<li>Innter Object の利用</li>
+<li>nested document の利用</li>
+<li>parent/child フィールドの利用</li>
+</ul>
+
+<p>がありますが、Inner Object はあまり使いものにならないです。
+残り 2 つのざっとした比較をすると</p>
+
+<ul>
+<li>nested
+
+<ul>
+<li>メリット - クエリのパフォーマンスが高い</li>
+<li>デメリット - 更新が多いときのオーバーヘッドが大きい</li>
+<li>用途 - 名前の通り入れ子なデータを扱いたいとき、(rails でいう has_many では使わないと思う）</li>
+</ul></li>
+<li>parent/child
+
+<ul>
+<li>メリット - nested と違って更新時に問題を抱えてない</li>
+<li>デメリット - クエリのパフォーマンスが落ちる、メモリを多く要する</li>
+<li>用途 - 名前の通り親子関係のもの、RDB 的な relation はこちらに近い</li>
+</ul></li>
+</ul>
+
+<p>となり、今回はある会社がいくつかの募集を持っているという関係性なので parent/child を使います。</p>
+
+<p>（詳しくは <a href="http://www.elasticsearch.org/blog/managing-relations-inside-elasticsearch/">managing relations inside elasticsearch</a> を参照）</p>
+
+<p>parant/child を使うには、mapping のところで、特別なフィールド <code>_parent</code> を利用することを定義します。（さきほどの mapping 時に設定済み）</p>
+<pre class="highlight json"><span class="w">    </span><span class="s2">&quot;project&quot;</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;_parent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;not_analyzed&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;analyzed&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;analyzer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kuromoji_analyzer&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></pre>
+<p>そして、会社には、<code>_id</code> という elasticsearch 用の id フィールドに外部データの会社 ID を含めて追加し、募集は、<code>_parent</code> という elasticsearch 用の parent フィールドに親となる会社 ID を含めて追加します。</p>
+<pre class="highlight json"><span class="err">$</span><span class="w"> </span><span class="err">curl</span><span class="w"> </span><span class="err">-XPOST</span><span class="w"> </span><span class="err">&#39;http://localhost:</span><span class="mi">9200</span><span class="err">/_bulk&#39;</span><span class="w"> </span><span class="err">-d</span><span class="w"> </span><span class="err">\</span><span class="w">
+</span><span class="err">&#39;</span><span class="w">
+ </span><span class="err">#</span><span class="w"> </span><span class="err">Elasticsearch</span><span class="w"> </span><span class="err">のドキュメントの</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">に会社</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">を割り振っている</span><span class="w">
+ </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
+ </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly&quot;</span><span class="p">,</span><span class="w">   </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京都港区白金台 3-19-6 白金台ビル3F&quot;</span><span class="w"> </span><span class="p">}</span><span class="w">
+ </span><span class="err">...</span><span class="w">
+ </span><span class="err">#</span><span class="w"> </span><span class="err">_parent</span><span class="w"> </span><span class="err">フィールドに親となる会社ドキュメントの</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">を指定</span><span class="w">
+ </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;project&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_parent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
+ </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iOS エンジニアウォンテッド！&quot;</span><span class="w"> </span><span class="p">}</span><span class="w">
+ </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;project&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_parent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
+ </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ruby on Rails 得意なエンジニアウォンテッド！&quot;</span><span class="w"> </span><span class="p">}</span><span class="w">
+ </span><span class="err">...</span><span class="w">
+</span><span class="err">&#39;</span><span class="w">
+</span></pre>
+<p>ruby というキーワードにマッチする募集を持った会社を検索してみます</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/company/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;has_child&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;project&quot;</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;filtered&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;query_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w">
+              </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ruby&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre><pre class="highlight json"><span class="p">{</span><span class="w">
+   </span><span class="s2">&quot;took&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;timed_out&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;_shards&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;successful&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;failed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;max_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京都港区白金台 3-19-6 白金台ビル3F&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;heroku&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京都千代田区丸の内2-7-2 JPタワー 12階&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;higanworks&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;大阪府大阪市中央区道修町2-2-5 &quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>and filter で location が東京というフィルタも合わせて会社にかけます</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/company/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;and&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;term&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京&quot;</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;has_child&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;project&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">&quot;filtered&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">&quot;query_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w">
+                    </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ruby&quot;</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre><pre class="highlight json"><span class="p">{</span><span class="w">
+   </span><span class="s2">&quot;took&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;timed_out&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;_shards&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;successful&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;failed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;max_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京都港区白金台 3-19-6 白金台ビル3F&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;heroku&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京都千代田区丸の内2-7-2 JPタワー 12階&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>これで「ruby で検索してヒットする募集を出している東京の会社」が検索出来るようになりました！</p>
+
+<h2>まとめ</h2>
+
+<p>ここまでで、</p>
+
+<ol>
+<li>elasticsearch 環境を準備し、</li>
+<li>どのようにデータを入れるかを決め（Mapping）</li>
+<li>どのように分割するか（検索でヒットさせるか）を決め（Analyzer）</li>
+<li>データを入れ、</li>
+<li>検索する</li>
+</ol>
+
+<p>と言った、Elasticsearch で検索を作るときの流れが追えたかなと思います。</p>
+
+<p>今回は検索クエリは sense 、mapping などの設定は curl から行いましたが、sense だけで完結させることも可能です。</p>
+
+<p><a href="http://ascii.asciimw.jp/books/books/detail/978-4-04-866202-4.shtml">あと、近々 Elasticsearch 本も出るようです、楽しみですね！</a></p>
+
+    </div>
+    <div class="page-header clearfix">
+      <h2>
+        <div class="article-title">
+          <a href="/2014/02/23/internship-jun.html">Wantedlyで1週間インターンしました！</a>
+        </div>
+      </h2>
+      <div class="article-avatar">
+        <a href="https://www.wantedly.com/users/2521054">
+          <img src="https://www.wantedly.com/users/2521054/avatar" class="avatar" />
+        </a>
+        <span class='date'>23-Feb-2014</span>
+      </div>
+      <div class="pull-right social-links">
+        <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2014/02/23/internship-jun.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="wantedly" data-url="http://engineer.wantedly.com/2014/02/23/internship-jun.html">Tweet</a>
+        <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2014/02/23/internship-jun.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+        
+          <iframe src="http://ghbtns.com/github-btn.html?user=jun0342&amp;type=follow&amp;count=true"
+      allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+        
+      </div>
+    </div>
+    <!-- use article.summary(250) if you have Nokogiri available to show just the first 250 characters -->
+    <div class="article">
+      <p>こんにちは！
+今回、Wantedlyのインターンに参加させてもらった大学4年生のじゅんです。</br>
+普段、life is tech!でメンターしていて、<a href="http://tech-tokyo.com/?p=7470">未踏クリエータ</a>もやっています。</p>
+
+<p>前々からWantedlyがどんな会社なのか気になっていて、</br>
+今回、2/17から2/21までの5日間のインターンが実現しました^^</p>
+
+<h2>インターンでやったこと</h2>
+
+<p>初日はまずWantedlyがどんな会社なのか、どんな人たちが働いているのか、知るところから始まりました。</br>
+この時間だけで、Wantedlyのチームの雰囲気の良さとか、凄さが伝わってきました。</p>
+
+<p>その後、インターンで具体的に何をするかの目標をたてました。</br>
+私は、普段からiOSアプリを作ることが多いので、</br>
+WantedlyのiOSアプリを開発している れいさん と相談して、</br>WantedlyのiOSアプリのプロフィール画面のアイコンと背景を変えるところを実装することに決めました。</p>
+
+<p>＜変更前(アイコンも背景もfacebookの画像)＞</br>
+<img alt="ios_image" src="/images/2014-02-23/ios_image_before-44d099c1.png" /></p>
+
+<p>＜変更後＞</br>
+<img alt="ios_image" src="/images/2014-02-23/ios_image_after-3959bff2.png" /></p>
+
+<p>具体的には、サーバーからS3に画像をアップロードするためのkey等を取ってきて&hellip;.</br>
+それを使って、S3に画像を送って&hellip;.</br>
+サーバーにS3のURLを送る&hellip; といったことをしました。</p>
+
+<h2>バリィさんエンジニア</h2>
+
+<p><img alt="バリィさん" src="http://www.barysan.net/img/topimg.gif" />
+[バリィさん http://www.barysan.net/ より]</p>
+
+<p>開発をはじめて、さあコードを書こう!と思ったのですが、そこでいろんな事に気づきます。</br>
+ちょっと書き足そうとすると、関連しているクラスとかフレームワークをいくつか見つけて(-ω-)</br>
+あわあわしながら各クラスに目を通して少しずつ進めていきました。</p>
+
+<p>(いままで私は、ほぼ全部ViewControllerクラスに書いていたので、ここですでに自分の経験の少なさを感じました&gt;_&lt;　storyboadを使うのも初めてでした。。)</p>
+
+<p>そんな感じで開発を進めていたら、、</br>
+私のデスクトップの背景がバリィさんだったのもあって、</br>
+私の右隣に座って、めっちゃコード書いている相川さんに、</br>
+　　「バリィさんエンジニア」</br>
+と呼ばれるようになりました笑</br>
+ちなみに、「バリィさんエンジニア」が進化すると、「&quot;バリバリの&ldquo;エンジニア」になれるみたいです。</p>
+
+<h2>バリィさんエンジニアのまとめ</h2>
+
+<p>今回のインターンで、Wantedlyの凄いエンジニアの方々から、たくさんの事を教えて頂きました！</br>
+自分がこれから自分がどんな事を勉強して、今後どんなことが出来るようになりたいかの目標が出来た気がします。</p>
+
+<p>こんな素敵なインターンの機会を作って頂いたWantedlyのみなさんありがとうございました！</br>
+まだまだバリィさんエンジニアですが、進化できるように頑張りたいと思います^^</br>
+これからもよろしくお願いします！</br></p>
+
+<h2>ちなみに</h2>
+
+<p>今回改善していたiOSアプリは<a href="https://itunes.apple.com/us/app/wantedly-kokoroodoru-shi-shigakitto/id804727886?l=ja&amp;amp;ls=1">これ</a>です。</p>
+
+    </div>
+    <div class="page-header clearfix">
+      <h2>
+        <div class="article-title">
+          <a href="/2014/01/07/hackathon-kento.html">Wantedlyハッカソンに参加してきた(*｀･ω･´)ノ</a>
+        </div>
+      </h2>
+      <div class="article-avatar">
+        <a href="https://www.wantedly.com/users/2217896">
+          <img src="https://www.wantedly.com/users/2217896/avatar" class="avatar" />
+        </a>
+        <span class='date'> 7-Jan-2014</span>
+      </div>
+      <div class="pull-right social-links">
+        <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2014/01/07/hackathon-kento.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-via="sasa_sfc" data-url="http://engineer.wantedly.com/2014/01/07/hackathon-kento.html">Tweet</a>
+        <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2014/01/07/hackathon-kento.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+        
+          <iframe src="http://ghbtns.com/github-btn.html?user=sasa0721&amp;type=follow&amp;count=true"
+      allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+        
+      </div>
+    </div>
+    <!-- use article.summary(250) if you have Nokogiri available to show just the first 250 characters -->
+    <div class="article">
+      <h2>はじめに</h2>
+
+<p>こんにちは！現在Wantedlyでインターンをさせてもらっている現役高校生の<a href="https://www.wantedly.com/users/2217896">kento</a>です。
+今回はWantedlyの社内ハッカソンに参加させてもらいましたのでそのレポをさせてもらいます。普通のハッカソンとはひと味違う体験をさせてもらいましたw
+<br>
+今回は社員全員が参加ということでエンジニアとかマーケティングとか関係なく、ごちゃまぜのチームでした。僕の参加したチームはビジネスサイドの人 × 2 , エンジニアサイドの人 × 2 という４人チームでした。僕以外のエンジニアはCTOの川崎さんなので技術面では余裕(｀･ω･´)
+<br><br>
+・・・・・・って思っていたら川崎さんが手を負傷したため結局一人で作ることになりました(´；ω；)
+<br><br></p>
+
+<h5><チーム作戦会議!></h5>
+
+<p><img alt="チーム作戦会議" src="https://huntr-static.s3.amazonaws.com/engineer_blog/2014-01-07-hackathon-kento-2.png" />
+<br></p>
+
+<h5><開発中!></h5>
+
+<p><img alt="開発中" src="https://huntr-static.s3.amazonaws.com/engineer_blog/2014-01-07-hackathon-kento-1.png" />
+<br></p>
+
+<h5><プレゼン資料!></h5>
+
+<p><img alt="プレゼン資料" src="https://huntr-static.s3.amazonaws.com/engineer_blog/okan2.png" />
+<img alt="プレゼン資料" src="https://huntr-static.s3.amazonaws.com/engineer_blog/okan1.png" />
+<img alt="プレゼン資料" src="https://huntr-static.s3.amazonaws.com/engineer_blog/okan3.png" />
+<br><br>
+川崎さんに助言を頂きながら、なんとかプレゼン前に完成しました。(´∀｀ゞ
+<br><br></p>
+
+<h2>最後に</h2>
+
+<p>今回のハッカソンでは指定した人に録音した励ましの電話をかける『オカンあぷり』を作りました。
+<br>
+書いたコードはむっちゃ少ないし、そんなに複雑なロジックでもないのに何度つまずいたことだか・・
+<br><br>
+周りのレベルが本当に高くってハッカソンの結果は惨敗でした。
+<br>
+けれどビジネスサイドの人たちとの作戦会議や、躓きながら行なった未知のAPIでの開発は貴重な経験でちょー楽しかったですw。
+<br>
+次のハッカソンのときはもっと活躍できるように頑張るぞーヾ(･ω･´)ﾉ
+<br><br><br>
+<追記>
+<br>
+今回使ったTwilioという電話やSNSを簡単に利用できるAPIを自分なりにまとめてみたので興味があればご覧下さい。=&gt; <a href="http://qiita.com/sasa0721/items/2382f510b80491a78959">Qiita RailsでTwilioを使ってみた</a></p>
+
+<h3>参考</h3>
+
+<ul>
+<li><a href="http://twilio.kddi-web.com/">公式</a></li>
+<li><a href="https://jp.twilio.com/docs/quickstart">公式チュートリアル</a></li>
+<li><a href="https://github.com/twilio/twilio-ruby">git ruby</a></li>
+<li><a href="http://blog.twilio.kddi-web.com/2013/05/21/ruby%E3%81%8B%E3%82%89%E9%9B%BB%E8%A9%B1%E3%82%92%E3%81%8B%E3%81%91%E3%82%8B/">電話基本</a></li>
+<li><a href="http://dev.classmethod.jp/etc/twim11/">便利ツール</a></li>
+</ul>
+
+    </div>
+
+
+        </div>
+        <div class="col-xs-12 col-md-3 col-md-offset-1">
+          <div class="side-article">
+            <h4>エンジニア採用中！</h4>
+            <a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+          </div>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_8134' scrolling='no' src='https://www.wantedly.com/projects/8134/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_25674' scrolling='no' src='https://www.wantedly.com/projects/25674/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <div class="side-article">
+            <h4>最近の記事</h4>
+            <ul>
+              
+                <li><a href="/2015/08/06/hashicorp-product-meetup.html">Hashicorp Product Meetup というイベントを開きました</a></li>
+              
+                <li><a href="/2015/04/01/sync-kpt.html">チームでKPTをやってみました</a></li>
+              
+                <li><a href="/2014/10/06/swift-style-guide.html">Swiftコーディング規約@Wantedly</a></li>
+              
+                <li><a href="/2014/04/28/how-wantedly-make-ios-app.html">WantedlyではどうやってiOSアプリ開発しているのか</a></li>
+              
+                <li><a href="/2014/04/23/elasticsearch-at-wantedly.html">第 4 回 Elasticsearch 勉強会で発表してきました</a></li>
+              
+                <li><a href="/2014/03/31/angular-and-love.html">AngularJSを導入することと、恋のときめきと一歩踏み出す苦しみと。</a></li>
+              
+                <li><a href="/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html">Chef で Elasticsearch クラスタを EC2 上に作る</a></li>
+              
+                <li><a href="/2014/02/25/elasticsearch-at-wantedly-1.html">実践！Elasticsearch</a></li>
+              
+                <li><a href="/2014/02/23/internship-jun.html">Wantedlyで1週間インターンしました！</a></li>
+              
+                <li><a href="/2014/01/07/hackathon-kento.html">Wantedlyハッカソンに参加してきた(*｀･ω･´)ノ</a></li>
+              
+            </ul>
+          </div>
+          <!--
+            <div class="side-article">
+              <h4>Tags</h4>
+              <ul>
+                
+                  <li>- <a href="/tags/elasticsearch.html">elasticsearch</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-ec2-nginx.html">elasticsearch chef ec2 nginx</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-aws.html">elasticsearch chef aws</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vagrant.html">vagrant</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/packer.html">packer</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/serf.html">serf</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/consul.html">consul</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/terraform.html">terraform</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vault.html">vault</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/atlas.html">atlas</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/hashicorp.html">hashicorp</a> <small class="gray">(1)</small></li>
+                
+              </ul>
+            </div>
+          -->
+          <!--
+            <div class="side-article">
+              <h4>By Year</h4>
+              <ul>
+                
+                  <li>- <a href="/2015.html">2015</a> <small class="gray">(2)</small></li>
+                
+                  <li>- <a href="/2014.html">2014</a> <small class="gray">(9)</small></li>
+                
+                  <li>- <a href="/2013.html">2013</a> <small class="gray">(2)</small></li>
+                
+              </ul>
+            </div>
+          -->
+        </div>
+      </div>
+    </div>
+    <footer class="container center">
+      <hr/>
+      <p>2013 © Wantedly, Inc., All Rights Reserved.</p>
+    </footer>
+
+    <script src="/javascripts/application-da39a3ee.js" type="text/javascript"></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  </body>
+</html>

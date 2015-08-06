@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>チームでKPTをやってみました - Wantedly Engineer Blog</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/favicon-8030cb16.png" rel="icon" type="image/png">
+    <meta property="fb:app_id" content="234170156611754">
+    <meta property="og:image" content="http://engineer.wantedly.com/wantedly-sticker2-9bf5acdc.png">
+    <link href="/stylesheets/application-5562e3f2.css" media="screen" rel="stylesheet" type="text/css" />
+    <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12847756-21']);
+    _gaq.push(['_setDomainName', 'wantedly.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </head>
+  <body>
+    <header class="jumbotron cover-image center">
+      <h1 class="graduate"><a href="/">Wantedly Engineer Blog</a></h1>
+      <p>Wantedly 開発チームブログ</p>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8">
+            <div class="page-header clearfix">
+    <h2>
+      <div class="article-title">
+        チームでKPTをやってみました
+      </div>
+    </h2>
+    <div class="article-avatar">
+      <a href="https://www.wantedly.com/users/1208490">
+        <img src="https://www.wantedly.com/users/1208490/avatar" class="avatar" />
+      </a>
+      <span class='date'> 1-Apr-2015</span>
+    </div>
+    <div class="pull-right social-links">
+      <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2015/04/01/sync-kpt.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="morizotter" data-url="http://engineer.wantedly.com/2015/04/01/sync-kpt.html">Tweet</a>
+      <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2015/04/01/sync-kpt.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+      
+        <iframe src="http://ghbtns.com/github-btn.html?user=morizotter&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+      
+    </div>
+  </div>
+  <div class="article">
+    <p><img alt="KPT-Meeting" src="/images/kpt-meeting-7cfe5e43.jpg" /></p>
+
+<p>エンジニアの<a href="http://twitter.com/morizotter/">森田</a>です。</p>
+
+<p>チームでKPTをやってみました。その時に考えたことなどを書きたいと思います。</p>
+
+<script async class="speakerdeck-embed" data-id="eab824f9ec6840428bee0e56a50548cd" data-ratio="1.33159947984395" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p>社内発表資料です。</p>
+
+<h2>KPTとは</h2>
+
+<blockquote>
+<p>アジャイル開発や反復型開発ではイテレーション（繰り返しの単位）ごとに作業の振り返りが推奨されるが、そのためのチーム反省会などでよく用いられるフォーマットである。</p>
+</blockquote>
+
+<p><em><a href="http://www.itmedia.co.jp/im/articles/0905/19/news143.html">http://www.itmedia.co.jp/im/articles/0905/19/news143.html</a></em></p>
+
+<p>KはKeep、PはProblem、TはTryをそれぞれ表します。イテレーションの単位でチームで振り返りを行い、良い点（Keep）、問題点（Problem）、具体的な改善項目（Try）を軸にミーティングをします。基本的な流れは、Problemが具体的なTryになり、Tryが解消したら、消える。またはKeepに昇華します。KeepはProblemやTryに関係なく、上げていくこのが良いと思います。</p>
+
+<h2>はじめた理由</h2>
+
+<p>社内で新規サービスを作ることになり、4名のチームが結成されました。サービス自体、アイディアのみがある状態から始まったので1週間ごとに見た目や機能が変更されていきます。既存のサービスのメンテナンスとはまた違う状況で、よりよいコミュニケーションとプロセスを作っていこうとやってみることにしました。</p>
+
+<h2>どうやってやったか</h2>
+
+<h3>期間、ツール、内容</h3>
+
+<p>イテレーションの単位は1週間。会議室に集まり、タスクの棚卸を行った後に実施しました。扱う内容は、現在開発中のプロダクトを中心にはするものの特に限定はしませんでした。プロダクトの改善や方向性などを話しましたが、扱う内容で一番多かったのは仕事の進め方に関するものでした。</p>
+
+<p>KPTというとホワイトボードに付箋というのが一般的ですが、私たちのチームでは、 <a href="https://coggle.it/">Coggle</a> というオンライン・マインドマップ・ツールを利用しました。</p>
+
+<p><img alt="Coggle" src="/images/coggle-whole-83215cc5.png" /></p>
+
+<p>ホワイトボードに書き出すことと比較すると利点は下記の通りです。</p>
+
+<ul>
+<li>思いついたタイミングで書き足しておくことができる。</li>
+<li>忘れそうな時に簡単に振り返れる。</li>
+<li>毎回ミーティングの時に前回の内容を思い出すことができる。</li>
+<li>書き出す負担が少ないので、継続しやすい。</li>
+</ul>
+
+<p>決めたルールは「批判しない」ということのみです。目指すところは、チームでよいプロダクトを作ることです。できているひとができていない人を批判して、批判された人が心を入れ替えるということではありません。そして、リラックスした状態で、ただ、仕事をする上で「問題に思っていること」「改善したいこと」「うまくいっていること」を共有しました。</p>
+
+<p>普通、ProblemがTryになり、それがKeepになるという流れがありますが、私たちのチームでは、Problemに対して、Tryにすることなく、そのままProblemでいつづけることがありました。TryになりやすいものはTryにして解決していくのですが、なかなかそうなりづらいものもあります。そういうものに関してはも書き出しておくことで、2,3週間すると改善案が出てきて自然と消えていったりしました。</p>
+
+<h3>1回目はどうしたのか</h3>
+
+<p>チームは僕以外KPTは初めてで、最初は、K、P、Tそれぞれどのような基準で出せば良いのかわかりませんでした。特に決まったルールもないので、各自、自身の判断で上げていきました。量もとても多くなったのですが、数を重ねていくうちにチーム内である程度共通の認識が生まれて、項目数も少なくなってきました。</p>
+
+<h2>どんなことを話したのか</h2>
+
+<p>多岐に渡るのですが、目立つものとして、</p>
+
+<ul>
+<li>他の人の作業が見えない：　Codetree -&gt; Zenhub を導入して解消</li>
+<li>Githubの通知に気付けない： GithubNotifier/GithubPop を導入して解消</li>
+<li>新しく開発するサービスの本質を理解する： T「WORK SHIFT」を一部を読む。</li>
+<li>朝回に行う事</li>
+<li>技術的なキャッチアップの方法。継続的な学習</li>
+</ul>
+
+<p>などなどです。</p>
+
+<h2>何が良かったか</h2>
+
+<p>目の前の問題を解決するといったわかりやすいよさもありましたが、それと同じかそれ以上に良いと思ったのは、もう少し形のない問題について話すことができたことです。継続的学習や、サービスの本質、日々ちょっとだけ困っている細かいことなど。 <strong>日々ちょっとだけ困っていること</strong> というのは、とても重要で、それを共有することで答えを持っている人が見つかり、改善していくことができました（ちなみに僕はGithubの@メンションを見落としがちということなどを書きました）。</p>
+
+<p>小さな問題を一つ一つ解消していくことで、最初は、殆ど変化がないように感じられますが、それを繰り返してゆくことで少しずつ業務の無駄がなくなり、知識も共有され、チーム感が出てきたように感じています。</p>
+
+<h2>継続的な改善は全てを変える</h2>
+
+<p>改善に関する格言を調べてみると、このようなものが見つかりました。</p>
+
+<blockquote>
+<p>Continuous improvements in any area eventually transform the operation.</p>
+</blockquote>
+
+<p>ピータードラッガーの言葉なのですが、自分なりに訳すと「継続的な改善は全てを変える」ということになります。継続的に改善を続けていくことで、最初は小さな変化かもしれないのですがそれが少しずつ積もって、足腰が鍛えられ、物事がうまく回るようになります。それを繰り返していくことで、始めた頃とは全く異なるような成長を遂げられるのではないかなと思いました。</p>
+
+<h2>参考資料</h2>
+
+<ul>
+<li><a href="http://techlife.cookpad.com/entry/2014/10/31/093305">KPTで粘り強く品質改善に取り組んだ話</a></li>
+<li><a href="http://enterprisezine.jp/iti/detail/788">今日からできる！全員参加型の建設的フィードバック「ふりかえり」～実践編（KPT・タイムライン）</a></li>
+<li><a href="http://www.slideshare.net/esmsec/kpt-27942223">KPTの基本と、その活用法</a></li>
+</ul>
+
+  </div>
+
+  <hr>
+  <div>
+    エンジニア採用中！<a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+  </div>
+  <hr>
+
+  <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2015/04/01/sync-kpt.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="morizotter" data-url="http://engineer.wantedly.com/2015/04/01/sync-kpt.html">Tweet</a>
+  <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2015/04/01/sync-kpt.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+    <iframe src="http://ghbtns.com/github-btn.html?user=morizotter&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+  
+
+        </div>
+        <div class="col-xs-12 col-md-3 col-md-offset-1">
+          <div class="side-article">
+            <h4>エンジニア採用中！</h4>
+            <a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+          </div>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_8134' scrolling='no' src='https://www.wantedly.com/projects/8134/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_25674' scrolling='no' src='https://www.wantedly.com/projects/25674/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <div class="side-article">
+            <h4>最近の記事</h4>
+            <ul>
+              
+                <li><a href="/2015/08/06/hashicorp-product-meetup.html">Hashicorp Product Meetup というイベントを開きました</a></li>
+              
+                <li><a href="/2015/04/01/sync-kpt.html">チームでKPTをやってみました</a></li>
+              
+                <li><a href="/2014/10/06/swift-style-guide.html">Swiftコーディング規約@Wantedly</a></li>
+              
+                <li><a href="/2014/04/28/how-wantedly-make-ios-app.html">WantedlyではどうやってiOSアプリ開発しているのか</a></li>
+              
+                <li><a href="/2014/04/23/elasticsearch-at-wantedly.html">第 4 回 Elasticsearch 勉強会で発表してきました</a></li>
+              
+                <li><a href="/2014/03/31/angular-and-love.html">AngularJSを導入することと、恋のときめきと一歩踏み出す苦しみと。</a></li>
+              
+                <li><a href="/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html">Chef で Elasticsearch クラスタを EC2 上に作る</a></li>
+              
+                <li><a href="/2014/02/25/elasticsearch-at-wantedly-1.html">実践！Elasticsearch</a></li>
+              
+                <li><a href="/2014/02/23/internship-jun.html">Wantedlyで1週間インターンしました！</a></li>
+              
+                <li><a href="/2014/01/07/hackathon-kento.html">Wantedlyハッカソンに参加してきた(*｀･ω･´)ノ</a></li>
+              
+            </ul>
+          </div>
+          <!--
+            <div class="side-article">
+              <h4>Tags</h4>
+              <ul>
+                
+                  <li>- <a href="/tags/elasticsearch.html">elasticsearch</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-ec2-nginx.html">elasticsearch chef ec2 nginx</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-aws.html">elasticsearch chef aws</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vagrant.html">vagrant</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/packer.html">packer</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/serf.html">serf</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/consul.html">consul</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/terraform.html">terraform</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vault.html">vault</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/atlas.html">atlas</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/hashicorp.html">hashicorp</a> <small class="gray">(1)</small></li>
+                
+              </ul>
+            </div>
+          -->
+          <!--
+            <div class="side-article">
+              <h4>By Year</h4>
+              <ul>
+                
+                  <li>- <a href="/2015.html">2015</a> <small class="gray">(2)</small></li>
+                
+                  <li>- <a href="/2014.html">2014</a> <small class="gray">(9)</small></li>
+                
+                  <li>- <a href="/2013.html">2013</a> <small class="gray">(2)</small></li>
+                
+              </ul>
+            </div>
+          -->
+        </div>
+      </div>
+    </div>
+    <footer class="container center">
+      <hr/>
+      <p>2013 © Wantedly, Inc., All Rights Reserved.</p>
+    </footer>
+
+    <script src="/javascripts/application-da39a3ee.js" type="text/javascript"></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  </body>
+</html>

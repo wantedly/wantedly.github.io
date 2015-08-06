@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Wantedly Engineer Blog</title>
+  <subtitle>Wantedly開発チームブログ</subtitle>
+  <id>http://engineer.wantedly.com/</id>
+  <link href="http://engineer.wantedly.com/"/>
+  <link href="http://engineer.wantedly.com/feed.xml" rel="self"/>
+  <updated>2015-08-06T01:17:00Z</updated>
+  <author>
+    <name>@wantedly</name>
+  </author>
+  <entry>
+    <title>Hashicorp Product Meetup というイベントを開きました</title>
+    <link rel="alternate" href="http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html"/>
+    <id>http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html</id>
+    <published>2015-08-06T01:17:00Z</published>
+    <updated>2015-08-06T23:31:13+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;エンジニアの内田 &lt;a href="https://twitter.com/spesnova"&gt;@spesnova&lt;/a&gt; です。&lt;/p&gt;
+
+&lt;p&gt;2015年8月5日に、&lt;a href="https://twitter.com/deeeet"&gt;@deeeet&lt;/a&gt; さんと一緒に Wantedly のオフィスにて Hashicorp Product Meetup と称して、
+Hashicorp プロダクトに関する知見、悩み、展望 etc をフランクに共有する会を開きました。&lt;/p&gt;
+
+&lt;p&gt;参加者全員がゆるくざっくばらんに話せる場を作りたいと思って招待制のイベントにしました。
+参加者の方は &lt;a href="https://twitter.com/deeeet"&gt;@deeeet&lt;/a&gt; さんと自分の知り合いの方から、Hashicorpプロダクトを既に利用していたり、導入予定の方々にお声をかけせて頂き、その方々がまた数名招待するという形にしました。
+「行きたかった&amp;hellip;」というツイートもチラホラありました、、参加できなかった方ごめんなさい。。&lt;/p&gt;
+
+&lt;p&gt;どんな内容だったのかをtogetterと以下に簡単にまとめておきます: &lt;a href="http://togetter.com/li/856947"&gt;http://togetter.com/li/856947&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/2015-08-06/intro-db53a3bf.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/2015-08-06/audience-1d0dffb6.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/2015-08-06/lt_schedule-d85af476.jpg" /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Working With Terraform by &lt;a href="https://twitter.com/glidenote"&gt;@glidenote&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;LT のトップバッターは &lt;a href="https://twitter.com/glidenote"&gt;@glidenote&lt;/a&gt; さん。&lt;/p&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="478b6c4c7d75463388488e8ee465672d" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;Kaizen おなじみの hubot からプルリクを作ってマージしたら CircleCI でデプロイというフローを、 AMI を作るケースでデモされていました。
+Packer の実行も、 Packer のバージョンだったり、AWS API を扱えるキー渡したりと案外ちょっと環境依存するので、誰がやっても同じ結果を得るために CI でやるのいいなぁと思いました。Terraform 使おうと思ってる方はスライドに載ってる Terraform 知見は必見です。あと Hashicorp とは関係ないですが、 Kaizen の行動哲学好きです。&lt;/p&gt;
+
+&lt;p&gt;ref: &lt;a href="http://blog.glidenote.com/blog/2015/02/18/terraform-github-circleci-atlas-aws/"&gt;Terraform + GitHub + CircleCI + Atlasを利用してAWSの操作を自動化した - Glide Note - グライドノート&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Quipper と Hashicorp by &lt;a href="https://twitter.com/hakobera"&gt;@hakobera&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href="https://gist.github.com/hakobera/a5ced7653957a6491047"&gt;&lt;img src="/images/2015-08-06/hakobera_slide-70dac2f3.png" /&gt;&lt;/a&gt;
+&lt;a href="https://gist.github.com/hakobera/a5ced7653957a6491047"&gt;スライド&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Quipper でも &lt;a href="https://twitter.com/glidenote"&gt;@glidenote&lt;/a&gt; さんのブログで紹介されている CircleCI を使った Terraform 利用を紹介されていた。特徴的なのは Codenize Tool との併用をしていて適材適所で使い分けているところ。また &lt;code&gt;.tf&lt;/code&gt; ファイルをどのように分けてます？という投げかけがあって、座談会の方では、AWS リソースごとにわける、つまり &lt;code&gt;ec2.tf&lt;/code&gt; とか &lt;code&gt;rds.tf&lt;/code&gt; のようにするよりも、プロジェクトごとに分ける方が依存関係とか見やすいよねという話になった。&lt;/p&gt;
+
+&lt;h2&gt;運用自動化に関する話 by &lt;a href="https://twitter.com/zembutsu"&gt;@zembutsu&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;こちらは非公開になります&lt;/p&gt;
+
+&lt;h2&gt;Terraform at Wantedly by &lt;a href="https://twitter.com/dtan4"&gt;@dtan4&lt;/a&gt;&lt;/h2&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="1246047604f0473dbbdd8f47b0912706" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;Wantedly での Terraform 利用例の話。Terraform は Codenize Tools のように既存のリソースの export 機能がないので、新規に追加するリソースにしか導入しづらいのだけど、&lt;a href="https://twitter.com/dtan4"&gt;@dtan4&lt;/a&gt; 作の terraforming という便利ツールを使って、既存リソースへ導入していったという話。&lt;/p&gt;
+
+&lt;p&gt;ref: &lt;a href="https://github.com/dtan4/terraforming"&gt;dtan4/terraforming&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;consul-atlas-alerts by &lt;a href="https://twitter.com/rrreeeyyy"&gt;@rrreeeyyy&lt;/a&gt;&lt;/h2&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="cc1fbf3754674edd9b2079ec29ba0dca" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;Atlas 及び Atlas の Consul 連携について。まず Atlas を実際に使ってる人は自分の観測範囲であまりいないのでとても貴重な話が聞けた。Atlas は CircleCI と被っている部分もあって即採用すべきものでもない。ただ、Consul クラスタを作る際に Atlas に join させるだけで良かったり、 consul-alert 相当のものが Atlas + Consul に搭載されていたりと Atlas 固有のおいしいポイントもあるとのこと。あと &lt;a href="https://twitter.com/rrreeeyyy"&gt;@rrreeeyyy&lt;/a&gt; は「れい」と読むことを知った。&lt;/p&gt;
+
+&lt;p&gt;ref: &lt;a href="http://www.slideshare.net/rrreeeyyy117/consul-andalertsmonitoring"&gt;consul &amp;amp; consul-alerts を使った監視システム (hbstyle-2015-01-08)&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Go packages from Hashicorp by &lt;a href="https://twitter.com/deeeet"&gt;@deeeet&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src="/images/2015-08-06/deeeet_slide-f322a10c.png" /&gt;
+&lt;a href="http://go-talks.appspot.com/github.com/tcnksm/talks/2015/08/hashicorp-meetup.slide#1"&gt;スライド&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/deeeet"&gt;@deeeet&lt;/a&gt; さんの話は Hashicorp プロダクトの利用例というよりその内側の話。Hashicorp がプロダクトを作る中で生まれてきた副産物というかライブラリについて紹介されていた。
+Golang 使う人には有用な内容だったし、合わせて Hashicorp が利用者のことやバグ報告ちゃんとしてもらうためにわかりやすいエラーを出すといった Hashicorp tao にも言及していて勉強になった。&lt;/p&gt;
+
+&lt;h2&gt;Terraform Tips by &lt;a href="https://twitter.com/tkak"&gt;@tkak&lt;/a&gt;&lt;/h2&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="91c928c7b1df430191f8e5955b41b6d7" data-ratio="1.37081659973226" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/tkak"&gt;@tkak&lt;/a&gt; さんの発表。社内独自環境向けに Custom Provider を作る方法だったり、Module について紹介されていた。Chef や Puppet でインフラをコード化したから誰でもインフラのコード触れるよね、と思ったら結局 Chef 職人しか触れないみたいなことと同じく、 Terraform 使って誰でも AWS リソース追加できるねと思ったら今度は RDS のパラメータ良くわかりませんみたいなことは現実に起きてくる。なので、 Module を使ってリソースを抽象化して必要なパラメータを絞ってあげると良いことをこの発表で学べた。&lt;/p&gt;
+
+&lt;p&gt;ref: &lt;a href="http://tkak.hatenablog.com/entry/2014/11/07/074044"&gt;TerraformのProviderを作った - tkak&amp;#39;s tech blog&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Usecase examples of Pakcer by &lt;a href="https://twitter.com/hsbt"&gt;@hsbt&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;iframe src="//www.slideshare.net/slideshow/embed_code/key/fTgmJGwbnqWelu" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen&gt; &lt;/iframe&gt; &lt;div style="margin-bottom:5px"&gt; &lt;strong&gt; &lt;a href="//www.slideshare.net/hsbt/20150805-hashicorptalks" title="Usecase examples of Packer " target="_blank"&gt;Usecase examples of Packer &lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href="//www.slideshare.net/hsbt" target="_blank"&gt;Hiroshi SHIBATA&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/hsbt"&gt;@hsbt&lt;/a&gt; さんによる GMO ペパボでも Packer での AMI イメージ作成事例の話。Packer の中で cloud-init 使ったり、serverspec 流したり、何をイメージ化するか等々 Packer の知見が詰まった発表でした。さらに詳細な話は YAPC でされるとのこと。&lt;/p&gt;
+
+&lt;h2&gt;Stretcher in 5min by &lt;a href="https://twitter.com/fujiwara"&gt;@fujiwara&lt;/a&gt;&lt;/h2&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="8d83ac3687ae40c9a68cf7406c1b50e6" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/fujiwara"&gt;@fujiwara&lt;/a&gt; さんによる自作のデプロイツール stretcher の話。&lt;a href="https://twitter.com/sora_h"&gt;@sora_h&lt;/a&gt; さんの &lt;a href="https://github.com/sorah/mamiya"&gt;mamiya&lt;/a&gt; にインスパイアされたとのことで、 S3 に置いたアプリコードを rsync で取得してくる指示を SSH ではなくて consul event でトリガーすることで、スケーラブルかつ速い。10 秒でデプロイが完了するらしい、速い&amp;hellip;。こちらも自作の &lt;a href="https://github.com/fujiwara/consul-kv-dashboard"&gt;Consul を使ったダッシュボード&lt;/a&gt;と組み合わせたデプロイデモも見せてもらった。&lt;/p&gt;
+
+&lt;p&gt;ref: &lt;a href="https://github.com/fujiwara/stretcher"&gt;fujiwara/stretcher&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;座談会&lt;/h2&gt;
+
+&lt;p&gt;LT のあとは 1 時間くらい皆で自由に話してました。この時間が勉強会の中で一番濃い時間かなと思います。（メモがなくてごめんなさい）&lt;/p&gt;
+
+&lt;h2&gt;最後に&lt;/h2&gt;
+
+&lt;p&gt;参加してくださった皆さん、イベント開くにあたって協力してくれた同僚の皆さんありがとうございました！&lt;/p&gt;
+
+&lt;p&gt;Wantedly では今後もインフラに限らずエンジニア向け勉強会を行っていく予定です。
+本日来れなかった方もぜひ次回オフィスにいらしてください :)&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>チームでKPTをやってみました</title>
+    <link rel="alternate" href="http://engineer.wantedly.com/2015/04/01/sync-kpt.html"/>
+    <id>http://engineer.wantedly.com/2015/04/01/sync-kpt.html</id>
+    <published>2015-04-01T10:02:00Z</published>
+    <updated>2015-08-06T23:31:13+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="KPT-Meeting" src="/images/kpt-meeting-7cfe5e43.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;エンジニアの&lt;a href="http://twitter.com/morizotter/"&gt;森田&lt;/a&gt;です。&lt;/p&gt;
+
+&lt;p&gt;チームでKPTをやってみました。その時に考えたことなどを書きたいと思います。&lt;/p&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="eab824f9ec6840428bee0e56a50548cd" data-ratio="1.33159947984395" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;社内発表資料です。&lt;/p&gt;
+
+&lt;h2&gt;KPTとは&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;アジャイル開発や反復型開発ではイテレーション（繰り返しの単位）ごとに作業の振り返りが推奨されるが、そのためのチーム反省会などでよく用いられるフォーマットである。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;a href="http://www.itmedia.co.jp/im/articles/0905/19/news143.html"&gt;http://www.itmedia.co.jp/im/articles/0905/19/news143.html&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;KはKeep、PはProblem、TはTryをそれぞれ表します。イテレーションの単位でチームで振り返りを行い、良い点（Keep）、問題点（Problem）、具体的な改善項目（Try）を軸にミーティングをします。基本的な流れは、Problemが具体的なTryになり、Tryが解消したら、消える。またはKeepに昇華します。KeepはProblemやTryに関係なく、上げていくこのが良いと思います。&lt;/p&gt;
+
+&lt;h2&gt;はじめた理由&lt;/h2&gt;
+
+&lt;p&gt;社内で新規サービスを作ることになり、4名のチームが結成されました。サービス自体、アイディアのみがある状態から始まったので1週間ごとに見た目や機能が変更されていきます。既存のサービスのメンテナンスとはまた違う状況で、よりよいコミュニケーションとプロセスを作っていこうとやってみることにしました。&lt;/p&gt;
+
+&lt;h2&gt;どうやってやったか&lt;/h2&gt;
+
+&lt;h3&gt;期間、ツール、内容&lt;/h3&gt;
+
+&lt;p&gt;イテレーションの単位は1週間。会議室に集まり、タスクの棚卸を行った後に実施しました。扱う内容は、現在開発中のプロダクトを中心にはするものの特に限定はしませんでした。プロダクトの改善や方向性などを話しましたが、扱う内容で一番多かったのは仕事の進め方に関するものでした。&lt;/p&gt;
+
+&lt;p&gt;KPTというとホワイトボードに付箋というのが一般的ですが、私たちのチームでは、 &lt;a href="https://coggle.it/"&gt;Coggle&lt;/a&gt; というオンライン・マインドマップ・ツールを利用しました。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Coggle" src="/images/coggle-whole-83215cc5.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;ホワイトボードに書き出すことと比較すると利点は下記の通りです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;思いついたタイミングで書き足しておくことができる。&lt;/li&gt;
+&lt;li&gt;忘れそうな時に簡単に振り返れる。&lt;/li&gt;
+&lt;li&gt;毎回ミーティングの時に前回の内容を思い出すことができる。&lt;/li&gt;
+&lt;li&gt;書き出す負担が少ないので、継続しやすい。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;決めたルールは「批判しない」ということのみです。目指すところは、チームでよいプロダクトを作ることです。できているひとができていない人を批判して、批判された人が心を入れ替えるということではありません。そして、リラックスした状態で、ただ、仕事をする上で「問題に思っていること」「改善したいこと」「うまくいっていること」を共有しました。&lt;/p&gt;
+
+&lt;p&gt;普通、ProblemがTryになり、それがKeepになるという流れがありますが、私たちのチームでは、Problemに対して、Tryにすることなく、そのままProblemでいつづけることがありました。TryになりやすいものはTryにして解決していくのですが、なかなかそうなりづらいものもあります。そういうものに関してはも書き出しておくことで、2,3週間すると改善案が出てきて自然と消えていったりしました。&lt;/p&gt;
+
+&lt;h3&gt;1回目はどうしたのか&lt;/h3&gt;
+
+&lt;p&gt;チームは僕以外KPTは初めてで、最初は、K、P、Tそれぞれどのような基準で出せば良いのかわかりませんでした。特に決まったルールもないので、各自、自身の判断で上げていきました。量もとても多くなったのですが、数を重ねていくうちにチーム内である程度共通の認識が生まれて、項目数も少なくなってきました。&lt;/p&gt;
+
+&lt;h2&gt;どんなことを話したのか&lt;/h2&gt;
+
+&lt;p&gt;多岐に渡るのですが、目立つものとして、&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;他の人の作業が見えない：　Codetree -&amp;gt; Zenhub を導入して解消&lt;/li&gt;
+&lt;li&gt;Githubの通知に気付けない： GithubNotifier/GithubPop を導入して解消&lt;/li&gt;
+&lt;li&gt;新しく開発するサービスの本質を理解する： T「WORK SHIFT」を一部を読む。&lt;/li&gt;
+&lt;li&gt;朝回に行う事&lt;/li&gt;
+&lt;li&gt;技術的なキャッチアップの方法。継続的な学習&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;などなどです。&lt;/p&gt;
+
+&lt;h2&gt;何が良かったか&lt;/h2&gt;
+
+&lt;p&gt;目の前の問題を解決するといったわかりやすいよさもありましたが、それと同じかそれ以上に良いと思ったのは、もう少し形のない問題について話すことができたことです。継続的学習や、サービスの本質、日々ちょっとだけ困っている細かいことなど。 &lt;strong&gt;日々ちょっとだけ困っていること&lt;/strong&gt; というのは、とても重要で、それを共有することで答えを持っている人が見つかり、改善していくことができました（ちなみに僕はGithubの@メンションを見落としがちということなどを書きました）。&lt;/p&gt;
+
+&lt;p&gt;小さな問題を一つ一つ解消していくことで、最初は、殆ど変化がないように感じられますが、それを繰り返してゆくことで少しずつ業務の無駄がなくなり、知識も共有され、チーム感が出てきたように感じています。&lt;/p&gt;
+
+&lt;h2&gt;継続的な改善は全てを変える&lt;/h2&gt;
+
+&lt;p&gt;改善に関する格言を調べてみると、このようなものが見つかりました。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Continuous improvements in any area eventually transform the operation.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ピータードラッガーの言葉なのですが、自分なりに訳すと「継続的な改善は全てを変える」ということになります。継続的に改善を続けていくことで、最初は小さな変化かもしれないのですがそれが少しずつ積もって、足腰が鍛えられ、物事がうまく回るようになります。それを繰り返していくことで、始めた頃とは全く異なるような成長を遂げられるのではないかなと思いました。&lt;/p&gt;
+
+&lt;h2&gt;参考資料&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://techlife.cookpad.com/entry/2014/10/31/093305"&gt;KPTで粘り強く品質改善に取り組んだ話&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://enterprisezine.jp/iti/detail/788"&gt;今日からできる！全員参加型の建設的フィードバック「ふりかえり」～実践編（KPT・タイムライン）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.slideshare.net/esmsec/kpt-27942223"&gt;KPTの基本と、その活用法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Swiftコーディング規約@Wantedly</title>
+    <link rel="alternate" href="http://engineer.wantedly.com/2014/10/06/swift-style-guide.html"/>
+    <id>http://engineer.wantedly.com/2014/10/06/swift-style-guide.html</id>
+    <published>2014-10-05T15:00:00Z</published>
+    <updated>2015-08-06T23:31:13+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="http://qiita.com/susieyy/items/f71435cc962e70d81b37"&gt;&lt;img alt="Siori" src="/images/2014-10-06/swift_style_guide-c0d180d5.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;こんにちは！エンジニアの&lt;a href="https://www.wantedly.com/users/631708"&gt;杉上&lt;/a&gt;です。&lt;/p&gt;
+
+&lt;h2&gt;Swiftのコーディング規約を作成しています！&lt;/h2&gt;
+
+&lt;p&gt;WantedlyではSwift言語で開発したiPhoneアプリ&lt;a href="https://itunes.apple.com/jp/app/wired-vicenadono-hao-qi-xinwo/id913849903?mt=8"&gt;Siori&lt;/a&gt;をリリースしました。&lt;/p&gt;
+
+&lt;p&gt;その開発経験を元に&lt;a href="http://qiita.com/susieyy/items/f71435cc962e70d81b37"&gt;Swiftコーディング規約&lt;/a&gt;を作成しています。&lt;/p&gt;
+
+&lt;p&gt;Swiftのコードは多様な記述の仕方ができるので柔軟でかつ表現力もありますが、チームで開発を行うとどうしても記述の仕方が統一できず可読性も上がりません。このコーディング規約がベストプラクティスだというわけではありませんが、Swiftもまだまだ手探りなところもあるので参考情報としてご参照いただき、皆さんと一緒にブラッシュアップしていきたいと思っております。&lt;/p&gt;
+
+&lt;h2&gt;コーディング規約の必要性について&lt;/h2&gt;
+
+&lt;p&gt;Swiftはプログラマがリスクを取ることによってより簡素に端的に記述ができたり、型推論が強力なので型の明記を省略して記述ができます。チームでSwift開発を行う場合は、詳細に記述するのか、省略して記述するのか、またはその間のどれぐらいの塩梅にするのかコンセンサスがないと統一されない多様な表現のコードが溢れてしまいます。なので規約の必要性・需要は高いのではないかと思い、Swiftがリリースされたばかりという早い時期から規約の作成に取り組んでいます。&lt;/p&gt;
+
+&lt;h2&gt;規約はどこに？&lt;/h2&gt;
+
+&lt;p&gt;qiita上で公開しています。
+ご指摘点、追加要望などありましたらコメント頂けると幸いです。&lt;/p&gt;
+
+&lt;p&gt;以下URL先のqiitaサイトをご参照ください。&lt;/p&gt;
+
+&lt;h3&gt;&lt;a href="http://qiita.com/susieyy/items/f71435cc962e70d81b37"&gt;Swiftコーディング規約&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;では、Swiftの開発を楽しんでください！&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>WantedlyではどうやってiOSアプリ開発しているのか</title>
+    <link rel="alternate" href="http://engineer.wantedly.com/2014/04/28/how-wantedly-make-ios-app.html"/>
+    <id>http://engineer.wantedly.com/2014/04/28/how-wantedly-make-ios-app.html</id>
+    <published>2014-04-27T15:00:00Z</published>
+    <updated>2015-08-06T23:31:13+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="Yuri" src="https://huntr-static.s3.amazonaws.com/engineer_blog/2014-04-28-cover.jpeg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;こんにちは！エンジニアの&lt;a href="https://www.wantedly.com/users/10599"&gt;川崎&lt;/a&gt;です。&lt;/p&gt;
+
+&lt;p&gt;先週行われた
+&lt;a href="http://eventdots.jp/event/47442"&gt;Consumer Service Engineer MeetUp Vol.1　~iOS編~&lt;/a&gt;
+というイベントで「WantedlyではどうやってiOSアプリ開発しているのか」というテーマで発表してきました。&lt;/p&gt;
+
+&lt;p&gt;僕自身の普段の担当は、全体の設計やサーバ側の開発、プロジェクト進行あたりなので、
+今回はWantedlyでiOSアプリを「プロトタイピング」し「開発」そして「テスト」するまでで使ってるツール・取り組みをざっくり紹介させていただきました。&lt;/p&gt;
+
+&lt;p&gt;意外とこの手の話をする機会はいままでなかったので、
+現在開発中のアプリも含め、今現在うちでは何をどうやっているのかまとめられてよかったかなと思います。&lt;/p&gt;
+
+&lt;p&gt;以下、発表で紹介したURLなどです。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;プロトタイピング
+
+&lt;ul&gt;
+&lt;li&gt;ホワイトボードでアイデアだし&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://moqups.com/"&gt;moqups&lt;/a&gt;でモックアップ作成&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://popapp.in/"&gt;Pop&lt;/a&gt;を使って実機でプロトタイプを触ってみる&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;開発
+
+&lt;ul&gt;
+&lt;li&gt;Wantedlyでよく使ってるCocoaPods一覧
+
+&lt;ul&gt;
+&lt;li&gt;RestKit - consuming and modeling RESTful web resources&lt;/li&gt;
+&lt;li&gt;AFNetworking - networking framework&lt;/li&gt;
+&lt;li&gt;SDWebImage - Asynchronous image downloader with cache support with an UIImageView category&lt;/li&gt;
+&lt;li&gt;RNCryptor - Encryptor/Decryptor&lt;/li&gt;
+&lt;li&gt;UICKeyChainStore - a simple wrapper for Keychain&lt;/li&gt;
+&lt;li&gt;SVProgressHUD - A clean and lightweight progress HUD&lt;/li&gt;
+&lt;li&gt;TTTAttributedLabel - A drop-in replacement for UILabel that supports attributes, data detectors, links, and more.&lt;/li&gt;
+&lt;li&gt;NUI - Style iOS apps with a stylesheet, similar to CSS&lt;/li&gt;
+&lt;li&gt;JLRoutes - Advanced URL parsing designed to handle complex URL schemes with a block-based callback API&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://cocoapods.wantedly.com/"&gt;COCOAPODS SEARCH&lt;/a&gt;でCocoaPodの人気度・定番度をチェック&lt;/li&gt;
+&lt;li&gt;使ってる&lt;a href="https://github.com/wantedly/objective-c-style-guide"&gt;Objective-Cのスタイルガイド&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;テスト
+
+&lt;ul&gt;
+&lt;li&gt;Rails側のCIは&lt;a href="http://wercker.com/"&gt;wercker&lt;/a&gt;で&lt;/li&gt;
+&lt;li&gt;アプリのユーザテスト用に&lt;a href="https://www.testflightapp.com/"&gt;TestFlight&lt;/a&gt;で開発版を配信&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="0ad89a10b0f50131486d72af66ead636" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;ちなみに、今回のイベントの発表者は自社サービスを開発・運営している会社に限定ということで、
+Wantedlyの他にはヴァズ株式会社 (SnapDish)、エニグモ (BUYMA)、はてな、nanapi (アンサー)、
+マインドパレット (Snapeee)さんが発表していました。
+そのうち主催のほうで他の方の発表のまとめも公開されると思います！&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>第 4 回 Elasticsearch 勉強会で発表してきました</title>
+    <link rel="alternate" href="http://engineer.wantedly.com/2014/04/23/elasticsearch-at-wantedly.html"/>
+    <id>http://engineer.wantedly.com/2014/04/23/elasticsearch-at-wantedly.html</id>
+    <published>2014-04-23T00:19:00Z</published>
+    <updated>2015-08-06T23:31:13+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;エンジニアの内田です（@spesnova）です。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://elasticsearch.doorkeeper.jp/events/8865"&gt;リクルートで行われた第 4 回 Elasticsearch 勉強会&lt;/a&gt;にて「Elasticsearch at Wantedly」というタイトルで発表してきました。Wantedly で Elasticsearch をどのように使ってるかを紹介させてもらっています。&lt;/p&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="c8393bf0ac180131772a5a7f1b753ce9" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;Elasticsearch ステッカーもらった :)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/es-sticker-daed1e32.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;勉強会の様子は、主催の &lt;a href="https://twitter.com/johtani"&gt;@johtani&lt;/a&gt; さんの&lt;a href="http://blog.johtani.info/blog/2014/04/21/hold-on-4th-elasticsearch-jp/"&gt;ブログ&lt;/a&gt;にまとまってます（他の方が書いてくれた参加レポートへのリンクも付いてます）&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>AngularJSを導入することと、恋のときめきと一歩踏み出す苦しみと。</title>
+    <link rel="alternate" href="http://engineer.wantedly.com/2014/03/31/angular-and-love.html"/>
+    <id>http://engineer.wantedly.com/2014/03/31/angular-and-love.html</id>
+    <published>2014-03-30T15:00:00Z</published>
+    <updated>2015-08-06T23:31:13+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h4&gt;春です。&lt;/h4&gt;
+
+&lt;p&gt;こんにちは、春ですね。&lt;/p&gt;
+
+&lt;p&gt;いつから春なんだっけと思って、近くの人に聞いてみたら「花粉が飛んだら春」だそうです。
+来てますね、春。&lt;/p&gt;
+
+&lt;p&gt;春には花粉以外にも、「ときめき」が飛び交います。
+朝のあの子の挨拶だったり、最近通い始めたスタバの店員さんの笑顔、そして、
+Angular.jsのUIバインディングのスマートさにときめきます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="ios_image" src="/images/2014-03-31/angular-88b549d2.gif" /&gt;&lt;/p&gt;
+
+&lt;p&gt;「あの子と話せたらハッピーだろうな」、「うちのサイトのDOMもバリバリ動かしたらカッコいいだろうな」
+とか春の陽気はポジティブな妄想を誘います。
+ただ、その妄想を現実に落としこむは簡単なことではなく、冬までに降り積もったシガラミが邪魔をします。
+中学時代に奇跡的にもらったラブレター、押入れに密かにしまわれているトレーディングカード、
+そして、jQueryで書かれたコードだったりが邪魔します。でも、変わらなくちゃ手に入れられないものもあります。&lt;/p&gt;
+
+&lt;h4&gt;AngularJSを導入する&lt;/h4&gt;
+
+&lt;p&gt;AngularJSを導入するにあたって、
+まっさらな状態からの構築なら良いのですが、既存のサービスに導入となると戸惑います。
+自分も最初はjQueryとぶつかって難しいよねとか思ってました。&lt;/p&gt;
+
+&lt;p&gt;でも、意外とそうでもないです。&lt;/p&gt;
+
+&lt;p&gt;例えば、あなたのサイトで使われまくっている&lt;code&gt;cool-select&lt;/code&gt;という超coolなパーツがあったとして、&lt;/p&gt;
+
+&lt;p&gt;JS&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+  &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.cool-select&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;change&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+    &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Cool!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;HTML&lt;/p&gt;
+&lt;pre class="highlight html"&gt;&lt;span class="nt"&gt;&amp;lt;li&lt;/span&gt; &lt;span class="na"&gt;ng-repeat=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tool in tools&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;animate&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;span&amp;gt;&lt;/span&gt;{{tool.name}}&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;select&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;cool-select&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;option&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;どのくらい好き？&lt;span class="nt"&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;option&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;normal&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;いや、普通に&lt;span class="nt"&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;option&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;straw&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;ストローで飲むくらい好き&lt;span class="nt"&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/select&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;実装のされ方にもよると思いますが、この&lt;code&gt;ng-repeat&lt;/code&gt;の中で使用しているonChangeイベントはbindされません。
+ブラウザすら&lt;code&gt;Cool!&lt;/code&gt;と言ってくれません。悲しい。&lt;/p&gt;
+
+&lt;p&gt;こういう場合はDirectiveとして取り込んであげればいいと思います。&lt;/p&gt;
+
+&lt;p&gt;JS&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;ToolApp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;directive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;coolSelect&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="na"&gt;restrict&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="na"&gt;link&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;postLink&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;element&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;attrs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="nx"&gt;element&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;change&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
+        &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;attrs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;bigSelect&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+      &lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;restrict: &amp;#39;A&amp;#39;&lt;/code&gt;は属性指定です。&lt;code&gt;big-select&lt;/code&gt;という属性のある要素を指すことになります。
+&lt;code&gt;link&lt;/code&gt;は&lt;code&gt;ng-repeat&lt;/code&gt;のイテレーションのたびに呼び出されます。  &lt;/p&gt;
+
+&lt;p&gt;AngularJSはjQueryが読み込まれいる場合、&lt;code&gt;angular.element&lt;/code&gt;からjQueryのfunctionを呼び出せます。
+なのでjQueryの時のコードと同じように&lt;code&gt;.on&lt;/code&gt;でbindしてます。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://docs.angularjs.org/api/ng/function/angular.element"&gt;AngularJS: API: angular.element&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;HTML&lt;/p&gt;
+&lt;pre class="highlight html"&gt;&lt;span class="nt"&gt;&amp;lt;li&lt;/span&gt; &lt;span class="na"&gt;ng-repeat=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tool in tools&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;animate&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;span&amp;gt;&lt;/span&gt;{{tool.name}}&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;select&lt;/span&gt; &lt;span class="na"&gt;big-select=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Nice&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;ng-model=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tool.like&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;option&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;どのくらい好き？&lt;span class="nt"&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;option&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;normal&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;いや、普通に&lt;span class="nt"&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;option&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;straw&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;ストローで飲むくらい好き&lt;span class="nt"&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
+  &lt;span class="nt"&gt;&amp;lt;/select&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;これで&lt;code&gt;onChange&lt;/code&gt;イベントをbindすることが出来ました。
+おまけで&lt;code&gt;cool-select&lt;/code&gt;に値を渡せるようにしています。&lt;/p&gt;
+
+&lt;h4&gt;補足&lt;/h4&gt;
+
+&lt;p&gt;今回使用したコードはすべて以下にあります。動くと思います。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://gist.github.com/imaimiami/9722407"&gt;https://gist.github.com/imaimiami/9722407&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;AngularJS入門は結局公式が良かったです。良い記事があれば教えてください。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://docs.angularjs.org/tutorial"&gt;AngularJS: Tutorial: Tutorial&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;また、冒頭のGIF画像は、チームの生産性のためならばどんなチャレンジもいとわない
+&lt;a href="/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html"&gt;同僚&lt;/a&gt;に敬意を表したものです。&lt;/p&gt;
+
+&lt;p&gt;以上、また会いましょう！&lt;/p&gt;
+</content>
+  </entry>
+</feed>

@@ -1,0 +1,1065 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>実践！Elasticsearch - Wantedly Engineer Blog</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/favicon-8030cb16.png" rel="icon" type="image/png">
+    <meta property="fb:app_id" content="234170156611754">
+    <meta property="og:image" content="http://engineer.wantedly.com/wantedly-sticker2-9bf5acdc.png">
+    <link href="/stylesheets/application-5562e3f2.css" media="screen" rel="stylesheet" type="text/css" />
+    <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12847756-21']);
+    _gaq.push(['_setDomainName', 'wantedly.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </head>
+  <body>
+    <header class="jumbotron cover-image center">
+      <h1 class="graduate"><a href="/">Wantedly Engineer Blog</a></h1>
+      <p>Wantedly 開発チームブログ</p>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8">
+            <div class="page-header clearfix">
+    <h2>
+      <div class="article-title">
+        実践！Elasticsearch
+      </div>
+    </h2>
+    <div class="article-avatar">
+      <a href="https://www.wantedly.com/users/323185">
+        <img src="https://www.wantedly.com/users/323185/avatar" class="avatar" />
+      </a>
+      <span class='date'>25-Feb-2014</span>
+    </div>
+    <div class="pull-right social-links">
+      <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2014/02/25/elasticsearch-at-wantedly-1.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="spesnova" data-url="http://engineer.wantedly.com/2014/02/25/elasticsearch-at-wantedly-1.html">Tweet</a>
+      <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2014/02/25/elasticsearch-at-wantedly-1.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+      
+        <iframe src="http://ghbtns.com/github-btn.html?user=spesnova&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+      
+    </div>
+  </div>
+  <div class="article">
+    <p><img src="http://chrissimpson.co.uk/img/elasticsearch-new-header.png" /></p>
+
+<p>こんにちは、エンジニアの内田（@spesnova）です。</p>
+
+<p><a href="https://www.wantedly.com/search">Wantedly では最近 Elasticsearch を使った検索機能をリリースしました。</a>
+それに伴い Elasticsearch で日本語検索を作っていく際の基本的な部分や使ってみて非常に便利だったプラグイン、本番環境の構築や運用でのノウハウを紹介をしていきたいと思います。</p>
+
+<p>第一回（何回まであるかは知らない&hellip;）の今回は導入も兼ねて、「ruby で検索してヒットする募集を出している東京の会社」といった検索ができるようにしてみましょう。</p>
+
+<p>目次的なもの</p>
+
+<ol>
+<li>Elasticsearch について</li>
+<li>開発環境準備</li>
+<li>どうデータを Elasticsearch に入れるか</li>
+<li>Analysis</li>
+<li>Mapping</li>
+<li>簡単なクエリと Sense</li>
+<li>フィルタ</li>
+<li>親子関係</li>
+</ol>
+
+<h2>Elasticsearch について</h2>
+
+<p>Elasticsearch について一通り学ぶには、以下の資料がオススメです。</p>
+
+<ul>
+<li><a href="http://code46.hatenablog.com/entry/2014/01/21/115620">Elasticsearch チュートリアル</a></li>
+<li><a href="http://sssslide.com/speakerdeck.com/johtani/elasticsearchru-men">Elasticsearch 入門</a></li>
+<li><a href="https://speakerdeck.com/dadoonet/elasticsearch-workshop">Elasticsearch Workshop</a></li>
+</ul>
+
+<p>自分はこの資料を見て育ちました</p>
+
+<h2>開発環境準備</h2>
+
+<p>Mac に開発環境を用意しましょう。</p>
+
+<p>elasticsearch 本体は <a href="http://brew.sh/">homebrew</a> からインストール。</p>
+<pre class="highlight shell"><span class="gp">$ </span>brew install elasticsearch
+</pre>
+<p>次にプラグインを入れて行きます。</p>
+
+<p>クエリを実行するコンソールとして <a href="http://www.elasticsearch.org/guide/en/marvel/current/">elasticsearch marvel plugin</a> を入れます。</p>
+<pre class="highlight shell"><span class="gp">$ </span>/usr/local/bin/plugin -install elasticsearch/marvel/latest
+</pre>
+<p>analyzer を試すのに便利な <a href="https://github.com/polyfractal/elasticsearch-inquisitor">inquisitor</a> も入れておきます。</p>
+<pre class="highlight shell"><span class="gp">$ </span>/usr/local/bin/plugin -install polyfractal/elasticsearch-inquisitor
+</pre>
+<p>日本語形態素解析エンジンの <a href="https://github.com/elasticsearch/elasticsearch-analysis-kuromoji">kuromoji</a> も入れます。
+<a href="https://github.com/elasticsearch/elasticsearch-analysis-kuromoji">インストールした elasticsearch のバージョンに合わせて適切なプラグインのバージョンを使ってください。</a></p>
+<pre class="highlight shell"><span class="gp">$ </span>/usr/local/bin/plugin -install elasticsearch/elasticsearch-analysis-kuromoji/2.0.0.RC1
+</pre>
+<p>（その他 <a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/modules-plugins.html#site">head や HQ 等便利なプラグインはまだまだあります</a> ので、好きな物を入れましょう）</p>
+
+<p>elasticsearch をフォアグラウンドで起動しておきます。</p>
+<pre class="highlight shell"><span class="c"># 1.0 からは</span>
+<span class="gp">$ </span>elasticsearch
+
+<span class="c"># 0.9x 以下は</span>
+<span class="gp">$ </span>elasticsearch -f
+</pre>
+<h2>どうデータを Elasticsearch に入れるか</h2>
+
+<p>今回は検索対象のデータとして、会社を 5 つ、募集をそれぞれ 1, 2 つずつ elasticsearch に入れることにしましょう。
+（参考: <a href="https://www.evernote.com/shard/s28/sh/6526b858-c05a-4418-b927-f461f7d8aea5/d263b174b9cd5355dee4f02dc0dfc23b/deep/0/Untitled.png">Elasticsearch のデータ構造</a>）</p>
+
+<p>wantedly index に company type と project type を作り、1 つ 1 つの会社や募集を elasticsearch の 1 つのドキュメントとして扱うことにしましょう。会社と募集を type で分けずに全く別の index にすることも可能ですが、</p>
+
+<ul>
+<li>type ごとに shard の設定を変えたい -&gt; 設定が index ごとなので分ける必要が出てくる</li>
+<li>データの更新頻度やサイズが type によって別々 -&gt; パフォーマンスの問題の切り分け時に複雑になる</li>
+</ul>
+
+<p>といった状況でなければ type で分けるのが良いでしょう。</p>
+
+<p>会社は</p>
+
+<ul>
+<li>id</li>
+<li>name - 会社名</li>
+<li>location - 所在地</li>
+</ul>
+
+<p>募集は</p>
+
+<ul>
+<li>id</li>
+<li>title - 募集タイトル</li>
+<li>company_id - 会社 ID</li>
+</ul>
+
+<p>というフィールドを持っているとし、以下のようなサンプルデータを使うことにします。</p>
+
+<p><strong>会社</strong></p>
+
+<table><thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>location</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>wantedly</td>
+<td>東京都港区白金台 3-19-6 白金台ビル3F</td>
+</tr>
+<tr>
+<td>2</td>
+<td>heroku</td>
+<td>東京都千代田区丸の内2-7-2 JPタワー 12階</td>
+</tr>
+<tr>
+<td>3</td>
+<td>higanworks</td>
+<td>大阪府大阪市中央区道修町2-2-5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>hatena</td>
+<td>京都府京都市中京区御池通間之町東入高宮町206</td>
+</tr>
+<tr>
+<td>5</td>
+<td>nulab</td>
+<td>福岡市博多区中洲5丁目5-13 KDC福岡ビル7F</td>
+</tr>
+</tbody></table>
+
+<p>（地域別に web 系の会社選んでみました、特に深い意味はないです）</p>
+
+<p><strong>募集</strong></p>
+
+<table><thead>
+<tr>
+<th>id</th>
+<th>title</th>
+<th>company_id</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>iOS エンジニア ウォンテッド！</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Ruby on Rails 得意なエンジニアウォンテッド！</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Ruby 好きウォンテッド！</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Chef と Ruby 書ける人ウォンテッド！</td>
+<td>3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Perl エンジニアウォンテッド！</td>
+<td>4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Java エンジニアウォンテッド！</td>
+<td>5</td>
+</tr>
+</tbody></table>
+
+<p>（募集はダミーデータです）</p>
+
+<p>（参考: ドキュメント登録の流れについては <a href="http://sssslide.com/speakerdeck.com/johtani/elasticsearchru-men">Elasticsearch 入門</a> を参照すると良いです。）</p>
+
+<h2>Analyzer</h2>
+
+<p>上記のデータを実際に入れる前に、index の作成と analyzer の設定をします。</p>
+
+<p>以下のコマンドを実行することで analyzer の設定ができます。
+下記で説明して行きます。</p>
+<pre class="highlight shell">curl -XPUT <span class="s1">&#39;http://localhost:9200/wantedly-demo&#39;</span> -d <span class="se">\</span>
+<span class="s1">&#39;{
+  &quot;settings&quot;: {
+    &quot;analysis&quot;: {
+      &quot;filter&quot;: {
+        &quot;pos_filter&quot;: {
+          &quot;type&quot;: &quot;kuromoji_part_of_speech&quot;,
+          &quot;stoptags&quot;: [
+            &quot;助詞-格助詞-一般&quot;,
+            &quot;助詞-終助詞&quot;
+          ]
+        },
+        &quot;greek_lowercase_filter&quot;: {
+          &quot;type&quot;: &quot;lowercase&quot;,
+          &quot;language&quot;: &quot;greek&quot;
+        }
+      },
+      &quot;tokenizer&quot;: {
+        &quot;kuromoji&quot;: {
+          &quot;type&quot;: &quot;kuromoji_tokenizer&quot;
+        },
+        &quot;ngram_tokenizer&quot;: {
+          &quot;type&quot;: &quot;nGram&quot;,
+          &quot;min_gram&quot;: &quot;2&quot;,
+          &quot;max_gram&quot;: &quot;3&quot;,
+          &quot;token_chars&quot;: [
+            &quot;letter&quot;,
+            &quot;digit&quot;
+          ]
+        }
+      },
+      &quot;analyzer&quot;: {
+        &quot;kuromoji_analyzer&quot;: {
+          &quot;type&quot;: &quot;custom&quot;,
+          &quot;tokenizer&quot;: &quot;kuromoji_tokenizer&quot;,
+          &quot;filter&quot;: [
+            &quot;kuromoji_baseform&quot;,
+            &quot;pos_filter&quot;,
+            &quot;greek_lowercase_filter&quot;,
+            &quot;cjk_width&quot;
+          ]
+        },
+        &quot;ngram_analyzer&quot;: {
+          &quot;tokenizer&quot;: &quot;ngram_tokenizer&quot;
+        }
+      }
+    }
+  },
+  &quot;mappings&quot;: {
+    &quot;company&quot;: {
+      &quot;_source&quot;: {
+        &quot;enabled&quot;: true
+      },
+      &quot;_all&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;analyzer&quot;: &quot;kuromoji_analyzer&quot;
+      },
+      &quot;properties&quot;: {
+        &quot;id&quot;: {
+          &quot;type&quot;: &quot;integer&quot;,
+          &quot;index&quot;: &quot;not_analyzed&quot;
+        },
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;index&quot;: &quot;analyzed&quot;,
+          &quot;analyzer&quot;: &quot;ngram_analyzer&quot;
+        },
+        &quot;location&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;index&quot;: &quot;analyzed&quot;,
+          &quot;analyzer&quot;: &quot;kuromoji_analyzer&quot;
+        }
+      }
+    },
+    &quot;project&quot;: {
+      &quot;_source&quot;: {
+        &quot;enabled&quot;: true
+      },
+      &quot;_all&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;analyzer&quot;: &quot;kuromoji_analyzer&quot;
+      },
+      &quot;_parent&quot;: {
+        &quot;type&quot;: &quot;company&quot;
+      },
+      &quot;properties&quot;: {
+        &quot;id&quot;: {
+          &quot;type&quot;: &quot;integer&quot;,
+          &quot;index&quot;: &quot;not_analyzed&quot;
+        },
+        &quot;title&quot;: {
+          &quot;type&quot;: &quot;string&quot;,
+          &quot;index&quot;: &quot;analyzed&quot;,
+          &quot;analyzer&quot;: &quot;kuromoji_analyzer&quot;
+        }
+      }
+    }
+  }
+}&#39;</span>
+</pre>
+<p>analyzer を利用するのはただ単にデータを突っ込むだけでは検索に引っかからないためです。
+例えば、Wantedly の住所は、何もしないと「東」や「京」ではヒットしますが、「東京」ではヒットしません。</p>
+
+<p>では analyzer とは？</p>
+
+<blockquote>
+<p>analyzerとは文字列の分割方法を定義するtokenizerと、分割後の文字列の整形処理を定義するfilterによって構成されます。</p>
+
+<p>例えば、tokenizerがngramで文字列を分割し、filterで大文字小文字を小文字に統一してしまうなどといった定義をすることが出来ます。</p>
+
+<p>analyzerはいくつでも定義することが出来き、フィールドごとにどのanalyzerを利用するか決めることが出来ます。</p>
+</blockquote>
+
+<p>（「Elasticsearch チュートリアル」より。参考: <a href="https://www.evernote.com/shard/s28/sh/c9eb02e1-0a23-4226-97a4-e4f8d80116f5/22e3ee6d11d687ae49d4f90c3055cafc/deep/0/es_memo.png">Analyzer</a>）</p>
+
+<p>inquisitor プラグインを使って実際に analyzer を使ってみましょう</p>
+
+<p><a href="http://localhost:9200/_plugin/inquisitor/#/analyzersz">http://localhost:9200/_plugin/inquisitor/#/analyzers</a> にアクセスして、&quot;Wantedly&quot; と入力してみてください</p>
+
+<p><img src="/images/inquisitor-97362bf8.png" /></p>
+
+<p>standard や simple など analysis を行う analyzer がビルトインで入っています。
+&ldquo;Wantedly&rdquo; という文字列は analyzer によって &ldquo;wanteldy&rdquo; だったり、&quot;Wantedly&quot; だったり、&quot;want&quot; になります。</p>
+
+<p><img src="/images/inquisitor_2-2b84a431.png" /></p>
+
+<p>&ldquo;Wantedly, Inc&rdquo; と入力すると、カンマ区切りで分割されたりホワイトスペースで分割されたりします。
+画像の例では、</p>
+
+<ol>
+<li>whitespace tokenizer を使ってホワイトスペース区切りで分割し、</li>
+<li>lowercase token filter を使って分割した token を全部小文字にします</li>
+</ol>
+
+<p>この 2 つの処理から構成されるのが analyzer ということです。</p>
+
+<p>今回実際に検索で使う日本語が入った住所を入れてみます</p>
+
+<p><img src="/images/inquisitor_3-3192f30c.png" /></p>
+
+<p>スタンダードの analyzer では前述のとおり、&quot;東京&ldquo; ではヒットしない形に分割されます。そこで、kuromoji という日本語形態素解析ができる analyzer を使います。</p>
+
+<p><img src="/images/inquisitor_4-dc4abb57.png" /></p>
+
+<p>inquisitor の少し下の方に、wantedly-demo index にて利用可能な analyzer の適用結果が出ています。こちらだと、&quot;東京&rdquo; や &ldquo;白金台&rdquo; でヒットしますね。</p>
+
+<p>kuromoji の詳細や analyzer の適用結果を試したい場合は <a href="http://www.atilika.org/">kuromoji 公式サイト</a> から試すことができます。</p>
+
+<p>形態素解析について概要を理解するには <a href="http://sssslide.com/speakerdeck.com/johtani/elasticsearchru-men">Elasticsearch 入門</a> の「N-gram と形態素解析」の項目を参照すると良いでしょう。</p>
+
+<h2>Mapping</h2>
+
+<p>データを入れる前に、もう一つ、 mapping というものをする必要があります。</p>
+
+<p>Mapping とは？</p>
+
+<blockquote>
+<p>外部データをElasticsearch上でどのようなスキーマとして表現するか定義することをmappingと呼びます。</p>
+</blockquote>
+
+<p>（「Elasticsearch チュートリアル」より。参考: <a href="https://www.evernote.com/shard/s28/sh/582b7b72-31eb-4613-b78a-1b9a8e6b4008/61cab6791ab888e0ab3f08026eab1fd9/deep/0/Untitled.png">Mapping のイメージ</a>）</p>
+
+<p>先ほどの curl 実行時に mapping もやっていますので、内容を簡単に説明します。</p>
+<pre class="highlight json"><span class="w">  </span><span class="s2">&quot;mappings&quot;</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;company&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;_all&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;analyzer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kuromoji_analyzer&quot;</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;not_analyzed&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;analyzed&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;analyzer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ngram_analyzer&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;analyzed&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;analyzer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kuromoji_analyzer&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;_all&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;analyzer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kuromoji_analyzer&quot;</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;_parent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;not_analyzed&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;analyzed&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;analyzer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kuromoji_analyzer&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></pre>
+<ul>
+<li>company
+
+<ul>
+<li>ID  - Integer 型, 分割しない。12 という ID を 1 で検索することはない</li>
+<li>会社名 - String 型, 今回は wantedly や heroku など英文字だけ入れるとして wan とかでヒットしてほしい</li>
+<li>地域名 - String 型, 日本語が入り、東京などの単位でヒットさせたいので kuromoji</li>
+</ul></li>
+<li>募集
+
+<ul>
+<li>ID - Integer 型, 分割しない。</li>
+<li>タイトル - String 型, 日本語と英文字が入る。kuromoji の token filter で lowercase してるので kuromoji</li>
+</ul></li>
+</ul>
+
+<p>このように</p>
+
+<ul>
+<li>データのソースは elasticsearch に store するか</li>
+<li>このフィールドはどんな型か</li>
+<li>このフィールドにどんな analyzer をかけるか</li>
+</ul>
+
+<p>といったことを定義しています。</p>
+
+<p>データを入れてしまいましょう。（Bulk API という複数ドキュメントを一度に追加出来る API を使っています）</p>
+<pre class="highlight shell"><span class="gp">$ </span>curl -XPOST <span class="s1">&#39;http://localhost:9200/_bulk&#39;</span> -d <span class="se">\</span>
+<span class="s1">&#39;
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;: &quot;company&quot;, &quot;_id&quot;: &quot;1&quot; } }
+ { &quot;id&quot;: &quot;1&quot;, &quot;name&quot;: &quot;wantedly&quot;,   &quot;location&quot;: &quot;東京都港区白金台 3-19-6 白金台ビル3F&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;: &quot;company&quot;, &quot;_id&quot;: &quot;2&quot; } }
+ { &quot;id&quot;: &quot;2&quot;, &quot;name&quot;: &quot;heroku&quot;,     &quot;location&quot;: &quot;東京都千代田区丸の内2-7-2 JPタワー 12階&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;: &quot;company&quot;, &quot;_id&quot;: &quot;3&quot; } }
+ { &quot;id&quot;: &quot;3&quot;, &quot;name&quot;: &quot;higanworks&quot;, &quot;location&quot;: &quot;大阪府大阪市中央区道修町2-2-5 &quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;: &quot;company&quot;, &quot;_id&quot;: &quot;4&quot; } }
+ { &quot;id&quot;: &quot;4&quot;, &quot;name&quot;: &quot;hatena&quot;,     &quot;location&quot;: &quot;京都府京都市中京区御池通間之町東入高宮町206&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;: &quot;company&quot;, &quot;_id&quot;: &quot;5&quot; } }
+ { &quot;id&quot;: &quot;5&quot;, &quot;name&quot;: &quot;nulab&quot;,      &quot;location&quot;: &quot;福岡市博多区中洲5丁目5-13 KDC福岡ビル7F &quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;:  &quot;project&quot;, &quot;_parent&quot;: &quot;1&quot; } }
+ { &quot;id&quot;: &quot;1&quot;, &quot;title&quot;: &quot;iOS エンジニアウォンテッド！&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;:  &quot;project&quot;, &quot;_parent&quot;: &quot;1&quot; } }
+ { &quot;id&quot;: &quot;2&quot;, &quot;title&quot;: &quot;Ruby on Rails 得意なエンジニアウォンテッド！&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;:  &quot;project&quot;, &quot;_parent&quot;: &quot;2&quot; } }
+ { &quot;id&quot;: &quot;3&quot;, &quot;title&quot;: &quot;Ruby 好きウォンテッド！&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;:  &quot;project&quot;, &quot;_parent&quot;: &quot;3&quot; } }
+ { &quot;id&quot;: &quot;4&quot;, &quot;title&quot;: &quot;Chef と Ruby 書ける人ウォンテッド！&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;:  &quot;project&quot;, &quot;_parent&quot;: &quot;4&quot; } }
+ { &quot;id&quot;: &quot;5&quot;, &quot;title&quot;: &quot;Perl エンジニアウォンテッド！&quot; }
+ { &quot;index&quot;: { &quot;_index&quot;: &quot;wantedly-demo&quot;, &quot;_type&quot;:  &quot;project&quot;, &quot;_parent&quot;: &quot;5&quot; } }
+ { &quot;id&quot;: &quot;6&quot;, &quot;title&quot;: &quot;Java エンジニアウォンテッド！&quot; }
+&#39;</span>
+</pre>
+<h2>簡単なクエリと Sense</h2>
+
+<p>クエリを投げる段階に来ました。</p>
+
+<p><a href="http://localhost:9200/_plugin/marvel/sense/index.html">http://localhost:9200/_plugin/marvel/sense/index.html</a> にアクセスし、sense からクエリを実行していきます。</p>
+
+<p>ここでクエリの実行コンソール sense を簡単に紹介します。</p>
+
+<p><img src="/images/sense-c6578df4.png" /></p>
+
+<p>左側のエディタでクエリを書き、実行ボタンを押すと右側に結果が出力されます。</p>
+
+<p><img src="/images/sense_2-1aa1b20b.png" /></p>
+
+<p>エディタは、補完が聞いたり、Auto Indent されたりと非常に便利です。</p>
+
+<p><img src="/images/sense_3-46253ab3.png" /></p>
+
+<p>過去に実行したクエリも履歴から取得できるのも助かります。</p>
+
+<p>sense について学んだところで、クエリを投げて行きましょう。</p>
+
+<p>クエリ</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;simple_query_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w">
+      </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ruby&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>実行結果</p>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+   </span><span class="s2">&quot;took&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;timed_out&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;_shards&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;successful&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;failed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;max_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;project&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ZeFYdj3FT9CUoACzzXMnRw&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ruby 好きウォンテッド！&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;project&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hxLGgpBnQY2ho0CmlL_Utg&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.43920785</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ruby on Rails 得意なエンジニアウォンテッド！&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;project&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;40lOQV4iQ6-lF9ZuWLZ8Vw&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.375</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Chef と Ruby 書ける人ウォンテッド！&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></pre>
+<p>&ldquo;東京&rdquo; と検索</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;simple_query_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;_all&quot;</span><span class="p">],</span><span class="w">
+      </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>location フィールドに東京と検索</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;simple_query_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span><span class="w">
+      </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>company type を対象として location フィールドに東京と検索</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/company/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;simple_query_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span><span class="w">
+      </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>今回の場合、どれも検索結果を同じになりますが、</p>
+
+<ul>
+<li><code>_all</code> フィールドという全てのフィールドを含んだフィールドから検索</li>
+<li>あるフィールドに対して検索</li>
+<li>あるタイプに対して検索</li>
+</ul>
+
+<p>の方法がつかめたかと思います。フィールドやクエリキーワードを変えて色々試してみてください。</p>
+
+<p><a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-queries.html">他にも様々なクエリが用意されています。</a></p>
+
+<p>fuzzy クエリ（曖昧検索）</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/project/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;fuzzy&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;rubi&quot;</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;fuzziness&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>ids クエリ（ID のような完全一致かどうかみたいとき）</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;3&quot;</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<h2>フィルタ</h2>
+
+<p>次は、フィルタを使ってみましょう。フィルタは、</p>
+
+<ul>
+<li>クエリと違ってスコアリング（どれのドキュメントがどれくらいマッチしてるかの数値）に影響しない</li>
+<li>キャッシュされる</li>
+</ul>
+
+<p>という特徴があります。
+速度面やスコアリング面を考慮すると基本的には絞り込み条件などは filter 、検索キーワードとのマッチングには query を使うと良いでしょう。</p>
+
+<p>実際に、東京の会社をフィルタリングしてみます</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/company/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;term&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京&quot;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre><pre class="highlight json"><span class="p">{</span><span class="w">
+   </span><span class="s2">&quot;took&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;timed_out&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;_shards&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;successful&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;failed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;max_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MEvWty6iRre0iM2SQe4X1A&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京都港区白金台 3-19-6 白金台ビル3F&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;6AQTmjOCQXWuhfycvQ052A&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;heroku&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京都千代田区丸の内2-7-2 JPタワー 12階&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>2 つ出てきました。</p>
+
+<p>東京と福岡の 2 カ所でフィルタリングしてみます。（terms フィルタを利用）</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;terms&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">&quot;東京&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;福岡&quot;</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p><a href="http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-filters.html">フィルタもクエリと同様にたくさん用意されています。</a></p>
+
+<h2>親子関係</h2>
+
+<p>最後に、「ruby で検索してヒットする募集を出している東京の会社」といった検索をしてみましょう。</p>
+
+<p>親子関係などのドキュメント同士に関連性を持たせるには、</p>
+
+<ul>
+<li>Innter Object の利用</li>
+<li>nested document の利用</li>
+<li>parent/child フィールドの利用</li>
+</ul>
+
+<p>がありますが、Inner Object はあまり使いものにならないです。
+残り 2 つのざっとした比較をすると</p>
+
+<ul>
+<li>nested
+
+<ul>
+<li>メリット - クエリのパフォーマンスが高い</li>
+<li>デメリット - 更新が多いときのオーバーヘッドが大きい</li>
+<li>用途 - 名前の通り入れ子なデータを扱いたいとき、(rails でいう has_many では使わないと思う）</li>
+</ul></li>
+<li>parent/child
+
+<ul>
+<li>メリット - nested と違って更新時に問題を抱えてない</li>
+<li>デメリット - クエリのパフォーマンスが落ちる、メモリを多く要する</li>
+<li>用途 - 名前の通り親子関係のもの、RDB 的な relation はこちらに近い</li>
+</ul></li>
+</ul>
+
+<p>となり、今回はある会社がいくつかの募集を持っているという関係性なので parent/child を使います。</p>
+
+<p>（詳しくは <a href="http://www.elasticsearch.org/blog/managing-relations-inside-elasticsearch/">managing relations inside elasticsearch</a> を参照）</p>
+
+<p>parant/child を使うには、mapping のところで、特別なフィールド <code>_parent</code> を利用することを定義します。（さきほどの mapping 時に設定済み）</p>
+<pre class="highlight json"><span class="w">    </span><span class="s2">&quot;project&quot;</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;_parent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;integer&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;not_analyzed&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;analyzed&quot;</span><span class="p">,</span><span class="w">
+          </span><span class="s2">&quot;analyzer&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kuromoji_analyzer&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></pre>
+<p>そして、会社には、<code>_id</code> という elasticsearch 用の id フィールドに外部データの会社 ID を含めて追加し、募集は、<code>_parent</code> という elasticsearch 用の parent フィールドに親となる会社 ID を含めて追加します。</p>
+<pre class="highlight json"><span class="err">$</span><span class="w"> </span><span class="err">curl</span><span class="w"> </span><span class="err">-XPOST</span><span class="w"> </span><span class="err">&#39;http://localhost:</span><span class="mi">9200</span><span class="err">/_bulk&#39;</span><span class="w"> </span><span class="err">-d</span><span class="w"> </span><span class="err">\</span><span class="w">
+</span><span class="err">&#39;</span><span class="w">
+ </span><span class="err">#</span><span class="w"> </span><span class="err">Elasticsearch</span><span class="w"> </span><span class="err">のドキュメントの</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">に会社</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">を割り振っている</span><span class="w">
+ </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
+ </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly&quot;</span><span class="p">,</span><span class="w">   </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京都港区白金台 3-19-6 白金台ビル3F&quot;</span><span class="w"> </span><span class="p">}</span><span class="w">
+ </span><span class="err">...</span><span class="w">
+ </span><span class="err">#</span><span class="w"> </span><span class="err">_parent</span><span class="w"> </span><span class="err">フィールドに親となる会社ドキュメントの</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">を指定</span><span class="w">
+ </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;project&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_parent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
+ </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;iOS エンジニアウォンテッド！&quot;</span><span class="w"> </span><span class="p">}</span><span class="w">
+ </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;project&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;_parent&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
+ </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ruby on Rails 得意なエンジニアウォンテッド！&quot;</span><span class="w"> </span><span class="p">}</span><span class="w">
+ </span><span class="err">...</span><span class="w">
+</span><span class="err">&#39;</span><span class="w">
+</span></pre>
+<p>ruby というキーワードにマッチする募集を持った会社を検索してみます</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/company/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;has_child&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;project&quot;</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;filtered&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;query_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w">
+              </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ruby&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre><pre class="highlight json"><span class="p">{</span><span class="w">
+   </span><span class="s2">&quot;took&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;timed_out&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;_shards&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;successful&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;failed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;max_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京都港区白金台 3-19-6 白金台ビル3F&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;heroku&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京都千代田区丸の内2-7-2 JPタワー 12階&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;higanworks&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;大阪府大阪市中央区道修町2-2-5 &quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>and filter で location が東京というフィルタも合わせて会社にかけます</p>
+<pre class="highlight json"><span class="err">GET</span><span class="w"> </span><span class="err">/wantedly-demo/company/_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">&quot;filter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;and&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;term&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京&quot;</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">&quot;has_child&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;project&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">&quot;filtered&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">&quot;query_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">&quot;fields&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span><span class="w">
+                    </span><span class="s2">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ruby&quot;</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre><pre class="highlight json"><span class="p">{</span><span class="w">
+   </span><span class="s2">&quot;took&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;timed_out&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">&quot;_shards&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;successful&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;failed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">&quot;total&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;max_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">&quot;hits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京都港区白金台 3-19-6 白金台ビル3F&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wantedly-demo&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;company&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;_source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;heroku&quot;</span><span class="p">,</span><span class="w">
+               </span><span class="s2">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;東京都千代田区丸の内2-7-2 JPタワー 12階&quot;</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>これで「ruby で検索してヒットする募集を出している東京の会社」が検索出来るようになりました！</p>
+
+<h2>まとめ</h2>
+
+<p>ここまでで、</p>
+
+<ol>
+<li>elasticsearch 環境を準備し、</li>
+<li>どのようにデータを入れるかを決め（Mapping）</li>
+<li>どのように分割するか（検索でヒットさせるか）を決め（Analyzer）</li>
+<li>データを入れ、</li>
+<li>検索する</li>
+</ol>
+
+<p>と言った、Elasticsearch で検索を作るときの流れが追えたかなと思います。</p>
+
+<p>今回は検索クエリは sense 、mapping などの設定は curl から行いましたが、sense だけで完結させることも可能です。</p>
+
+<p><a href="http://ascii.asciimw.jp/books/books/detail/978-4-04-866202-4.shtml">あと、近々 Elasticsearch 本も出るようです、楽しみですね！</a></p>
+
+  </div>
+
+  <hr>
+  <div>
+    エンジニア採用中！<a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+  </div>
+  <hr>
+
+  <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2014/02/25/elasticsearch-at-wantedly-1.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="spesnova" data-url="http://engineer.wantedly.com/2014/02/25/elasticsearch-at-wantedly-1.html">Tweet</a>
+  <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2014/02/25/elasticsearch-at-wantedly-1.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+    <iframe src="http://ghbtns.com/github-btn.html?user=spesnova&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+  
+
+        </div>
+        <div class="col-xs-12 col-md-3 col-md-offset-1">
+          <div class="side-article">
+            <h4>エンジニア採用中！</h4>
+            <a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+          </div>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_8134' scrolling='no' src='https://www.wantedly.com/projects/8134/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_25674' scrolling='no' src='https://www.wantedly.com/projects/25674/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <div class="side-article">
+            <h4>最近の記事</h4>
+            <ul>
+              
+                <li><a href="/2015/08/06/hashicorp-product-meetup.html">Hashicorp Product Meetup というイベントを開きました</a></li>
+              
+                <li><a href="/2015/04/01/sync-kpt.html">チームでKPTをやってみました</a></li>
+              
+                <li><a href="/2014/10/06/swift-style-guide.html">Swiftコーディング規約@Wantedly</a></li>
+              
+                <li><a href="/2014/04/28/how-wantedly-make-ios-app.html">WantedlyではどうやってiOSアプリ開発しているのか</a></li>
+              
+                <li><a href="/2014/04/23/elasticsearch-at-wantedly.html">第 4 回 Elasticsearch 勉強会で発表してきました</a></li>
+              
+                <li><a href="/2014/03/31/angular-and-love.html">AngularJSを導入することと、恋のときめきと一歩踏み出す苦しみと。</a></li>
+              
+                <li><a href="/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html">Chef で Elasticsearch クラスタを EC2 上に作る</a></li>
+              
+                <li><a href="/2014/02/25/elasticsearch-at-wantedly-1.html">実践！Elasticsearch</a></li>
+              
+                <li><a href="/2014/02/23/internship-jun.html">Wantedlyで1週間インターンしました！</a></li>
+              
+                <li><a href="/2014/01/07/hackathon-kento.html">Wantedlyハッカソンに参加してきた(*｀･ω･´)ノ</a></li>
+              
+            </ul>
+          </div>
+          <!--
+            <div class="side-article">
+              <h4>Tags</h4>
+              <ul>
+                
+                  <li>- <a href="/tags/elasticsearch.html">elasticsearch</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-ec2-nginx.html">elasticsearch chef ec2 nginx</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-aws.html">elasticsearch chef aws</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vagrant.html">vagrant</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/packer.html">packer</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/serf.html">serf</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/consul.html">consul</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/terraform.html">terraform</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vault.html">vault</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/atlas.html">atlas</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/hashicorp.html">hashicorp</a> <small class="gray">(1)</small></li>
+                
+              </ul>
+            </div>
+          -->
+          <!--
+            <div class="side-article">
+              <h4>By Year</h4>
+              <ul>
+                
+                  <li>- <a href="/2015.html">2015</a> <small class="gray">(2)</small></li>
+                
+                  <li>- <a href="/2014.html">2014</a> <small class="gray">(9)</small></li>
+                
+                  <li>- <a href="/2013.html">2013</a> <small class="gray">(2)</small></li>
+                
+              </ul>
+            </div>
+          -->
+        </div>
+      </div>
+    </div>
+    <footer class="container center">
+      <hr/>
+      <p>2013 © Wantedly, Inc., All Rights Reserved.</p>
+    </footer>
+
+    <script src="/javascripts/application-da39a3ee.js" type="text/javascript"></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  </body>
+</html>

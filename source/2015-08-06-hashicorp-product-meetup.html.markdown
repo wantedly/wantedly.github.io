@@ -17,6 +17,8 @@ Hashicorp プロダクトに関する知見、悩み、展望 etc をフラン�
 
 どんな内容だったのかを簡単にまとめておきます。
 
+![](images/2015-08-06/intro.jpg)
+
 ![](images/2015-08-06/audience.jpg)
 
 ![](images/2015-08-06/lt_schedule.jpg)
@@ -88,5 +90,7 @@ ref: [TerraformのProviderを作った - tkak's tech blog](http://tkak.hatenablo
 ref: [fujiwara/stretcher](https://github.com/fujiwara/stretcher)
 
 ## 座談会
-LT のあとは 1 時間くらい皆で自由に話してました。この時間が勉強会の中で一番濃い時間かなと思います。
+LT のあとは 1 時間くらい皆で自由に話してました。この時間が勉強会の中で一番濃い時間かなと思います。（メモがなくてごめんなさい）
 
+## 最後に
+参加してくださった皆さん、イベント開くにあたって協力してくれた同僚の皆さんありがとうございました！

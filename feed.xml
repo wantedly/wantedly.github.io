@@ -5,16 +5,299 @@
   <id>http://engineer.wantedly.com/</id>
   <link href="http://engineer.wantedly.com/"/>
   <link href="http://engineer.wantedly.com/feed.xml" rel="self"/>
-  <updated>2015-08-06T01:17:00Z</updated>
+  <updated>2015-10-13T07:30:00Z</updated>
   <author>
     <name>@wantedly</name>
   </author>
+  <entry>
+    <title>Sketch速習集会</title>
+    <link rel="alternate" href="http://engineer.wantedly.com/2015/10/13/learn-sketch.html"/>
+    <id>http://engineer.wantedly.com/2015/10/13/learn-sketch.html</id>
+    <published>2015-10-13T07:30:00Z</published>
+    <updated>2015-10-13T18:34:02+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;デザイナーの宇佐美 &lt;a href="https://twitter.com/ui_pb"&gt;@Ui_Pb&lt;/a&gt; です。&lt;/p&gt;
+
+&lt;h2&gt;速習集会とは&lt;/h2&gt;
+
+&lt;p&gt;2015年10月1日に、 Wantedly のオフィスにてSketch速習会を開催しました！
+実は、過去にも何度か社外の方を数名招待する形で速習会を行っております。
+なぜ数名のみ紹介する形をとっているかというと、以前から定期的に行っていた社内勉強会に社外の人も数名招待しよう！という流れから速習会を定期開催するようになったからです。そのため、社外の方々だけでなく社内のエンジニアやデザイナーも毎回参加しています。&lt;/p&gt;
+
+&lt;h3&gt;過去に行った速習会&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://wantedly.connpass.com/event/17532/"&gt;JSONScheme速習会&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://wantedly.connpass.com/event/18018/"&gt;きれいなCSS速習会&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://wantedly.connpass.com/event/20077/"&gt;UML速習会&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://wantedly.connpass.com/event/19585/"&gt;データ解析ツール速習会 TreasuData/DOMO編&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://wantedly.connpass.com/event/19067/"&gt;Docker速習会&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;今回やったこと&lt;/h3&gt;
+
+&lt;p&gt;今回の速習会では、Sketchファイルの基本的な編集方法とSketchファイルを貰った時に意識して見て欲しいポイントを伝えることを目的に行いました。
+Wantedlyではエンジニア、デザイナーともにSketchという共通のツールを使うことで、デザイナーとエンジニア間のコミュニケーションコストを下げよう！という取り組みを行っていることからこのテーマを選んだためです。&lt;/p&gt;
+
+&lt;p&gt;速習会中は、デザイナーでない方々にも多くご参加いただいたので、Sketchを「どう使っているか」を実際に見ていただき、
+参加していた方々ご自身に実践していただくことで使い方を知ってもらうよう意識してSketchについての発表と実践する機会を設けさせていただきました！&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/2015-10-13/1-14da23ee.png" /&gt;&lt;/p&gt;
+
+&lt;h2&gt;簡単に自己紹介すると&lt;/h2&gt;
+
+&lt;p&gt;今年の3月まで高校に通っていて、6月からWantedlyにインターンとしてジョイン。9月からデザイナーとして社員になりました。WantedlyではWeb、iOSのUIデザインをメインにやっていて、フロントエンドも書きます。最近はRailsも書くようになりました。個人ではグラフィックアニメーションや写真、DTPなど幅広くやっています。&lt;/p&gt;
+
+&lt;h2&gt;こんなこと話しました&lt;/h2&gt;
+
+&lt;p&gt;デザインツールを使ったことのないエンジニアが多かったので、アートボードの作り方から解説をしました。基本的には導入を丁寧にやってある程度からはトライアンドエラーの繰り返しがツールをの使い道を身につけるにはいいと思っています。なので、スライドでは基礎の操作方法の解説が終わったら難しめの課題を出して、試行錯誤をしてSketchを使ってもらう形になっています。使い方の特徴としては実装するところに重点を置いて、Sketchファイルを作っていくところです。時間的な問題で載せられなかったことがたくさんあるので、またいつかここに書きたいと思います。&lt;/p&gt;
+
+&lt;p&gt;&lt;iframe src="//www.slideshare.net/slideshow/embed_code/key/a2iQt2At1xbaiQ" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen&gt; &lt;/iframe&gt; &lt;div style="margin-bottom:5px"&gt; &lt;strong&gt; &lt;a href="//www.slideshare.net/core619/sketchwantedly" title="Sketch速習会@Wantedly" target="_blank"&gt;Sketch速習会@Wantedly&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href="//www.slideshare.net/core619" target="_blank"&gt;Ryo Usami&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;
+
+&lt;h2&gt;プラグイン&lt;/h2&gt;
+
+&lt;p&gt;Sketchを使って高速にデザインを作るにはプラグインが不可欠です。僕が普段使っているプラグインの一部を紹介します。詳しい操作方法は各プラグインのページを参照してください。&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href="https://github.com/soutaro/align-text-baseline-sketch-plugin"&gt;Align Text Baseline&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Sketchでは日本語のフォントボディーの解釈にバグがあり、&lt;code&gt;line-height&lt;/code&gt;が使い物になりません。またその影響で、&lt;code&gt;Text&lt;/code&gt;のheightが正確な値になっていないため、要素内で垂直中央揃えが効きません。このプラグインはその問題を解決するために作られたもので、ボタンなどを作る時に重宝します。&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href="https://github.com/timuric/Content-generator-sketch-plugin"&gt;Content-generator-sketch-plugin-master&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Sketchで作った要素に人名、画像などをまとめて流し込めるプラグインです。Wantedlyでは各募集でイメージ画像を大きく掲載しているので、そこのイメージを再現するのに事前に何枚か募集の画像をダウンロードしておいて自動で流し込めるようにしています。&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href="https://github.com/andrewfiorillo/sketch-palettes"&gt;Sketch Palettes&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;SketchにはカラーパレットがSketchアプリ全体に紐づけられている&lt;code&gt;Global Colors&lt;/code&gt;とファイルごとに設定する&lt;code&gt;Documents Colors&lt;/code&gt;があります。Sketch自体のテンプレート機能を使って&lt;code&gt;Documents Colors&lt;/code&gt;で頑張ることもできますが、何かと不便な時もあるので、プロジェクトごとにカラーパレットを書き出しておいて、使うときにimportすることにしています。&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href="https://github.com/utom/sketch-measure"&gt;Sketch Measure&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;width, height, mergin, padding, font-size,colorなど実装の際に確認するパラペーターを可視化することができます。相手がsketchを持ってない場合や実装する人に細かく指示したい場合などに使います。&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href="https://github.com/usa619/wantedly-color-picker"&gt;Wantedly Color Picker&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;WantedlyではSassでCSSを書いていて、カラーパレットの変数名で色指定を行っています。実装するときにカラーコードから変数名を調べるのがめんどくさかったので、自動で変数名を取得するプラグインを作りました！&lt;/p&gt;
+
+&lt;h2&gt;その他&lt;/h2&gt;
+
+&lt;h3&gt;懇親会&lt;/h3&gt;
+
+&lt;p&gt;今回は、焼きそばや唐揚げ、ピザなどの軽食を準備させて頂きました！
+社外の方々と話す貴重な機会となり、速習会に参加した社内エンジニアも楽しめました。
+ご参加いただいた皆様に感謝です！&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/2015-10-13/4-168e14c4.jpg" /&gt;&lt;/p&gt;
+
+&lt;h3&gt;最後に&lt;/h3&gt;
+
+&lt;p&gt;Wantedlyでは引き続き、2週間に1度のペースで速習会を行っています。Connpassにて開催の1週間前から募集を開始しております。
+今後も、様々なテーマの速習会を開催していく予定ですので、ご興味のある方は是非ご応募ください！
+&lt;br&gt;ref &lt;a href="http://wantedly.connpass.com/"&gt;ConnpassのWantedlyグループ&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>メッセージングアプリSync開発の舞台裏(iOS)</title>
+    <link rel="alternate" href="http://engineer.wantedly.com/2015/09/09/sync-messenger-ios-project.html"/>
+    <id>http://engineer.wantedly.com/2015/09/09/sync-messenger-ios-project.html</id>
+    <published>2015-09-09T03:00:00Z</published>
+    <updated>2015-09-09T14:26:09+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;ビジネスシーンで使えるメッセージングサービス&lt;a href="https://www.wantedly.com/sync"&gt;Sync&lt;/a&gt;をローンチしました。
+その開発の舞台裏をiOSを中心に紹介します。開発のスケジュール、リソース、アプリの規模や進め方など参考になれば幸いです。&lt;/p&gt;
+
+&lt;h2&gt;サービスについて&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href="https://www.wantedly.com/sync"&gt;Sync&lt;/a&gt;は社内・社外を問わずプロジェクトやビジネスコミュニケーションがより良い体験なることをゴールに開発しました。以下のURLよりご利用頂けます。
+&lt;a href="https://m.wantedly.com/"&gt;Web版&lt;/a&gt; , &lt;a href="https://wtd-sync-update-channel.herokuapp.com/download/latest?platform=darwin&amp;amp;amp;channel=production"&gt;Desktop版(OnlyOSX)&lt;/a&gt; , &lt;a href="https://itunes.apple.com/jp/app/sync-group-messaging-app-for/id1014462508"&gt;iPhone&lt;/a&gt; , &lt;a href="https://play.google.com/store/apps/details?id=com.wantedly.android.sync"&gt;Andorid&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img title="Sync___成果を生み出すグループメッセージアプリ.jpg" alt="Sync___成果を生み出すグループメッセージアプリ.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/4943/dff18989-a4d7-c754-43d3-4690566ac111.jpeg" /&gt;&lt;/p&gt;
+
+&lt;h2&gt;アーキテクチャ&lt;/h2&gt;
+
+&lt;p&gt;&lt;img title="201500825_Sync_iOSの開発舞台裏_key.jpg" alt="201500825_Sync_iOSの開発舞台裏_key.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/4943/c835ae0e-092e-4875-0288-ecf80e54857a.jpeg" /&gt;&lt;/p&gt;
+
+&lt;h3&gt;サーバ&lt;/h3&gt;
+
+&lt;p&gt;既存の&lt;a href="https://www.wantedly.com"&gt;Wantedly&lt;/a&gt;サーバに並列して、&lt;a href="https://m.wantedly.com"&gt;Sync&lt;/a&gt;のサービスをマイクロサービスアーキテクチャ風に構築しています。要素技術や構成はサービスの初期フェイズにおけるスピディーな開発とスモールな運用に適しているものを選定しています。&lt;/p&gt;
+
+&lt;p&gt;AccountServerが認証やユーザ情報管理を、APIServerが主要なデータのやり取りをREST形式で提供してます。共にRailsで構築しており&lt;a href="http://cookpad.com/"&gt;Cookpad&lt;/a&gt;がOSSで提供している、RESTfulWebAPIを素早くパワフルに開発するためのライブラリ&lt;a href="https://github.com/cookpad/garage"&gt;Garage&lt;/a&gt;を採用しています。サーバはAPIのみ提供しておりHTMLをレンダリングするサーバはありません。&lt;/p&gt;
+
+&lt;p&gt;メッセージの送受信に必要なリアルタイム通信部分は&lt;a href="https://www.firebase.com/"&gt;Firebase&lt;/a&gt;というGoogle傘下のPaaSを利用しています。リアルタイム通信をどのような要素技術を活用するか&lt;a href="https://ja.wikipedia.org/wiki/WebSocket"&gt;WebSocket&lt;/a&gt;や&lt;a href="https://en.wikipedia.org/wiki/Server-sent_events"&gt;Server Sent Events(SSE)&lt;/a&gt;、&lt;a href="https://en.wikipedia.org/wiki/Comet_(programming"&gt;LongPolling&lt;/a&gt;)などを検討した結果、&lt;a href="https://www.firebase.com/"&gt;Firebase&lt;/a&gt;を選択しました。プッシュ系・プル系のリアルタイム配信では最新の更新情報を受領しても差分更新なのでクライアント側のデータ管理が大変になりがちです。&lt;a href="https://www.firebase.com/"&gt;Firebase&lt;/a&gt;は内部では&lt;a href="https://ja.wikipedia.org/wiki/WebSocket"&gt;WebSocket&lt;/a&gt;で通信していますが、そこがうまく隠蔽されサーバとクライアントのデータをリアルタイムで同期してくれるので管理の煩わすさから開放されます。また&lt;a href="https://nodejs.org/en/"&gt;Node.js&lt;/a&gt;/&lt;a href="http://socket.io/"&gt;Socket.IO&lt;/a&gt;などで構築したサーバ群はスケールや運用を行うのはとても骨が折れますがPaaSなので運用面の負担も軽減できます。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Account Server / &lt;a href="https://github.com/rails/rails"&gt;Rails&lt;/a&gt; &amp;amp; &lt;a href="https://github.com/cookpad/garage"&gt;Garage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;API Server / &lt;a href="https://github.com/rails/rails"&gt;Rails&lt;/a&gt; &amp;amp; &lt;a href="https://github.com/cookpad/garage"&gt;Garage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Image Server / &lt;a href="https://github.com/sinatra/sinatra/"&gt;Sinatra&lt;/a&gt; &amp;amp; &lt;a href="http://www.imagemagick.org/script/index.php"&gt;ImageMagick&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Realtime Server / &lt;a href="https://www.firebase.com/"&gt;Firebase&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;クライアント&lt;/h3&gt;
+
+&lt;p&gt;クライアントはマルチプラットフォームに対応してサービスを提供しています。Web&amp;amp;Desktopはシングルページアプリケーション（ &lt;a href="https://angularjs.org/"&gt;AngularJS&lt;/a&gt; &amp;amp; &lt;a href="http://electron.atom.io/"&gt;Electron&lt;/a&gt; )で構築しています。Desktop版はWindows版が開発中でOSXのみ利用頂けます。iOSはSwiftの関数的な機能を活用して開発しています。 AndroidはJavaで開発しています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Web&amp;amp;Desktop / &lt;a href="https://angularjs.org/"&gt;AngularJS&lt;/a&gt; v1.4, &lt;a href="http://electron.atom.io/"&gt;Electron&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;iOS / Xcode6.4, Swift v1.2 iOS8〜&lt;/li&gt;
+&lt;li&gt;Android / Android Studio v1.3.2, Android v4.0.3〜5.1.1&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;チーム&lt;/h2&gt;
+
+&lt;p&gt;チーム編成は最大時で以下のような体制で常時フルコミットで参画してるのはそのうちの５名ほどです。iOSの体制が厚いので新規機能を率先して開発していました。&lt;/p&gt;
+
+&lt;p&gt;&lt;img title="201500825_Sync_iOSの開発舞台裏_key.jpg" alt="201500825_Sync_iOSの開発舞台裏_key.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/4943/09962764-0e16-672e-ff15-08927d239d65.jpeg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Product Owner &amp;amp; API Server
+CTO @kawasy&lt;/p&gt;
+
+&lt;p&gt;Web &amp;amp; Desktop
+Engineer @imaimiami / @creasty&lt;/p&gt;
+
+&lt;p&gt;iOS
+Engineer @susieyy / @morizotter / &lt;a href="https://github.com/smztko"&gt;@smztko&lt;/a&gt; / Desiner @ferasyasin@github&lt;/p&gt;
+
+&lt;p&gt;Android
+Engineer @cattaka / Desiner &lt;a href="https://github.com/yanAoym"&gt;@yanAoym&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;fastlane
+Engineer @hedjirog&lt;/p&gt;
+
+&lt;h2&gt;スケジュール（iOS）&lt;/h2&gt;
+
+&lt;p&gt;&lt;img title="201500825_Sync_iOSの開発舞台裏_key.jpg" alt="201500825_Sync_iOSの開発舞台裏_key.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/4943/84c7910f-0efe-cb67-7246-888cb28e0c2b.jpeg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;サービスの開発は５月からスタートしiOSは３ヶ月間で申請まで行いました。iOSの開発リソースは６人月ぐらいです。最初の１ヶ月はプロトタイプ開発期間としてコードレビューもなく１人ででゴリゴリとコードを書きつつ、基本的な通信部分やMVVMアーキテクチャの実装、共通ロジックの用意などを行いました。本開発の始まった６月からは２名のエンジニアが追加となりプルリクエストのコードはレビューを行う体制で進めました。&lt;/p&gt;
+
+&lt;h2&gt;進め方&lt;/h2&gt;
+
+&lt;p&gt;上記のスケジュール図のようなざっくりな工程表と、要件一覧をもとにプロジェクトがスタートしました。２週間を１イテレーションとしてマイルストーンにタスクを入れてゆるいアジャイル風な運営で進めています。タスクをイテレーションの最初にある程度担当者にアサインはしつつも、進み具合でアサインを変更したり、マイルストーン間のタスクのを入れ替えたりと臨機応変さとスピード感を重視しています。実装を進めていく中で当初計画の要件に対してフィードバックを元に大きく機能を追加したり、実装済みでも大きく機能を削ったりと、より良い体験を作り上げることをゴールにドラスティックな変更を行いつつ開発しました。&lt;/p&gt;
+
+&lt;p&gt;ミーティングを必要最低限に抑えることでコーディングの時間をより多く確保しました。実装が始まる前の要件定義の段階で集中的にミーティングを重ねプロトタイプやデモを作って認識を合わせつつサービスの具体的なイメージをしっかり共有しました。実装の具体的な個々の仕様については、GitHubイシュー上で非同期で行い議論の証跡と結論や次のアクションを明文化しました。&lt;/p&gt;
+
+&lt;h2&gt;ドッグフーディングとユーザフィードバック&lt;/h2&gt;
+
+&lt;p&gt;&lt;img title="dogfooding.jpg" alt="dogfooding.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/4943/74aa07b7-9593-97f1-c144-d9afe60ee533.jpeg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;ドッグフーディング（Dogfooding）とは、自社サービスを開発者自らが日常的に利用して問題点を早期に発見したりユーザー視点で品質やＵＸを確認することです。&lt;/p&gt;
+
+&lt;p&gt;開発開始から２週間でチームで利用していた&lt;a href="https://slack.com/"&gt;Slack&lt;/a&gt;から乗り換えることを目標にしました。自分たちから積極的に利用することで開発者である自分たちからまずファンになることを大事にしました。１ヶ月ごろから社内の他のチームも&lt;a href="https://slack.com/"&gt;Slack&lt;/a&gt;から乗り換えてもらい、たくさんのフィードバックを受けて安定性の向上と改善に勤めました。社内で実績を築いたことで２ヶ月ごろから身近な社外の方々にも声をかけて使ってもらい、さらに多くのフィードバックを頂きました。&lt;/p&gt;
+
+&lt;h2&gt;メトリクス（iOS）&lt;/h2&gt;
+
+&lt;p&gt;2015/09/05 時点です。開始からだいたい４ヶ月（８０営業日ぐらい）ほど経過しています。&lt;/p&gt;
+
+&lt;h4&gt;Github上の主要なメトリクス&lt;/h4&gt;
+
+&lt;p&gt;プルリクエストはできるだけ小さい単位で送り合ってコンフリクト軽減とコードレビューしやすいように工夫をしています。プルリクエストがほとんどないプロトタイプ期間を省くと１日平均１８件ぐらいになります。仕様やタスク、バグレポートなど明文化するものはすべてGitHubのイシューにして情報をすべてリポジトリ内で一元的に管理しています。すべてのプロジェクト情報がGitHub内ある、GitHub探せば見つかる状態を作っています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;4,700 Commits&lt;/li&gt;
+&lt;li&gt;1,050 Pull Requests Closed&lt;/li&gt;
+&lt;li&gt;864 Isusses Closed 83 Open ( Total 947 )&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;イシューの内訳です。Bugのイシューが一番多いです。Feedbackはローンチ前にTestFlightとFabricBetaで社内外に配布して使ってもらったフィードバックの数です。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Improve 289 (30%)&lt;/li&gt;
+&lt;li&gt;Bug 492 (51%)&lt;/li&gt;
+&lt;li&gt;Feedback 64 (7%)&lt;/li&gt;
+&lt;li&gt;Other(メモ、仕様、アイデアetc) 102 (12%)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;コードステップ数（iOS）&lt;/h4&gt;
+
+&lt;p&gt;Swiftのコードが１４１ファイル、１万９千行ほどですがフルコンパイルにPodsライブラリも合わせて４分!!ほどかかります。&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;cloc
+     288 text files.
+     285 unique files.
+      74 files ignored.
+
+http://cloc.sourceforge.net v 1.64  &lt;span class="nv"&gt;T&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1.36 s &lt;span class="o"&gt;(&lt;/span&gt;157.4 files/s, 18819.8 lines/s&lt;span class="o"&gt;)&lt;/span&gt;
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Swift                          141           3157           1698          18708
+JSON                            66              0              0           1488
+Objective C                      3             90            116            212
+C/C++ Header                     4             28             27             63
+-------------------------------------------------------------------------------
+SUM:                           214           3275           1841          20471
+-------------------------------------------------------------------------------
+&lt;/pre&gt;
+&lt;h4&gt;画面数&lt;/h4&gt;
+
+&lt;p&gt;ViewControllerは平均３００行（空行なし）なので、ViewControllerだけで１万２千行になり全体の６４％になります。ストリーボードのファイルはコンフリクトしやすく１つのファイルにたくさんの画面を作成すると非常に遅くなるので細かく分割しています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;約２５画面&lt;/li&gt;
+&lt;li&gt;４２ ViewControllers&lt;/li&gt;
+&lt;li&gt;２３ Storyboards&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;ライブラリ数&lt;/h4&gt;
+
+&lt;p&gt;Swiftの機能を活かしたライブラリを積極的に取り入れています。Swiftライブラリを&lt;a href="https://cocoapods.org/"&gt;CocoaPods&lt;/a&gt;でインストールすると、コンパイル時間が長くなるので事前にフレームワークを作成できる&lt;a href="https://github.com/Carthage/Carthage"&gt;Carthage&lt;/a&gt;も利用しています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/Carthage/Carthage"&gt;Carthage&lt;/a&gt; 7 Swiftライブラリ&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://cocoapods.org/"&gt;CocoaPods&lt;/a&gt; 3 Swiftライブラリ / 33 ObjCライブラリ&lt;/li&gt;
+&lt;li&gt;Total 43 ライブラリ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Swiftコンパイル時間&lt;/h2&gt;
+
+&lt;p&gt;&lt;img title="201500825_Sync_iOSの開発舞台裏_key.jpg" alt="201500825_Sync_iOSの開発舞台裏_key.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/4943/ea8b7162-d30e-fb17-25c8-25e920afe31a.jpeg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;MacBookPro (15-inch, Late 2013)でフルコンパイル時間が４分以上もかかっていたので以下の施策を行いました。&lt;/p&gt;
+
+&lt;h4&gt;MacBookProを２台体制で開発する&lt;/h4&gt;
+
+&lt;p&gt;レビューなどでブランチを切り替えると、Podsのインストールや、フルコンパイルが必要だったりするので２台体制で行いました。コンパイル時間も長かったので、待ち時間の有効活用に繋がり効率的に開発を進めることができました。&lt;/p&gt;
+
+&lt;h4&gt;コンパイル時間を短縮する&lt;/h4&gt;
+
+&lt;p&gt;４分以上コンパイルに必要になったころから、コンパイル時間の短縮化を行いました。４分１０秒からー８０秒の２分５０秒になりました。 &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;型推論しないで型を明記する （ArrayやDictionaryも）&lt;/li&gt;
+&lt;li&gt;複数のswiftファイルを一つにまとめる&lt;/li&gt;
+&lt;li&gt;継承しないclassはfinalを明記する&lt;/li&gt;
+&lt;li&gt;Cartage対応のライブラリはPodsでインストールしない&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;fastlane（iOS）&lt;/h2&gt;
+
+&lt;p&gt;&lt;img title="201500825_Sync_iOSの開発舞台裏_key.jpg" alt="201500825_Sync_iOSの開発舞台裏_key.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/4943/ffcbacf4-6bc7-72ae-decb-827ace76f764.jpeg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://fastlane.tools/"&gt;fastlane&lt;/a&gt;を活用してビルド、テスト、配布までの工程を自動化しました。プルリクエストがレビューされマスターにマージされる度に自動で配布されます。常に最新のマスターの状態のリリースビルドを手元で常に確認できるようになりました。また配布が容易になることで、社内へのドックフーディング、社外へのユーザフィードバックなどローンチ前にたくさんの方に使ってもらいやすくなりました。&lt;/p&gt;
+
+&lt;p&gt;マージマスターの配布はエンジニアとテスターに留め、ある程度安定していることを確認してから２，３日に一度社内外へ配布していました。&lt;/p&gt;
+
+&lt;h2&gt;まとめ&lt;/h2&gt;
+
+&lt;p&gt;このような背景で作られたサービスがどんなのか気になってくれ方是非使ってみてください！&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.wantedly.com/sync"&gt;Syncについて&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://m.wantedly.com/"&gt;Web版&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://wtd-sync-update-channel.herokuapp.com/download/latest?platform=darwin&amp;amp;amp;channel=production"&gt;Desktop版(OnlyOSX)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Windows版は開発中です&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://itunes.apple.com/jp/app/sync-group-messaging-app-for/id1014462508"&gt;iPhone&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://play.google.com/store/apps/details?id=com.wantedly.android.sync"&gt;Andorid&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>Hashicorp Product Meetup というイベントを開きました</title>
     <link rel="alternate" href="http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html"/>
     <id>http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html</id>
     <published>2015-08-06T01:17:00Z</published>
-    <updated>2015-08-06T23:31:13+09:00</updated>
+    <updated>2015-09-09T14:26:09+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -120,7 +403,7 @@ Golang 使う人には有用な内容だったし、合わせて Hashicorp が�
     <link rel="alternate" href="http://engineer.wantedly.com/2015/04/01/sync-kpt.html"/>
     <id>http://engineer.wantedly.com/2015/04/01/sync-kpt.html</id>
     <published>2015-04-01T10:02:00Z</published>
-    <updated>2015-08-06T23:31:13+09:00</updated>
+    <updated>2015-09-09T14:26:09+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -219,7 +502,7 @@ Golang 使う人には有用な内容だったし、合わせて Hashicorp が�
     <link rel="alternate" href="http://engineer.wantedly.com/2014/10/06/swift-style-guide.html"/>
     <id>http://engineer.wantedly.com/2014/10/06/swift-style-guide.html</id>
     <published>2014-10-05T15:00:00Z</published>
-    <updated>2015-08-06T23:31:13+09:00</updated>
+    <updated>2015-09-09T14:26:09+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -256,7 +539,7 @@ Golang 使う人には有用な内容だったし、合わせて Hashicorp が�
     <link rel="alternate" href="http://engineer.wantedly.com/2014/04/28/how-wantedly-make-ios-app.html"/>
     <id>http://engineer.wantedly.com/2014/04/28/how-wantedly-make-ios-app.html</id>
     <published>2014-04-27T15:00:00Z</published>
-    <updated>2015-08-06T23:31:13+09:00</updated>
+    <updated>2015-09-09T14:26:09+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -321,139 +604,6 @@ Golang 使う人には有用な内容だったし、合わせて Hashicorp が�
 Wantedlyの他にはヴァズ株式会社 (SnapDish)、エニグモ (BUYMA)、はてな、nanapi (アンサー)、
 マインドパレット (Snapeee)さんが発表していました。
 そのうち主催のほうで他の方の発表のまとめも公開されると思います！&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>第 4 回 Elasticsearch 勉強会で発表してきました</title>
-    <link rel="alternate" href="http://engineer.wantedly.com/2014/04/23/elasticsearch-at-wantedly.html"/>
-    <id>http://engineer.wantedly.com/2014/04/23/elasticsearch-at-wantedly.html</id>
-    <published>2014-04-23T00:19:00Z</published>
-    <updated>2015-08-06T23:31:13+09:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;エンジニアの内田です（@spesnova）です。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://elasticsearch.doorkeeper.jp/events/8865"&gt;リクルートで行われた第 4 回 Elasticsearch 勉強会&lt;/a&gt;にて「Elasticsearch at Wantedly」というタイトルで発表してきました。Wantedly で Elasticsearch をどのように使ってるかを紹介させてもらっています。&lt;/p&gt;
-
-&lt;script async class="speakerdeck-embed" data-id="c8393bf0ac180131772a5a7f1b753ce9" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
-
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-&lt;p&gt;Elasticsearch ステッカーもらった :)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/images/es-sticker-daed1e32.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;勉強会の様子は、主催の &lt;a href="https://twitter.com/johtani"&gt;@johtani&lt;/a&gt; さんの&lt;a href="http://blog.johtani.info/blog/2014/04/21/hold-on-4th-elasticsearch-jp/"&gt;ブログ&lt;/a&gt;にまとまってます（他の方が書いてくれた参加レポートへのリンクも付いてます）&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>AngularJSを導入することと、恋のときめきと一歩踏み出す苦しみと。</title>
-    <link rel="alternate" href="http://engineer.wantedly.com/2014/03/31/angular-and-love.html"/>
-    <id>http://engineer.wantedly.com/2014/03/31/angular-and-love.html</id>
-    <published>2014-03-30T15:00:00Z</published>
-    <updated>2015-08-06T23:31:13+09:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h4&gt;春です。&lt;/h4&gt;
-
-&lt;p&gt;こんにちは、春ですね。&lt;/p&gt;
-
-&lt;p&gt;いつから春なんだっけと思って、近くの人に聞いてみたら「花粉が飛んだら春」だそうです。
-来てますね、春。&lt;/p&gt;
-
-&lt;p&gt;春には花粉以外にも、「ときめき」が飛び交います。
-朝のあの子の挨拶だったり、最近通い始めたスタバの店員さんの笑顔、そして、
-Angular.jsのUIバインディングのスマートさにときめきます。&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="ios_image" src="/images/2014-03-31/angular-88b549d2.gif" /&gt;&lt;/p&gt;
-
-&lt;p&gt;「あの子と話せたらハッピーだろうな」、「うちのサイトのDOMもバリバリ動かしたらカッコいいだろうな」
-とか春の陽気はポジティブな妄想を誘います。
-ただ、その妄想を現実に落としこむは簡単なことではなく、冬までに降り積もったシガラミが邪魔をします。
-中学時代に奇跡的にもらったラブレター、押入れに密かにしまわれているトレーディングカード、
-そして、jQueryで書かれたコードだったりが邪魔します。でも、変わらなくちゃ手に入れられないものもあります。&lt;/p&gt;
-
-&lt;h4&gt;AngularJSを導入する&lt;/h4&gt;
-
-&lt;p&gt;AngularJSを導入するにあたって、
-まっさらな状態からの構築なら良いのですが、既存のサービスに導入となると戸惑います。
-自分も最初はjQueryとぶつかって難しいよねとか思ってました。&lt;/p&gt;
-
-&lt;p&gt;でも、意外とそうでもないです。&lt;/p&gt;
-
-&lt;p&gt;例えば、あなたのサイトで使われまくっている&lt;code&gt;cool-select&lt;/code&gt;という超coolなパーツがあったとして、&lt;/p&gt;
-
-&lt;p&gt;JS&lt;/p&gt;
-&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
-  &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.cool-select&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;change&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
-    &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Cool!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-  &lt;span class="p"&gt;});&lt;/span&gt;
-&lt;span class="p"&gt;});&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;HTML&lt;/p&gt;
-&lt;pre class="highlight html"&gt;&lt;span class="nt"&gt;&amp;lt;li&lt;/span&gt; &lt;span class="na"&gt;ng-repeat=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tool in tools&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;animate&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;span&amp;gt;&lt;/span&gt;{{tool.name}}&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;select&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;cool-select&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;option&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;どのくらい好き？&lt;span class="nt"&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;option&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;normal&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;いや、普通に&lt;span class="nt"&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;option&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;straw&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;ストローで飲むくらい好き&lt;span class="nt"&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;/select&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;実装のされ方にもよると思いますが、この&lt;code&gt;ng-repeat&lt;/code&gt;の中で使用しているonChangeイベントはbindされません。
-ブラウザすら&lt;code&gt;Cool!&lt;/code&gt;と言ってくれません。悲しい。&lt;/p&gt;
-
-&lt;p&gt;こういう場合はDirectiveとして取り込んであげればいいと思います。&lt;/p&gt;
-
-&lt;p&gt;JS&lt;/p&gt;
-&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;ToolApp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;directive&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;coolSelect&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="na"&gt;restrict&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="na"&gt;link&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;postLink&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;scope&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;element&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;attrs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-      &lt;span class="nx"&gt;element&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;change&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
-        &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;attrs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;bigSelect&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-      &lt;span class="p"&gt;});&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-  &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="p"&gt;});&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;restrict: &amp;#39;A&amp;#39;&lt;/code&gt;は属性指定です。&lt;code&gt;big-select&lt;/code&gt;という属性のある要素を指すことになります。
-&lt;code&gt;link&lt;/code&gt;は&lt;code&gt;ng-repeat&lt;/code&gt;のイテレーションのたびに呼び出されます。  &lt;/p&gt;
-
-&lt;p&gt;AngularJSはjQueryが読み込まれいる場合、&lt;code&gt;angular.element&lt;/code&gt;からjQueryのfunctionを呼び出せます。
-なのでjQueryの時のコードと同じように&lt;code&gt;.on&lt;/code&gt;でbindしてます。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://docs.angularjs.org/api/ng/function/angular.element"&gt;AngularJS: API: angular.element&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;HTML&lt;/p&gt;
-&lt;pre class="highlight html"&gt;&lt;span class="nt"&gt;&amp;lt;li&lt;/span&gt; &lt;span class="na"&gt;ng-repeat=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tool in tools&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;animate&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;span&amp;gt;&lt;/span&gt;{{tool.name}}&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;select&lt;/span&gt; &lt;span class="na"&gt;big-select=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Nice&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;ng-model=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;tool.like&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;option&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;どのくらい好き？&lt;span class="nt"&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;option&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;normal&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;いや、普通に&lt;span class="nt"&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
-    &lt;span class="nt"&gt;&amp;lt;option&lt;/span&gt; &lt;span class="na"&gt;value=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;straw&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;ストローで飲むくらい好き&lt;span class="nt"&gt;&amp;lt;/option&amp;gt;&lt;/span&gt;
-  &lt;span class="nt"&gt;&amp;lt;/select&amp;gt;&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;これで&lt;code&gt;onChange&lt;/code&gt;イベントをbindすることが出来ました。
-おまけで&lt;code&gt;cool-select&lt;/code&gt;に値を渡せるようにしています。&lt;/p&gt;
-
-&lt;h4&gt;補足&lt;/h4&gt;
-
-&lt;p&gt;今回使用したコードはすべて以下にあります。動くと思います。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://gist.github.com/imaimiami/9722407"&gt;https://gist.github.com/imaimiami/9722407&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;AngularJS入門は結局公式が良かったです。良い記事があれば教えてください。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://docs.angularjs.org/tutorial"&gt;AngularJS: Tutorial: Tutorial&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;また、冒頭のGIF画像は、チームの生産性のためならばどんなチャレンジもいとわない
-&lt;a href="/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html"&gt;同僚&lt;/a&gt;に敬意を表したものです。&lt;/p&gt;
-
-&lt;p&gt;以上、また会いましょう！&lt;/p&gt;
 </content>
   </entry>
 </feed>

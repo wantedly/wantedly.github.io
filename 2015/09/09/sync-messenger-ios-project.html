@@ -1,0 +1,368 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メッセージングアプリSync開発の舞台裏(iOS) - Wantedly Engineer Blog</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/favicon-8030cb16.png" rel="icon" type="image/png">
+    <meta property="fb:app_id" content="234170156611754">
+    <meta property="og:image" content="http://engineer.wantedly.com/wantedly-sticker2-9bf5acdc.png">
+    <link href="/stylesheets/application-5562e3f2.css" media="screen" rel="stylesheet" type="text/css" />
+    <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12847756-21']);
+    _gaq.push(['_setDomainName', 'wantedly.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </head>
+  <body>
+    <header class="jumbotron cover-image center">
+      <h1 class="graduate"><a href="/">Wantedly Engineer Blog</a></h1>
+      <p>Wantedly 開発チームブログ</p>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8">
+            <div class="page-header clearfix">
+    <h2>
+      <div class="article-title">
+        メッセージングアプリSync開発の舞台裏(iOS)
+      </div>
+    </h2>
+    <div class="article-avatar">
+      <a href="https://www.wantedly.com/users/631708">
+        <img src="https://www.wantedly.com/users/631708/avatar" class="avatar" />
+      </a>
+      <span class='date'> 9-Sep-2015</span>
+    </div>
+    <div class="pull-right social-links">
+      <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2015/09/09/sync-messenger-ios-project.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="susieyy" data-url="http://engineer.wantedly.com/2015/09/09/sync-messenger-ios-project.html">Tweet</a>
+      <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2015/09/09/sync-messenger-ios-project.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+      
+        <iframe src="http://ghbtns.com/github-btn.html?user=susieyy&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+      
+    </div>
+  </div>
+  <div class="article">
+    <p>ビジネスシーンで使えるメッセージングサービス<a href="https://www.wantedly.com/sync">Sync</a>をローンチしました。
+その開発の舞台裏をiOSを中心に紹介します。開発のスケジュール、リソース、アプリの規模や進め方など参考になれば幸いです。</p>
+
+<h2>サービスについて</h2>
+
+<p><a href="https://www.wantedly.com/sync">Sync</a>は社内・社外を問わずプロジェクトやビジネスコミュニケーションがより良い体験なることをゴールに開発しました。以下のURLよりご利用頂けます。
+<a href="https://m.wantedly.com/">Web版</a> , <a href="https://wtd-sync-update-channel.herokuapp.com/download/latest?platform=darwin&amp;amp;channel=production">Desktop版(OnlyOSX)</a> , <a href="https://itunes.apple.com/jp/app/sync-group-messaging-app-for/id1014462508">iPhone</a> , <a href="https://play.google.com/store/apps/details?id=com.wantedly.android.sync">Andorid</a></p>
+
+<p><img title="Sync___成果を生み出すグループメッセージアプリ.jpg" alt="Sync___成果を生み出すグループメッセージアプリ.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/4943/dff18989-a4d7-c754-43d3-4690566ac111.jpeg" /></p>
+
+<h2>アーキテクチャ</h2>
+
+<p><img title="201500825_Sync_iOSの開発舞台裏_key.jpg" alt="201500825_Sync_iOSの開発舞台裏_key.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/4943/c835ae0e-092e-4875-0288-ecf80e54857a.jpeg" /></p>
+
+<h3>サーバ</h3>
+
+<p>既存の<a href="https://www.wantedly.com">Wantedly</a>サーバに並列して、<a href="https://m.wantedly.com">Sync</a>のサービスをマイクロサービスアーキテクチャ風に構築しています。要素技術や構成はサービスの初期フェイズにおけるスピディーな開発とスモールな運用に適しているものを選定しています。</p>
+
+<p>AccountServerが認証やユーザ情報管理を、APIServerが主要なデータのやり取りをREST形式で提供してます。共にRailsで構築しており<a href="http://cookpad.com/">Cookpad</a>がOSSで提供している、RESTfulWebAPIを素早くパワフルに開発するためのライブラリ<a href="https://github.com/cookpad/garage">Garage</a>を採用しています。サーバはAPIのみ提供しておりHTMLをレンダリングするサーバはありません。</p>
+
+<p>メッセージの送受信に必要なリアルタイム通信部分は<a href="https://www.firebase.com/">Firebase</a>というGoogle傘下のPaaSを利用しています。リアルタイム通信をどのような要素技術を活用するか<a href="https://ja.wikipedia.org/wiki/WebSocket">WebSocket</a>や<a href="https://en.wikipedia.org/wiki/Server-sent_events">Server Sent Events(SSE)</a>、<a href="https://en.wikipedia.org/wiki/Comet_(programming">LongPolling</a>)などを検討した結果、<a href="https://www.firebase.com/">Firebase</a>を選択しました。プッシュ系・プル系のリアルタイム配信では最新の更新情報を受領しても差分更新なのでクライアント側のデータ管理が大変になりがちです。<a href="https://www.firebase.com/">Firebase</a>は内部では<a href="https://ja.wikipedia.org/wiki/WebSocket">WebSocket</a>で通信していますが、そこがうまく隠蔽されサーバとクライアントのデータをリアルタイムで同期してくれるので管理の煩わすさから開放されます。また<a href="https://nodejs.org/en/">Node.js</a>/<a href="http://socket.io/">Socket.IO</a>などで構築したサーバ群はスケールや運用を行うのはとても骨が折れますがPaaSなので運用面の負担も軽減できます。</p>
+
+<ul>
+<li>Account Server / <a href="https://github.com/rails/rails">Rails</a> &amp; <a href="https://github.com/cookpad/garage">Garage</a></li>
+<li>API Server / <a href="https://github.com/rails/rails">Rails</a> &amp; <a href="https://github.com/cookpad/garage">Garage</a></li>
+<li>Image Server / <a href="https://github.com/sinatra/sinatra/">Sinatra</a> &amp; <a href="http://www.imagemagick.org/script/index.php">ImageMagick</a></li>
+<li>Realtime Server / <a href="https://www.firebase.com/">Firebase</a></li>
+</ul>
+
+<h3>クライアント</h3>
+
+<p>クライアントはマルチプラットフォームに対応してサービスを提供しています。Web&amp;Desktopはシングルページアプリケーション（ <a href="https://angularjs.org/">AngularJS</a> &amp; <a href="http://electron.atom.io/">Electron</a> )で構築しています。Desktop版はWindows版が開発中でOSXのみ利用頂けます。iOSはSwiftの関数的な機能を活用して開発しています。 AndroidはJavaで開発しています。</p>
+
+<ul>
+<li>Web&amp;Desktop / <a href="https://angularjs.org/">AngularJS</a> v1.4, <a href="http://electron.atom.io/">Electron</a></li>
+<li>iOS / Xcode6.4, Swift v1.2 iOS8〜</li>
+<li>Android / Android Studio v1.3.2, Android v4.0.3〜5.1.1</li>
+</ul>
+
+<h2>チーム</h2>
+
+<p>チーム編成は最大時で以下のような体制で常時フルコミットで参画してるのはそのうちの５名ほどです。iOSの体制が厚いので新規機能を率先して開発していました。</p>
+
+<p><img title="201500825_Sync_iOSの開発舞台裏_key.jpg" alt="201500825_Sync_iOSの開発舞台裏_key.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/4943/09962764-0e16-672e-ff15-08927d239d65.jpeg" /></p>
+
+<p>Product Owner &amp; API Server
+CTO @kawasy</p>
+
+<p>Web &amp; Desktop
+Engineer @imaimiami / @creasty</p>
+
+<p>iOS
+Engineer @susieyy / @morizotter / <a href="https://github.com/smztko">@smztko</a> / Desiner @ferasyasin@github</p>
+
+<p>Android
+Engineer @cattaka / Desiner <a href="https://github.com/yanAoym">@yanAoym</a></p>
+
+<p>fastlane
+Engineer @hedjirog</p>
+
+<h2>スケジュール（iOS）</h2>
+
+<p><img title="201500825_Sync_iOSの開発舞台裏_key.jpg" alt="201500825_Sync_iOSの開発舞台裏_key.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/4943/84c7910f-0efe-cb67-7246-888cb28e0c2b.jpeg" /></p>
+
+<p>サービスの開発は５月からスタートしiOSは３ヶ月間で申請まで行いました。iOSの開発リソースは６人月ぐらいです。最初の１ヶ月はプロトタイプ開発期間としてコードレビューもなく１人ででゴリゴリとコードを書きつつ、基本的な通信部分やMVVMアーキテクチャの実装、共通ロジックの用意などを行いました。本開発の始まった６月からは２名のエンジニアが追加となりプルリクエストのコードはレビューを行う体制で進めました。</p>
+
+<h2>進め方</h2>
+
+<p>上記のスケジュール図のようなざっくりな工程表と、要件一覧をもとにプロジェクトがスタートしました。２週間を１イテレーションとしてマイルストーンにタスクを入れてゆるいアジャイル風な運営で進めています。タスクをイテレーションの最初にある程度担当者にアサインはしつつも、進み具合でアサインを変更したり、マイルストーン間のタスクのを入れ替えたりと臨機応変さとスピード感を重視しています。実装を進めていく中で当初計画の要件に対してフィードバックを元に大きく機能を追加したり、実装済みでも大きく機能を削ったりと、より良い体験を作り上げることをゴールにドラスティックな変更を行いつつ開発しました。</p>
+
+<p>ミーティングを必要最低限に抑えることでコーディングの時間をより多く確保しました。実装が始まる前の要件定義の段階で集中的にミーティングを重ねプロトタイプやデモを作って認識を合わせつつサービスの具体的なイメージをしっかり共有しました。実装の具体的な個々の仕様については、GitHubイシュー上で非同期で行い議論の証跡と結論や次のアクションを明文化しました。</p>
+
+<h2>ドッグフーディングとユーザフィードバック</h2>
+
+<p><img title="dogfooding.jpg" alt="dogfooding.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/4943/74aa07b7-9593-97f1-c144-d9afe60ee533.jpeg" /></p>
+
+<p>ドッグフーディング（Dogfooding）とは、自社サービスを開発者自らが日常的に利用して問題点を早期に発見したりユーザー視点で品質やＵＸを確認することです。</p>
+
+<p>開発開始から２週間でチームで利用していた<a href="https://slack.com/">Slack</a>から乗り換えることを目標にしました。自分たちから積極的に利用することで開発者である自分たちからまずファンになることを大事にしました。１ヶ月ごろから社内の他のチームも<a href="https://slack.com/">Slack</a>から乗り換えてもらい、たくさんのフィードバックを受けて安定性の向上と改善に勤めました。社内で実績を築いたことで２ヶ月ごろから身近な社外の方々にも声をかけて使ってもらい、さらに多くのフィードバックを頂きました。</p>
+
+<h2>メトリクス（iOS）</h2>
+
+<p>2015/09/05 時点です。開始からだいたい４ヶ月（８０営業日ぐらい）ほど経過しています。</p>
+
+<h4>Github上の主要なメトリクス</h4>
+
+<p>プルリクエストはできるだけ小さい単位で送り合ってコンフリクト軽減とコードレビューしやすいように工夫をしています。プルリクエストがほとんどないプロトタイプ期間を省くと１日平均１８件ぐらいになります。仕様やタスク、バグレポートなど明文化するものはすべてGitHubのイシューにして情報をすべてリポジトリ内で一元的に管理しています。すべてのプロジェクト情報がGitHub内ある、GitHub探せば見つかる状態を作っています。</p>
+
+<ul>
+<li>4,700 Commits</li>
+<li>1,050 Pull Requests Closed</li>
+<li>864 Isusses Closed 83 Open ( Total 947 )</li>
+</ul>
+
+<p>イシューの内訳です。Bugのイシューが一番多いです。Feedbackはローンチ前にTestFlightとFabricBetaで社内外に配布して使ってもらったフィードバックの数です。</p>
+
+<ul>
+<li>Improve 289 (30%)</li>
+<li>Bug 492 (51%)</li>
+<li>Feedback 64 (7%)</li>
+<li>Other(メモ、仕様、アイデアetc) 102 (12%)</li>
+</ul>
+
+<h4>コードステップ数（iOS）</h4>
+
+<p>Swiftのコードが１４１ファイル、１万９千行ほどですがフルコンパイルにPodsライブラリも合わせて４分!!ほどかかります。</p>
+<pre class="highlight shell"><span class="gp">$ </span>cloc
+     288 text files.
+     285 unique files.
+      74 files ignored.
+
+http://cloc.sourceforge.net v 1.64  <span class="nv">T</span><span class="o">=</span>1.36 s <span class="o">(</span>157.4 files/s, 18819.8 lines/s<span class="o">)</span>
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Swift                          141           3157           1698          18708
+JSON                            66              0              0           1488
+Objective C                      3             90            116            212
+C/C++ Header                     4             28             27             63
+-------------------------------------------------------------------------------
+SUM:                           214           3275           1841          20471
+-------------------------------------------------------------------------------
+</pre>
+<h4>画面数</h4>
+
+<p>ViewControllerは平均３００行（空行なし）なので、ViewControllerだけで１万２千行になり全体の６４％になります。ストリーボードのファイルはコンフリクトしやすく１つのファイルにたくさんの画面を作成すると非常に遅くなるので細かく分割しています。</p>
+
+<ul>
+<li>約２５画面</li>
+<li>４２ ViewControllers</li>
+<li>２３ Storyboards</li>
+</ul>
+
+<h4>ライブラリ数</h4>
+
+<p>Swiftの機能を活かしたライブラリを積極的に取り入れています。Swiftライブラリを<a href="https://cocoapods.org/">CocoaPods</a>でインストールすると、コンパイル時間が長くなるので事前にフレームワークを作成できる<a href="https://github.com/Carthage/Carthage">Carthage</a>も利用しています。</p>
+
+<ul>
+<li><a href="https://github.com/Carthage/Carthage">Carthage</a> 7 Swiftライブラリ</li>
+<li><a href="https://cocoapods.org/">CocoaPods</a> 3 Swiftライブラリ / 33 ObjCライブラリ</li>
+<li>Total 43 ライブラリ</li>
+</ul>
+
+<h2>Swiftコンパイル時間</h2>
+
+<p><img title="201500825_Sync_iOSの開発舞台裏_key.jpg" alt="201500825_Sync_iOSの開発舞台裏_key.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/4943/ea8b7162-d30e-fb17-25c8-25e920afe31a.jpeg" /></p>
+
+<p>MacBookPro (15-inch, Late 2013)でフルコンパイル時間が４分以上もかかっていたので以下の施策を行いました。</p>
+
+<h4>MacBookProを２台体制で開発する</h4>
+
+<p>レビューなどでブランチを切り替えると、Podsのインストールや、フルコンパイルが必要だったりするので２台体制で行いました。コンパイル時間も長かったので、待ち時間の有効活用に繋がり効率的に開発を進めることができました。</p>
+
+<h4>コンパイル時間を短縮する</h4>
+
+<p>４分以上コンパイルに必要になったころから、コンパイル時間の短縮化を行いました。４分１０秒からー８０秒の２分５０秒になりました。 </p>
+
+<ul>
+<li>型推論しないで型を明記する （ArrayやDictionaryも）</li>
+<li>複数のswiftファイルを一つにまとめる</li>
+<li>継承しないclassはfinalを明記する</li>
+<li>Cartage対応のライブラリはPodsでインストールしない</li>
+</ul>
+
+<h2>fastlane（iOS）</h2>
+
+<p><img title="201500825_Sync_iOSの開発舞台裏_key.jpg" alt="201500825_Sync_iOSの開発舞台裏_key.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/4943/ffcbacf4-6bc7-72ae-decb-827ace76f764.jpeg" /></p>
+
+<p><a href="https://fastlane.tools/">fastlane</a>を活用してビルド、テスト、配布までの工程を自動化しました。プルリクエストがレビューされマスターにマージされる度に自動で配布されます。常に最新のマスターの状態のリリースビルドを手元で常に確認できるようになりました。また配布が容易になることで、社内へのドックフーディング、社外へのユーザフィードバックなどローンチ前にたくさんの方に使ってもらいやすくなりました。</p>
+
+<p>マージマスターの配布はエンジニアとテスターに留め、ある程度安定していることを確認してから２，３日に一度社内外へ配布していました。</p>
+
+<h2>まとめ</h2>
+
+<p>このような背景で作られたサービスがどんなのか気になってくれ方是非使ってみてください！</p>
+
+<ul>
+<li><a href="https://www.wantedly.com/sync">Syncについて</a></li>
+<li><a href="https://m.wantedly.com/">Web版</a></li>
+<li><a href="https://wtd-sync-update-channel.herokuapp.com/download/latest?platform=darwin&amp;amp;channel=production">Desktop版(OnlyOSX)</a></li>
+<li>Windows版は開発中です</li>
+<li><a href="https://itunes.apple.com/jp/app/sync-group-messaging-app-for/id1014462508">iPhone</a></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.wantedly.android.sync">Andorid</a></li>
+</ul>
+
+  </div>
+
+  <hr>
+  <div>
+    エンジニア採用中！<a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+  </div>
+  <hr>
+
+  <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2015/09/09/sync-messenger-ios-project.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="susieyy" data-url="http://engineer.wantedly.com/2015/09/09/sync-messenger-ios-project.html">Tweet</a>
+  <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2015/09/09/sync-messenger-ios-project.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+    <iframe src="http://ghbtns.com/github-btn.html?user=susieyy&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+  
+
+        </div>
+        <div class="col-xs-12 col-md-3 col-md-offset-1">
+          <div class="side-article">
+            <h4>エンジニア採用中！</h4>
+            <a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+          </div>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_29459' scrolling='no' src='https://www.wantedly.com/projects/29459/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_25674' scrolling='no' src='https://www.wantedly.com/projects/25674/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <div class="side-article">
+            <h4>最近の記事</h4>
+            <ul>
+              
+                <li><a href="/2015/10/13/learn-sketch.html">Sketch速習集会</a></li>
+              
+                <li><a href="/2015/09/09/sync-messenger-ios-project.html">メッセージングアプリSync開発の舞台裏(iOS)</a></li>
+              
+                <li><a href="/2015/08/06/hashicorp-product-meetup.html">Hashicorp Product Meetup というイベントを開きました</a></li>
+              
+                <li><a href="/2015/04/01/sync-kpt.html">チームでKPTをやってみました</a></li>
+              
+                <li><a href="/2014/10/06/swift-style-guide.html">Swiftコーディング規約@Wantedly</a></li>
+              
+                <li><a href="/2014/04/28/how-wantedly-make-ios-app.html">WantedlyではどうやってiOSアプリ開発しているのか</a></li>
+              
+                <li><a href="/2014/04/23/elasticsearch-at-wantedly.html">第 4 回 Elasticsearch 勉強会で発表してきました</a></li>
+              
+                <li><a href="/2014/03/31/angular-and-love.html">AngularJSを導入することと、恋のときめきと一歩踏み出す苦しみと。</a></li>
+              
+                <li><a href="/2014/03/27/setup-elasticsearch-cluster-on-ec2-with-chef.html">Chef で Elasticsearch クラスタを EC2 上に作る</a></li>
+              
+                <li><a href="/2014/02/25/elasticsearch-at-wantedly-1.html">実践！Elasticsearch</a></li>
+              
+            </ul>
+          </div>
+          <!--
+            <div class="side-article">
+              <h4>Tags</h4>
+              <ul>
+                
+                  <li>- <a href="/tags/elasticsearch.html">elasticsearch</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-ec2-nginx.html">elasticsearch chef ec2 nginx</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-aws.html">elasticsearch chef aws</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vagrant.html">vagrant</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/packer.html">packer</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/serf.html">serf</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/consul.html">consul</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/terraform.html">terraform</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vault.html">vault</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/atlas.html">atlas</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/hashicorp.html">hashicorp</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/ios.html">iOS</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/swift.html">Swift</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/rails.html">Rails</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/angularjs.html">AngularJS</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/electron.html">Electron</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/android.html">Android</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/sketch.html">Sketch</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/ui.html">UI</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/web.html">Web</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/design.html">Design</a> <small class="gray">(1)</small></li>
+                
+              </ul>
+            </div>
+          -->
+          <!--
+            <div class="side-article">
+              <h4>By Year</h4>
+              <ul>
+                
+                  <li>- <a href="/2015.html">2015</a> <small class="gray">(4)</small></li>
+                
+                  <li>- <a href="/2014.html">2014</a> <small class="gray">(9)</small></li>
+                
+                  <li>- <a href="/2013.html">2013</a> <small class="gray">(2)</small></li>
+                
+              </ul>
+            </div>
+          -->
+        </div>
+      </div>
+    </div>
+    <footer class="container center">
+      <hr/>
+      <p>2013 © Wantedly, Inc., All Rights Reserved.</p>
+    </footer>
+
+    <script src="/javascripts/application-da39a3ee.js" type="text/javascript"></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  </body>
+</html>

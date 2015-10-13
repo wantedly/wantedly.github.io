@@ -1,5 +1,5 @@
 ---
-title: Sketch速習集会
+title: Sketch速習会
 date: 2015-10-13 16:30 JST
 tags: Sketch, UI, Web, Design
 wantedly_id: 92979

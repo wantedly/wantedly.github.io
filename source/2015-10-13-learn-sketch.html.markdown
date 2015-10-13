@@ -57,6 +57,8 @@ width, height, mergin, padding, font-size,colorなど実装の際に確認する
 #### [Wantedly Color Picker](https://github.com/usa619/wantedly-color-picker)
 WantedlyではSassでCSSを書いていて、カラーパレットの変数名で色指定を行っています。実装するときにカラーコードから変数名を調べるのがめんどくさかったので、自動で変数名を取得するプラグインを作りました！
 
+##その他
+
 ### 懇親会
 今回は、焼きそばや唐揚げ、ピザなどの軽食を準備させて頂きました！
 社外の方々と話す貴重な機会となり、速習会に参加した社内エンジニアも楽しめました。

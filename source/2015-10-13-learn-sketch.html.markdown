@@ -1,5 +1,5 @@
 ---
-title: Sketch速習会
+title: デザイナーとエンジニア間のコミュニケーションコストを下げる試み
 date: 2015-10-13 16:30 JST
 tags: Sketch, UI, Web, Design
 wantedly_id: 92979

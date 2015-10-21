@@ -5,6 +5,7 @@ tags: Sketch, UI, Web, Design
 wantedly_id: 92979
 twitter_id: Ui_Pb
 github_id: usa619
+cover_image: images/2015-10-13/sketch-ogp.png
 ---
 
 デザイナーの宇佐美 [@Ui_Pb](https://twitter.com/ui_pb) です。

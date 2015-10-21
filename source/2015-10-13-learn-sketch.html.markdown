@@ -8,6 +8,8 @@ github_id: usa619
 cover_image: https://huntr-static.s3.amazonaws.com/engineer_blog/sketch-ogp.png
 ---
 ![Sketch速習会](https://huntr-static.s3.amazonaws.com/engineer_blog/sketch-ogp.png)
+
+
 デザイナーの宇佐美 [@Ui_Pb](https://twitter.com/ui_pb) です。
 
 ## 速習会とは

@@ -14,11 +14,13 @@
     <link rel="alternate" href="http://engineer.wantedly.com/2015/10/13/learn-sketch.html"/>
     <id>http://engineer.wantedly.com/2015/10/13/learn-sketch.html</id>
     <published>2015-10-13T07:30:00Z</published>
-    <updated>2015-10-13T21:07:06+09:00</updated>
+    <updated>2015-10-21T18:30:06+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;p&gt;デザイナーの宇佐美 &lt;a href="https://twitter.com/ui_pb"&gt;@Ui_Pb&lt;/a&gt; です。&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;img alt="Sketch速習会" src="https://huntr-static.s3.amazonaws.com/engineer_blog/sketch-ogp.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;デザイナーの宇佐美 &lt;a href="https://twitter.com/ui_pb"&gt;@Ui_Pb&lt;/a&gt; です。&lt;/p&gt;
 
 &lt;h2&gt;速習会とは&lt;/h2&gt;
 
@@ -102,7 +104,7 @@ Wantedlyではエンジニア、デザイナーともにSketchという共通の
     <link rel="alternate" href="http://engineer.wantedly.com/2015/09/09/sync-messenger-ios-project.html"/>
     <id>http://engineer.wantedly.com/2015/09/09/sync-messenger-ios-project.html</id>
     <published>2015-09-09T03:00:00Z</published>
-    <updated>2015-09-09T14:26:09+09:00</updated>
+    <updated>2015-10-21T14:21:51+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -297,7 +299,7 @@ SUM:                           214           3275           1841          20471
     <link rel="alternate" href="http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html"/>
     <id>http://engineer.wantedly.com/2015/08/06/hashicorp-product-meetup.html</id>
     <published>2015-08-06T01:17:00Z</published>
-    <updated>2015-09-09T14:26:09+09:00</updated>
+    <updated>2015-10-21T14:21:51+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -403,7 +405,7 @@ Golang 使う人には有用な内容だったし、合わせて Hashicorp が�
     <link rel="alternate" href="http://engineer.wantedly.com/2015/04/01/sync-kpt.html"/>
     <id>http://engineer.wantedly.com/2015/04/01/sync-kpt.html</id>
     <published>2015-04-01T10:02:00Z</published>
-    <updated>2015-09-09T14:26:09+09:00</updated>
+    <updated>2015-10-21T14:21:51+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -502,7 +504,7 @@ Golang 使う人には有用な内容だったし、合わせて Hashicorp が�
     <link rel="alternate" href="http://engineer.wantedly.com/2014/10/06/swift-style-guide.html"/>
     <id>http://engineer.wantedly.com/2014/10/06/swift-style-guide.html</id>
     <published>2014-10-05T15:00:00Z</published>
-    <updated>2015-09-09T14:26:09+09:00</updated>
+    <updated>2015-10-21T14:21:51+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -539,7 +541,7 @@ Golang 使う人には有用な内容だったし、合わせて Hashicorp が�
     <link rel="alternate" href="http://engineer.wantedly.com/2014/04/28/how-wantedly-make-ios-app.html"/>
     <id>http://engineer.wantedly.com/2014/04/28/how-wantedly-make-ios-app.html</id>
     <published>2014-04-27T15:00:00Z</published>
-    <updated>2015-09-09T14:26:09+09:00</updated>
+    <updated>2015-10-21T14:21:51+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>

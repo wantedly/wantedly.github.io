@@ -1,5 +1,5 @@
 ---
-title: Wantedly エンジニアチームは湯河原温泉で開発合宿をしてきました！
+title: Wantedly エンジニアチームは湯河原温泉で開発合宿を行いました！
 date: 2016-01-24 22:08 JST
 tags: Rails, PostgreSQL, Development, Camp
 wantedly_id: 3454376

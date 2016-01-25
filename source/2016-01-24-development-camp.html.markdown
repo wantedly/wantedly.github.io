@@ -293,6 +293,15 @@ PostgreSQL のパラメータチューニングの結果も、 31ms -> 23ms で 
 今回、Wantedly で開発合宿をやってみるのは初めての挑戦でした。本当にちゃんと集中して開発ができるのか、パフォーマンスが出せるのかなど不安も大きかったのですが、蓋を開けてみれば大成功とも言える結果でした。
 今後も定期的に開発合宿を実施していく予定です！Wantedly の開発合宿に興味が湧いた方は、ぜひ気軽に話を聞きに来てください！！
 
-
-
-
+<div style="margin: 0 auto; width: 470px;">
+<div class="wantedly-visit-button" data-visit-button-id="y7wE1GQEYdR11nH_D_ArCA" data-width="470" data-height="80"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://platform.wantedly.com/visit_buttons/script.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, "script", "wantedly-visit-buttons-wjs"));
+</script>
+</div>

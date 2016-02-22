@@ -69,12 +69,16 @@ Agileと野球が大好きなアラフォーエンジニア。
 また、よちよちアイドルということで、いろいろな言語をちょっとずつ出来るようになりたいと考えています。
 そこで、次回はインスタグラムに近づくステップ（機能）をGo言語で教えてくれる人をWANTEDいたします！！！
 （Wantedlyに興味がある方にご応募頂いた場合には、面談の設定などお手伝いできることもあります！！ので、ぜひオフィスに遊びにきてください！）
+
+<iframe frameborder='0' height='305px' name='wantedly_project_widget_45389' scrolling='no' src='https://www.wantedly.com/projects/45389/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
 [「よちよちアイドルにGo言語を教えてくれる人WANTED！！」](https://www.wantedly.com/projects/45389)
 
 
 また！中川さんのいるビザスクでもエンジニア大募集です！！
 教え方も上手でPythonマスターの中川さんがいる職場で働いてみたいですよね！
 エンジニアの募集をしているとのことなので、ぜひオフィスに遊びに行ってみてください！
+
+<iframe frameborder='0' height='305px' name='wantedly_project_widget_40413' scrolling='no' src='https://www.wantedly.com/projects/40413/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
 [「日本初のサービス『ビザスク』のアプリを1から設計！iOSエンジニア大募集！」](https://www.wantedly.com/projects/40413)
 
 

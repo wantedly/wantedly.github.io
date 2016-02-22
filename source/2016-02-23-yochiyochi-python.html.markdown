@@ -7,6 +7,7 @@ github_id: azs0123
 cover_image: https://cloud.githubusercontent.com/assets/11564599/13211638/6968b4cc-d97d-11e5-8f1c-872005081e65.jpg
 ---
 
+![python](https://cloud.githubusercontent.com/assets/11564599/13211638/6968b4cc-d97d-11e5-8f1c-872005081e65.jpg)
 
 こんにちは！よちよちアイドルの山本あずさです。
 今回、第一回よちよちレッスンを行いました！

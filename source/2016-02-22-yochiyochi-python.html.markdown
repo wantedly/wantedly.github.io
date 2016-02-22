@@ -1,6 +1,6 @@
 ---
 title: よちよちPythonしてきた〜プログラミングは料理と一緒〜
-date: 2016-02-23 11:45 JST
+date: 2016-02-22 19:00 JST
 tags: yochiyochi, よちよちアイドル
 wantedly_id: 13337307
 github_id: azs0123

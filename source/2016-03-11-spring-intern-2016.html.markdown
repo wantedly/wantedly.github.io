@@ -1,5 +1,5 @@
 ---
-title: Wantedly Spring Intern 2016
+title: Wantedly Spring Internship 2016
 date: 2016-03-11 19:43 JST
 tags: インターンシップ, 3day intern
 wantedly_id: 13337307
@@ -9,7 +9,7 @@ cover_image: https://cloud.githubusercontent.com/assets/11564599/13633601/6784d8
 
 こんにちは！Wantedlyの山本あずさです。
 
-この度、Wantedlyでは、3/2(水) - 4(金)の3日間で「[Spring Intern 2016](http://site.wantedly.com/intern2016spring/)」を開催しました。
+この度、Wantedlyでは、3/2(水) - 4(金)の3日間で「[Spring Internship 2016](http://site.wantedly.com/intern2016spring/)」を開催しました。
 Wantedly初の新卒対象3dayインターンシップでしたが、とても好評で130名を超える応募があり、定員を5名増やし全部で25名のエンジニア学生さんに参加いただきました！！
 
 
@@ -21,7 +21,7 @@ Wantedly初の新卒対象3dayインターンシップでしたが、とても�
 仲からWantedlyのものづくり3か条と「ZooS」のやり方について説明がありました。
 ディレクターがいないWantedlyでは、エンジニアが0→1でプロダクトづくりをすることが求められます。「ZooS」とは、0からプロトタイプを作成するフレームワークのことです。
 
-[「ZooS講座」参考資料はこちら](https://www.dropbox.com/s/ly5zs860rw3pci2/WantedlySpringIntern.pptx?dl=0)
+[「ZooS講座」参考資料](https://www.dropbox.com/s/ly5zs860rw3pci2/WantedlySpringIntern.pptx?dl=0)
 
 
 1チーム5名で、黄・緑・水・紺・黒の5チームに分かれて、実際にZooSを使ってプロトタイプを作成していただきました！
@@ -40,13 +40,15 @@ Wantedly初の新卒対象3dayインターンシップでしたが、とても�
 
 今回、優秀賞に選ばれたチームが、賞品として「Wantedlyパーカー」と第3日目の全社ミーティング「DemoDay」で発表する権利を勝ち取りました。
 
-[水色チーム発表資料はこちら](https://github.com/wantedly/wantedly/files/168464/wantedly_presentation_last.pdf)
+[水色チーム発表資料](https://github.com/wantedly/wantedly/files/168464/wantedly_presentation_last.pdf)
 
 
 ## 第二日目
 第二日目はエンジニアセッション。エンジニアの本業ともいえるコードを書く作業がここから始まりました！
 
-まずは、リードエンジニアの相川からWantedlyの開発スタイルについてお伝えしました。Wantedlyがビジネスサイド含め全員がGithubを使えるので、Githubで進捗管理の共有をしていることや、コミット数などで生産性を定量化する取り組みなどを紹介しました。
+まずは、リードエンジニアの相川からWantedlyの開発スタイルについてお伝えしました。
+
+Qiitaで1300ストックを超える[開発フロー研修 @ Wantedly](http://qiita.com/awakia/items/c571e93e96a1ec28044f)に書いてある部分の実際のIssueやPull Requestをお見せしたり、Wantedlyがビジネスサイド含め全員がGithubを使えるのでGithubで進捗管理の共有をしていることや、コミット数などで生産性を定量化する取り組みなどを紹介たりしました。
 
 ### 社員訪問
 この日は、「社員訪問」といって、参加者に社内のエンジニアの席にいっていただき、ざっくばらんにお話しする機会を設けました。
@@ -118,26 +120,20 @@ Wantedlyでは隔週金曜日の17:30からDemo Dayという全社ミーティ�
 今後もこのようなインターンを開催していきたいと思います。
 
 ## Wantedlyインターン 体験記まとめ
-この度は多くの参加者にブログで今回のインターンについて書いていただきましたので、下記にまとめさせていただきます。
-Wantedlyのインターンに少しでも興味を持った方、次回このような機会がある時にはぜひご応募ください！！
 
-https://cheolblog.wordpress.com/2016/03/08/wantedly-%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%B3/
+この度は多くの参加者にブログで今回のインターンについて書いていただきました (*´ڡ`●)
 
-https://6piwiq6.amebaownd.com/posts/600985
+- [Wantedly インターン – cheolblog](https://cheolblog.wordpress.com/2016/03/08/wantedly-%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%B3/)
+- [インターン in wantedly _ ものおき](https://6piwiq6.amebaownd.com/posts/600985)
+- [Wantedly SPRING INTERNSHIP 2016 に参加しました - yu-i9.hs](http://yu-i9.hatenablog.com/entry/2016/03/05/154626)
+- [WantedlyのSPRING INTERNSHIP 2016に参加しました！ - otokunagaのブログ](http://otokunaga2.hatenablog.com/entry/2016/03/05/101527)
+- [Wantedly Spring Internship 2016に参加してきました — Medium](https://medium.com/@hinatades/wantedly-spring-internship-2016%E3%81%AB%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F-4ab40acfd54#.iry1wxmh0)
+- [Wantedly Spring Internship 2016参加まとめ - FREEDOM -](http://nasa.rejec.net/wp/blog/2016/03/04/wantedly-spring-internship-2016%E5%8F%82%E5%8A%A0%E3%81%BE%E3%81%A8%E3%82%81/)
+- [Wantedlyの春インターンに行ってきた話 - たけっぱ横丁](http://takegue.hatenablog.com/entry/2016/03/10/122333)
+- [Wantedly Spring Intern 2016｜Masahide Ishida｜note](https://note.mu/masahide_mitsu/n/nf82cda7d2531)
+- [WantedlyのSpring Internshipに行ってきた！ - TKeiの日記](http://tkei.hatenadiary.jp/entry/2016/03/11/143225)
+- [WantedlyのSpring intern2016に行ってきた _ Webサプリ](http://www.websuppli.com/others/409/)
 
-http://yu-i9.hatenablog.com/entry/2016/03/05/154626
+Wantedlyのインターンに少しでも興味を持った方、実はWantedlyは通年でインターンを募集しています！！
 
- http://otokunaga2.hatenablog.com/
-
-https://medium.com/@hinatades/wantedly-spring-internship-2016%E3%81%AB%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F-4ab40acfd54#.iry1wxmh0
-
-http://nasa.rejec.net/wp/
-
-http://takegue.hatenablog.com/entry/2016/03/10/122333
-
-https://note.mu/masahide_mitsu/n/nf82cda7d2531
-
-http://tkei.hatenadiary.jp/
-
-http://www.websuppli.com/others/409/
-
+<iframe frameborder='0' height='305px' name='wantedly_project_widget_25674' scrolling='no' src='https://www.wantedly.com/projects/25674/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>

@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2016年のWantedlyアーキテクチャ (1) - Wantedly Engineer Blog</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/favicon-8030cb16.png" rel="icon" type="image/png">
+    <meta property="fb:app_id" content="234170156611754">
+    <meta property="og:image" content="https://qiita-image-store.s3.amazonaws.com/0/5286/dd85da14-b003-214b-67d9-284da1a2ac20.jpeg">
+    <link href="/stylesheets/application-b5fca3c2.css" media="screen" rel="stylesheet" type="text/css" />
+    <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12847756-21']);
+    _gaq.push(['_setDomainName', 'wantedly.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </head>
+  <body>
+    <header class="jumbotron cover-image center">
+      <h1 class="graduate"><a href="/">Wantedly Engineer Blog</a></h1>
+      <p>Wantedly 開発チームブログ</p>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8">
+            <div class="page-header clearfix">
+    <h2>
+      <div class="article-title">
+        2016年のWantedlyアーキテクチャ (1)
+      </div>
+    </h2>
+    <div class="article-avatar">
+      <a href="https://www.wantedly.com/users/10599">
+        <img src="https://www.wantedly.com/users/10599/avatar" class="avatar" />
+      </a>
+      <span class='date'> 1-Apr-2016</span>
+    </div>
+    <div class="pull-right social-links">
+      <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2016/04/01/four-years.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="kawasy" data-url="http://engineer.wantedly.com/2016/04/01/four-years.html">Tweet</a>
+      <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2016/04/01/four-years.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+      
+        <iframe src="http://ghbtns.com/github-btn.html?user=luvtechno&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+      
+    </div>
+  </div>
+  <div class="article">
+    <p>こんにちは、川崎です。Wantedlyに参加して4年が経ちました。</p>
+
+<p>今回は、Wantedlyのサービスの現状について、システム的な観点から紹介したいと思います。</p>
+
+<h2>事業の状況</h2>
+
+<p>利用ユーザ数は月間90万人、利用企業数は15000社を超えました。自分が始めた頃は、月間1万人、利用企業数150社ほどだったので、4年間でおよそ100倍に成長した計算になります。</p>
+
+<p>サービスとしては、「働くすべての人のインフラへ」というスローガンで大きく2つの挑戦をしています。1つは創業当初から取り組んできた「会社と人の出会い」を生み出すマッチング事業を、さらに大勢の人に使ってもらえるようにすること。わかりやすく言えば、採用・広報媒体としてのサービスです。</p>
+
+<p>そしてもう1つは、WantedlyのビジネスSNSとしての側面で価値を提供し、会社の枠を越えた「人と人のつながり」を加速させていくこと。</p>
+
+<p>どのような思想で取り組んでいるのか、その背景は先日WIREDに掲載された記事によくまとまっています。</p>
+
+<ul>
+<li><a href="http://wired.jp/2016/03/02/interview-akiko-naka/">組織の壁を越えていける人を増やしたい──Wantedly仲暁子、『Sync』の設計思想を語る</a></li>
+</ul>
+
+<p>ちなみに、数カ月前にリニューアルした <a href="https://www.wantedly.com">www.wantedly.com</a> のトップページのデザインは、それを色濃く反映させた内容となっています。</p>
+
+<p><img title="concept 2.jpg" alt="concept 2.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/5286/dd85da14-b003-214b-67d9-284da1a2ac20.jpeg" /></p>
+
+<h2>Sync</h2>
+
+<p><a href="https://www.wantedly.com/sync">ビジネスチャットSync</a>は2015年5月から開発を始めました。平均すると6人ほどのメンバー、期間は半年ほどで、ウェブ・デスクトップ・iPhone・Androidのアプリを開発しました。</p>
+
+<p>開発開始時点では、Wantedlyは所謂モノリシックなアーキテクチャ、単体のRailsアプリとして開発されていました。ここでは本体アプリと呼ぶことにします。この構成は、チャットを開発していくにあたって、いくつかの課題がありました。</p>
+
+<p>リアルタイムなチャットにとって、システムが高速であることと安定していることは「機能」であると言っても過言ではありません。数年間開発を続けて肥大化しているため、本体アプリの平均のレスポンスタイムは 200ms を超えていて(当時)、チャットのバックエンドとしては遅すぎると考えました。また、多い時で1日に10回以上デプロイをされているのですが、全体に影響する障害がどうしても稀に発生してしまいます。</p>
+
+<p>また、開発効率も大きな問題でした。新規プロダクトということで、少しでも早く動作するプロトタイプを作り、それをマーケットにだして価値を検証していくことが求められます。30人近い開発者が変更していおり、当時、CIサーバでのテスト時間は40分を超えていて、スピーディーに開発を続けるにはつらい状況でした。また、モジュール間の相互影響や全開発者への影響を考えると、気軽にライブラリやフレームワークを新しく導入することが出来ませんでした。</p>
+
+<p><img title="20160213_tea_party.jpg" alt="20160213_tea_party.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/5286/127c0480-98ad-6f8e-04fd-dd2863c8bf54.jpeg" /></p>
+
+<p>以上を踏まえて、SyncのAPIサーバは、本体アプリと切り離して新しいアプリサーバとして開発することにしました。</p>
+
+<p>新サービスとはいえ、ベースとなるユーザーやソーシャルグラフのデータは共通なので、既存のWantedlyアカウントで利用できるようにする必要があります。そこで、将来のさらなる複数サービス展開も視野に入れて、ユーザ認証とOAuth 2の認可を担当するRailsサーバを作成しました。具体的には、<a href="https://github.com/doorkeeper-gem/doorkeeper">doorkeeper</a> gemを利用しています。</p>
+
+<p>メインとなるチャット用のAPIサーバもRailsで書かれています。Railsのパフォーマンス上の懸念はありましたが、リアルタイム通信のためのwebsocketを直接自分たちで用意せずMBaaSの<a href="https://www.firebase.com/">Firebase</a>を使うことにしたこと、シンプルなRailsアプリにすることで許容範囲のパフォーマンスがだせそうなこと、慣れている技術を使うことによる生産性の高さを考慮して、Railsで開発を進めました。将来的にスケールさせていくためには、リアルタイムメッセージング・並行処理に実績のある別の言語を検討していくことになります。このJSON APIサーバの実装には、<a href="https://github.com/cookpad/garage">garage</a> gemが活躍しました。</p>
+
+<p>下の図では省略されていますが、チャットグループの参加者の画像を1枚の画像にまとめる(LINEやFacebookメッセンジャーと同じ)画像合成サーバや、ウェブフロントエンドを配信するNodeサーバが、その他に存在します。</p>
+
+<p>このような構成にすることで、Syncは少人数かつ高速な体制での開発を実現し、また将来のシステム進化に備えることができました。</p>
+
+<p><img title="20160213_tea_party_2.jpg" alt="20160213_tea_party_2.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/5286/71af4079-c7fd-1542-c489-660ff387c5f0.jpeg" />
+<img title="20160213_tea_party_3.jpg" alt="20160213_tea_party_3.jpg" src="https://qiita-image-store.s3.amazonaws.com/0/5286/50617ba2-3e2e-2afb-8cff-2f9dce9ea3db.jpeg" /></p>
+
+<p>続きます。次回は<a href="https://www.wantedly.com/developers">Open API</a>と<a href="https://www.wantedly.com/feeds/posts">会社フィード</a>について書きます。</p>
+
+<hr>
+
+<p>Wantedlyでは「働くすべての人」に価値を提供するために、新規プロダクトに取り組むサービス開発エンジニアを積極募集しています。少しでも興味のある方は<a href="https://www.wantedly.com/companies/wantedly/projects">話を聞きに来て下さい</a>。お待ちしています！</p>
+
+  </div>
+
+  <hr>
+  <div>
+    エンジニア採用中！<a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+  </div>
+  <hr>
+
+  <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2016/04/01/four-years.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="kawasy" data-url="http://engineer.wantedly.com/2016/04/01/four-years.html">Tweet</a>
+  <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2016/04/01/four-years.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+    <iframe src="http://ghbtns.com/github-btn.html?user=luvtechno&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+  
+
+        </div>
+        <div class="col-xs-12 col-md-3 col-md-offset-1">
+          <div class="store-banner">
+            <a href="https://wantedly.stores.jp/">
+              <img src="https://huntr-static.s3.amazonaws.com/engineer_blog/storeBanner.png" alt="storeBanner" width="260px" height="162px">
+            </a>
+          </div>
+          <div class="side-article">
+            <h4>エンジニア採用中！</h4>
+            <a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+          </div>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_29459' scrolling='no' src='https://www.wantedly.com/projects/29459/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_25674' scrolling='no' src='https://www.wantedly.com/projects/25674/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <div class="side-article">
+            <h4>最近の記事</h4>
+            <ul>
+              
+                <li><a href="/2016/04/01/four-years.html">2016年のWantedlyアーキテクチャ (1)</a></li>
+              
+                <li><a href="/2016/03/11/spring-internship-2016.html">Wantedly Spring Internship 2016</a></li>
+              
+                <li><a href="/2016/02/22/yochiyochi-python.html">よちよちPythonしてきた〜プログラミングは料理と一緒〜</a></li>
+              
+                <li><a href="/2016/01/24/development-camp.html">Wantedly エンジニアチームは湯河原温泉で開発合宿を行いました！</a></li>
+              
+                <li><a href="/2015/12/17/rails-sql.html">RailsエンジニアのためのSQLチューニング速習会</a></li>
+              
+                <li><a href="/2015/10/13/learn-sketch.html">デザイナーとエンジニア間のコミュニケーションコストを下げる試み</a></li>
+              
+                <li><a href="/2015/09/09/sync-messenger-ios-project.html">メッセージングアプリSync開発の舞台裏(iOS)</a></li>
+              
+                <li><a href="/2015/08/06/hashicorp-product-meetup.html">Hashicorp Product Meetup というイベントを開きました</a></li>
+              
+                <li><a href="/2015/04/01/sync-kpt.html">チームでKPTをやってみました</a></li>
+              
+                <li><a href="/2014/10/06/swift-style-guide.html">Swiftコーディング規約@Wantedly</a></li>
+              
+            </ul>
+          </div>
+          <!--
+            <div class="side-article">
+              <h4>Tags</h4>
+              <ul>
+                
+                  <li>- <a href="/tags/elasticsearch.html">elasticsearch</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-ec2-nginx.html">elasticsearch chef ec2 nginx</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-aws.html">elasticsearch chef aws</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vagrant.html">vagrant</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/packer.html">packer</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/serf.html">serf</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/consul.html">consul</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/terraform.html">terraform</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vault.html">vault</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/atlas.html">atlas</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/hashicorp.html">hashicorp</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/ios.html">iOS</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/swift.html">Swift</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/rails.html">Rails</a> <small class="gray">(3)</small></li>
+                
+                  <li>- <a href="/tags/angularjs.html">AngularJS</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/electron.html">Electron</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/android.html">Android</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/sketch.html">Sketch</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/ui.html">UI</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/web.html">Web</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/design.html">Design</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/sql.html">SQL</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/postgresql.html">PostgreSQL</a> <small class="gray">(2)</small></li>
+                
+                  <li>- <a href="/tags/development.html">Development</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/camp.html">Camp</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/yochiyochi.html">yochiyochi</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/よちよちアイドル.html">よちよちアイドル</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/インターンシップ.html">インターンシップ</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/3day-intern.html">3day intern</a> <small class="gray">(1)</small></li>
+                
+              </ul>
+            </div>
+          -->
+          <!--
+            <div class="side-article">
+              <h4>By Year</h4>
+              <ul>
+                
+                  <li>- <a href="/2016.html">2016</a> <small class="gray">(4)</small></li>
+                
+                  <li>- <a href="/2015.html">2015</a> <small class="gray">(5)</small></li>
+                
+                  <li>- <a href="/2014.html">2014</a> <small class="gray">(9)</small></li>
+                
+                  <li>- <a href="/2013.html">2013</a> <small class="gray">(2)</small></li>
+                
+              </ul>
+            </div>
+          -->
+        </div>
+      </div>
+    </div>
+    <footer class="container center">
+      <hr/>
+      <p>2013 © Wantedly, Inc., All Rights Reserved.</p>
+    </footer>
+
+    <script src="/javascripts/application-da39a3ee.js" type="text/javascript"></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  </body>
+</html>

@@ -133,6 +133,10 @@ RxSwift、ReactiveCocoa、ReSwift、SwiftFlux、SwiftBond、MVVM、FRPなどの�
 
 <script async class="speakerdeck-embed" data-id="51a0008044f2436aaa99c0eb3c012dc9" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
+登壇時のデモ動画もありますので、是非の以下リンクからご覧ください。
+
+http://in.fablic.co.jp/entry/reswift
+
 <a href="http://in.fablic.co.jp/entry/reswift" style="text-decoration: none">
 ![ReSwiftVideo](images/2016-04-14/ReSwiftVideo.png)
 </a>

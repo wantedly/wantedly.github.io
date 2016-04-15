@@ -131,7 +131,11 @@ RxSwift、ReactiveCocoa、ReSwift、SwiftFlux、SwiftBond、MVVM、FRPなどの�
 
 # ReSwiftでアプリの状態管理 / ninjinkun @ninjinkun Fablic Inc.
 
-資料公開準備中
+<script async class="speakerdeck-embed" data-id="51a0008044f2436aaa99c0eb3c012dc9" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<a href="http://in.fablic.co.jp/entry/reswift" style="text-decoration: none">
+![ReSwiftVideo](images/2016-04-14/ReSwiftVideo.png)
+</a>
 
 <img src="https://qiita-image-store.s3.amazonaws.com/0/4943/fd163700-ee7e-b81f-6c11-f040f7ba61c5.png" width=100px />
 

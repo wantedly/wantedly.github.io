@@ -1,0 +1,378 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reactive Swift Meetup @Wantedlyを開催しました！ - Wantedly Engineer Blog</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="/favicon-8030cb16.png" rel="icon" type="image/png">
+    <meta property="fb:app_id" content="234170156611754">
+    <meta property="og:image" content="https://connpass-tokyo.s3.amazonaws.com/thumbs/5d/52/5d52f13d66ef21eda25fc69c02240483.png">
+    <link href="/stylesheets/application-b5fca3c2.css" media="screen" rel="stylesheet" type="text/css" />
+    <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-12847756-21']);
+    _gaq.push(['_setDomainName', 'wantedly.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+  </head>
+  <body>
+    <header class="jumbotron cover-image center">
+      <h1 class="graduate"><a href="/">Wantedly Engineer Blog</a></h1>
+      <p>Wantedly 開発チームブログ</p>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-8">
+            <div class="page-header clearfix">
+    <h2>
+      <div class="article-title">
+        Reactive Swift Meetup @Wantedlyを開催しました！
+      </div>
+    </h2>
+    <div class="article-avatar">
+      <a href="https://www.wantedly.com/users/631708">
+        <img src="https://www.wantedly.com/users/631708/avatar" class="avatar" />
+      </a>
+      <span class='date'>14-Apr-2016</span>
+    </div>
+    <div class="pull-right social-links">
+      <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2016/04/14/reactive-swift-meetup.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="susieyy" data-url="http://engineer.wantedly.com/2016/04/14/reactive-swift-meetup.html">Tweet</a>
+      <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2016/04/14/reactive-swift-meetup.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+      
+        <iframe src="http://ghbtns.com/github-btn.html?user=susieyy&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+      
+    </div>
+  </div>
+  <div class="article">
+    <p><img alt="concept.jpg" src="/images/2016-04-14/title-2dd54534.png" /></p>
+
+<p>4月13日に<a href="http://wantedly.connpass.com/event/29039/">Reactive Swift Meetup</a>をWantedlyで開催させて頂きました。</p>
+
+<p>RxSwift、ReactiveCocoa、ReSwift、SwiftFlux、SwiftBond、MVVM、FRPなどの各技術を先見的に活用されている素晴らしい登壇者の方々をお招きして、それぞれのフレームワークの特徴やパラダイムについて、また業務のアプリ開発でどのように利用されているのかをお話頂きました。アプリの開発が複雑になる中どのようにこの課題を解決していくのか、登壇者の皆さんのそれぞれのアプローチと深い知見を聞くことができ、登壇者同士の間でも互いに刺激となる会になったのではと思います。</p>
+
+<p><img alt="concept.jpg" src="/images/2016-04-14/IMG_4340-42b1bc8d.jpg" /></p>
+
+<p>筆者の登壇風景です。</p>
+
+<p><img alt="concept.jpg" src="/images/2016-04-14/IMG_5082-38311075.jpg" /></p>
+
+<p>オーディエンスにもたくさんの方々にお越し頂きました。ありがとうございます！ 登壇者やスタッフを含めると参加者は１００名ほどの勉強会となりました。弊社でこの規模の勉強会の運営は初めてなところもあり、至らず行き届いてない点もあったとは思いますが、以下のようにも言って頂けてスタッフ一同嬉しい限りです。</p>
+
+<p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr"><a href="https://twitter.com/hashtag/Reactive_Swift_Meetup?src=hash">#Reactive<em>Swift</em>Meetup</a> Wantedly さんの勉強会、タイムキーピング、照明、音響どれをとっても完璧だったし、運営スタッフさんも慣れている感じだった。勉強会運営という観点でも非常に勉強になった。</p>&mdash; Kosuke Ogawa (@koogawa) <a href="https://twitter.com/koogawa/status/720227555333132288">2016年4月13日</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<h2>登壇者の方々の発表資料です</h2>
+
+<h1>キーノート / Oba Shinichiro @bricklife Mercari, Inc.</h1>
+
+<p>資料はありません。</p>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/4943/ec85597e-3c92-36b2-ca73-a6f8e958a371.png" width=100px /></p>
+
+<ul>
+<li><a href="http://qiita.com/bricklife">Qiita</a></li>
+<li><a href="https://twitter.com/ooba">Twitter</a></li>
+<li><a href="https://github.com/bricklife">GitHub</a></li>
+<li><a href="http://bricklife.com">Blog</a></li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1>SwiftBondとMVVMで状態管理をシンプルにしよう / Sugigami Yohei @susieyy Wantedly, Inc.</h1>
+
+<script async class="speakerdeck-embed" data-id="2826248a7dde4c908dde73ea152ff699" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/4943/275d70a0-9941-c1ba-6ad4-4415e80281b6.png" width=100px /></p>
+
+<ul>
+<li><a href="http://qiita.com/susieyy">Qiita</a></li>
+<li><a href="https://twitter.com/susieyy">Twitter</a></li>
+<li><a href="github.com/susieyy">GitHub</a></li>
+<li><a href="https://speakerdeck.com/susieyy">Speakerdeck</a></li>
+<li><a href="https://www.wantedly.com/users/631708">Wantedly</a></li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1>ReactiveCocoa 4.1入門 / Nick Matsunaga  Vasily Inc.</h1>
+
+<script async class="speakerdeck-embed" data-id="16bc265d1f2b418cb9d5e5824ec57bea" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/4943/c35e8c60-f666-8f7a-37a5-bf91f3a28233.png" width=100px /></p>
+
+<ul>
+<li><a href="https://github.com/Nirma">GitHub</a></li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1>カッコ悪くリアクティブじゃダメですか？ / Tokoro Yuta @tokorom Freelancer</h1>
+
+<script async class="speakerdeck-embed" data-id="b644b20cbd964dc197617e4fbff8f54a" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/4943/b6bf5c58-b947-e2d0-2e5e-b523fd7c536b.png" width=100px /></p>
+
+<ul>
+<li><a href="https://twitter.com/tokorom">Twitter</a></li>
+<li><a href="https://github.com/tokorom">GitHub</a></li>
+<li><a href="http://www.tokoro.me">Blog</a></li>
+<li><a href="https://speakerdeck.com/tokorom">Speakerdeck</a></li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1>Fluxで複雑な状態の変化を予測可能にするiOSアプリ開発 / Yonekawa Kenichi @yonekawa freee K.K</h1>
+
+<script async class="speakerdeck-embed" data-id="af582170179a45c8b127a272923ca541" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/4943/e4529b02-47ce-7f77-5f32-e08d24af880a.png" width=100px /></p>
+
+<ul>
+<li><a href="http://qiita.com/yonekawa">Qiita</a></li>
+<li><a href="https://twitter.com/yonekawa">Twitter</a></li>
+<li><a href="https://github.com/yonekawa">GitHub</a></li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1>Getting Started with ReactiveCocoa v4.1.0 / Inami Yasuhiro @inamiy LINE Corp.</h1>
+
+<script async class="speakerdeck-embed" data-id="d2b4360e781747a78851bd87182f92f8" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/4943/8ca71a6d-7349-037b-afeb-1b1dcee5c249.png" width=100px /></p>
+
+<ul>
+<li><a href="https://twitter.com/inamiy">Twitter</a></li>
+<li><a href="https://github.com/inamiy">GitHub</a></li>
+<li><a href="https://speakerdeck.com/inamiy">Speakerdeck</a></li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1>RxSwift + MVVM / Ishikawa Yosuke @_ishkawa Mercari Inc.</h1>
+
+<script async class="speakerdeck-embed" data-id="b96c88210c0840799d705e12c607e202" data-ratio="1.37081659973226" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/4943/734957f0-13c8-30db-2d1a-79ecb21a8a63.png" width=100px /></p>
+
+<ul>
+<li><a href="https://twitter.com/_ishkawa">Twitter</a></li>
+<li><a href="https://github.com/ishkawa">GitHub</a></li>
+<li><a href="http://blog.ishkawa.org/">Blog</a></li>
+<li><a href="https://speakerdeck.com/ishkawa">Speakerdeck</a></li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1>ReSwiftでアプリの状態管理 / ninjinkun @ninjinkun Fablic Inc.</h1>
+
+<p>資料公開準備中</p>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/4943/fd163700-ee7e-b81f-6c11-f040f7ba61c5.png" width=100px /></p>
+
+<ul>
+<li><a href="http://ninjinkun.hatenablog.com/entry/2016/02/02/183136">アプリ開発と状態遷移の管理</a> ninjinkun&#39;s diary</li>
+<li><a href="https://twitter.com/ninjinkun">Twitter</a></li>
+<li><a href="https://github.com/ninjinkun">GitHub</a></li>
+<li><a href="http://ninjinkun.hatenablog.com/">Blog</a></li>
+<li><a href="https://speakerdeck.com/ninjinkun">Speakerdeck</a></li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1>Carthage and ReactiveCocoa / Ikeda Syo @ikesyo Hatena Co, Ltd.</h1>
+
+<script async class="speakerdeck-embed" data-id="9d6eb1d13ae64ddbb103378380a46ab0" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/4943/d6406606-7aeb-6857-6707-2eb96b9f5b0e.png" width=100px /></p>
+
+<ul>
+<li><a href="https://twitter.com/ikesyo">Twitter</a></li>
+<li><a href="https://github.com/ikesyo">GitHub</a></li>
+<li><a href="http://ikesyo.hatenablog.com">Blog</a></li>
+<li><a href="http://www.slideshare.net/syoikeda">Slideshare</a></li>
+</ul>
+
+<p><br />
+<br />
+<br /></p>
+
+<h1>Wantedlyは一緒にiOSアプリを開発してくださるエンジニアを募集しています！</h1>
+
+<iframe frameborder='0' height='305px' name='wantedly_project_widget_51088' scrolling='no' src='https://www.wantedly.com/projects/51088/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+
+  </div>
+
+  <hr>
+  <div>
+    エンジニア採用中！<a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+  </div>
+  <hr>
+
+  <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2016/04/14/reactive-swift-meetup.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="susieyy" data-url="http://engineer.wantedly.com/2016/04/14/reactive-swift-meetup.html">Tweet</a>
+  <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2016/04/14/reactive-swift-meetup.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+  
+    <iframe src="http://ghbtns.com/github-btn.html?user=susieyy&amp;type=follow&amp;count=true"
+  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+  
+
+        </div>
+        <div class="col-xs-12 col-md-3 col-md-offset-1">
+          <div class="store-banner">
+            <a href="https://wantedly.stores.jp/">
+              <img src="https://huntr-static.s3.amazonaws.com/engineer_blog/storeBanner.png" alt="storeBanner" width="260px" height="162px">
+            </a>
+          </div>
+          <div class="side-article">
+            <h4>エンジニア採用中！</h4>
+            <a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
+          </div>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_29459' scrolling='no' src='https://www.wantedly.com/projects/29459/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <iframe frameborder='0' height='305px' name='wantedly_project_widget_25674' scrolling='no' src='https://www.wantedly.com/projects/25674/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'></iframe>
+          <div class="side-article">
+            <h4>最近の記事</h4>
+            <ul>
+              
+                <li><a href="/2016/04/14/reactive-swift-meetup.html">Reactive Swift Meetup @Wantedlyを開催しました！</a></li>
+              
+                <li><a href="/2016/04/01/four-years.html">2016年のWantedlyアーキテクチャ (1)</a></li>
+              
+                <li><a href="/2016/03/11/spring-internship-2016.html">Wantedly Spring Internship 2016</a></li>
+              
+                <li><a href="/2016/02/22/yochiyochi-python.html">よちよちPythonしてきた〜プログラミングは料理と一緒〜</a></li>
+              
+                <li><a href="/2016/01/24/development-camp.html">Wantedly エンジニアチームは湯河原温泉で開発合宿を行いました！</a></li>
+              
+                <li><a href="/2015/12/17/rails-sql.html">RailsエンジニアのためのSQLチューニング速習会</a></li>
+              
+                <li><a href="/2015/10/13/learn-sketch.html">デザイナーとエンジニア間のコミュニケーションコストを下げる試み</a></li>
+              
+                <li><a href="/2015/09/09/sync-messenger-ios-project.html">メッセージングアプリSync開発の舞台裏(iOS)</a></li>
+              
+                <li><a href="/2015/08/06/hashicorp-product-meetup.html">Hashicorp Product Meetup というイベントを開きました</a></li>
+              
+                <li><a href="/2015/04/01/sync-kpt.html">チームでKPTをやってみました</a></li>
+              
+            </ul>
+          </div>
+          <!--
+            <div class="side-article">
+              <h4>Tags</h4>
+              <ul>
+                
+                  <li>- <a href="/tags/elasticsearch.html">elasticsearch</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-ec2-nginx.html">elasticsearch chef ec2 nginx</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/elasticsearch-chef-aws.html">elasticsearch chef aws</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vagrant.html">vagrant</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/packer.html">packer</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/serf.html">serf</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/consul.html">consul</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/terraform.html">terraform</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/vault.html">vault</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/atlas.html">atlas</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/hashicorp.html">hashicorp</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/ios.html">iOS</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/swift.html">Swift</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/rails.html">Rails</a> <small class="gray">(3)</small></li>
+                
+                  <li>- <a href="/tags/angularjs.html">AngularJS</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/electron.html">Electron</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/android.html">Android</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/sketch.html">Sketch</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/ui.html">UI</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/web.html">Web</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/design.html">Design</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/sql.html">SQL</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/postgresql.html">PostgreSQL</a> <small class="gray">(2)</small></li>
+                
+                  <li>- <a href="/tags/development.html">Development</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/camp.html">Camp</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/yochiyochi.html">yochiyochi</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/よちよちアイドル.html">よちよちアイドル</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/インターンシップ.html">インターンシップ</a> <small class="gray">(1)</small></li>
+                
+                  <li>- <a href="/tags/3day-intern.html">3day intern</a> <small class="gray">(1)</small></li>
+                
+              </ul>
+            </div>
+          -->
+          <!--
+            <div class="side-article">
+              <h4>By Year</h4>
+              <ul>
+                
+                  <li>- <a href="/2016.html">2016</a> <small class="gray">(5)</small></li>
+                
+                  <li>- <a href="/2015.html">2015</a> <small class="gray">(5)</small></li>
+                
+                  <li>- <a href="/2014.html">2014</a> <small class="gray">(9)</small></li>
+                
+                  <li>- <a href="/2013.html">2013</a> <small class="gray">(2)</small></li>
+                
+              </ul>
+            </div>
+          -->
+        </div>
+      </div>
+    </div>
+    <footer class="container center">
+      <hr/>
+      <p>2013 © Wantedly, Inc., All Rights Reserved.</p>
+    </footer>
+
+    <script src="/javascripts/application-da39a3ee.js" type="text/javascript"></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  </body>
+</html>

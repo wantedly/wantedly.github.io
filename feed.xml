@@ -5,10 +5,192 @@
   <id>http://engineer.wantedly.com/</id>
   <link href="http://engineer.wantedly.com/"/>
   <link href="http://engineer.wantedly.com/feed.xml" rel="self"/>
-  <updated>2016-03-31T15:00:00Z</updated>
+  <updated>2016-04-14T11:07:00Z</updated>
   <author>
     <name>@wantedly</name>
   </author>
+  <entry>
+    <title>Reactive Swift Meetup @Wantedlyを開催しました！</title>
+    <link rel="alternate" href="http://engineer.wantedly.com/2016/04/14/reactive-swift-meetup.html"/>
+    <id>http://engineer.wantedly.com/2016/04/14/reactive-swift-meetup.html</id>
+    <published>2016-04-14T11:07:00Z</published>
+    <updated>2016-04-15T16:27:02+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="concept.jpg" src="/images/2016-04-14/title-2dd54534.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;4月13日に&lt;a href="http://wantedly.connpass.com/event/29039/"&gt;Reactive Swift Meetup&lt;/a&gt;をWantedlyで開催させて頂きました。&lt;/p&gt;
+
+&lt;p&gt;RxSwift、ReactiveCocoa、ReSwift、SwiftFlux、SwiftBond、MVVM、FRPなどの各技術を先見的に活用されている素晴らしい登壇者の方々をお招きして、それぞれのフレームワークの特徴やパラダイムについて、また業務のアプリ開発でどのように利用されているのかをお話頂きました。アプリの開発が複雑になる中どのようにこの課題を解決していくのか、登壇者の皆さんのそれぞれのアプローチと深い知見を聞くことができ、登壇者同士の間でも互いに刺激となる会になったのではと思います。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="concept.jpg" src="/images/2016-04-14/IMG_4340-42b1bc8d.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;筆者の登壇風景です。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="concept.jpg" src="/images/2016-04-14/IMG_5082-38311075.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;オーディエンスにもたくさんの方々にお越し頂きました。ありがとうございます！ 登壇者やスタッフを含めると参加者は１００名ほどの勉強会となりました。弊社でこの規模の勉強会の運営は初めてなところもあり、至らず行き届いてない点もあったとは思いますが、以下のようにも言って頂けてスタッフ一同嬉しい限りです。&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class="twitter-tweet" data-lang="ja"&gt;&lt;p lang="ja" dir="ltr"&gt;&lt;a href="https://twitter.com/hashtag/Reactive_Swift_Meetup?src=hash"&gt;#Reactive&lt;em&gt;Swift&lt;/em&gt;Meetup&lt;/a&gt; Wantedly さんの勉強会、タイムキーピング、照明、音響どれをとっても完璧だったし、運営スタッフさんも慣れている感じだった。勉強会運営という観点でも非常に勉強になった。&lt;/p&gt;&amp;mdash; Kosuke Ogawa (@koogawa) &lt;a href="https://twitter.com/koogawa/status/720227555333132288"&gt;2016年4月13日&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;h2&gt;登壇者の方々の発表資料です&lt;/h2&gt;
+
+&lt;h1&gt;キーノート / Oba Shinichiro @bricklife Mercari, Inc.&lt;/h1&gt;
+
+&lt;p&gt;資料はありません。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://qiita-image-store.s3.amazonaws.com/0/4943/ec85597e-3c92-36b2-ca73-a6f8e958a371.png" width=100px /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://qiita.com/bricklife"&gt;Qiita&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/ooba"&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/bricklife"&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://bricklife.com"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1&gt;SwiftBondとMVVMで状態管理をシンプルにしよう / Sugigami Yohei @susieyy Wantedly, Inc.&lt;/h1&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="2826248a7dde4c908dde73ea152ff699" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;img src="https://qiita-image-store.s3.amazonaws.com/0/4943/275d70a0-9941-c1ba-6ad4-4415e80281b6.png" width=100px /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://qiita.com/susieyy"&gt;Qiita&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/susieyy"&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="github.com/susieyy"&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://speakerdeck.com/susieyy"&gt;Speakerdeck&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.wantedly.com/users/631708"&gt;Wantedly&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1&gt;ReactiveCocoa 4.1入門 / Nick Matsunaga  Vasily Inc.&lt;/h1&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="16bc265d1f2b418cb9d5e5824ec57bea" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;img src="https://qiita-image-store.s3.amazonaws.com/0/4943/c35e8c60-f666-8f7a-37a5-bf91f3a28233.png" width=100px /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/Nirma"&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1&gt;カッコ悪くリアクティブじゃダメですか？ / Tokoro Yuta @tokorom Freelancer&lt;/h1&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="b644b20cbd964dc197617e4fbff8f54a" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;img src="https://qiita-image-store.s3.amazonaws.com/0/4943/b6bf5c58-b947-e2d0-2e5e-b523fd7c536b.png" width=100px /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/tokorom"&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/tokorom"&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.tokoro.me"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://speakerdeck.com/tokorom"&gt;Speakerdeck&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1&gt;Fluxで複雑な状態の変化を予測可能にするiOSアプリ開発 / Yonekawa Kenichi @yonekawa freee K.K&lt;/h1&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="af582170179a45c8b127a272923ca541" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;img src="https://qiita-image-store.s3.amazonaws.com/0/4943/e4529b02-47ce-7f77-5f32-e08d24af880a.png" width=100px /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://qiita.com/yonekawa"&gt;Qiita&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/yonekawa"&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/yonekawa"&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1&gt;Getting Started with ReactiveCocoa v4.1.0 / Inami Yasuhiro @inamiy LINE Corp.&lt;/h1&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="d2b4360e781747a78851bd87182f92f8" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;img src="https://qiita-image-store.s3.amazonaws.com/0/4943/8ca71a6d-7349-037b-afeb-1b1dcee5c249.png" width=100px /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/inamiy"&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/inamiy"&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://speakerdeck.com/inamiy"&gt;Speakerdeck&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1&gt;RxSwift + MVVM / Ishikawa Yosuke @_ishkawa Mercari Inc.&lt;/h1&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="b96c88210c0840799d705e12c607e202" data-ratio="1.37081659973226" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;img src="https://qiita-image-store.s3.amazonaws.com/0/4943/734957f0-13c8-30db-2d1a-79ecb21a8a63.png" width=100px /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/_ishkawa"&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/ishkawa"&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.ishkawa.org/"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://speakerdeck.com/ishkawa"&gt;Speakerdeck&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1&gt;ReSwiftでアプリの状態管理 / ninjinkun @ninjinkun Fablic Inc.&lt;/h1&gt;
+
+&lt;p&gt;資料公開準備中&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://qiita-image-store.s3.amazonaws.com/0/4943/fd163700-ee7e-b81f-6c11-f040f7ba61c5.png" width=100px /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://ninjinkun.hatenablog.com/entry/2016/02/02/183136"&gt;アプリ開発と状態遷移の管理&lt;/a&gt; ninjinkun&amp;#39;s diary&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/ninjinkun"&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/ninjinkun"&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://ninjinkun.hatenablog.com/"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://speakerdeck.com/ninjinkun"&gt;Speakerdeck&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1&gt;Carthage and ReactiveCocoa / Ikeda Syo @ikesyo Hatena Co, Ltd.&lt;/h1&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="9d6eb1d13ae64ddbb103378380a46ab0" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;img src="https://qiita-image-store.s3.amazonaws.com/0/4943/d6406606-7aeb-6857-6707-2eb96b9f5b0e.png" width=100px /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/ikesyo"&gt;Twitter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/ikesyo"&gt;GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://ikesyo.hatenablog.com"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.slideshare.net/syoikeda"&gt;Slideshare&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1&gt;Wantedlyは一緒にiOSアプリを開発してくださるエンジニアを募集しています！&lt;/h1&gt;
+
+&lt;iframe frameborder='0' height='305px' name='wantedly_project_widget_51088' scrolling='no' src='https://www.wantedly.com/projects/51088/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'&gt;&lt;/iframe&gt;
+</content>
+  </entry>
   <entry>
     <title>2016年のWantedlyアーキテクチャ (1)</title>
     <link rel="alternate" href="http://engineer.wantedly.com/2016/04/01/four-years.html"/>
@@ -665,96 +847,6 @@ RailsはRDBをたたく際に、Active Recordが最適化をよしなにやっ�
 &lt;li&gt;&lt;a href="http://qiita.com/seanchas_t/items/d39a427355f4b90b5b91"&gt;TypeScript速習会&lt;/a&gt; by &lt;a href="https://twitter.com/seanchas_t"&gt;@seanchas_t&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://gist.github.com/hedjirog/17b7cf737e9e0aabf338"&gt;WebエンジニアのためのiOSデバッグ速習会&lt;/a&gt; by &lt;a href="https://twitter.com/hedjirog"&gt;@hedjirog&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>デザイナーとエンジニア間のコミュニケーションコストを下げる試み</title>
-    <link rel="alternate" href="http://engineer.wantedly.com/2015/10/13/learn-sketch.html"/>
-    <id>http://engineer.wantedly.com/2015/10/13/learn-sketch.html</id>
-    <published>2015-10-13T07:30:00Z</published>
-    <updated>2015-10-21T18:30:06+09:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;&lt;img alt="Sketch速習会" src="https://huntr-static.s3.amazonaws.com/engineer_blog/sketch-ogp.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;デザイナーの宇佐美 &lt;a href="https://twitter.com/ui_pb"&gt;@Ui_Pb&lt;/a&gt; です。&lt;/p&gt;
-
-&lt;h2&gt;速習会とは&lt;/h2&gt;
-
-&lt;p&gt;2015年10月1日に、 Wantedly のオフィスにてSketch速習会を開催しました！
-実は、過去にも何度か社外の方を数名招待する形で速習会を行っております。
-なぜ数名のみ紹介する形をとっているかというと、以前から定期的に行っていた社内勉強会に社外の人も数名招待しよう！という流れから速習会を定期開催するようになったからです。そのため、社外の方々だけでなく社内のエンジニアやデザイナーも毎回参加しています。&lt;/p&gt;
-
-&lt;h3&gt;過去に行った速習会&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://wantedly.connpass.com/event/17532/"&gt;JSONScheme速習会&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://wantedly.connpass.com/event/18018/"&gt;きれいなCSS速習会&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://wantedly.connpass.com/event/20077/"&gt;UML速習会&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://wantedly.connpass.com/event/19585/"&gt;データ解析ツール速習会 TreasuData/DOMO編&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://wantedly.connpass.com/event/19067/"&gt;Docker速習会&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;今回やったこと&lt;/h3&gt;
-
-&lt;p&gt;今回の速習会では、Sketchファイルの基本的な編集方法とSketchファイルを貰った時に意識して見て欲しいポイントを伝えることを目的に行いました。
-Wantedlyではエンジニア、デザイナーともにSketchという共通のツールを使うことで、デザイナーとエンジニア間のコミュニケーションコストを下げよう！という取り組みを行っていることからこのテーマを選んだためです。&lt;/p&gt;
-
-&lt;p&gt;速習会中は、デザイナーでない方々にも多くご参加いただいたので、Sketchを「どう使っているか」を実際に見ていただき、
-参加していた方々ご自身に実践していただくことで使い方を知ってもらうよう意識してSketchについての発表と実践する機会を設けさせていただきました！&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/images/2015-10-13/1-14da23ee.png" /&gt;&lt;/p&gt;
-
-&lt;h2&gt;簡単に自己紹介すると&lt;/h2&gt;
-
-&lt;p&gt;今年の3月まで高校に通っていて、6月からWantedlyにインターンとしてジョイン。9月からデザイナーとして社員になりました。WantedlyではWeb、iOSのUIデザインをメインにやっていて、フロントエンドも書きます。最近はRailsも書くようになりました。個人ではグラフィックアニメーションや写真、DTPなど幅広くやっています。&lt;/p&gt;
-
-&lt;h2&gt;こんなこと話しました&lt;/h2&gt;
-
-&lt;p&gt;デザインツールを使ったことのないエンジニアが多かったので、アートボードの作り方から解説をしました。基本的には導入を丁寧にやってある程度からはトライアンドエラーの繰り返しがツールをの使い道を身につけるにはいいと思っています。なので、スライドでは基礎の操作方法の解説が終わったら難しめの課題を出して、試行錯誤をしてSketchを使ってもらう形になっています。使い方の特徴としては実装するところに重点を置いて、Sketchファイルを作っていくところです。時間的な問題で載せられなかったことがたくさんあるので、またいつかここに書きたいと思います。&lt;/p&gt;
-
-&lt;p&gt;&lt;iframe src="//www.slideshare.net/slideshow/embed_code/key/a2iQt2At1xbaiQ" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen&gt; &lt;/iframe&gt; &lt;div style="margin-bottom:5px"&gt; &lt;strong&gt; &lt;a href="//www.slideshare.net/core619/sketchwantedly" title="Sketch速習会@Wantedly" target="_blank"&gt;Sketch速習会@Wantedly&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href="//www.slideshare.net/core619" target="_blank"&gt;Ryo Usami&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;
-
-&lt;h2&gt;プラグイン&lt;/h2&gt;
-
-&lt;p&gt;Sketchを使って高速にデザインを作るにはプラグインが不可欠です。僕が普段使っているプラグインの一部を紹介します。詳しい操作方法は各プラグインのページを参照してください。&lt;/p&gt;
-
-&lt;h4&gt;&lt;a href="https://github.com/soutaro/align-text-baseline-sketch-plugin"&gt;Align Text Baseline&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Sketchでは日本語のフォントボディーの解釈にバグがあり、&lt;code&gt;line-height&lt;/code&gt;が使い物になりません。またその影響で、&lt;code&gt;Text&lt;/code&gt;のheightが正確な値になっていないため、要素内で垂直中央揃えが効きません。このプラグインはその問題を解決するために作られたもので、ボタンなどを作る時に重宝します。&lt;/p&gt;
-
-&lt;h4&gt;&lt;a href="https://github.com/timuric/Content-generator-sketch-plugin"&gt;Content-generator-sketch-plugin-master&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Sketchで作った要素に人名、画像などをまとめて流し込めるプラグインです。Wantedlyでは各募集でイメージ画像を大きく掲載しているので、そこのイメージを再現するのに事前に何枚か募集の画像をダウンロードしておいて自動で流し込めるようにしています。&lt;/p&gt;
-
-&lt;h4&gt;&lt;a href="https://github.com/andrewfiorillo/sketch-palettes"&gt;Sketch Palettes&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;SketchにはカラーパレットがSketchアプリ全体に紐づけられている&lt;code&gt;Global Colors&lt;/code&gt;とファイルごとに設定する&lt;code&gt;Documents Colors&lt;/code&gt;があります。Sketch自体のテンプレート機能を使って&lt;code&gt;Documents Colors&lt;/code&gt;で頑張ることもできますが、何かと不便な時もあるので、プロジェクトごとにカラーパレットを書き出しておいて、使うときにimportすることにしています。&lt;/p&gt;
-
-&lt;h4&gt;&lt;a href="https://github.com/utom/sketch-measure"&gt;Sketch Measure&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;width, height, mergin, padding, font-size,colorなど実装の際に確認するパラペーターを可視化することができます。相手がsketchを持ってない場合や実装する人に細かく指示したい場合などに使います。&lt;/p&gt;
-
-&lt;h4&gt;&lt;a href="https://github.com/usa619/wantedly-color-picker"&gt;Wantedly Color Picker&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;WantedlyではSassでCSSを書いていて、カラーパレットの変数名で色指定を行っています。実装するときにカラーコードから変数名を調べるのがめんどくさかったので、自動で変数名を取得するプラグインを作りました！&lt;/p&gt;
-
-&lt;h2&gt;その他&lt;/h2&gt;
-
-&lt;h3&gt;懇親会&lt;/h3&gt;
-
-&lt;p&gt;今回は、焼きそばや唐揚げ、ピザなどの軽食を準備させて頂きました！
-社外の方々と話す貴重な機会となり、速習会に参加した社内エンジニアも楽しめました。
-ご参加いただいた皆様に感謝です！&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/images/2015-10-13/4-168e14c4.jpg" /&gt;&lt;/p&gt;
-
-&lt;h3&gt;最後に&lt;/h3&gt;
-
-&lt;p&gt;Wantedlyでは引き続き、2週間に1度のペースで速習会を行っています。Connpassにて開催の1週間前から募集を開始しております。
-今後も、様々なテーマの速習会を開催していく予定ですので、ご興味のある方は是非ご応募ください！
-&lt;br&gt;ref &lt;a href="http://wantedly.connpass.com/"&gt;ConnpassのWantedlyグループ&lt;/a&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>

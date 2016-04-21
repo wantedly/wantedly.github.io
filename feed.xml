@@ -5,10 +5,48 @@
   <id>http://engineer.wantedly.com/</id>
   <link href="http://engineer.wantedly.com/"/>
   <link href="http://engineer.wantedly.com/feed.xml" rel="self"/>
-  <updated>2016-04-14T11:07:00Z</updated>
+  <updated>2016-04-21T02:50:00Z</updated>
   <author>
     <name>@wantedly</name>
   </author>
+  <entry>
+    <title>Wantedlyの最近のReact事情についてMeguro.es #3で発表しました!</title>
+    <link rel="alternate" href="http://engineer.wantedly.com/2016/04/21/meguro-es-03.html"/>
+    <id>http://engineer.wantedly.com/2016/04/21/meguro-es-03.html</id>
+    <published>2016-04-21T02:50:00Z</published>
+    <updated>2016-04-21T16:46:46+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;目黒界隈のJavaScriptを書くエンジニアがあつまる勉強会、 &lt;a href="http://meguroes.connpass.com/event/28320/"&gt;&amp;ldquo;Meguro.es #3 in Drecom&amp;rdquo;&lt;/a&gt;に参加してきました。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="header.jpg" src="https://connpass-tokyo.s3.amazonaws.com/thumbs/9c/78/9c7804e8832001af408547c43c0390d4.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;会場はドリコムさんのオフィス内のカフェのようなスペースで、お酒を飲みつつ、ゆるやかで居心地良い雰囲気でした。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="drecom.jpg" src="/images/2016-04-21/1461061446-d0d6598d.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Wantedlyからは&lt;a href="https://www.wantedly.com/users/544320"&gt;高松&lt;/a&gt;と&lt;a href="https://www.wantedly.com/users/1468880"&gt;森脇&lt;/a&gt;の2人で最近のWantedlyのフロントエンド開発で使っているツールやライブラリの話をしました。&lt;/p&gt;
+
+&lt;h2&gt;WantedlyにReact + Reduxを導入した話&lt;/h2&gt;
+
+&lt;p&gt;Wantedlyのこれまでのフロントエンド開発の歴史と、既存のRailsプロジェクトにReact + Reduxを導入した方法について話しました。&lt;/p&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="e0f9b90b1e4749f6bc9a93470b9fa8f9" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;h2&gt;Immutable.jsとReact @Wantedly ~入門編~&lt;/h2&gt;
+
+&lt;p&gt;Facebookが開発している不変オブジェクトライブラリの &lt;a href="https://facebook.github.io/immutable-js/"&gt;Immutable.js&lt;/a&gt;の特徴や、Wantedlyでの活用例についての発表です。&lt;/p&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="9b0d97c3a7644a0c879ce81f1a701fed" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;h2&gt;We are hiring&lt;/h2&gt;
+
+&lt;p&gt;一緒にReactを書いてくれる仲間を募集してます!!!&lt;/p&gt;
+
+&lt;iframe frameborder='0' height='305px' name='wantedly_project_widget_51709' scrolling='no' src='https://www.wantedly.com/projects/51709/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'&gt;&lt;/iframe&gt;
+</content>
+  </entry>
   <entry>
     <title>Reactive Swift Meetup @Wantedlyを開催しました！</title>
     <link rel="alternate" href="http://engineer.wantedly.com/2016/04/14/reactive-swift-meetup.html"/>
@@ -810,51 +848,6 @@ Agileと野球が大好きなアラフォーエンジニア。
     }(document, "script", "wantedly-visit-buttons-wjs"));
 &lt;/script&gt;
 &lt;/div&gt;
-</content>
-  </entry>
-  <entry>
-    <title>RailsエンジニアのためのSQLチューニング速習会</title>
-    <link rel="alternate" href="http://engineer.wantedly.com/2015/12/17/rails-sql.html"/>
-    <id>http://engineer.wantedly.com/2015/12/17/rails-sql.html</id>
-    <published>2015-12-17T03:30:00Z</published>
-    <updated>2016-03-31T15:53:49+09:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;&lt;img alt="Sketch速習会" src="https://huntr-static.s3.amazonaws.com/engineer_blog/minami.jpeg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;エンジニアの南直 &lt;a href="https://github.com/south37"&gt;@south37&lt;/a&gt; です。&lt;/p&gt;
-
-&lt;h2&gt;速習会の内容&lt;/h2&gt;
-
-&lt;p&gt;2015年12月10日に、 Wantedly のオフィスにてRailsエンジニアのためのSQLチューニング速習会を開催しました！
-RailsはRDBをたたく際に、Active Recordが最適化をよしなにやってくれるので複雑な処理やサービスの規模が小さい段階ではRDBに向き合う場面はすくないかと思います。しかし、サービス規模が大きくなってきたり、複雑な処理を行ったり、高速化に本気で向き合うときは、Active Recordの仮面をはぎとりSQLと向き合って細かなチューニングをおこなっていく必要があります。
-今回の速習会では、SQLのチューニングの基礎として、SQLが実行されるときRDBの中ではなにがおきているか、Explainの読み方、Indexの張り方などをまとめています。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="https://huntr-static.s3.amazonaws.com/engineer_blog/rails_sql_engineer.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://www.slideshare.net/naominami908/railssql"&gt;発表スライドはこちら&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2&gt;Wantedly速習会&lt;/h2&gt;
-
-&lt;p&gt;Wantedlyでは引き続き、2週間に1度のペースでプロダクト開発に関する技術やサービスの開発のやりかたなどの速習会を行っています。Connpassにて開催の1週間前から募集を開始しております。以下に、過去におこなった速習会の資料や情報をまとめていますので、興味がある方はご覧ください！
-今後も、様々なテーマの速習会を開催していく予定ですので、ご興味のある方は是非ご応募ください！
-&lt;br&gt;ref &lt;a href="http://wantedly.connpass.com/"&gt;ConnpassのWantedlyグループ&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;過去に行った速習会の資料&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://speakerdeck.com/izumin5210/introduction-to-json-schema"&gt;JSONScheme速習会&lt;/a&gt; by &lt;a href="https://twitter.com/izumin5210"&gt;@izumin5210&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://speakerdeck.com/creasty/clean-and-unbreakable-css"&gt;きれいなCSS速習会&lt;/a&gt; by &lt;a href="https://twitter.com/creasty"&gt;@creasty&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.slideshare.net/TakaoSumitomo/uml-52883154"&gt;UML速習会&lt;/a&gt; by &lt;a href="https://twitter.com/cattaka_net"&gt;@cattaka&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://speakerdeck.com/altech/domobian"&gt;データ解析ツール速習会 TreasuData/DOMO編&lt;/a&gt; by &lt;a href="https://twitter.com/Altech_2015"&gt;@altech&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://wantedly.connpass.com/event/19067/"&gt;Docker速習会&lt;/a&gt; by &lt;a href="https://twitter.com/spesnova"&gt;@spesnova&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.slideshare.net/core619/sketchwantedly"&gt;Sketch速習会&lt;/a&gt; by &lt;a href="https://twitter.com/ui_pb"&gt;@Ui_Pb&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://qiita.com/awakia/items/d646cc3fd7ee3d223909"&gt;Go速習会&lt;/a&gt; by &lt;a href="https://twitter.com/awakia"&gt;@awakia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.slideshare.net/yoshinorikawasaki/rediswantedly"&gt;Redis速習会&lt;/a&gt; by &lt;a href="https://twitter.com/kawasy"&gt;@kawasy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://qiita.com/seanchas_t/items/d39a427355f4b90b5b91"&gt;TypeScript速習会&lt;/a&gt; by &lt;a href="https://twitter.com/seanchas_t"&gt;@seanchas_t&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://gist.github.com/hedjirog/17b7cf737e9e0aabf338"&gt;WebエンジニアのためのiOSデバッグ速習会&lt;/a&gt; by &lt;a href="https://twitter.com/hedjirog"&gt;@hedjirog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>

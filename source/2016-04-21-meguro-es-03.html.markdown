@@ -1,27 +1,30 @@
 ---
-title: Meguro.es \#3 in Drecom で発表しました!
+title: 'Meguro.es #3 in Drecom で発表しました!'
 date: 2016-04-21 11:50 JST
 wantedly_id: 544320
-twitter_id: shimpeiws
-github_id: shimpeiws
+twitter_id: wantedly
 cover_image: https://connpass-tokyo.s3.amazonaws.com/thumbs/9c/78/9c7804e8832001af408547c43c0390d4.png
 ---
 
-![header.jpg](https://connpass-tokyo.s3.amazonaws.com/thumbs/9c/78/9c7804e8832001af408547c43c0390d4.png)
-
 目黒界隈のJavaScriptを書くエンジニアがあつまる勉強会、 ["Meguro.es #3 in Drecom"](http://meguroes.connpass.com/event/28320/)に参加してきました。
 
-会場はドリコムさんのオフィス内のカフェのようなスペースで、お酒も飲みつつ、ゆるやかで居心地良い雰囲気でした。
+![header.jpg](https://connpass-tokyo.s3.amazonaws.com/thumbs/9c/78/9c7804e8832001af408547c43c0390d4.png)
+
+会場はドリコムさんのオフィス内のカフェのようなスペースで、お酒を飲みつつ、ゆるやかで居心地良い雰囲気でした。
 
 ![drecom.jpg](images/2016-04-21/1461061446.jpg)
 
-Wantedlyからは[高松](https://www.wantedly.com/projects/51709/staffings/213692)と[森脇](https://www.wantedly.com/projects/51709/staffings/213690)の二人で最近のWantedlyの開発で使っているツールやライブラリの話をしました。
+Wantedlyからは[高松](https://www.wantedly.com/users/544320)と[森脇](https://www.wantedly.com/users/1468880)の2人で最近のWantedlyのフロントエンド開発で使っているツールやライブラリの話をしました。
 
 ## WantedlyにReact + Reduxを導入した話
+
+Wantedlyのこれまでのフロントエンド開発の歴史と、既存のRailsプロジェクトにReact + Reduxを導入した方法について話しました。
 
 <script async class="speakerdeck-embed" data-id="e0f9b90b1e4749f6bc9a93470b9fa8f9" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
 ## Immutable.jsとReact @Wantedly ~入門編~
+
+Facebookが開発している不変オブジェクトライブラリの [Immutable.js](https://facebook.github.io/immutable-js/)の特徴や、Wantedlyでの活用例についての発表です。
 
 <script async class="speakerdeck-embed" data-id="9b0d97c3a7644a0c879ce81f1a701fed" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 

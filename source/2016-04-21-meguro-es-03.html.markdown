@@ -1,5 +1,5 @@
 ---
-title: 'Meguro.es #3 in Drecom で発表しました!'
+title: 'Wantedlyの最近のReact事情についてMeguro.es #3で発表しました!'
 date: 2016-04-21 11:50 JST
 wantedly_id: 544320
 twitter_id: wantedly

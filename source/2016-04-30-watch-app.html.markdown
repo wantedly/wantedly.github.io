@@ -1,0 +1,106 @@
+---
+title: Watchアプリをリリースしていました
+date: 2016-04-30 22:12 JST
+wantedly_id: 300507
+facebook_id: shingtgt
+twitter_id: _shingt
+github_id: shingt
+---
+
+エンジニアのshingtです。このblogを書くのは2年前に[Neo4jの記事](2014-01-02-neo4j-introduction.html)を書いて以来ですね。
+
+さて、時期を少し逃してしまった感がありますが、3月にWantedlyのApple Watch用アプリをこっそりリリースしました。
+
+このアプリには少し変わった機能として "Wantedly上に登録された企業が近くにある際に、その企業を通知・表示する" というものを入れています。（注: 通知候補は一部の企業様のみとなっております。）
+
+設計としても多少変わったものになったため、簡単にですがここで紹介します（自分の備忘録も兼ねて）。なお、watchOS 2、iOS9上での開発です。
+
+## 機能について
+
+前述のように、このWatchアプリではユーザの近くにある企業を通知/表示することができます。
+このフローは大きく分けて2つ存在しており、画面遷移は以下のようになっています。
+通知もしくは起動時の画面から、最終的には同じ位置情報を表示する画面に行き着く、という構成です。
+
+<img src="/images/2016-04-30/image1.png" width=600px>
+
+メッセージが確認できる画面等もありますが、機能としてはそれくらいで、watchOSのドキュメントや[airbnbのblogなどで言われるように](http://nerds.airbnb.com/airbnb-watch/)、本体アプリの"Lightweight Extension"となるような機能に留めつつ、watchらしい体験も組み込んだという形です。
+
+## 位置情報取得周りのフロー
+
+上の図の通り、このアプリでは位置情報をユーザが確認するフローが2つ存在しています。
+
+* フローA: 通知経由の場合
+* フローB: ユーザが自らアプリを起動した場合
+
+### フローA: 通知経由の場合
+
+前提としてこのアプリの通知は頻繁に送る類のものではありません。
+そのため、`CLLocationManager`における[Significant Location Change](https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManager_Class/index.html#//apple_ref/doc/uid/TP40007125-CH3-SW60)が検出されたタイミングで、一定条件を満たしている場合のみ通知を送信する、という方針を選択しました。
+
+シーケンス図として正確ではありませんが、大まかな流れは以下のようになります。
+
+<img src="/images/2016-04-30/image2.png" width=600px>
+
+位置情報画面に移動してからは、watchOSの`CLLocationManager`が持つ`requestLocation`を利用してiOS側に位置情報を問い合わせ、定期的に画面中の距離情報や地図をアップデートします。
+（Apple WatchにはGPSが内蔵されていないため、iOS側に問い合わせない限り位置情報を得ることはできません。）
+
+この際の位置情報取得はiOS側で引き続き行い、それをwatchOS側で渡す流れにすることも可能でした。
+そうしなかったのは以下の理由からです。
+
+* `requestLocation`を利用すればそれ以降の位置情報に関するコードはwatchOS側で完結させることができる 
+* 要件として`CLLocationManager`の精度としては最高のもの（`kCLLocationAccuracyBestForNavigation`）を利用する必要があり、例えばハンドリングのバグ起因でiOS側で位置情報の取得が誤って行われている（= iOSデバイスのバッテリーの消費が大きくなってしまう）という状況は絶対に避けたかった
+
+あくまでwatchOSアプリはエクステンションと捉えており、iOSアプリ側に影響が出ることは基本的に無いように設計していました。もちろん、Apple Watchとのペアリングが行われていない端末であれば、そもそも位置情報の取得許可を得ることもありません。
+
+### フローB: ユーザが自らアプリを起動した場合
+
+こちらはユーザが通常通りApple Watch上でアプリを起動したケースです。
+
+<img src="/images/2016-04-30/image3.png" width=600px>
+
+先ほどよりやや複雑ですね。一度近くの企業情報を取得した後の挙動はプロセス1の場合と同様です。
+
+当初はwatchOSがiOSに対して`requestLocation`を発行し、その結果を受け取った後、再度近くの企業を取得するリクエストを発行するという方針で考えていました。
+しかしこの場合、コードとしては単純に記述できるものの、watchOS <=> iOS間のやり取りが上記の図よりも余分に一度増えてしまいます。
+
+そのためwatchOSからiOSへの問い合わせについて、図のように`WCSession`を利用して近くの企業自体をリクエストするようにし、現在地の取得はiOS上で行うようにしました。`WCSession`はデバッグし辛かったりシミュレータ上で不安定だったりと少し扱い辛くもありましたが、実機上ではある程度安定していたように思います。
+
+## Local Notification / Remote Notificationの扱い
+
+watchアプリについて、Xcode上で`UIRemoteNotification`を簡単にデバッグすることができる仕組みが用意されていますが、`UILocalNotification`についてはその限りではありません。
+
+`UIRemoteNotification`と`UILocalNotification`用の共通のラッパーを用意し、基本的に必要な処理はそのラッパーオブジェクトを通して行い、`UILocalNotification`であってもシミュレータ上で挙動確認ができるようにしていました。
+こちらに関しては[potatotips #28](http://potatotips.connpass.com/event/28780/)で紹介しましたので、以下スライドを参照して頂ければと思います。
+
+<div style="width: 65%">
+<script async class="speakerdeck-embed" data-id="9376e6b4833343e88899900856891fc4" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+</div>
+
+## まとめ
+
+WantedlyのApple Watch用アプリに関して、主に位置情報制御と通知周りに関して簡単に紹介しました。
+Apple Watchと言えば先日、今年の6月以降にsubmitするアプリについてはwatchOS 2以降のSDKを利用しなければならないとのアナウンスがありました（参考: [Upcoming Requirement for watchOS Apps](https://developer.apple.com/news/?id=04222016a)）。
+
+今年のWWDCで何かしらのアップデートもあるでしょうし、何だかんだでwatchOS <=> iOS間の通信の制御は楽でもないので、この辺りが実装しやすくなることを個人的には期待したいです。
+
+ということで、Watchアプリも付属しているWantedlyのiOSアプリは以下からダウンロードできます。ぜひぜひお試し下さい。
+
+[Wantedly - 転職に使える会社訪問求人アプリ](https://itunes.apple.com/jp/app/wantedly-zhuan-zhini-shieru/id804727886?mt=8)
+
+## We are hiring
+
+WantedlyではwatchOS、iOSに限らず、多分野のエンジニアを募集しています。興味のある方はぜひ話を聞きに来て下さい。
+
+<div style="margin: 0 auto; width: 470px;">
+<div class="wantedly-visit-button" data-visit-button-id="y7wE1GQEYdR11nH_D_ArCA" data-width="470" data-height="80"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://platform.wantedly.com/visit_buttons/script.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, "script", "wantedly-visit-buttons-wjs"));
+</script>
+</div>
+

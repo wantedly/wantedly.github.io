@@ -5,10 +5,121 @@
   <id>http://engineer.wantedly.com/</id>
   <link href="http://engineer.wantedly.com/"/>
   <link href="http://engineer.wantedly.com/feed.xml" rel="self"/>
-  <updated>2016-04-26T10:40:00Z</updated>
+  <updated>2016-04-30T13:12:00Z</updated>
   <author>
     <name>@wantedly</name>
   </author>
+  <entry>
+    <title>Apple Watchアプリをリリースしていました</title>
+    <link rel="alternate" href="http://engineer.wantedly.com/2016/04/30/watch-app.html"/>
+    <id>http://engineer.wantedly.com/2016/04/30/watch-app.html</id>
+    <published>2016-04-30T13:12:00Z</published>
+    <updated>2016-05-01T09:57:03+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;エンジニアのshingtです。このblogを書くのは2年前に&lt;a href="/2014/01/02/neo4j-introduction.html"&gt;Neo4jの記事&lt;/a&gt;を書いて以来ですね。&lt;/p&gt;
+
+&lt;p&gt;さて、時期を少し逃してしまった感がありますが、3月にWantedlyのApple Watch用アプリをこっそりリリースしました。&lt;/p&gt;
+
+&lt;p&gt;このアプリには少し変わった機能として &amp;ldquo;Wantedly上に登録された企業が近くにある際に、その企業を通知・表示する&amp;rdquo; というものを入れています。（注: 通知候補は一部の企業様のみとなっております。）&lt;/p&gt;
+
+&lt;p&gt;設計としても多少変わったものになったため、簡単にですがここで紹介します（自分の備忘録も兼ねて）。なお、watchOS 2、iOS9上での開発です。&lt;/p&gt;
+
+&lt;h2&gt;機能について&lt;/h2&gt;
+
+&lt;p&gt;前述のように、このWatchアプリではユーザの近くにある企業を通知/表示することができます。
+このフローは大きく分けて2つ存在しており、画面遷移は以下のようになっています。
+通知もしくは起動時の画面から、最終的には同じ位置情報を表示する画面に行き着く、という構成です。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/2016-04-30/image1.png" width=600px&gt;&lt;/p&gt;
+
+&lt;p&gt;メッセージが確認できる画面等もありますが、機能としてはそれくらいで、watchOSのドキュメントや&lt;a href="http://nerds.airbnb.com/airbnb-watch/"&gt;airbnbのblogなどで言われるように&lt;/a&gt;、本体アプリの&amp;ldquo;Lightweight Extension&amp;quot;となるような機能に留めつつ、watchらしい体験も組み込んだという形です。&lt;/p&gt;
+
+&lt;h2&gt;位置情報取得周りのフロー&lt;/h2&gt;
+
+&lt;p&gt;上の図の通り、このアプリでは位置情報をユーザが確認するフローが2つ存在しています。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;フローA: 通知経由の場合&lt;/li&gt;
+&lt;li&gt;フローB: ユーザが自らアプリを起動した場合&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;フローA: 通知経由の場合&lt;/h3&gt;
+
+&lt;p&gt;前提としてこのアプリの通知は頻繁に送る類のものではありません。
+そのため、&lt;code&gt;CLLocationManager&lt;/code&gt;における&lt;a href="https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManager_Class/index.html#//apple_ref/doc/uid/TP40007125-CH3-SW60"&gt;Significant Location Change&lt;/a&gt;が検出されたタイミングで、一定条件を満たしている場合のみ通知を送信する、という方針を選択しました。&lt;/p&gt;
+
+&lt;p&gt;シーケンス図として正確ではありませんが、大まかな流れは以下のようになります。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/2016-04-30/image2.png" width=600px&gt;&lt;/p&gt;
+
+&lt;p&gt;位置情報画面に移動してからは、watchOSの&lt;code&gt;CLLocationManager&lt;/code&gt;が持つ&lt;code&gt;requestLocation&lt;/code&gt;を利用してiOS側に位置情報を問い合わせ、定期的に画面中の距離情報や地図をアップデートします。
+（Apple WatchにはGPSが内蔵されていないため、iOS側に問い合わせない限り位置情報を得ることはできません。）&lt;/p&gt;
+
+&lt;p&gt;この際の位置情報取得はiOS側で引き続き行い、それをwatchOS側で渡す流れにすることも可能でした。
+そうしなかったのは以下の理由からです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;requestLocation&lt;/code&gt;を利用すればそれ以降の位置情報に関するコードはwatchOS側で完結させることができる&lt;/li&gt;
+&lt;li&gt;要件として&lt;code&gt;CLLocationManager&lt;/code&gt;の精度としては最高のもの（&lt;code&gt;kCLLocationAccuracyBestForNavigation&lt;/code&gt;）を利用する必要があり、例えばハンドリングのバグ起因でiOS側で位置情報の取得が誤って行われている（= iOSデバイスのバッテリーの消費が大きくなってしまう）という状況は絶対に避けたかった&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;あくまでwatchOSアプリはエクステンションと捉えており、iOSアプリ側に影響が出ることは基本的に無いように設計していました。もちろん、Apple Watchとのペアリングが行われていない端末であれば、そもそも位置情報の取得許可を得ることもありません。&lt;/p&gt;
+
+&lt;h3&gt;フローB: ユーザが自らアプリを起動した場合&lt;/h3&gt;
+
+&lt;p&gt;こちらはユーザが通常通りApple Watch上でアプリを起動したケースです。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/2016-04-30/image3.png" width=600px&gt;&lt;/p&gt;
+
+&lt;p&gt;先ほどよりやや複雑ですね。一度近くの企業情報を取得した後の挙動はプロセス1の場合と同様です。&lt;/p&gt;
+
+&lt;p&gt;当初はwatchOSがiOSに対して&lt;code&gt;requestLocation&lt;/code&gt;を発行し、その結果を受け取った後、再度近くの企業を取得するリクエストを発行するという方針で考えていました。
+しかしこの場合、コードとしては単純に記述できるものの、watchOS &amp;lt;=&amp;gt; iOS間のやり取りが上記の図よりも余分に一度増えてしまいます。&lt;/p&gt;
+
+&lt;p&gt;そのためwatchOSからiOSへの問い合わせについて、図のように&lt;code&gt;WCSession&lt;/code&gt;を利用して近くの企業自体をリクエストするようにし、現在地の取得はiOS上で行うようにしました。&lt;code&gt;WCSession&lt;/code&gt;はデバッグし辛かったりシミュレータ上で不安定だったりと少し扱い辛くもありましたが、実機上ではある程度安定していたように思います。&lt;/p&gt;
+
+&lt;h2&gt;Local Notification / Remote Notificationの扱い&lt;/h2&gt;
+
+&lt;p&gt;watchアプリについて、Xcode上で&lt;code&gt;UIRemoteNotification&lt;/code&gt;を簡単にデバッグすることができる仕組みが用意されていますが、&lt;code&gt;UILocalNotification&lt;/code&gt;についてはその限りではありません。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;UIRemoteNotification&lt;/code&gt;と&lt;code&gt;UILocalNotification&lt;/code&gt;用の共通のラッパーを用意し、基本的に必要な処理はそのラッパーオブジェクトを通して行い、&lt;code&gt;UILocalNotification&lt;/code&gt;であってもシミュレータ上で挙動確認ができるようにしていました。
+こちらに関しては&lt;a href="http://potatotips.connpass.com/event/28780/"&gt;potatotips #28&lt;/a&gt;で紹介しましたので、以下スライドを参照して頂ければと思います。&lt;/p&gt;
+
+&lt;div style="width: 65%"&gt;
+&lt;script async class="speakerdeck-embed" data-id="9376e6b4833343e88899900856891fc4" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;まとめ&lt;/h2&gt;
+
+&lt;p&gt;WantedlyのApple Watch用アプリに関して、主に位置情報制御と通知周りに関して簡単に紹介しました。
+Apple Watchと言えば先日、今年の6月以降にsubmitするアプリについてはwatchOS 2以降のSDKを利用しなければならないとのアナウンスがありました（参考: &lt;a href="https://developer.apple.com/news/?id=04222016a"&gt;Upcoming Requirement for watchOS Apps&lt;/a&gt;）。&lt;/p&gt;
+
+&lt;p&gt;今年のWWDCで何かしらのアップデートもあるでしょうし、何だかんだでwatchOS &amp;lt;=&amp;gt; iOS間の通信の制御は楽でもないので、この辺りが実装しやすくなることを個人的には期待したいです。&lt;/p&gt;
+
+&lt;p&gt;ということで、Watchアプリも付属しているWantedlyのiOSアプリは以下からダウンロードできます。ぜひぜひお試し下さい。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://itunes.apple.com/jp/app/wantedly-zhuan-zhini-shieru/id804727886?mt=8"&gt;Wantedly - 転職に使える会社訪問求人アプリ&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;We are hiring&lt;/h2&gt;
+
+&lt;p&gt;WantedlyではwatchOS、iOSに限らず、多分野のエンジニアを募集しています。興味のある方はぜひ話を聞きに来て下さい。&lt;/p&gt;
+
+&lt;div style="margin: 0 auto; width: 470px;"&gt;
+&lt;div class="wantedly-visit-button" data-visit-button-id="y7wE1GQEYdR11nH_D_ArCA" data-width="470" data-height="80"&gt;&lt;/div&gt;
+&lt;script&gt;
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://platform.wantedly.com/visit_buttons/script.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, "script", "wantedly-visit-buttons-wjs"));
+&lt;/script&gt;
+&lt;/div&gt;
+</content>
+  </entry>
   <entry>
     <title>Wantedlyのデザイン事情について UI Crunch #8で発表しました！</title>
     <link rel="alternate" href="http://engineer.wantedly.com/2016/04/26/ui-crunch-08.html"/>
@@ -483,91 +594,6 @@ Wantedly初の新卒対象3dayインターンシップでしたが、とても�
 &lt;p&gt;Wantedlyのインターンに少しでも興味を持った方、実はWantedlyは通年でインターンを募集しています！！&lt;/p&gt;
 
 &lt;iframe frameborder='0' height='305px' name='wantedly_project_widget_25674' scrolling='no' src='https://www.wantedly.com/projects/25674/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'&gt;&lt;/iframe&gt;
-</content>
-  </entry>
-  <entry>
-    <title>よちよちPythonしてきた〜プログラミングは料理と一緒〜</title>
-    <link rel="alternate" href="http://engineer.wantedly.com/2016/02/22/yochiyochi-python.html"/>
-    <id>http://engineer.wantedly.com/2016/02/22/yochiyochi-python.html</id>
-    <published>2016-02-22T10:00:00Z</published>
-    <updated>2016-03-31T15:53:49+09:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;&lt;img alt="python" src="https://cloud.githubusercontent.com/assets/11564599/13211638/6968b4cc-d97d-11e5-8f1c-872005081e65.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;こんにちは！よちよちアイドルの山本あずさです。
-今回、第一回よちよちレッスンを行いました！
-講師は、、、！この方！
-&lt;a href="https://www.wantedly.com/companies/visasq"&gt;ビザスク&lt;/a&gt;の中川伸一さんです！&lt;/p&gt;
-
-&lt;h4&gt;中川伸一さん&lt;/h4&gt;
-
-&lt;p&gt;&lt;img alt="default" src="https://cloud.githubusercontent.com/assets/11564599/13211467/e23293e8-d97b-11e5-9d28-01bfb48e71c0.jpg" /&gt;
-https://www.wantedly.com/users/78748
-Agileと野球が大好きなアラフォーエンジニア。
-公私共にオープンデータを活用したプロダクト開発をやっています。
-世の中のデータをカジュアルに解析・可視化、その仕組みを使いやすく纏める事をモチベーションにエンジニアリングをしています。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Python開発経験：5年&lt;/li&gt;
-&lt;li&gt;主な制作物：Webサイト、ビッグデータ分析、Pepperアプリ開発&lt;/li&gt;
-&lt;li&gt;実績：年に一度開催されるPythonのカンファレンス「PyCon JP」にて、2014年・2015年の二年連続で発表者として登壇しています。
-(中川さんについてより知りたい方は、Googleで「Python 野球」と検索してみてください！）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;今回、何がつくりたいか事前に聞いていただいたので、
-「インスタグラムみたいなアプリをつくりたい！！」と伝えました！！
-（思い出を彩るのが一番の趣味だったため、、、Wantedlyと関係なくて申し訳ないです。）&lt;/p&gt;
-
-&lt;p&gt;ただ、私のよちよちがよちよちのよの字レベル（エディタをDL！レベル）であったため、
-ペアプログラミングという方法で、下記のような項目を教わりました！
-よちよちであるため、一緒になって書いていくやり方はとてもわかりやすかったです！&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;PyCharmの使い方とPythonの書き方（HelloWorld）&lt;/li&gt;
-&lt;li&gt;Pythonを使って画像を小さくする&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;プログラミングは料理と一緒&lt;/h2&gt;
-
-&lt;p&gt;&lt;img alt="python1" src="https://cloud.githubusercontent.com/assets/11564599/13211567/c81c2f9a-d97c-11e5-9a99-a371dffc025f.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;中川さんからプログラミングは「料理」であると教えていただきました！
-料理、たとえばカレーをつくる時に、レシピをみながら材料を切ったり煮込んだりして、つくっていきます。
-今回は、レシピをみながら料理教室の先生（＝中川さん）とカレーをつくる、といった感じで進めていきました！&lt;/p&gt;
-
-&lt;p&gt;この時知ったのですが、エンジニアの方々は見なくてもカレーがつくれる（レシピと先生とかいなくても頭にレシピ入っている）といった状態のため、当たり前に呪文を書いていけるようになるとのこと…！！
-私もいつか！！レシピを頭にインプットして、難しい料理（たとえるならロールキャベルとかビーフ・ストロガノフとか）つくれるようになりたい！！！です。&lt;/p&gt;
-
-&lt;h2&gt;画像を小さくすることに成功…！！&lt;/h2&gt;
-
-&lt;p&gt;&lt;img alt="python3" src="https://cloud.githubusercontent.com/assets/11564599/13211651/902da1c6-d97d-11e5-9ab9-927e37933ec7.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;結果お気に入りの画像を半分にするところまで出来るようになりました！！！
-インスタグラムのさわりができました！！！ありがとうございます！
-先生（＝中川さん）がいなくても書けるようになれるよう、これからも精進してまいります！&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="image" src="https://cloud.githubusercontent.com/assets/11564599/13211631/55514882-d97d-11e5-8ce8-0fe265fb8a5e.png" /&gt;&lt;/p&gt;
-
-&lt;h2&gt;またよちよちInstagramなるものを目指して作り続けたい&lt;/h2&gt;
-
-&lt;p&gt;私は本来インスタグラムのようなアプリをつくり、自分のアプリで思い出を彩れるようになりたいと考えております。
-また、よちよちアイドルということで、いろいろな言語をちょっとずつ出来るようになりたいと考えています。
-そこで、次回はインスタグラムに近づくステップ（機能）をGo言語で教えてくれる人をWANTEDいたします！！！
-（Wantedlyに興味がある方にご応募頂いた場合には、面談の設定などお手伝いできることもあります！！ので、ぜひオフィスに遊びにきてください！）&lt;/p&gt;
-
-&lt;iframe frameborder='0' height='305px' name='wantedly_project_widget_45389' scrolling='no' src='https://www.wantedly.com/projects/45389/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'&gt;&lt;/iframe&gt;
-
-&lt;p&gt;&lt;a href="https://www.wantedly.com/projects/45389"&gt;「よちよちアイドルにGo言語を教えてくれる人WANTED！！」&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;また！中川さんのいるビザスクでもエンジニア大募集です！！
-教え方も上手でPythonマスターの中川さんがいる職場で働いてみたいですよね！
-エンジニアの募集をしているとのことなので、ぜひオフィスに遊びに行ってみてください！&lt;/p&gt;
-
-&lt;iframe frameborder='0' height='305px' name='wantedly_project_widget_40413' scrolling='no' src='https://www.wantedly.com/projects/40413/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'&gt;&lt;/iframe&gt;
-
-&lt;p&gt;&lt;a href="https://www.wantedly.com/projects/40413"&gt;「日本初のサービス『ビザスク』のアプリを1から設計！iOSエンジニア大募集！」&lt;/a&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>

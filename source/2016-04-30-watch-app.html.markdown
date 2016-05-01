@@ -1,10 +1,11 @@
 ---
-title: Watchアプリをリリースしていました
+title: Apple Watchアプリをリリースしていました
 date: 2016-04-30 22:12 JST
 wantedly_id: 300507
 facebook_id: shingtgt
 twitter_id: _shingt
 github_id: shingt
+cover_image: https://cloud.githubusercontent.com/assets/43811/14939451/788cd39e-0f82-11e6-82ea-4621b7606fb5.png
 ---
 
 エンジニアのshingtです。このblogを書くのは2年前に[Neo4jの記事](2014-01-02-neo4j-introduction.html)を書いて以来ですね。
@@ -47,7 +48,7 @@ github_id: shingt
 この際の位置情報取得はiOS側で引き続き行い、それをwatchOS側で渡す流れにすることも可能でした。
 そうしなかったのは以下の理由からです。
 
-* `requestLocation`を利用すればそれ以降の位置情報に関するコードはwatchOS側で完結させることができる 
+* `requestLocation`を利用すればそれ以降の位置情報に関するコードはwatchOS側で完結させることができる
 * 要件として`CLLocationManager`の精度としては最高のもの（`kCLLocationAccuracyBestForNavigation`）を利用する必要があり、例えばハンドリングのバグ起因でiOS側で位置情報の取得が誤って行われている（= iOSデバイスのバッテリーの消費が大きくなってしまう）という状況は絶対に避けたかった
 
 あくまでwatchOSアプリはエクステンションと捉えており、iOSアプリ側に影響が出ることは基本的に無いように設計していました。もちろん、Apple Watchとのペアリングが行われていない端末であれば、そもそも位置情報の取得許可を得ることもありません。
@@ -103,4 +104,3 @@ WantedlyではwatchOS、iOSに限らず、多分野のエンジニアを募集�
     }(document, "script", "wantedly-visit-buttons-wjs"));
 </script>
 </div>
-

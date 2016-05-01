@@ -3,7 +3,7 @@ title: グラフDBのNeo4jを1日触ってみた
 date: 2014-01-02
 wantedly_id: 300507
 facebook_id: shingtgt
-github_id: shin-en
+github_id: shingt
 ---
 
 ![match_vis2](images/2014-01-02/match_vis2.png)

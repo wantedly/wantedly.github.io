@@ -88,7 +88,7 @@ GEM
       servolux
       tilt (~> 1.4.1)
       uglifier (~> 3.0)
-    middleman-deploy (1.0.0)
+    middleman-deploy (2.0.0.pre.alpha)
       middleman-core (>= 3.2)
       net-sftp
       ptools
@@ -148,7 +148,7 @@ DEPENDENCIES
   builder (~> 3.0)
   middleman (~> 4.1.7)
   middleman-blog (~> 4.0.1)
-  middleman-deploy
+  middleman-deploy (= 2.0.0.pre.alpha)
   middleman-livereload (~> 3.4.6)
   middleman-syntax
   nokogiri

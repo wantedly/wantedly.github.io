@@ -9,7 +9,7 @@ gem "middleman-syntax"
 # For feed.xml.builder
 gem "builder", "~> 3.0"
 
-gem "bootstrap-sass", require: false
+gem "bootstrap-sass"
 
 gem "redcarpet"
 gem "nokogiri"

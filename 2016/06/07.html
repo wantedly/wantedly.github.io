@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wantedly開発チームブログの書き方 - Wantedly Engineer Blog</title>
+    <title>Wantedly Engineer Blog</title>
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
     <link href="/favicon-8030cb16.png" rel="icon" type="image/png">
     <meta property="fb:app_id" content="234170156611754">
@@ -30,102 +30,19 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-8">
-            <div class="page-header clearfix">
-    <h2>
-      <div class="article-title">
-        Wantedly開発チームブログの書き方
-      </div>
-    </h2>
-    <div class="article-avatar">
-      <a href="https://www.wantedly.com/users/10599">
-        <img src="https://www.wantedly.com/users/10599/avatar" class="avatar" />
-      </a>
-      <span class='date'> 7-Dec-2013</span>
-    </div>
-    <div class="pull-right social-links">
-      <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2013/12/07/hello-world.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
-      <a href="https://twitter.com/share" class="twitter-share-button" data-via="kawasy" data-url="http://engineer.wantedly.com/2013/12/07/hello-world.html">Tweet</a>
-      <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2013/12/07/hello-world.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
-      
-        <iframe src="http://ghbtns.com/github-btn.html?user=luvtechno&amp;type=follow&amp;count=true"
-  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
-      
-    </div>
-  </div>
-  <div class="article">
-    <p>(※この記事はWantedlyのエンジニアメンバー向けのサンプル記事です)</p>
-
-<p>こんにちは！</p>
-
-<p>このブログは<a href="http://middlemanapp.com/">Middleman</a>を使って生成され、GitHub Pages上にホストされています。
-MiddlemanはRubyで書かれた静的サイト生成のフレームワークで、gemとして提供されています。</p>
-
-<h2>記事を書くには</h2>
-
-<p>手元の環境で動かすには以下のようにします。</p>
-
-<p>初回はまずレポジトリをcloneしてとってきましょう。
-ちなみに、<code>develop</code>ブランチに元原稿が存在し、<code>master</code>ブランチに公開するHTMLが自動的に生成されます。</p>
-<pre class="highlight shell"><span class="gp">$ </span>git clone git@github.com:wantedly/wantedly.github.io.git
-<span class="gp">$ </span><span class="nb">cd </span>wantedly.github.io
-<span class="gp">$ </span>git checkout develop
-<span class="gp">$ </span>bundle install
-<span class="gp">$ </span>bundle <span class="nb">exec </span>middleman server
-<span class="gp">$ </span>open http://localhost:4567/
-</pre>
-<p>2回目以降は、手元の<code>develop</code>ブランチを最新にするだけです。</p>
-<pre class="highlight shell"><span class="gp">$ </span>git pull origin develop
-<span class="gp">$ </span>bundle <span class="nb">exec </span>middleman server
-<span class="gp">$ </span>open http://localhost:4567/
-</pre>
-<p>新しい記事を書くには、以下のように過去の記事ファイルをコピーするのが簡単です。
-live reload機能が有効になっているので、原稿の<code>.md</code>ファイルを更新するだけで、自動的にブラウザ側も再読込されます。<code>middleman-livereload</code>というgemの機能です。</p>
-<pre class="highlight shell"><span class="gp">$ </span>cp <span class="nb">source</span>/2013-12-07-hello-world.html.md <span class="nb">source</span>/YYYY-MM-DD-TITLE.html.md
-</pre>
-<p>適当にbranchを作ってpull requestを送ってください。</p>
-
-<p>原稿はMarkdown形式で書きます。画像を使ったり、Wantedlyで使われている各種プログラミング言語のsyntax highlightも出来ます。Markdownのレンダリングには<code>redcarpet</code>、syntax highlightには<code>middleman-syntax</code> gemを使っています。</p>
-
-<ul>
-<li>Ruby</li>
-</ul>
-<pre class="highlight ruby"><span class="k">def </span><span class="nf">my_cool_method</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="n">message</span>
-<span class="k">end</span>
-</pre>
-<ul>
-<li>CoffeeScript</li>
-</ul>
-<pre class="highlight coffeescript"><span class="nx">$</span> <span class="o">-&gt;</span>
-  <span class="nx">console</span><span class="p">.</span><span class="na">log</span> <span class="s">&#39;hi&#39;</span>
-</pre>
-<ul>
-<li>SQL</li>
-</ul>
-<pre class="highlight sql"><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">users</span>
-</pre>
-<h2>記事を公開するには</h2>
-
-<p>以下のようにすると、HTMLファイルが生成されGitHubの<code>master</code>ブランチに<code>git push</code>されて、自動的に公開されます。<code>middleman-deploy</code> gemの機能です。</p>
-<pre class="highlight shell"><span class="gp">$ </span>bundle <span class="nb">exec </span>middleman deploy
-</pre>
-<p>簡単！</p>
-
-  </div>
-
-  <hr>
-  <div>
-    エンジニア採用中！<a href="https://www.wantedly.com/companies/wantedly/projects">オフィスに遊びに来てお話しませんか？</a>
-  </div>
-  <hr>
-
-  <iframe src="//www.facebook.com/plugins/like.php?href=http://engineer.wantedly.com/2013/12/07/hello-world.html&amp;width=80&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=20&amp;appId=234170156611754", scrolling="no", frameborder="0", style="border:none; overflow:hidden; width:110px; height:20px;", allowTransparency="true"></iframe>
-  <a href="https://twitter.com/share" class="twitter-share-button" data-via="kawasy" data-url="http://engineer.wantedly.com/2013/12/07/hello-world.html">Tweet</a>
-  <a href="http://b.hatena.ne.jp/entry/http://engineer.wantedly.com/2013/12/07/hello-world.html" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="en" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+          <h1>Archive for
   
-    <iframe src="http://ghbtns.com/github-btn.html?user=luvtechno&amp;type=follow&amp;count=true"
-  allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+    Jun  7 2016
   
+</h1>
+
+
+<ul>
+  
+    <li><a href="/2016/06/07/admin-night.html">管理画面チラ見せ♡ナイト#3 に登壇してきました</a> <span>Jun  7</span></li>
+  
+</ul>
+
 
         </div>
         <div class="col-xs-12 col-md-3 col-md-offset-1">

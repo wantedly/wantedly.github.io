@@ -5,16 +5,56 @@
   <id>http://engineer.wantedly.com/</id>
   <link href="http://engineer.wantedly.com/"/>
   <link href="http://engineer.wantedly.com/feed.xml" rel="self"/>
-  <updated>2016-04-30T13:12:00Z</updated>
+  <updated>2016-06-07T02:29:00Z</updated>
   <author>
     <name>@wantedly</name>
   </author>
+  <entry>
+    <title>管理画面チラ見せ♡ナイト#3 に登壇してきました</title>
+    <link rel="alternate" href="http://engineer.wantedly.com/2016/06/07/admin-night.html"/>
+    <id>http://engineer.wantedly.com/2016/06/07/admin-night.html</id>
+    <published>2016-06-07T02:29:00Z</published>
+    <updated>2016-06-07T19:40:40+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;はじめまして、エンジニアの天野です。&lt;/p&gt;
+
+&lt;p&gt;今更感があるのですが、2016/05/14(火)に行われた、&lt;a href="http://connpass.com/event/31779/"&gt;管理画面チラ見せ♡ナイト#3&lt;/a&gt;に登壇してきました。&lt;/p&gt;
+
+&lt;p&gt;他社さんが、ガッツリ内部の管理画面を公開する中、（半分！）サービス管理画面の発表となってしまい大変恐縮でしたが、
+穏やかな空気の中、楽しく発表できました。ご質問を頂いた方々もありがとうございました！&lt;/p&gt;
+
+&lt;h2&gt;発表資料&lt;/h2&gt;
+
+&lt;script async class="speakerdeck-embed" data-id="daa3dbd3000b4098a9036a164f24808d" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;このスライドで紹介されている、「候補者管理機能」は現在βテストを実施中です。&lt;/p&gt;
+
+&lt;p&gt;ご協力いただける企業さまは、ぜひ&lt;a href="https://wantedly.zendesk.com/hc/ja/requests/new"&gt;ご連絡&lt;/a&gt;いただけますと幸いです！&lt;/p&gt;
+
+&lt;h2&gt;当日のツイートまとめ / レポートなど&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://togetter.com/li/979261"&gt;管理画面チラ見せ♡ナイト#3に関するつぶやきまとめ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://kakakakakku.hatenablog.com/entry/2016/05/25/000755"&gt;「管理画面チラ見せ♡ナイト #3」に参加して管理画面をもっと好きになろうと思った&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;We are hiring&lt;/h2&gt;
+
+&lt;p&gt;ところで、この候補者管理画面は React を使って書かれています。React書きたい人、ぜひ遊びに来てください。&lt;/p&gt;
+
+&lt;p&gt;(弊社の React事情については&lt;a href="http://engineer.wantedly.com/2016/04/21/meguro-es-03.html"&gt;Wantedlyの最近のReact事情についてMeguro.es #3で発表しました!&lt;/a&gt;をご覧ください。)&lt;/p&gt;
+
+&lt;iframe frameborder='0' height='305px' name='wantedly_project_widget_51709' scrolling='no' src='https://www.wantedly.com/projects/51709/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'&gt;&lt;/iframe&gt;
+</content>
+  </entry>
   <entry>
     <title>Apple Watchアプリをリリースしていました</title>
     <link rel="alternate" href="http://engineer.wantedly.com/2016/04/30/watch-app.html"/>
     <id>http://engineer.wantedly.com/2016/04/30/watch-app.html</id>
     <published>2016-04-30T13:12:00Z</published>
-    <updated>2016-05-01T09:57:03+09:00</updated>
+    <updated>2016-06-07T19:40:34+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -125,7 +165,7 @@ Apple Watchと言えば先日、今年の6月以降にsubmitするアプリに�
     <link rel="alternate" href="http://engineer.wantedly.com/2016/04/26/ui-crunch-08.html"/>
     <id>http://engineer.wantedly.com/2016/04/26/ui-crunch-08.html</id>
     <published>2016-04-26T10:40:00Z</published>
-    <updated>2016-04-27T11:31:50+09:00</updated>
+    <updated>2016-06-07T19:40:34+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -169,7 +209,7 @@ UI/UXデザイナーの間では、デザイナーも技術のことをわかっ
     <link rel="alternate" href="http://engineer.wantedly.com/2016/04/21/meguro-es-03.html"/>
     <id>http://engineer.wantedly.com/2016/04/21/meguro-es-03.html</id>
     <published>2016-04-21T02:50:00Z</published>
-    <updated>2016-04-21T16:46:46+09:00</updated>
+    <updated>2016-06-07T19:40:34+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -207,7 +247,7 @@ UI/UXデザイナーの間では、デザイナーも技術のことをわかっ
     <link rel="alternate" href="http://engineer.wantedly.com/2016/04/14/reactive-swift-meetup.html"/>
     <id>http://engineer.wantedly.com/2016/04/14/reactive-swift-meetup.html</id>
     <published>2016-04-14T11:07:00Z</published>
-    <updated>2016-04-15T19:24:51+09:00</updated>
+    <updated>2016-06-07T19:40:34+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -397,7 +437,7 @@ UI/UXデザイナーの間では、デザイナーも技術のことをわかっ
     <link rel="alternate" href="http://engineer.wantedly.com/2016/04/01/four-years.html"/>
     <id>http://engineer.wantedly.com/2016/04/01/four-years.html</id>
     <published>2016-03-31T15:00:00Z</published>
-    <updated>2016-04-01T09:10:21+09:00</updated>
+    <updated>2016-06-07T19:40:34+09:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -453,147 +493,6 @@ UI/UXデザイナーの間では、デザイナーも技術のことをわかっ
 &lt;hr&gt;
 
 &lt;p&gt;Wantedlyでは「働くすべての人」に価値を提供するために、新規プロダクトに取り組むサービス開発エンジニアを積極募集しています。少しでも興味のある方は&lt;a href="https://www.wantedly.com/companies/wantedly/projects"&gt;話を聞きに来て下さい&lt;/a&gt;。お待ちしています！&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Wantedly Spring Internship 2016</title>
-    <link rel="alternate" href="http://engineer.wantedly.com/2016/03/11/spring-internship-2016.html"/>
-    <id>http://engineer.wantedly.com/2016/03/11/spring-internship-2016.html</id>
-    <published>2016-03-11T10:43:00Z</published>
-    <updated>2016-03-31T15:53:49+09:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;こんにちは！Wantedlyの山本あずさです。&lt;/p&gt;
-
-&lt;p&gt;この度、Wantedlyでは、3/2(水) - 4(金)の3日間で「&lt;a href="http://site.wantedly.com/intern2016spring/"&gt;Spring Internship 2016&lt;/a&gt;」を開催しました。
-Wantedly初の新卒対象3dayインターンシップでしたが、とても好評で130名を超える応募があり、定員を5名増やし全部で25名のエンジニア学生さんに参加いただきました！！&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="default" src="https://cloud.githubusercontent.com/assets/11564599/13633601/6784d830-e633-11e5-87de-c6d985fb9813.jpg" /&gt;&lt;/p&gt;
-
-&lt;h2&gt;第一日目&lt;/h2&gt;
-
-&lt;p&gt;第一日目は、弊社代表 仲による「ZooS講座」を行いました。
-仲からWantedlyのものづくり3か条と「ZooS」のやり方について説明がありました。
-ディレクターがいないWantedlyでは、エンジニアが0→1でプロダクトづくりをすることが求められます。「ZooS」とは、0からプロトタイプを作成するフレームワークのことです。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://www.dropbox.com/s/ly5zs860rw3pci2/WantedlySpringIntern.pptx?dl=0"&gt;「ZooS講座」参考資料&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;1チーム5名で、黄・緑・水・紺・黒の5チームに分かれて、実際にZooSを使ってプロトタイプを作成していただきました！&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="img_1990" src="https://cloud.githubusercontent.com/assets/11564599/13633695/0025ecd2-e634-11e5-80a6-230e68d8cc06.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="img_5663" src="https://cloud.githubusercontent.com/assets/11564599/13633702/0a13c21e-e634-11e5-95b5-b3415ef2e606.jpg" /&gt;&lt;/p&gt;
-
-&lt;h3&gt;ZooS優秀賞&lt;/h3&gt;
-
-&lt;p&gt;中間フィードバックをはさみ、5チームに「ZooS」のアイディアとプロトタイプを最終発表していただきました！
-力作ばかりの中、仲により「ZooS優秀賞」が発表されました！&lt;/p&gt;
-
-&lt;p&gt;「ZooS優秀賞」に輝いたのは、水色チームの5名！！
-水色チームが作ったのは「Wantedlyランチ」というサービス。企業と学生が「ランチにいく！」ボタンひとつでランチをして、最終的にマッチングにつながるサービスです。&lt;/p&gt;
-
-&lt;p&gt;今回、優秀賞に選ばれたチームが、賞品として「Wantedlyパーカー」と第3日目の全社ミーティング「DemoDay」で発表する権利を勝ち取りました。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://github.com/wantedly/wantedly/files/168464/wantedly_presentation_last.pdf"&gt;水色チーム発表資料&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2&gt;第二日目&lt;/h2&gt;
-
-&lt;p&gt;第二日目はエンジニアセッション。エンジニアの本業ともいえるコードを書く作業がここから始まりました！&lt;/p&gt;
-
-&lt;p&gt;まずは、リードエンジニアの相川からWantedlyの開発スタイルについてお伝えしました。&lt;/p&gt;
-
-&lt;p&gt;Qiitaで1300ストックを超える&lt;a href="http://qiita.com/awakia/items/c571e93e96a1ec28044f"&gt;開発フロー研修 @ Wantedly&lt;/a&gt;に書いてある部分の実際のIssueやPull Requestをお見せしたり、Wantedlyがビジネスサイド含め全員がGithubを使えるのでGithubで進捗管理の共有をしていることや、コミット数などで生産性を定量化する取り組みなどを紹介たりしました。&lt;/p&gt;
-
-&lt;h3&gt;社員訪問&lt;/h3&gt;
-
-&lt;p&gt;この日は、「社員訪問」といって、参加者に社内のエンジニアの席にいっていただき、ざっくばらんにお話しする機会を設けました。&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="img_5978" src="https://cloud.githubusercontent.com/assets/11564599/13633752/614e5c60-e634-11e5-95b9-3a6759f3c255.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="img_9546" src="https://cloud.githubusercontent.com/assets/11564599/13633756/68f78fcc-e634-11e5-973d-abcdecaad318.jpg" /&gt;&lt;/p&gt;
-
-&lt;h3&gt;エンジニアセッション&lt;/h3&gt;
-
-&lt;p&gt;&lt;img alt="img_6874" src="https://cloud.githubusercontent.com/assets/11564599/13633775/85455ee8-e634-11e5-8a0d-6234b748cd1e.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;今回のエンジニアセッションの課題を発表！
-「就活・インターン版WantedlyのトップページのReactJSで実装してかっこよくする！」&lt;/p&gt;
-
-&lt;p&gt;A-Hチームの合計8チームに分かれて開発していただきました。&lt;/p&gt;
-
-&lt;p&gt;事前に&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://speakerdeck.com/south37/what-is-web"&gt;基本的なWeb技術の話&lt;/a&gt;や、&lt;/li&gt;
-&lt;li&gt;flexboxなどを使う&lt;a href="https://github.com/wantedly/spring-intern-2016-pre"&gt;モダンなHTML,CSSによる実装の演習&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/wantedly/spring-intern-2016"&gt;ReactJSの基本的なハンズオン形式の講義&lt;/a&gt; &amp;lt;= オススメ&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;を受けた後、ひたすら実装の時間です。&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="20160304_152558" src="https://cloud.githubusercontent.com/assets/11564599/13634016/537cc372-e636-11e5-865f-7eeee25b3151.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="20160304_152451" src="https://cloud.githubusercontent.com/assets/11564599/13633999/3d543300-e636-11e5-9074-125041b01b24.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="20160303_215400" src="https://cloud.githubusercontent.com/assets/11564599/13633991/2d53ca38-e636-11e5-9770-47d0a142326e.jpg" /&gt;&lt;/p&gt;
-
-&lt;h2&gt;第3日目&lt;/h2&gt;
-
-&lt;p&gt;いよいよ最終日！！
-朝一番で、Wantedlyチームリーダーの久保長から「Wantedlyのサービスづくり」について説明がありました。&lt;/p&gt;
-
-&lt;script async class="speakerdeck-embed" data-id="68a893389c344e4ab05f686e3db15b5e" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"&gt;&lt;/script&gt;
-
-&lt;p&gt;発表まであと少し！！ということで、みなさん黙々とコードを書いていました。&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="20160304_152521" src="https://cloud.githubusercontent.com/assets/11564599/13634032/66ee2450-e636-11e5-8216-e36e705b1b37.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="20160304_152535" src="https://cloud.githubusercontent.com/assets/11564599/13634027/635cfe10-e636-11e5-931f-dde3d03260ce.jpg" /&gt;&lt;/p&gt;
-
-&lt;h3&gt;Demo Day&lt;/h3&gt;
-
-&lt;p&gt;Wantedlyでは隔週金曜日の17:30からDemo Dayという全社ミーティングを行っています。Demo Dayは、最近開発されたプロダクトを他のメンバーに向けて発表する機会です。&lt;/p&gt;
-
-&lt;p&gt;今回は「ZooS優秀賞」に輝いた水色チームの発表も社員に向けても行っていただきました。
-皆さん、賞品のWantedlyパーカーがとってもお似合いですね！&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="img_6132" src="https://cloud.githubusercontent.com/assets/11564599/13634422/e1f9cf80-e638-11e5-907c-56edb5f259bf.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="img_7177" src="https://cloud.githubusercontent.com/assets/11564599/13634301/11584370-e638-11e5-925f-4357bd1199c9.jpg" /&gt;&lt;/p&gt;
-
-&lt;h3&gt;エンジニアセッション優秀賞チーム&lt;/h3&gt;
-
-&lt;p&gt;優秀賞に輝いたのは、Javaがかけるメンバーで構成されたAチーム！！JavaとJavascriptは名前が似てるだけあって、相性が良かったのかもしれませんね。
-審査員のエンジニアによると、「自分たちで考えたユーザーユーザーインサイトをしっかり反映していたのと、実装の完成度も高かった」とのことでした。&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="img_9552" src="https://cloud.githubusercontent.com/assets/11564599/13634431/ee6443d6-e638-11e5-8ffa-1b3aada7f66d.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;以上です！
-3日間を通して、Wantedlyのカルチャー、ビジョン、働き方を知ることが出来たり、実感出来たりする機会となっていたら幸いです。
-参加いただいた皆様、インターン運営にご協力いただいたWantedly社員の皆様、誠にありがとうございました！！
-今後もこのようなインターンを開催していきたいと思います。&lt;/p&gt;
-
-&lt;h2&gt;Wantedlyインターン 体験記まとめ&lt;/h2&gt;
-
-&lt;p&gt;この度は多くの参加者にブログで今回のインターンについて書いていただきました (*´ڡ●)&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://cheolblog.wordpress.com/2016/03/08/wantedly-%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%B3/"&gt;Wantedly インターン – cheolblog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://6piwiq6.amebaownd.com/posts/600985"&gt;インターン in wantedly _ ものおき&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://yu-i9.hatenablog.com/entry/2016/03/05/154626"&gt;Wantedly SPRING INTERNSHIP 2016 に参加しました - yu-i9.hs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://otokunaga2.hatenablog.com/entry/2016/03/05/101527"&gt;WantedlyのSPRING INTERNSHIP 2016に参加しました！ - otokunagaのブログ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://medium.com/@hinatades/wantedly-spring-internship-2016%E3%81%AB%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F-4ab40acfd54#.iry1wxmh0"&gt;Wantedly Spring Internship 2016に参加してきました — Medium&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://nasa.rejec.net/wp/blog/2016/03/04/wantedly-spring-internship-2016%E5%8F%82%E5%8A%A0%E3%81%BE%E3%81%A8%E3%82%81/"&gt;Wantedly Spring Internship 2016参加まとめ - FREEDOM -&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://takegue.hatenablog.com/entry/2016/03/10/122333"&gt;Wantedlyの春インターンに行ってきた話 - たけっぱ横丁&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://note.mu/masahide_mitsu/n/nf82cda7d2531"&gt;Wantedly Spring Intern 2016｜Masahide Ishida｜note&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://tkei.hatenadiary.jp/entry/2016/03/11/143225"&gt;WantedlyのSpring Internshipに行ってきた！ - TKeiの日記&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.websuppli.com/others/409/"&gt;WantedlyのSpring intern2016に行ってきた _ Webサプリ&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Wantedlyのインターンに少しでも興味を持った方、実はWantedlyは通年でインターンを募集しています！！&lt;/p&gt;
-
-&lt;iframe frameborder='0' height='305px' name='wantedly_project_widget_25674' scrolling='no' src='https://www.wantedly.com/projects/25674/widget' style='border: none; max-width: 100%; min-width: 240px; width: 540px;'&gt;&lt;/iframe&gt;
 </content>
   </entry>
 </feed>

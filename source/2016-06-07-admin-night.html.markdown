@@ -2,10 +2,8 @@
 title: 管理画面チラ見せ♡ナイト#3 に登壇してきました
 date: 2016-06-07 11:29 JST
 wantedly_id: 134935
-facebook_id: mamoru.amano
-twitter_id:
-github_id: mamoru0217
-cover_image: https://cloud.githubusercontent.com/assets/43811/14939451/788cd39e-0f82-11e6-82ea-4621b7606fb5.png
+twitter_id: wantedly
+cover_image: https://cloud.githubusercontent.com/assets/4524771/15854361/5d3df8aa-2ce4-11e6-9998-28975568c9d7.png
 ---
 
 はじめまして、エンジニアの天野です。

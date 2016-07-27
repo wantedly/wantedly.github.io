@@ -9,7 +9,8 @@ github_id: luvtechno
 
 Wantedlyエンジニアブログは移転しました！
 
-https://www.wantedly.com/feed/s/wantedly_engineers
+[https://www.wantedly.com/feed/s/wantedly_engineers](https://www.wantedly.com/feed/s/wantedly_engineers
+)
 
 Wantedly[フィード](https://www.wantedly.com/feed)に新しく追加されたメディアを作成・運用できる「スペース機能」を使って運用しています。
 

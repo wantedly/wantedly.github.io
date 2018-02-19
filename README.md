@@ -1,4 +1,8 @@
-# wantedly.github.io
+Wantedly Engineering Blog has moved to https://www.wantedly.com/feed/s/wantedly_engineers
+
+---
+
+# wantedly.github.io (retired)
 
 Wantedly Engineer Blog
 
